@@ -1,0 +1,494 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D657E8E1C49A80500F31BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */; };
+		8D657E901C49A80500F31BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D657E8F1C49A80500F31BB7 /* Assets.xcassets */; };
+		8D657E931C49A80500F31BB7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D657E911C49A80500F31BB7 /* MainMenu.xib */; };
+		8D657E9E1C49A80500F31BB7 /* HNTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657E9D1C49A80500F31BB7 /* HNTestAppTests.swift */; };
+		8D657EA91C49A80500F31BB7 /* HNTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657EA81C49A80500F31BB7 /* HNTestAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D657E9A1C49A80500F31BB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D657E821C49A80500F31BB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D657E891C49A80500F31BB7;
+			remoteInfo = HNTestApp;
+		};
+		8D657EA51C49A80500F31BB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D657E821C49A80500F31BB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D657E891C49A80500F31BB7;
+			remoteInfo = HNTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8D657E8A1C49A80500F31BB7 /* HNTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8D657E8F1C49A80500F31BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D657E921C49A80500F31BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8D657E941C49A80500F31BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D657E991C49A80500F31BB7 /* HNTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HNTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D657E9D1C49A80500F31BB7 /* HNTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNTestAppTests.swift; sourceTree = "<group>"; };
+		8D657E9F1C49A80500F31BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D657EA41C49A80500F31BB7 /* HNTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HNTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D657EA81C49A80500F31BB7 /* HNTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNTestAppUITests.swift; sourceTree = "<group>"; };
+		8D657EAA1C49A80500F31BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D657E871C49A80500F31BB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657E961C49A80500F31BB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657EA11C49A80500F31BB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D657E811C49A80400F31BB7 = {
+			isa = PBXGroup;
+			children = (
+				8D657E8C1C49A80500F31BB7 /* HNTestApp */,
+				8D657E9C1C49A80500F31BB7 /* HNTestAppTests */,
+				8D657EA71C49A80500F31BB7 /* HNTestAppUITests */,
+				8D657E8B1C49A80500F31BB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8D657E8B1C49A80500F31BB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D657E8A1C49A80500F31BB7 /* HNTestApp.app */,
+				8D657E991C49A80500F31BB7 /* HNTestAppTests.xctest */,
+				8D657EA41C49A80500F31BB7 /* HNTestAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8D657E8C1C49A80500F31BB7 /* HNTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */,
+				8D657E8F1C49A80500F31BB7 /* Assets.xcassets */,
+				8D657E911C49A80500F31BB7 /* MainMenu.xib */,
+				8D657E941C49A80500F31BB7 /* Info.plist */,
+			);
+			path = HNTestApp;
+			sourceTree = "<group>";
+		};
+		8D657E9C1C49A80500F31BB7 /* HNTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D657E9D1C49A80500F31BB7 /* HNTestAppTests.swift */,
+				8D657E9F1C49A80500F31BB7 /* Info.plist */,
+			);
+			path = HNTestAppTests;
+			sourceTree = "<group>";
+		};
+		8D657EA71C49A80500F31BB7 /* HNTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8D657EA81C49A80500F31BB7 /* HNTestAppUITests.swift */,
+				8D657EAA1C49A80500F31BB7 /* Info.plist */,
+			);
+			path = HNTestAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D657E891C49A80500F31BB7 /* HNTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D657EAD1C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestApp" */;
+			buildPhases = (
+				8D657E861C49A80500F31BB7 /* Sources */,
+				8D657E871C49A80500F31BB7 /* Frameworks */,
+				8D657E881C49A80500F31BB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HNTestApp;
+			productName = HNTestApp;
+			productReference = 8D657E8A1C49A80500F31BB7 /* HNTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8D657E981C49A80500F31BB7 /* HNTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D657EB01C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestAppTests" */;
+			buildPhases = (
+				8D657E951C49A80500F31BB7 /* Sources */,
+				8D657E961C49A80500F31BB7 /* Frameworks */,
+				8D657E971C49A80500F31BB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D657E9B1C49A80500F31BB7 /* PBXTargetDependency */,
+			);
+			name = HNTestAppTests;
+			productName = HNTestAppTests;
+			productReference = 8D657E991C49A80500F31BB7 /* HNTestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8D657EA31C49A80500F31BB7 /* HNTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D657EB31C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestAppUITests" */;
+			buildPhases = (
+				8D657EA01C49A80500F31BB7 /* Sources */,
+				8D657EA11C49A80500F31BB7 /* Frameworks */,
+				8D657EA21C49A80500F31BB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D657EA61C49A80500F31BB7 /* PBXTargetDependency */,
+			);
+			name = HNTestAppUITests;
+			productName = HNTestAppUITests;
+			productReference = 8D657EA41C49A80500F31BB7 /* HNTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8D657E821C49A80500F31BB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Nicolas Gaulard-Querol";
+				TargetAttributes = {
+					8D657E891C49A80500F31BB7 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					8D657E981C49A80500F31BB7 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 8D657E891C49A80500F31BB7;
+					};
+					8D657EA31C49A80500F31BB7 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 8D657E891C49A80500F31BB7;
+					};
+				};
+			};
+			buildConfigurationList = 8D657E851C49A80500F31BB7 /* Build configuration list for PBXProject "HNTestApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D657E811C49A80400F31BB7;
+			productRefGroup = 8D657E8B1C49A80500F31BB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D657E891C49A80500F31BB7 /* HNTestApp */,
+				8D657E981C49A80500F31BB7 /* HNTestAppTests */,
+				8D657EA31C49A80500F31BB7 /* HNTestAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D657E881C49A80500F31BB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D657E901C49A80500F31BB7 /* Assets.xcassets in Resources */,
+				8D657E931C49A80500F31BB7 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657E971C49A80500F31BB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657EA21C49A80500F31BB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D657E861C49A80500F31BB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D657E8E1C49A80500F31BB7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657E951C49A80500F31BB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D657E9E1C49A80500F31BB7 /* HNTestAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D657EA01C49A80500F31BB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D657EA91C49A80500F31BB7 /* HNTestAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8D657E9B1C49A80500F31BB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D657E891C49A80500F31BB7 /* HNTestApp */;
+			targetProxy = 8D657E9A1C49A80500F31BB7 /* PBXContainerItemProxy */;
+		};
+		8D657EA61C49A80500F31BB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D657E891C49A80500F31BB7 /* HNTestApp */;
+			targetProxy = 8D657EA51C49A80500F31BB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8D657E911C49A80500F31BB7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D657E921C49A80500F31BB7 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8D657EAB1C49A80500F31BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8D657EAC1C49A80500F31BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8D657EAE1C49A80500F31BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8D657EAF1C49A80500F31BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8D657EB11C49A80500F31BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HNTestApp.app/Contents/MacOS/HNTestApp";
+			};
+			name = Debug;
+		};
+		8D657EB21C49A80500F31BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HNTestApp.app/Contents/MacOS/HNTestApp";
+			};
+			name = Release;
+		};
+		8D657EB41C49A80500F31BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = HNTestApp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8D657EB51C49A80500F31BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HNTestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HNTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = HNTestApp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D657E851C49A80500F31BB7 /* Build configuration list for PBXProject "HNTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D657EAB1C49A80500F31BB7 /* Debug */,
+				8D657EAC1C49A80500F31BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D657EAD1C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D657EAE1C49A80500F31BB7 /* Debug */,
+				8D657EAF1C49A80500F31BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8D657EB01C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D657EB11C49A80500F31BB7 /* Debug */,
+				8D657EB21C49A80500F31BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8D657EB31C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "HNTestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D657EB41C49A80500F31BB7 /* Debug */,
+				8D657EB51C49A80500F31BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8D657E821C49A80500F31BB7 /* Project object */;
+}
