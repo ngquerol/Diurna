@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HNTestApp.xcodeproj">
+      location = "self:/Users/ngq/Code/Xcode/Diurna/Diurna.xcodeproj">
    </FileRef>
 </Workspace>
