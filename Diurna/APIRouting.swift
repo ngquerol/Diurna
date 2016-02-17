@@ -8,17 +8,17 @@
 
 import Cocoa
 
-// TODO: Refactor this into a class
-enum HackerNewsAPI {
-    case Item(Int)
-    case TopStories
-    case NewStories
-}
-
 protocol APIEndpoint {
     var version: Int { get }
     var baseURL: NSURL { get }
     var path: NSURL { get }
+}
+
+enum HackerNewsAPI {
+    case Item(Int)
+    case User(String)
+    case TopStories
+    case NewStories
 }
 
 extension HackerNewsAPI : APIEndpoint {
@@ -27,6 +27,7 @@ extension HackerNewsAPI : APIEndpoint {
     var path: NSURL {
         switch self {
         case .Item(let id): return baseURL.URLByAppendingPathComponent("/item/\(id).json")
+        case .User(let id): return baseURL.URLByAppendingPathComponent("/user/\(id).json")
         case .TopStories: return baseURL.URLByAppendingPathComponent("/topstories.json")
         case .NewStories: return baseURL.URLByAppendingPathComponent("/newstories.json")
         }
