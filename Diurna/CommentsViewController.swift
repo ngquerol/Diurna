@@ -86,6 +86,7 @@ class CommentsViewController : NSViewController {
         if comment.deleted {
             cell.contentView.alphaValue = 0.25
             cell.author.title = "[deleted]"
+            cell.author.enabled = false
             cell.text.stringValue = ""
         } else {
             cell.text.attributedStringValue = CommentParser.parseFromHTMLString(comment.text)
