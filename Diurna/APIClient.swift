@@ -9,17 +9,17 @@
 import SwiftyJSON
 
 // FIXME: error handling (guard / defer ?)
-class APIClient : NSObject, NSProgressReporting {
+class APIClient: NSObject, NSProgressReporting {
 
     // MARK: Properties
     dynamic var progress: NSProgress
-    private var URLsession: NSURLSession
+    private var urlSession: NSURLSession
     private var cache: NSCache // TODO: persist cache to disk, invalidate if necessary
 
     // MARK: Initializers
     override init() {
         self.progress = NSProgress(totalUnitCount: -1)
-        self.URLsession = NSURLSession(
+        self.urlSession = NSURLSession(
             configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration()
         )
         self.cache = NSCache()
@@ -37,7 +37,7 @@ class APIClient : NSObject, NSProgressReporting {
             if let storiesData = data {
                 let storiesIds = JSON(data: storiesData)
                     .arrayValue
-                    .map({ $0.intValue })
+                    .map { $0.intValue }
                     .prefix(count)
 
                 self.progress.totalUnitCount = Int64(storiesIds.count)
@@ -50,12 +50,12 @@ class APIClient : NSObject, NSProgressReporting {
                         dispatch_group_enter(fetchGroup)
                         self.fetchData(HackerNewsAPI.Item(id).path) { data, error in
                             if let storyData = data,
-                                story = Story(json: JSON(data: storyData)) {
-                                    stories.append(story)
-                                    self.cache.setObject(story, forKey: id)
-                                    self.progress.completedUnitCount += 1
-                                    dispatch_group_leave(fetchGroup)
-                                }
+                            story = Story(json: JSON(data: storyData)) {
+                                stories.append(story)
+                                self.cache.setObject(story, forKey: id)
+                                self.progress.completedUnitCount += 1
+                                dispatch_group_leave(fetchGroup)
+                            }
                         }
                     }
                 }
@@ -65,20 +65,20 @@ class APIClient : NSObject, NSProgressReporting {
 
         dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
 
-            switch (source) {
+            switch source {
 
-                case .NewStories:
-                stories.sortInPlace({ (s1, s2) -> Bool in
+            case .NewStories:
+                stories.sortInPlace { (s1, s2) -> Bool in
                     return s1.time.compare(s2.time) == NSComparisonResult.OrderedDescending
-                })
+                }
                 break
 
-                case .TopStories:
-                stories.sortInPlace({ (s1, s2) -> Bool in
+            case .TopStories:
+                stories.sortInPlace { (s1, s2) -> Bool in
                     return s1.rank > s2.rank
-                })
+                }
 
-                case _: break
+            case _: break
             }
 
             completion(data: stories)
@@ -98,12 +98,12 @@ class APIClient : NSObject, NSProgressReporting {
                 dispatch_group_enter(fetchGroup)
                 fetchData(HackerNewsAPI.Item(id).path) { data, error in
                     if let commentData = data,
-                        comment = Comment(json: JSON(data: commentData)) {
-                            comments.append(comment)
-                            self.cache.setObject(comment, forKey: id)
-                            self.progress.completedUnitCount += 1
-                            dispatch_group_leave(fetchGroup)
-                        }
+                    comment = Comment(json: JSON(data: commentData)) {
+                        comments.append(comment)
+                        self.cache.setObject(comment, forKey: id)
+                        self.progress.completedUnitCount += 1
+                        dispatch_group_leave(fetchGroup)
+                    }
                 }
             }
         }
@@ -113,8 +113,21 @@ class APIClient : NSObject, NSProgressReporting {
         }
     }
 
+    func fetchUser(id: String, completion: (data: User) -> Void) {
+        if let cachedUser = cache.objectForKey(id) as? User {
+            completion(data: cachedUser)
+        } else {
+            fetchData(HackerNewsAPI.User(id).path) { data, error in
+                if let userData = data,
+                user = User(json: JSON(data: userData)) {
+                    completion(data: user)
+                }
+            }
+        }
+    }
+
     private func fetchData(url: NSURL, completion: (data: NSData?, error: NSError?) -> Void) {
-        let task = URLsession.dataTaskWithURL(url) { data, response, error in
+        let task = urlSession.dataTaskWithURL(url) { data, response, error in
             completion(data: data, error: error)
         }
 

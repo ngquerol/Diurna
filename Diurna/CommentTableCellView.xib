@@ -7,8 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CommentTableCellView" customModule="Diurna" customModuleProvider="target">
             <connections>
-                <outlet property="author" destination="0jZ-sg-soL" id="Vem-xY-aby"/>
+                <outlet property="author" destination="pBY-mu-7o6" id="2Tc-kV-yZL"/>
                 <outlet property="contentView" destination="8jp-XY-dQZ" id="jFl-ws-tax"/>
+                <outlet property="op" destination="bgh-cR-TSy" id="2J5-0h-C1H"/>
                 <outlet property="text" destination="uJa-aD-eIp" id="xcC-fg-OO3"/>
                 <outlet property="time" destination="EEf-cW-Mqh" id="rhc-Jj-5V3"/>
             </connections>
@@ -19,17 +20,26 @@
             <rect key="frame" x="0.0" y="0.0" width="450" height="61"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-sg-soL">
-                    <rect key="frame" x="8" y="37" width="4" height="14"/>
-                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" placeholderString="" id="QGv-oj-srX">
-                        <font key="font" metaFont="systemMedium" size="11"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-mu-7o6">
+                    <rect key="frame" x="10" y="37" width="49" height="14"/>
+                    <buttonCell key="cell" type="inline" title="author" bezelStyle="inline" alignment="left" imageScaling="proportionallyDown" inset="2" id="ree-PP-UUo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystemBold"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showUserDetailsPopover:" target="-2" id="Yi4-N1-NKE"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bgh-cR-TSy">
+                    <rect key="frame" x="59" y="35" width="29" height="17"/>
+                    <buttonCell key="cell" type="inline" title="OP" bezelStyle="inline" alignment="center" enabled="NO" borderStyle="border" inset="2" id="hRW-3s-nEX">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystemBold"/>
+                    </buttonCell>
+                </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EEf-cW-Mqh">
-                    <rect key="frame" x="438" y="37" width="4" height="14"/>
-                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" placeholderString="" id="vBj-LH-ijA">
+                    <rect key="frame" x="415" y="37" width="27" height="14"/>
+                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="time" placeholderString="" id="vBj-LH-ijA">
                         <dateFormatter key="formatter" dateStyle="short" timeStyle="short" doesRelativeDateFormatting="YES" id="Qtb-Er-814"/>
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -37,8 +47,8 @@
                     </textFieldCell>
                 </textField>
                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-aD-eIp">
-                    <rect key="frame" x="20" y="10" width="410" height="17"/>
-                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="" allowsEditingTextAttributes="YES" id="EbX-oS-vua">
+                    <rect key="frame" x="18" y="10" width="414" height="17"/>
+                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="text" placeholderString="" allowsEditingTextAttributes="YES" id="EbX-oS-vua">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -46,13 +56,15 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="0jZ-sg-soL" firstAttribute="top" secondItem="8jp-XY-dQZ" secondAttribute="top" constant="10" id="6Kw-R5-jeR"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="top" secondItem="0jZ-sg-soL" secondAttribute="bottom" constant="10" id="XsS-S4-w5v"/>
-                <constraint firstItem="0jZ-sg-soL" firstAttribute="leading" secondItem="8jp-XY-dQZ" secondAttribute="leading" constant="10" id="cn9-to-vYZ"/>
+                <constraint firstItem="bgh-cR-TSy" firstAttribute="baseline" secondItem="pBY-mu-7o6" secondAttribute="baseline" id="P9v-PE-5Wq"/>
+                <constraint firstItem="pBY-mu-7o6" firstAttribute="top" secondItem="8jp-XY-dQZ" secondAttribute="top" constant="10" id="SPc-fo-cR7"/>
                 <constraint firstItem="uJa-aD-eIp" firstAttribute="trailing" secondItem="EEf-cW-Mqh" secondAttribute="trailing" constant="-10" id="fAG-fY-oa0"/>
                 <constraint firstAttribute="trailing" secondItem="EEf-cW-Mqh" secondAttribute="trailing" constant="10" id="h2S-wf-hSP"/>
+                <constraint firstItem="pBY-mu-7o6" firstAttribute="leading" secondItem="8jp-XY-dQZ" secondAttribute="leading" constant="10" id="jGm-tZ-QUe"/>
+                <constraint firstItem="bgh-cR-TSy" firstAttribute="leading" secondItem="pBY-mu-7o6" secondAttribute="trailing" id="ktJ-hq-jpn"/>
                 <constraint firstItem="EEf-cW-Mqh" firstAttribute="top" secondItem="8jp-XY-dQZ" secondAttribute="top" constant="10" id="mFz-AH-9bf"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="leading" secondItem="0jZ-sg-soL" secondAttribute="leading" constant="10" id="maD-YJ-CDv"/>
+                <constraint firstItem="uJa-aD-eIp" firstAttribute="leading" secondItem="pBY-mu-7o6" secondAttribute="leading" constant="10" id="pMW-7I-6ge"/>
+                <constraint firstItem="uJa-aD-eIp" firstAttribute="top" secondItem="pBY-mu-7o6" secondAttribute="bottom" constant="10" id="svR-83-GtN"/>
                 <constraint firstItem="uJa-aD-eIp" firstAttribute="top" secondItem="EEf-cW-Mqh" secondAttribute="bottom" constant="10" id="zIQ-AQ-iSw"/>
             </constraints>
             <point key="canvasLocation" x="234" y="258.5"/>

@@ -12,10 +12,20 @@ class CommentTableCellView : NSTableCellView {
 
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
-    @IBOutlet weak var author: NSTextField!
+    @IBOutlet weak var author: NSButton!
+    @IBOutlet weak var op: NSButton!
     @IBOutlet weak var time: NSTextField!
     @IBOutlet weak var text: NSTextField!
-    
+
+    @IBAction func showUserDetailsPopover(sender: NSButton) {
+        createUserDetailsPopover()
+        userDetailsPopover.showRelativeToRect(author.bounds, ofView: author, preferredEdge: .MaxY)
+    }
+
+    // MARK: Properties
+    private var userDetailsPopover: NSPopover!
+    private var userDetailsViewController: NSViewController!
+
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,12 +42,26 @@ class CommentTableCellView : NSTableCellView {
         guard let content = contentView else { return }
         content.frame = self.bounds
         content.autoresizingMask = [.ViewHeightSizable, .ViewWidthSizable]
-//        text.wantsLayer = true
-//        text.layer?.masksToBounds = true
-//        text.layer?.backgroundColor = CGColorCreateGenericGray(0.3, 1.0)
-//        text.layer?.borderWidth = 1.0
-//        text.layer?.borderColor = NSColor.whiteColor().CGColor
-//        text.layer?.cornerRadius = 5.0
         self.addSubview(content)
+    }
+
+    // MARK: Methods
+    private func createUserDetailsPopover() {
+        let userDetailsViewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("UserDetailsViewController") as! UserDetailsViewController
+
+        userDetailsPopover = NSPopover()
+        userDetailsPopover.contentViewController = userDetailsViewController
+        userDetailsPopover.behavior = .Transient
+        userDetailsPopover.animates = true
+        userDetailsPopover.delegate = self
+        
+        userDetailsViewController.getUserInfo(author.title)
+    }
+}
+
+// MARK: Popover Delegate
+extension CommentTableCellView : NSPopoverDelegate {
+    func popoverDidClose(notification: NSNotification) {
+        userDetailsPopover = nil
     }
 }
