@@ -30,7 +30,7 @@ class StoriesViewController: NSViewController {
         let commentsViewController = commentsPane.viewController as! CommentsViewController
         let selectedStory = stories[storiesTableView.selectedRow]
 
-        guard previouslySelectedStory?.id != selectedStory.id else {
+        if previouslySelectedStory?.id == selectedStory.id {
             return
         }
 
@@ -69,7 +69,7 @@ class StoriesViewController: NSViewController {
         super.viewDidLoad()
 
         storiesCountPopUp.removeAllItems()
-        storiesCountPopUp.addItemsWithTitles(storiesCounts.map({ $0.0 }))
+        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0 })
 
         for (index, type) in storiesTypes.enumerate() {
             storiesTypeSegmentedControl.setLabel(type.0, forSegment: index)

@@ -13,10 +13,10 @@ class StoryTableCellView : NSTableCellView {
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
     @IBOutlet weak var readStatus: NSButton!
-    @IBOutlet weak var title : NSTextField!
-    @IBOutlet weak var by : NSTextField!
+    @IBOutlet weak var title: NSTextField!
+    @IBOutlet weak var by: NSTextField!
     @IBOutlet weak var URL: NSButton!
-    @IBOutlet weak var comments : NSTextField!
+    @IBOutlet weak var comments: NSTextField!
     @IBOutlet weak var time: NSTextField!
 
     // MARK: Initializers

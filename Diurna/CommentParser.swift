@@ -55,19 +55,19 @@ extension Parser {
     }
 
     mutating func consumeWhitespace() {
-        self.consumeWhile({ $0.isMemberOf(NSCharacterSet.whitespaceCharacterSet()) })
+        self.consumeWhile({ $0.isMemberOf(NSCharacterSet.whitespaceCharacterSet())})
     }
 
     mutating func parseTagName() -> String {
         consumeCharacter()
-        let tagName = consumeWhile({ $0.isMemberOf(NSCharacterSet.alphanumericCharacterSet()) })
-        consumeWhile({ $0 != ">" })
+        let tagName = consumeWhile({ $0.isMemberOf(NSCharacterSet.alphanumericCharacterSet())})
+        consumeWhile({ $0 != ">"})
         consumeCharacter()
         return tagName
     }
 
     mutating func parseText() -> String {
-        return CFXMLCreateStringByUnescapingEntities(nil, self.consumeWhile({ $0 != "<" }), nil) as String
+        return CFXMLCreateStringByUnescapingEntities(nil, self.consumeWhile({ $0 != "<"}), nil) as String
     }
 }
 
@@ -78,8 +78,8 @@ class CommentParser {
 
         var parser = Parser(htmlString: htmlString)
 
-        while (!parser.eof()) {
-            switch (parser.peekCharacter()) {
+        while !parser.eof() {
+            switch parser.peekCharacter() {
 
             case "<":
                 let tag = parser.parseTagName()
@@ -89,8 +89,8 @@ class CommentParser {
                 case "p":
                     attrStr.appendAttributedString(
                         NSAttributedString(string: "\r\n\r\n",
-                        attributes: [
-                            NSFontAttributeName: NSFont.systemFontOfSize(12.0)
+                            attributes: [
+                                NSFontAttributeName: NSFont.systemFontOfSize(12.0)
                         ])
                     )
                     break
@@ -99,9 +99,9 @@ class CommentParser {
                     let url = parser.parseText()
                     attrStr.appendAttributedString(
                         NSAttributedString(string: url,
-                        attributes: [
-                            NSLinkAttributeName: NSURL(string: url)!,
-                            NSFontAttributeName: NSFont.systemFontOfSize(12.0)
+                            attributes: [
+                                NSLinkAttributeName: NSURL(string: url)!,
+                                NSFontAttributeName: NSFont.systemFontOfSize(12.0)
                         ])
                     )
                     break
@@ -109,8 +109,8 @@ class CommentParser {
                 case "i":
                     attrStr.appendAttributedString(
                         NSAttributedString(string: parser.parseText(),
-                        attributes: [
-                            NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight: NSFontWeightMedium)
+                            attributes: [
+                                NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight: NSFontWeightMedium)
                         ])
                     )
                     break
@@ -119,8 +119,8 @@ class CommentParser {
                     parser.parseTagName()
                     attrStr.appendAttributedString(
                         NSAttributedString(string: parser.parseText(),
-                        attributes: [
-                            NSFontAttributeName: NSFont(name: "Menlo", size: 11.0) ?? NSFont.systemFontOfSize(11.0)
+                            attributes: [
+                                NSFontAttributeName: NSFont(name: "Menlo", size: 11.0) ?? NSFont.systemFontOfSize(11.0)
                         ])
                     )
                     break

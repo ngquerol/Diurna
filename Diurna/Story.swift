@@ -25,7 +25,7 @@ class Story: Item {
     override init?(json: JSON) {
         self.score = json["score"].intValue
         self.url = json["url"].URL
-        self.comments = json["kids"].arrayValue.map({ $0.intValue })
+        self.comments = json["kids"].arrayValue.map { $0.intValue }
         self.read = false
         super.init(json: json)
     }
