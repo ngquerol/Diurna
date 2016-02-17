@@ -10,15 +10,18 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     weak var window: NSWindow?
-    
+
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        window = NSApplication.sharedApplication().windows.first
-        window?.titleVisibility = .Hidden
-        window?.titlebarAppearsTransparent = true
-        window?.styleMask |= NSFullSizeContentViewWindowMask
-        window?.movableByWindowBackground = true
+        guard let window = NSApplication.sharedApplication().windows.first else { return }
+
+        window.titleVisibility = .Hidden
+        window.titlebarAppearsTransparent = true
+        window.movableByWindowBackground = true
+        window.styleMask |= NSFullSizeContentViewWindowMask
+        window.styleMask |= NSTexturedBackgroundWindowMask
+        window.backgroundColor = NSColor.whiteColor()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) { }
