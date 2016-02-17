@@ -292,14 +292,14 @@
             <objects>
                 <viewController storyboardIdentifier="UserDetailsViewController" id="xpa-x5-DkR" customClass="UserDetailsViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" id="wUD-X7-XNV">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-ce-0Z8">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
                                 <subviews>
-                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-F7-0e2">
-                                        <rect key="frame" x="0.0" y="173" width="300" height="17"/>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-F7-0e2">
+                                        <rect key="frame" x="0.0" y="123" width="300" height="17"/>
                                         <subviews>
                                             <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NA7-bB-AJs">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
@@ -313,7 +313,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m1l-4s-ffn">
-                                                        <rect key="frame" x="75.5" y="0.0" width="76.5" height="17"/>
+                                                        <rect key="frame" x="75" y="0.0" width="76.5" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="created" id="lQk-Yu-yCg">
                                                             <dateFormatter key="formatter" dateStyle="short" doesRelativeDateFormatting="YES" id="tcb-xg-2T2"/>
                                                             <font key="font" metaFont="systemMedium" size="13"/>
@@ -371,25 +371,25 @@
                                         </customSpacing>
                                     </stackView>
                                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1eL-ex-zXq">
-                                        <rect key="frame" x="0.0" y="165" width="300" height="5"/>
+                                        <rect key="frame" x="0.0" y="115" width="300" height="5"/>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzW-c1-SNQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="162"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="112"/>
                                         <clipView key="contentView" drawsBackground="NO" id="o99-1V-i3l">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="112"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" drawsBackground="NO" importsGraphics="NO" selectionGranularity="word" findStyle="panel" verticallyResizable="YES" quoteSubstitution="YES" linkDetection="YES" dataDetection="YES" dashSubstitution="YES" id="u0H-em-I9r">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="162"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="300" height="20"/>
+                                                    <size key="minSize" width="300" height="112"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="300" height="20"/>
+                                                    <size key="minSize" width="300" height="112"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                 </textView>
                                             </subviews>
@@ -400,7 +400,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="BaC-Ga-njf">
-                                            <rect key="frame" x="284" y="0.0" width="16" height="162"/>
+                                            <rect key="frame" x="284" y="0.0" width="16" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -421,7 +421,7 @@
                                 </customSpacing>
                             </stackView>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="i1Z-iQ-6Ae">
-                                <rect key="frame" x="142" y="92" width="16" height="16"/>
+                                <rect key="frame" x="142" y="67" width="16" height="16"/>
                             </progressIndicator>
                         </subviews>
                         <constraints>

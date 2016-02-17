@@ -79,16 +79,16 @@ class CommentsViewController : NSViewController {
     private func configureCell(cell: CommentTableCellView, row: Int) -> CommentTableCellView? {
         let comment = comments[row]
 
-        cell.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
-        cell.op.hidden = (comment.by != op)
         cell.time.objectValue = comment.time
 
         if comment.deleted {
-            cell.contentView.alphaValue = 0.25
             cell.author.title = "[deleted]"
             cell.author.enabled = false
             cell.text.stringValue = ""
+            cell.op.hidden = true
         } else {
+            cell.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
+            cell.op.hidden = (comment.by != op)
             cell.text.attributedStringValue = CommentParser.parseFromHTMLString(comment.text)
         }
 
