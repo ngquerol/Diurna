@@ -34,12 +34,6 @@ class StoriesViewController: NSViewController {
             return
         }
 
-        selectedStory.read = true
-
-        dispatch_async(dispatch_get_main_queue()) {
-            self.storiesTableView.reloadData()
-        }
-
         commentsViewController.updateComments(stories[storiesTableView.selectedRow])
 
         previouslySelectedStory = stories[storiesTableView.selectedRow]
@@ -68,8 +62,10 @@ class StoriesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        storiesTableView.selectionHighlightStyle = .Regular
+
         storiesCountPopUp.removeAllItems()
-        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0 })
+        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0})
 
         for (index, type) in storiesTypes.enumerate() {
             storiesTypeSegmentedControl.setLabel(type.0, forSegment: index)
@@ -85,11 +81,11 @@ class StoriesViewController: NSViewController {
         API.addObserver(self, forKeyPath: "progress.fractionCompleted", options: [.New, .Initial], context: nil)
     }
 
-    // MARK: API interaction
+    // MARK: Methods
     func updateStories() {
         let selectedCount = storiesCountPopUp.selectedItem?.title,
-            selectedTypeSegment = storiesTypeSegmentedControl.selectedSegment,
-            selectedType = storiesTypeSegmentedControl.labelForSegment(selectedTypeSegment)!
+        selectedTypeSegment = storiesTypeSegmentedControl.selectedSegment,
+        selectedType = storiesTypeSegmentedControl.labelForSegment(selectedTypeSegment)!
 
         dispatch_async(dispatch_get_main_queue()) {
             NSAnimationContext.beginGrouping()
@@ -112,6 +108,27 @@ class StoriesViewController: NSViewController {
                 NSAnimationContext.endGrouping()
             }
         }
+    }
+
+    private func configureCell(cellView: StoryTableCellView, row: Int) -> StoryTableCellView {
+        let story = stories[row]
+
+        cellView.title.stringValue = story.title
+        cellView.by.stringValue = story.by
+
+        if let url = story.url {
+            cellView.URL.title = url.shortURL() ?? ""
+            cellView.URL.target = self
+            cellView.URL.action = "visitURL:"
+        } else {
+            cellView.URL.hidden = true
+        }
+
+        cellView.comments.stringValue = String(format: story.comments.count > 1 ? "%d comments" : story.comments.count == 0 ? "no comments" : "%d comment", story.comments.count)
+
+        cellView.time.objectValue = story.time
+
+        return cellView
     }
 
     // MARK: Actions
@@ -141,18 +158,24 @@ class StoriesViewController: NSViewController {
     }
 }
 
-// MARK: TableView Source & Delegate
+// MARK: TableView Source
 extension StoriesViewController: NSTableViewDataSource {
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return stories.count
     }
 }
 
+// MARK: TableView Delegate
 extension StoriesViewController: NSTableViewDelegate {
-    func tableViewSelectionDidChange(notification: NSNotification) {
-        let rowView = storiesTableView.rowViewAtRow(storiesTableView.selectedRow, makeIfNecessary: false)
-        rowView?.selectionHighlightStyle = .Regular
-        rowView?.emphasized = false
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        guard var cellView = storiesTableView.makeViewWithIdentifier("StoryColumn", owner: self) as? StoryTableCellView else {
+            return tableView.rowHeight
+        }
+
+        cellView = configureCell(cellView, row: row)
+        let calculatedHeight = cellView.title.attributedStringValue.boundingRectWithSize(NSSize(width: tableView.bounds.width - 20.0, height: CGFloat.max), options: [.UsesFontLeading, .UsesLineFragmentOrigin]).height + 50.0
+
+        return max(tableView.rowHeight, calculatedHeight)
     }
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -160,23 +183,7 @@ extension StoriesViewController: NSTableViewDelegate {
             return nil
         }
 
-        let story = stories[row]
-
-        cellView.readStatus.hidden = story.read
-        cellView.title.stringValue = story.title
-        cellView.by.stringValue = story.by
-
-        if let url = story.url {
-            cellView.URL.title = url.shortURL() ?? ""
-            cellView.URL.target = self
-            cellView.URL.action = "visitURL:"
-        } else {
-            cellView.URL.hidden = true
-        }
-
-        cellView.comments.stringValue = String(format: story.comments.count > 1 ? "%d comments" : story.comments.count == 0 ? "no comments" : "%d comment", story.comments.count)
-
-        cellView.time.objectValue = story.time
+        configureCell(cellView, row: row)
 
         return cellView
     }

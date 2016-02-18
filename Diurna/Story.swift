@@ -13,11 +13,10 @@ class Story: Item {
     let url: NSURL?
     let comments: [Int]
 
-    var read: Bool
     var rank: Int {
         let hoursSinceSubmission = abs(self.time.timeIntervalSinceNow / (60 * 60)),
-            adjustedScore = self.score - 1,
-            gravity = 1.8
+        adjustedScore = self.score - 1,
+        gravity = 1.8
 
         return adjustedScore / Int(pow(hoursSinceSubmission + 2.0, gravity))
     }
@@ -26,7 +25,6 @@ class Story: Item {
         self.score = json["score"].intValue
         self.url = json["url"].URL
         self.comments = json["kids"].arrayValue.map { $0.intValue }
-        self.read = false
         super.init(json: json)
     }
 }

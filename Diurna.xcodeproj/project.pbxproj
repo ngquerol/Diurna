@@ -20,7 +20,6 @@
 		8D7503B61C5834F500844C85 /* APIRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7503B51C5834F500844C85 /* APIRouting.swift */; };
 		8D7711781C6A6DE400DC9295 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */; };
 		8D7711791C6A6DE400DC9295 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D9E2AC71C609FC0004C14F8 /* StoryTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E2AC61C609FC0004C14F8 /* StoryTableRowView.swift */; };
 		8DC309521C6E0D3F00188137 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC309511C6E0D3F00188137 /* HtmlParser.swift */; };
 		8DD8C2AD1C554AB200D8A673 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD8C2AC1C554AB200D8A673 /* Comment.swift */; };
 		8DE13EDD1C63593C006774F4 /* CommentTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */; };
@@ -68,7 +67,6 @@
 		8D72DFC61C50313100ADEBB8 /* StoryTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableCellView.swift; sourceTree = "<group>"; };
 		8D7503B51C5834F500844C85 /* APIRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouting.swift; sourceTree = "<group>"; };
 		8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
-		8D9E2AC61C609FC0004C14F8 /* StoryTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableRowView.swift; sourceTree = "<group>"; };
 		8DC217B21C621DA0007EC0EE /* Diurna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diurna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC309511C6E0D3F00188137 /* HtmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		8DD8C2AC1C554AB200D8A673 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				8D5ED1DA1C570165004440FD /* CommentTableCellView.swift */,
 				8D72DFC61C50313100ADEBB8 /* StoryTableCellView.swift */,
 				8D657EBA1C49A90B00F31BB7 /* StoriesViewController.swift */,
-				8D9E2AC61C609FC0004C14F8 /* StoryTableRowView.swift */,
 				8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */,
 				8DEC92211C708E2800833317 /* UserDetailsViewController.swift */,
 			);
@@ -257,7 +254,6 @@
 				8D2630361C755F4600CFFE62 /* NSURL+ShortURL.swift in Sources */,
 				8D0043531C4EE38F00C1F7D6 /* Story.swift in Sources */,
 				8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */,
-				8D9E2AC71C609FC0004C14F8 /* StoryTableRowView.swift in Sources */,
 				8D0043541C4EE38F00C1F7D6 /* APIClient.swift in Sources */,
 				8D2630341C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift in Sources */,
 				8D72DFC71C50313100ADEBB8 /* StoryTableCellView.swift in Sources */,

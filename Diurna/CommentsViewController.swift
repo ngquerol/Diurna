@@ -76,7 +76,7 @@ class CommentsViewController : NSViewController {
         }
     }
 
-    private func configureCell(cellView: CommentTableCellView, row: Int) -> CommentTableCellView? {
+    private func configureCell(cellView: CommentTableCellView, row: Int) -> CommentTableCellView {
         let comment = comments[row]
 
         cellView.time.objectValue = comment.time
@@ -127,14 +127,14 @@ extension CommentsViewController: NSTableViewDataSource {
 // MARK: TableView Delegate
 extension CommentsViewController : NSTableViewDelegate {
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        let defaultHeight: CGFloat = 61.0
-
         guard var cellView = commentsTableView.makeViewWithIdentifier("CommentColumn", owner: self) as? CommentTableCellView else {
-            return defaultHeight
+            return tableView.rowHeight
         }
 
-        cellView = configureCell(cellView, row: row)!
-        return cellView.text.attributedStringValue.boundingRectWithSize(NSSize(width: tableView.bounds.width - 40.0, height: CGFloat.max), options: [.UsesFontLeading, .UsesLineFragmentOrigin]).height + 45.0
+        cellView = configureCell(cellView, row: row)
+        let calculatedHeight = cellView.text.attributedStringValue.boundingRectWithSize(NSSize(width: tableView.bounds.width - 40.0, height: CGFloat.max), options: [.UsesFontLeading, .UsesLineFragmentOrigin]).height + 45.0
+
+        return max(tableView.rowHeight, calculatedHeight)
     }
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
