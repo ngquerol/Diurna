@@ -116,7 +116,10 @@ class HtmlParser {
                         NSAttributedString(
                             string: consumeText(),
                             attributes: [
-                                NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight: NSFontWeightMedium)
+                                NSFontAttributeName: NSFontManager.sharedFontManager().convertFont(
+                                    NSFont.systemFontOfSize(12.0),
+                                    toHaveTrait: .ItalicFontMask
+                                )
                             ]
                         )
                     )
