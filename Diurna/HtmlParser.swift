@@ -1,5 +1,5 @@
 //
-//  CommentParser.swift
+//  HtmlParser.swift
 //  Diurna
 //
 //  Created by Nicolas Gaulard-Querol on 12/02/2016.
@@ -9,7 +9,6 @@
 import Cocoa
 
 extension Character {
-
     func isMemberOf(set: NSCharacterSet) -> Bool {
         let bridgedCharacter = (String(self) as NSString).characterAtIndex(0)
         return set.characterIsMember(bridgedCharacter)
@@ -17,14 +16,11 @@ extension Character {
 }
 
 struct Parser {
-    var pos: String.Index
-    let input: String
-}
+    private var pos: String.Index
+    private let input: String
 
-extension Parser {
-
-    init(htmlString: String) {
-        self.input = htmlString
+    init(inputString: String) {
+        self.input = inputString
         self.pos = self.input.startIndex
     }
 
@@ -47,94 +43,108 @@ extension Parser {
     }
 
     mutating func consumeWhile(predicate: Character -> Bool) -> String {
-        var result = ""
-        while !self.eof() && predicate(self.peekCharacter()) {
-            result.append(consumeCharacter())
-        }
+        var result = String()
+        while !self.eof() && predicate(self.peekCharacter()) { result.append(consumeCharacter()) }
         return result
     }
 
     mutating func consumeWhitespace() {
-        self.consumeWhile({ $0.isMemberOf(NSCharacterSet.whitespaceCharacterSet())})
-    }
-
-    mutating func parseTagName() -> String {
-        consumeCharacter()
-        let tagName = consumeWhile({ $0.isMemberOf(NSCharacterSet.alphanumericCharacterSet())})
-        consumeWhile({ $0 != ">"})
-        consumeCharacter()
-        return tagName
-    }
-
-    mutating func parseText() -> String {
-        return CFXMLCreateStringByUnescapingEntities(nil, self.consumeWhile({ $0 != "<"}), nil) as String
+        self.consumeWhile { $0.isMemberOf(NSCharacterSet.whitespaceCharacterSet()) }
     }
 }
 
-class CommentParser {
+class HtmlParser {
+    private var parser: Parser
 
-    class func parseFromHTMLString(htmlString: String) -> NSAttributedString {
+    init(input: String) {
+        self.parser = Parser(inputString: input)
+    }
+
+    private func consumeTagName() -> String {
+        parser.consumeCharacter()
+        let tagName = parser.consumeWhile {
+            $0.isMemberOf(NSCharacterSet.alphanumericCharacterSet())
+        }
+        parser.consumeWhile { $0 != ">" }
+        parser.consumeCharacter()
+        return tagName
+    }
+
+    private func consumeText() -> String {
+        return CFXMLCreateStringByUnescapingEntities(
+            nil,
+            parser.consumeWhile { $0 != "<" },
+            nil
+        ) as String
+    }
+
+    func attributedString() -> NSAttributedString {
         let attrStr = NSMutableAttributedString()
 
-        var parser = Parser(htmlString: htmlString)
-
         while !parser.eof() {
-            switch parser.peekCharacter() {
+            let char = parser.peekCharacter()
 
-            case "<":
-                let tag = parser.parseTagName()
+            if char == "<" {
+                let tag = consumeTagName()
 
                 switch tag {
 
                 case "p":
                     attrStr.appendAttributedString(
-                        NSAttributedString(string: "\r\n\r\n",
-                            attributes: [
-                                NSFontAttributeName: NSFont.systemFontOfSize(12.0)
-                        ])
+                        NSAttributedString(
+                            string: "\r\n\r\n",
+                            attributes: [NSFontAttributeName: NSFont.systemFontOfSize(12.0)]
+                        )
                     )
                     break
 
                 case "a":
-                    let url = parser.parseText()
+                    let url = consumeText()
                     attrStr.appendAttributedString(
-                        NSAttributedString(string: url,
+                        NSAttributedString(
+                            string: url,
                             attributes: [
                                 NSLinkAttributeName: NSURL(string: url)!,
                                 NSFontAttributeName: NSFont.systemFontOfSize(12.0)
-                        ])
+                            ]
+                        )
                     )
                     break
 
                 case "i":
                     attrStr.appendAttributedString(
-                        NSAttributedString(string: parser.parseText(),
+                        NSAttributedString(
+                            string: consumeText(),
                             attributes: [
                                 NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight: NSFontWeightMedium)
-                        ])
+                            ]
+                        )
                     )
                     break
 
                 case "pre":
-                    parser.parseTagName()
+                    consumeTagName()
                     attrStr.appendAttributedString(
-                        NSAttributedString(string: parser.parseText(),
+                        NSAttributedString(
+                            string: consumeText(),
                             attributes: [
                                 NSFontAttributeName: NSFont(name: "Menlo", size: 11.0) ?? NSFont.systemFontOfSize(11.0)
-                        ])
+                            ]
+                        )
                     )
                     break
 
                 case _: break
                 }
-                break
-
-            case _:
-                attrStr.appendAttributedString(NSAttributedString(string: parser.parseText(),
-                    attributes: [
-                        NSFontAttributeName: NSFont.systemFontOfSize(12.0)
-                    ]))
-                break
+            } else {
+                attrStr.appendAttributedString(
+                    NSAttributedString(
+                        string: consumeText(),
+                        attributes: [
+                            NSFontAttributeName: NSFont.systemFontOfSize(12.0)
+                        ]
+                    )
+                )
             }
         }
 

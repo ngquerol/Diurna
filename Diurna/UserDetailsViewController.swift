@@ -33,9 +33,9 @@ class UserDetailsViewController: NSViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 self.karma.intValue = user.karma
                 self.created.objectValue = user.created
-                
+
                 if let aboutText = user.about {
-                    self.about.textStorage?.appendAttributedString(CommentParser.parseFromHTMLString(aboutText))
+                    self.about.textStorage?.appendAttributedString(NSAttributedString(htmlString: aboutText))
                 } else {
                     self.about.alignment = .Center
                     self.about.textStorage?.appendAttributedString(NSAttributedString(string: "No description provided."))

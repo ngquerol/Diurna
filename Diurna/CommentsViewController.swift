@@ -89,7 +89,7 @@ class CommentsViewController : NSViewController {
         } else {
             cell.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
             cell.op.hidden = (comment.by != op)
-            cell.text.attributedStringValue = CommentParser.parseFromHTMLString(comment.text)
+            cell.text.attributedStringValue = NSAttributedString(htmlString: comment.text)
         }
 
         return cell

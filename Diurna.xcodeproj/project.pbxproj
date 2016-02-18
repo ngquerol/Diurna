@@ -12,6 +12,7 @@
 		8D0043551C4EE38F00C1F7D6 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657EBA1C49A90B00F31BB7 /* StoriesViewController.swift */; };
 		8D0043561C4EE38F00C1F7D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */; };
 		8D15A2ED1C5D0E23007AE60D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */; };
+		8D2630341C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */; };
 		8D5ED1DB1C570165004440FD /* CommentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentTableCellView.swift */; };
 		8D657E901C49A80500F31BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D657E8F1C49A80500F31BB7 /* Assets.xcassets */; };
 		8D72DFC71C50313100ADEBB8 /* StoryTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DFC61C50313100ADEBB8 /* StoryTableCellView.swift */; };
@@ -19,7 +20,7 @@
 		8D7711781C6A6DE400DC9295 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */; };
 		8D7711791C6A6DE400DC9295 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D9E2AC71C609FC0004C14F8 /* StoryTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E2AC61C609FC0004C14F8 /* StoryTableRowView.swift */; };
-		8DC309521C6E0D3F00188137 /* CommentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC309511C6E0D3F00188137 /* CommentParser.swift */; };
+		8DC309521C6E0D3F00188137 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC309511C6E0D3F00188137 /* HtmlParser.swift */; };
 		8DD8C2AD1C554AB200D8A673 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD8C2AC1C554AB200D8A673 /* Comment.swift */; };
 		8DE13EDD1C63593C006774F4 /* CommentTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */; };
 		8DE13EE01C63A122006774F4 /* StoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HtmlParser.swift"; sourceTree = "<group>"; };
 		8D5ED1DA1C570165004440FD /* CommentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableCellView.swift; sourceTree = "<group>"; };
 		8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D657E8F1C49A80500F31BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		8D7711771C6A6DE400DC9295 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		8D9E2AC61C609FC0004C14F8 /* StoryTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableRowView.swift; sourceTree = "<group>"; };
 		8DC217B21C621DA0007EC0EE /* Diurna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diurna.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DC309511C6E0D3F00188137 /* CommentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentParser.swift; sourceTree = "<group>"; };
+		8DC309511C6E0D3F00188137 /* HtmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		8DD8C2AC1C554AB200D8A673 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableCellView.xib; sourceTree = "<group>"; };
 		8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryTableCellView.xib; sourceTree = "<group>"; };
@@ -105,7 +107,8 @@
 				8DE13EDE1C6361A9006774F4 /* Resources */,
 				8D657EBF1C49AC8200F31BB7 /* View Controllers */,
 				8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */,
-				8DC309511C6E0D3F00188137 /* CommentParser.swift */,
+				8DC309511C6E0D3F00188137 /* HtmlParser.swift */,
+				8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */,
 				8D657E8F1C49A80500F31BB7 /* Assets.xcassets */,
 				8D657E941C49A80500F31BB7 /* Info.plist */,
 			);
@@ -252,10 +255,11 @@
 				8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */,
 				8D9E2AC71C609FC0004C14F8 /* StoryTableRowView.swift in Sources */,
 				8D0043541C4EE38F00C1F7D6 /* APIClient.swift in Sources */,
+				8D2630341C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift in Sources */,
 				8D72DFC71C50313100ADEBB8 /* StoryTableCellView.swift in Sources */,
 				8DEC92261C71F4B300833317 /* User.swift in Sources */,
 				8DD8C2AD1C554AB200D8A673 /* Comment.swift in Sources */,
-				8DC309521C6E0D3F00188137 /* CommentParser.swift in Sources */,
+				8DC309521C6E0D3F00188137 /* HtmlParser.swift in Sources */,
 				8D0043551C4EE38F00C1F7D6 /* StoriesViewController.swift in Sources */,
 				8D15A2ED1C5D0E23007AE60D /* CommentsViewController.swift in Sources */,
 				8D5ED1DB1C570165004440FD /* CommentTableCellView.swift in Sources */,
