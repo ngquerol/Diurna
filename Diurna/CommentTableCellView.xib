@@ -23,7 +23,7 @@
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-mu-7o6">
                     <rect key="frame" x="10" y="37" width="48" height="14"/>
                     <buttonCell key="cell" type="inline" title="author" bezelStyle="inline" alignment="left" imageScaling="proportionallyDown" inset="2" id="ree-PP-UUo">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" accelerator="YES"/>
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemMedium" size="11"/>
                     </buttonCell>
                     <connections>
@@ -49,7 +49,7 @@
                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-aD-eIp">
                     <rect key="frame" x="18" y="11" width="414" height="16"/>
                     <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="justified" title="text" placeholderString="" allowsEditingTextAttributes="YES" id="EbX-oS-vua">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
