@@ -129,21 +129,6 @@ class StoriesViewController: NSViewController {
         NSWorkspace.sharedWorkspace().openURL(url)
     }
 
-    // MARK: Methods
-    private func formatURL(url: NSURL) -> String? {
-        let undesirablePrefixesPattern = "^(www[0-9]*)\\."
-
-        guard let host = url.host else {
-            return nil
-        }
-
-        if let match = host.rangeOfString(undesirablePrefixesPattern, options: .RegularExpressionSearch) {
-            return host.substringFromIndex(match.endIndex)
-        }
-
-        return host
-    }
-
     // MARK: Progress KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "progress.fractionCompleted" {
@@ -182,9 +167,11 @@ extension StoriesViewController: NSTableViewDelegate {
         cellView.by.stringValue = story.by
 
         if let url = story.url {
-            cellView.URL.title = formatURL(url) ?? ""
+            cellView.URL.title = url.shortURL() ?? ""
             cellView.URL.target = self
             cellView.URL.action = "visitURL:"
+        } else {
+            cellView.URL.hidden = true
         }
 
         cellView.comments.stringValue = String(format: story.comments.count > 1 ? "%d comments" : story.comments.count == 0 ? "no comments" : "%d comment", story.comments.count)

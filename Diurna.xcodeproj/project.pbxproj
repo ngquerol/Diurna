@@ -13,6 +13,7 @@
 		8D0043561C4EE38F00C1F7D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */; };
 		8D15A2ED1C5D0E23007AE60D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */; };
 		8D2630341C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */; };
+		8D2630361C755F4600CFFE62 /* NSURL+ShortURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630351C755F4600CFFE62 /* NSURL+ShortURL.swift */; };
 		8D5ED1DB1C570165004440FD /* CommentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentTableCellView.swift */; };
 		8D657E901C49A80500F31BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D657E8F1C49A80500F31BB7 /* Assets.xcassets */; };
 		8D72DFC71C50313100ADEBB8 /* StoryTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DFC61C50313100ADEBB8 /* StoryTableCellView.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HtmlParser.swift"; sourceTree = "<group>"; };
+		8D2630351C755F4600CFFE62 /* NSURL+ShortURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+ShortURL.swift"; sourceTree = "<group>"; };
 		8D5ED1DA1C570165004440FD /* CommentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableCellView.swift; sourceTree = "<group>"; };
 		8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D657E8F1C49A80500F31BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */,
 				8DC309511C6E0D3F00188137 /* HtmlParser.swift */,
 				8D2630331C754EC900CFFE62 /* NSAttributedString+HtmlParser.swift */,
+				8D2630351C755F4600CFFE62 /* NSURL+ShortURL.swift */,
 				8D657E8F1C49A80500F31BB7 /* Assets.xcassets */,
 				8D657E941C49A80500F31BB7 /* Info.plist */,
 			);
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D7503B61C5834F500844C85 /* APIRouting.swift in Sources */,
+				8D2630361C755F4600CFFE62 /* NSURL+ShortURL.swift in Sources */,
 				8D0043531C4EE38F00C1F7D6 /* Story.swift in Sources */,
 				8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */,
 				8D9E2AC71C609FC0004C14F8 /* StoryTableRowView.swift in Sources */,

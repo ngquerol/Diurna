@@ -76,23 +76,23 @@ class CommentsViewController : NSViewController {
         }
     }
 
-    private func configureCell(cell: CommentTableCellView, row: Int) -> CommentTableCellView? {
+    private func configureCell(cellView: CommentTableCellView, row: Int) -> CommentTableCellView? {
         let comment = comments[row]
 
-        cell.time.objectValue = comment.time
+        cellView.time.objectValue = comment.time
 
         if comment.deleted {
-            cell.author.title = "[deleted]"
-            cell.author.enabled = false
-            cell.text.stringValue = ""
-            cell.op.hidden = true
+            cellView.author.title = "[deleted]"
+            cellView.author.enabled = false
+            cellView.text.stringValue = ""
+            cellView.op.hidden = true
         } else {
-            cell.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
-            cell.op.hidden = (comment.by != op)
-            cell.text.attributedStringValue = NSAttributedString(htmlString: comment.text)
+            cellView.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
+            cellView.op.hidden = (comment.by != op)
+            cellView.text.attributedStringValue = NSAttributedString(htmlString: comment.text)
         }
 
-        return cell
+        return cellView
     }
 
 // TODO: should be empirically tweaked to give legible results, and optionally made a String extension
