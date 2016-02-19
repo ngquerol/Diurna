@@ -200,9 +200,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <progressIndicator wantsLayer="YES" maxValue="1" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="WI0-Fa-YbF">
-                                <rect key="frame" x="50" y="240" width="300" height="20"/>
-                            </progressIndicator>
+                            <stackView hidden="YES" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdy-L6-9IL">
+                                <rect key="frame" x="50" y="233" width="300" height="35"/>
+                                <subviews>
+                                    <progressIndicator wantsLayer="YES" maxValue="1" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="WI0-Fa-YbF">
+                                        <rect key="frame" x="0.0" y="16" width="300" height="20"/>
+                                    </progressIndicator>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rc7-fV-XrD">
+                                        <rect key="frame" x="96" y="0.0" width="109" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Loading stories..." id="w61-Ct-yEg">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                             <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="u6C-sN-wmz">
                                 <rect key="frame" x="0.0" y="470" width="400" height="30"/>
                                 <subviews>
@@ -266,20 +287,21 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="u6C-sN-wmz" firstAttribute="leading" secondItem="JMM-Nw-2a3" secondAttribute="leading" id="4SP-TV-PMS"/>
-                            <constraint firstItem="WI0-Fa-YbF" firstAttribute="centerY" secondItem="JMM-Nw-2a3" secondAttribute="centerY" id="4zz-Uc-YMt"/>
                             <constraint firstAttribute="bottom" secondItem="JMM-Nw-2a3" secondAttribute="bottom" id="6K4-iR-i4r"/>
                             <constraint firstItem="u6C-sN-wmz" firstAttribute="trailing" secondItem="JMM-Nw-2a3" secondAttribute="trailing" id="9c2-NC-xpZ"/>
                             <constraint firstItem="JMM-Nw-2a3" firstAttribute="leading" secondItem="zK0-V5-It3" secondAttribute="leading" id="FtJ-ZW-lCs"/>
+                            <constraint firstItem="xdy-L6-9IL" firstAttribute="centerX" secondItem="JMM-Nw-2a3" secondAttribute="centerX" id="GAq-57-C3W"/>
                             <constraint firstAttribute="trailing" secondItem="JMM-Nw-2a3" secondAttribute="trailing" id="IJ6-tP-NUw"/>
-                            <constraint firstItem="WI0-Fa-YbF" firstAttribute="width" secondItem="zK0-V5-It3" secondAttribute="width" multiplier="0.75" id="S2u-xl-H1p"/>
                             <constraint firstItem="u6C-sN-wmz" firstAttribute="top" secondItem="JMM-Nw-2a3" secondAttribute="top" id="TJb-Xf-jHy"/>
-                            <constraint firstItem="WI0-Fa-YbF" firstAttribute="centerX" secondItem="u6C-sN-wmz" secondAttribute="centerX" id="mEO-XK-7yM"/>
+                            <constraint firstItem="xdy-L6-9IL" firstAttribute="width" secondItem="JMM-Nw-2a3" secondAttribute="width" multiplier="0.75" id="gdK-7f-qox"/>
+                            <constraint firstItem="xdy-L6-9IL" firstAttribute="centerY" secondItem="JMM-Nw-2a3" secondAttribute="centerY" id="ozT-LL-zt0"/>
                             <constraint firstItem="u6C-sN-wmz" firstAttribute="top" secondItem="zK0-V5-It3" secondAttribute="top" id="uXT-sM-t74"/>
                         </constraints>
                     </customView>
                     <connections>
                         <outlet property="storiesCountPopUp" destination="wGC-Mh-Q2H" id="jRR-qq-l0P"/>
                         <outlet property="storiesProgressIndicator" destination="WI0-Fa-YbF" id="HjV-CY-LqX"/>
+                        <outlet property="storiesProgressOverlay" destination="xdy-L6-9IL" id="iNZ-kT-dsV"/>
                         <outlet property="storiesTableView" destination="v5w-j5-ky0" id="pQx-eZ-FCL"/>
                         <outlet property="storiesTypeSegmentedControl" destination="xdO-NJ-hAX" id="22p-3j-3Hu"/>
                     </connections>
@@ -486,16 +508,37 @@
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ula-Gv-Z0z">
-                                <rect key="frame" x="-2" y="242" width="504" height="17"/>
+                                <rect key="frame" x="-2" y="226.5" width="504" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="No story selected" id="pvr-bT-tBF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <progressIndicator wantsLayer="YES" maxValue="1" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Mfz-AN-8P6">
-                                <rect key="frame" x="62" y="240" width="376" height="20"/>
-                            </progressIndicator>
+                            <stackView hidden="YES" distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEy-8F-N9A">
+                                <rect key="frame" x="62.5" y="217.5" width="375" height="35"/>
+                                <subviews>
+                                    <progressIndicator wantsLayer="YES" maxValue="1" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Mfz-AN-8P6">
+                                        <rect key="frame" x="0.0" y="16" width="375" height="20"/>
+                                    </progressIndicator>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-4v-vV1">
+                                        <rect key="frame" x="122" y="0.0" width="131" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Loading comments..." id="I8a-rv-hwe">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="XLT-qM-G6H">
                                 <rect key="frame" x="-1" y="470" width="501" height="30"/>
                                 <subviews>
@@ -526,25 +569,26 @@
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="KEy-8F-N9A" firstAttribute="width" secondItem="fBL-jq-5TQ" secondAttribute="width" multiplier="0.75" id="0qz-2Z-Fhn"/>
                             <constraint firstItem="XLT-qM-G6H" firstAttribute="top" secondItem="xju-ni-MgZ" secondAttribute="top" id="1HK-gm-WVx"/>
-                            <constraint firstItem="ula-Gv-Z0z" firstAttribute="top" secondItem="Mfz-AN-8P6" secondAttribute="top" id="3Rt-Vy-eLu"/>
                             <constraint firstItem="XLT-qM-G6H" firstAttribute="trailing" secondItem="ula-Gv-Z0z" secondAttribute="trailing" id="7kZ-cJ-Uab"/>
+                            <constraint firstItem="ula-Gv-Z0z" firstAttribute="centerY" secondItem="fBL-jq-5TQ" secondAttribute="centerY" id="8E9-RP-6dV"/>
                             <constraint firstItem="ula-Gv-Z0z" firstAttribute="centerX" secondItem="XLT-qM-G6H" secondAttribute="centerX" id="8rK-mx-TTr"/>
                             <constraint firstItem="fBL-jq-5TQ" firstAttribute="leading" secondItem="ula-Gv-Z0z" secondAttribute="leading" id="Bnx-7g-0Mw"/>
                             <constraint firstAttribute="bottom" secondItem="fBL-jq-5TQ" secondAttribute="bottom" id="ORU-NE-zPB"/>
                             <constraint firstItem="fBL-jq-5TQ" firstAttribute="leading" secondItem="xju-ni-MgZ" secondAttribute="leading" id="YWe-GD-zxQ"/>
+                            <constraint firstItem="KEy-8F-N9A" firstAttribute="centerX" secondItem="fBL-jq-5TQ" secondAttribute="centerX" id="a2r-hi-kRh"/>
+                            <constraint firstItem="KEy-8F-N9A" firstAttribute="centerY" secondItem="fBL-jq-5TQ" secondAttribute="centerY" id="aBf-lm-DQb"/>
                             <constraint firstItem="ula-Gv-Z0z" firstAttribute="trailing" secondItem="fBL-jq-5TQ" secondAttribute="trailing" id="aEe-Mf-kiG"/>
-                            <constraint firstItem="Mfz-AN-8P6" firstAttribute="centerY" secondItem="xju-ni-MgZ" secondAttribute="centerY" id="cMw-A6-NDZ"/>
-                            <constraint firstItem="Mfz-AN-8P6" firstAttribute="leading" secondItem="xju-ni-MgZ" secondAttribute="leading" constant="62" id="cwq-17-ti0"/>
                             <constraint firstItem="fBL-jq-5TQ" firstAttribute="top" secondItem="XLT-qM-G6H" secondAttribute="bottom" id="esu-15-Wel"/>
                             <constraint firstAttribute="trailing" secondItem="fBL-jq-5TQ" secondAttribute="trailing" id="nl9-Vo-7Hw"/>
-                            <constraint firstItem="Mfz-AN-8P6" firstAttribute="centerX" secondItem="ula-Gv-Z0z" secondAttribute="centerX" id="yEP-UH-7S3"/>
                         </constraints>
                     </customView>
                     <connections>
                         <outlet property="commentsHeader" destination="XLT-qM-G6H" id="aVW-Pj-DbL"/>
                         <outlet property="commentsPlaceholderLabel" destination="ula-Gv-Z0z" id="KXR-hv-59L"/>
                         <outlet property="commentsProgressIndicator" destination="Mfz-AN-8P6" id="6cp-dr-89w"/>
+                        <outlet property="commentsProgressOverlay" destination="KEy-8F-N9A" id="v6S-7r-mVm"/>
                         <outlet property="commentsStoryTitle" destination="2M1-T2-6IA" id="pu9-2p-IGF"/>
                         <outlet property="commentsTableView" destination="E7o-Q7-FBv" id="NoJ-R8-41r"/>
                     </connections>
