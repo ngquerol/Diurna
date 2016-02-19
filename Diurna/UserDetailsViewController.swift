@@ -10,11 +10,12 @@ import Cocoa
 
 class UserDetailsViewController: NSViewController {
 
-    @IBOutlet var contentView: NSView!
+    @IBOutlet weak var contentView: NSStackView!
     @IBOutlet weak var userProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var created: NSTextField!
     @IBOutlet weak var karma: NSTextField!
-    @IBOutlet var about: NSTextView!
+    @IBOutlet weak var about: NSTextField!
+    @IBOutlet weak var separator: NSBox!
 
     // MARK: Properties
     private let API = APIClient()
@@ -35,11 +36,10 @@ class UserDetailsViewController: NSViewController {
                 self.created.objectValue = user.created
 
                 if let aboutText = user.about {
-                    self.about.textStorage?.appendAttributedString(NSAttributedString(htmlString: aboutText))
+                    self.about.attributedStringValue = NSAttributedString(htmlString: aboutText)
                 } else {
-                    self.about.alignment = .Center
-                    self.about.textStorage?.appendAttributedString(NSAttributedString(string: "No description provided."))
-                    self.about.textStorage?.addAttribute(NSForegroundColorAttributeName, value: NSColor.gridColor(), range: NSMakeRange(0, self.about.textStorage!.length))
+                    self.about.hidden = true
+                    self.separator.hidden = true
                 }
 
                 NSAnimationContext.beginGrouping()
