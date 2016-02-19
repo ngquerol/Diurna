@@ -105,7 +105,9 @@ class HtmlParser {
                             string: url,
                             attributes: [
                                 NSLinkAttributeName: NSURL(string: url)!,
-                                NSFontAttributeName: NSFont.systemFontOfSize(12.0)
+                                NSFontAttributeName: NSFont.systemFontOfSize(12.0),
+                                NSForegroundColorAttributeName: NSColor.blueColor(),
+                                NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
                             ]
                         )
                     )
