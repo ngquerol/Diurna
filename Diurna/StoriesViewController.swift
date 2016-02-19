@@ -15,6 +15,7 @@ class StoriesViewController: NSViewController {
     @IBOutlet weak var storiesTypeSegmentedControl: NSSegmentedControl!
     @IBOutlet weak var storiesCountPopUp: NSPopUpButton!
     @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var storiesProgressOverlay: NSStackView!
 
     @IBAction func storiesCountUpdated(sender: NSPopUpButton) {
         updateStories()
@@ -92,7 +93,7 @@ class StoriesViewController: NSViewController {
             self.storiesTableView.animator().hidden = true
             self.storiesTypeSegmentedControl.enabled = false
             self.storiesCountPopUp.enabled = false
-            self.storiesProgressIndicator.animator().hidden = false
+            self.storiesProgressOverlay.animator().hidden = false
             NSAnimationContext.endGrouping()
         }
 
@@ -104,7 +105,7 @@ class StoriesViewController: NSViewController {
                 self.storiesTableView.animator().hidden = false
                 self.storiesTypeSegmentedControl.enabled = true
                 self.storiesCountPopUp.enabled = true
-                self.storiesProgressIndicator.animator().hidden = true
+                self.storiesProgressOverlay.animator().hidden = true
                 NSAnimationContext.endGrouping()
             }
         }

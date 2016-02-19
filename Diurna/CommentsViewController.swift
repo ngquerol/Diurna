@@ -16,6 +16,7 @@ class CommentsViewController : NSViewController {
     @IBOutlet weak var commentsPlaceholderLabel: NSTextField!
     @IBOutlet weak var commentsTableView: NSTableView!
     @IBOutlet weak var commentsProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var commentsProgressOverlay: NSStackView!
 
     // MARK: Properties
     private let API = APIClient()
@@ -57,8 +58,7 @@ class CommentsViewController : NSViewController {
 
         dispatch_async(dispatch_get_main_queue()) {
             NSAnimationContext.beginGrouping()
-            self.commentsProgressIndicator.animator().hidden = false
-            self.commentsProgressIndicator.doubleValue = 0.0
+            self.commentsProgressOverlay.animator().hidden = false
             self.commentsPlaceholderLabel.animator().hidden = true
             self.commentsTableView.animator().hidden = true
             NSAnimationContext.endGrouping()
@@ -70,7 +70,7 @@ class CommentsViewController : NSViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 NSAnimationContext.beginGrouping()
                 self.commentsTableView.animator().hidden = false
-                self.commentsProgressIndicator.animator().hidden = true
+                self.commentsProgressOverlay.animator().hidden = true
                 NSAnimationContext.endGrouping()
             }
         }
