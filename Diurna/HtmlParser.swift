@@ -99,12 +99,20 @@ class HtmlParser {
                     break
 
                 case "a":
-                    let url = consumeText()
+                    let urlString = consumeText()
+
+                    guard let url = NSURL(string: urlString) else {
+                        attrStr.appendAttributedString(
+                            NSAttributedString(string: urlString)
+                        )
+                        break
+                    }
+
                     attrStr.appendAttributedString(
                         NSAttributedString(
-                            string: url,
+                            string: urlString,
                             attributes: [
-                                NSLinkAttributeName: NSURL(string: url)!,
+                                NSLinkAttributeName: url,
                                 NSFontAttributeName: NSFont.systemFontOfSize(12.0),
                                 NSForegroundColorAttributeName: NSColor.blueColor(),
                                 NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
