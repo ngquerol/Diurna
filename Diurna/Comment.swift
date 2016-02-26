@@ -11,12 +11,14 @@ import SwiftyJSON
 class Comment: Item {
     let parent: String
     let deleted: Bool
-    let kids: [Int]
+    let kidsIds: [Int]
+    var kids: [Comment]
 
     override init?(json: JSON) {
         self.parent = json["parent"].stringValue
         self.deleted = json["deleted"].boolValue
-        self.kids = json["kids"].arrayValue.map { $0.intValue }
+        self.kidsIds = json["kids"].arrayValue.map { $0.intValue }
+        self.kids = []
         super.init(json: json)
     }
 }

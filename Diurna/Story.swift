@@ -11,7 +11,8 @@ import SwiftyJSON
 class Story: Item {
     let score: Int
     let url: NSURL?
-    let comments: [Int]
+    let kids: [Int]
+    let descendants: Int
 
     var rank: Int {
         let hoursSinceSubmission = abs(self.time.timeIntervalSinceNow / (60 * 60)),
@@ -24,7 +25,8 @@ class Story: Item {
     override init?(json: JSON) {
         self.score = json["score"].intValue
         self.url = json["url"].URL
-        self.comments = json["kids"].arrayValue.map { $0.intValue }
+        self.kids = json["kids"].arrayValue.map { $0.intValue }
+        self.descendants = json["descendants"].intValue
         super.init(json: json)
     }
 }
