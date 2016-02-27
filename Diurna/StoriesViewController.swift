@@ -174,13 +174,27 @@ extension StoriesViewController: NSTableViewDelegate {
         }
 
         cellView = configureCell(cellView, row: row)
-        let calculatedHeight = cellView.title.attributedStringValue.boundingRectWithSize(NSSize(width: tableView.bounds.width - 20.0, height: CGFloat.max), options: [.UsesFontLeading, .UsesLineFragmentOrigin]).height + 50.0
 
-        return max(tableView.rowHeight, calculatedHeight)
+        let titleWidth = tableView.frame.width - 20.0,
+            textHeight = cellView.title.attributedStringValue.boundingRectWithSize(
+                NSSize(width: titleWidth, height: CGFloat.max),
+                options: [.UsesFontLeading, .UsesLineFragmentOrigin]
+        ).height
+
+        return max(tableView.rowHeight, textHeight + 65.0)
+    }
+
+    func tableViewColumnDidResize(notification: NSNotification) {
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0
+            self.storiesTableView.noteHeightOfRowsWithIndexesChanged(
+                NSIndexSet(indexesInRange: NSMakeRange(0, self.storiesTableView.numberOfRows))
+            )
+            }, completionHandler: nil)
     }
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as? StoryTableCellView else {
+        guard let cellView = tableView.makeViewWithIdentifier("StoryColumn", owner: self) as? StoryTableCellView else {
             return nil
         }
 

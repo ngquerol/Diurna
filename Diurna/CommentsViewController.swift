@@ -171,14 +171,20 @@ extension CommentsViewController: NSOutlineViewDelegate {
 
         cellView = configureCell(cellView, comment: comment)
 
-        let textHeight = cellView.text.attributedStringValue.boundingRectWithSize(NSSize(width: textWidth, height: CGFloat.max), options: [.UsesFontLeading, .UsesLineFragmentOrigin]).height
+        let textHeight = cellView.text.attributedStringValue.boundingRectWithSize(
+            NSSize(width: textWidth, height: CGFloat.max),
+            options: [.UsesFontLeading, .UsesLineFragmentOrigin]
+        ).height
 
         return max(outlineView.rowHeight, textHeight + 45.0)
     }
 
     func outlineViewColumnDidResize(notification: NSNotification) {
-        commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
-            NSIndexSet(indexesInRange: NSMakeRange(0, commentsOutlineView.numberOfRows))
-        )
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0
+            self.commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
+                NSIndexSet(indexesInRange: NSMakeRange(0, self.commentsOutlineView.numberOfRows))
+            )
+            }, completionHandler: nil)
     }
 }
