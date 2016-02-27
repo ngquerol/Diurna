@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
@@ -10,7 +10,8 @@
                 <outlet property="author" destination="pBY-mu-7o6" id="2Tc-kV-yZL"/>
                 <outlet property="contentView" destination="8jp-XY-dQZ" id="jFl-ws-tax"/>
                 <outlet property="op" destination="bgh-cR-TSy" id="2J5-0h-C1H"/>
-                <outlet property="text" destination="uJa-aD-eIp" id="xcC-fg-OO3"/>
+                <outlet property="text" destination="sb3-8f-cDn" id="usy-8f-Bgi"/>
+                <outlet property="textContainer" destination="Iif-N7-0it" id="yy8-pc-HZc"/>
                 <outlet property="time" destination="EEf-cW-Mqh" id="rhc-Jj-5V3"/>
             </connections>
         </customObject>
@@ -32,8 +33,8 @@
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bgh-cR-TSy">
                     <rect key="frame" x="58" y="35" width="29" height="17"/>
-                    <buttonCell key="cell" type="inline" title="OP" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="hRW-3s-nEX">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                    <buttonCell key="cell" type="inline" title="OP" bezelStyle="inline" alignment="center" enabled="NO" state="on" borderStyle="border" inset="2" id="hRW-3s-nEX">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                         <font key="font" metaFont="smallSystemBold"/>
                     </buttonCell>
                 </button>
@@ -46,26 +47,38 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-aD-eIp">
-                    <rect key="frame" x="18" y="11" width="414" height="16"/>
-                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="justified" title="text" placeholderString="" allowsEditingTextAttributes="YES" id="EbX-oS-vua">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Iif-N7-0it">
+                    <rect key="frame" x="15" y="5" width="420" height="27"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sb3-8f-cDn">
+                            <rect key="frame" x="3" y="5" width="414" height="17"/>
+                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="text" allowsEditingTextAttributes="YES" id="pWN-iu-LUK">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="sb3-8f-cDn" secondAttribute="trailing" constant="5" id="4Kc-se-0EP"/>
+                        <constraint firstItem="sb3-8f-cDn" firstAttribute="leading" secondItem="Iif-N7-0it" secondAttribute="leading" constant="5" id="89P-G8-tYR"/>
+                        <constraint firstItem="sb3-8f-cDn" firstAttribute="top" secondItem="Iif-N7-0it" secondAttribute="top" constant="5" id="GZD-jC-t7y"/>
+                        <constraint firstAttribute="bottom" secondItem="sb3-8f-cDn" secondAttribute="bottom" constant="5" id="Ihx-dI-Dm2"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
+                <constraint firstItem="Iif-N7-0it" firstAttribute="top" secondItem="pBY-mu-7o6" secondAttribute="bottom" constant="5" id="KZw-4J-dCw"/>
                 <constraint firstItem="bgh-cR-TSy" firstAttribute="baseline" secondItem="pBY-mu-7o6" secondAttribute="baseline" id="P9v-PE-5Wq"/>
+                <constraint firstAttribute="bottom" secondItem="Iif-N7-0it" secondAttribute="bottom" constant="5" id="PRu-C3-DAb"/>
+                <constraint firstItem="Iif-N7-0it" firstAttribute="trailing" secondItem="EEf-cW-Mqh" secondAttribute="trailing" constant="-5" id="QmW-wy-n9m"/>
                 <constraint firstItem="pBY-mu-7o6" firstAttribute="top" secondItem="8jp-XY-dQZ" secondAttribute="top" constant="10" id="SPc-fo-cR7"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="trailing" secondItem="EEf-cW-Mqh" secondAttribute="trailing" constant="-10" id="fAG-fY-oa0"/>
+                <constraint firstItem="Iif-N7-0it" firstAttribute="top" secondItem="EEf-cW-Mqh" secondAttribute="bottom" constant="5" id="TIc-bI-DNT"/>
                 <constraint firstAttribute="trailing" secondItem="EEf-cW-Mqh" secondAttribute="trailing" constant="10" id="h2S-wf-hSP"/>
                 <constraint firstItem="pBY-mu-7o6" firstAttribute="leading" secondItem="8jp-XY-dQZ" secondAttribute="leading" constant="10" id="jGm-tZ-QUe"/>
                 <constraint firstItem="bgh-cR-TSy" firstAttribute="leading" secondItem="pBY-mu-7o6" secondAttribute="trailing" id="ktJ-hq-jpn"/>
                 <constraint firstItem="EEf-cW-Mqh" firstAttribute="top" secondItem="8jp-XY-dQZ" secondAttribute="top" constant="10" id="mFz-AH-9bf"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="leading" secondItem="pBY-mu-7o6" secondAttribute="leading" constant="10" id="pMW-7I-6ge"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="top" secondItem="pBY-mu-7o6" secondAttribute="bottom" constant="10" id="svR-83-GtN"/>
-                <constraint firstItem="uJa-aD-eIp" firstAttribute="top" secondItem="EEf-cW-Mqh" secondAttribute="bottom" constant="10" id="zIQ-AQ-iSw"/>
+                <constraint firstItem="Iif-N7-0it" firstAttribute="leading" secondItem="pBY-mu-7o6" secondAttribute="leading" constant="5" id="mbP-E1-w8a"/>
             </constraints>
             <point key="canvasLocation" x="234" y="258.5"/>
         </tableCellView>

@@ -15,6 +15,7 @@ class CommentTableCellView : NSTableCellView {
     @IBOutlet weak var author: NSButton!
     @IBOutlet weak var op: NSButton!
     @IBOutlet weak var time: NSTextField!
+    @IBOutlet weak var textContainer: NSView!
     @IBOutlet weak var text: NSTextField!
 
     @IBAction func showUserDetailsPopover(sender: NSButton) {
@@ -25,6 +26,7 @@ class CommentTableCellView : NSTableCellView {
     // MARK: Properties
     private var userDetailsPopover: NSPopover!
     private var userDetailsViewController: NSViewController!
+    private let textContainerBackgroundColor = NSColor(colorLiteralRed: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -42,6 +44,9 @@ class CommentTableCellView : NSTableCellView {
         guard let content = contentView else { return }
         content.frame = self.bounds
         content.autoresizingMask = [.ViewHeightSizable, .ViewWidthSizable]
+        textContainer.wantsLayer = true
+        textContainer.layer?.backgroundColor = textContainerBackgroundColor.CGColor
+        textContainer.layer?.cornerRadius = 5.0
         self.addSubview(content)
     }
 
