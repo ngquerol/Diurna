@@ -22,6 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.styleMask |= NSFullSizeContentViewWindowMask
         window.styleMask |= NSTexturedBackgroundWindowMask
         window.backgroundColor = NSColor.whiteColor()
+
+        window.standardWindowButton(NSWindowButton.CloseButton)?.frame.origin.y -= 3
+        window.standardWindowButton(NSWindowButton.ZoomButton)?.frame.origin.y -= 3
+        window.standardWindowButton(NSWindowButton.MiniaturizeButton)?.frame.origin.y -= 3
     }
 
     func applicationWillTerminate(aNotification: NSNotification) { }
