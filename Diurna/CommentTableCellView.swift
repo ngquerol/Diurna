@@ -12,21 +12,15 @@ class CommentTableCellView : NSTableCellView {
 
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
-    @IBOutlet weak var author: NSButton!
-    @IBOutlet weak var op: NSButton!
-    @IBOutlet weak var time: NSTextField!
-    @IBOutlet weak var textContainer: NSView!
-    @IBOutlet weak var text: NSTextField!
-
-    @IBAction func showUserDetailsPopover(sender: NSButton) {
-        createUserDetailsPopover()
-        userDetailsPopover.showRelativeToRect(author.bounds, ofView: author, preferredEdge: .MaxY)
-    }
+    @IBOutlet weak var authorButton: NSButton!
+    @IBOutlet weak var opButton: NSButton!
+    @IBOutlet weak var timeTextField: NSTextField!
+    @IBOutlet weak var textContainerView: NSView!
+    @IBOutlet weak var textTextField: NSTextField!
 
     // MARK: Properties
     private var userDetailsPopover: NSPopover!
     private var userDetailsViewController: NSViewController!
-    private let textContainerBackgroundColor = NSColor(colorLiteralRed: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -44,23 +38,40 @@ class CommentTableCellView : NSTableCellView {
         guard let content = contentView else { return }
         content.frame = self.bounds
         content.autoresizingMask = [.ViewHeightSizable, .ViewWidthSizable]
-        textContainer.wantsLayer = true
-        textContainer.layer?.backgroundColor = textContainerBackgroundColor.CGColor
-        textContainer.layer?.cornerRadius = 5.0
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            NSColor(calibratedWhite: 0.95, alpha: 1.0).CGColor,
+            NSColor(calibratedWhite: 0.975, alpha: 1.0).CGColor
+        ]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.cornerRadius = 5.0
+
+        textContainerView.layer = gradientLayer
+
         self.addSubview(content)
     }
 
     // MARK: Methods
+    @IBAction private func showUserDetailsPopover(sender: NSButton) {
+        createUserDetailsPopover()
+        userDetailsPopover.showRelativeToRect(authorButton.bounds, ofView: authorButton, preferredEdge: .MaxY)
+    }
+
     private func createUserDetailsPopover() {
-        let userDetailsViewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("UserDetailsViewController") as! UserDetailsViewController
+        guard let userDetailsViewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("UserDetailsViewController") as? UserDetailsViewController,
+            comment = self.objectValue as? Comment else {
+                return
+        }
 
         userDetailsPopover = NSPopover()
         userDetailsPopover.contentViewController = userDetailsViewController
         userDetailsPopover.behavior = .Transient
+        userDetailsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         userDetailsPopover.animates = true
         userDetailsPopover.delegate = self
-        
-        userDetailsViewController.getUserInfo(author.title)
+
+        userDetailsViewController.getUserInfo(comment.by)
     }
 }
 

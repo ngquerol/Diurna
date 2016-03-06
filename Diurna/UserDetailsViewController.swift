@@ -18,35 +18,37 @@ class UserDetailsViewController: NSViewController {
     @IBOutlet weak var separator: NSBox!
 
     // MARK: Properties
-    private let API = APIClient()
+    private let API = APIClient.sharedInstance
 
     // MARK: Methods
     func getUserInfo(id: String) {
         dispatch_async(dispatch_get_main_queue()) {
-            NSAnimationContext.beginGrouping()
-            self.contentView.animator().hidden = true
-            self.userProgressIndicator.animator().hidden = false
-            self.userProgressIndicator.startAnimation(self)
-            NSAnimationContext.endGrouping()
+            NSAnimationContext.runAnimationGroup({ context in
+                self.contentView.animator().hidden = true
+                self.userProgressIndicator.animator().hidden = false
+                self.userProgressIndicator.startAnimation(self)
+                }, completionHandler: nil)
         }
 
-        API.fetchUser(id) { user in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.karma.intValue = user.karma
-                self.created.objectValue = user.created
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.API.fetchUser(id) { user in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.karma.intValue = user.karma
+                    self.created.objectValue = user.created
 
-                if let aboutText = user.about {
-                    self.about.attributedStringValue = NSAttributedString(htmlString: aboutText)
-                } else {
-                    self.about.hidden = true
-                    self.separator.hidden = true
+                    if let aboutText = user.about {
+                        self.about.attributedStringValue = MarkupParser(input: aboutText).toAttributedString()
+                    } else {
+                        self.about.hidden = true
+                        self.separator.hidden = true
+                    }
+
+                    NSAnimationContext.runAnimationGroup({ context in
+                        self.contentView.animator().hidden = false
+                        self.userProgressIndicator.animator().hidden = true
+                        self.userProgressIndicator.stopAnimation(self)
+                        }, completionHandler: nil)
                 }
-
-                NSAnimationContext.beginGrouping()
-                self.contentView.animator().hidden = false
-                self.userProgressIndicator.animator().hidden = true
-                self.userProgressIndicator.stopAnimation(self)
-                NSAnimationContext.endGrouping()
             }
         }
     }

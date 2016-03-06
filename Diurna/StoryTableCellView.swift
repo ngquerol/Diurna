@@ -8,15 +8,15 @@
 
 import Cocoa
 
-class StoryTableCellView : NSTableCellView {
+class StoryTableCellView: NSTableCellView {
 
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
-    @IBOutlet weak var title: NSTextField!
-    @IBOutlet weak var by: NSTextField!
-    @IBOutlet weak var URL: NSButton!
-    @IBOutlet weak var comments: NSTextField!
-    @IBOutlet weak var time: NSTextField!
+    @IBOutlet weak var titleTextField: NSTextField!
+    @IBOutlet weak var byTextField: NSTextField!
+    @IBOutlet weak var URLButton: NSButton!
+    @IBOutlet weak var commentsTextField: NSTextField!
+    @IBOutlet weak var timeTextField: NSTextField!
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -35,5 +35,15 @@ class StoryTableCellView : NSTableCellView {
         content.frame = self.bounds
         content.autoresizingMask = [.ViewHeightSizable, .ViewWidthSizable]
         self.addSubview(content)
+    }
+
+    // MARK: Methods
+    @IBAction private func visitURL(sender: NSButton) {
+        guard let story = self.objectValue as? Story where story.url != nil,
+            let url = story.url else {
+                return
+        }
+
+        NSWorkspace.sharedWorkspace().openURL(url)
     }
 }

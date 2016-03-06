@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
@@ -7,12 +7,12 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CommentTableCellView" customModule="Diurna" customModuleProvider="target">
             <connections>
-                <outlet property="author" destination="pBY-mu-7o6" id="2Tc-kV-yZL"/>
+                <outlet property="authorButton" destination="pBY-mu-7o6" id="NQw-Md-o2n"/>
                 <outlet property="contentView" destination="8jp-XY-dQZ" id="jFl-ws-tax"/>
-                <outlet property="op" destination="bgh-cR-TSy" id="2J5-0h-C1H"/>
-                <outlet property="text" destination="sb3-8f-cDn" id="usy-8f-Bgi"/>
-                <outlet property="textContainer" destination="Iif-N7-0it" id="yy8-pc-HZc"/>
-                <outlet property="time" destination="EEf-cW-Mqh" id="rhc-Jj-5V3"/>
+                <outlet property="opButton" destination="bgh-cR-TSy" id="1KW-d7-mYr"/>
+                <outlet property="textContainerView" destination="Iif-N7-0it" id="O8v-ks-faO"/>
+                <outlet property="textTextField" destination="sb3-8f-cDn" id="HFU-wS-LHH"/>
+                <outlet property="timeTextField" destination="EEf-cW-Mqh" id="9KN-uZ-dTk"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -52,7 +52,7 @@
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sb3-8f-cDn">
                             <rect key="frame" x="3" y="5" width="414" height="17"/>
-                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="text" allowsEditingTextAttributes="YES" id="pWN-iu-LUK">
+                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="justified" title="text" allowsEditingTextAttributes="YES" id="pWN-iu-LUK">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

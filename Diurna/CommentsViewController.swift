@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CommentsViewController : NSViewController {
+class CommentsViewController: NSViewController {
 
     // MARK: Outlets
     @IBOutlet weak var commentsStoryTitle: NSTextField!
@@ -16,102 +16,93 @@ class CommentsViewController : NSViewController {
     @IBOutlet weak var commentsPlaceholderLabel: NSTextField!
     @IBOutlet weak var commentsOutlineView: NSOutlineView!
     @IBOutlet weak var commentsProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var commentsProgressLabel: NSTextField!
     @IBOutlet weak var commentsProgressOverlay: NSStackView!
 
     // MARK: Properties
-    private let API = APIClient()
+    private let API = APIClient.sharedInstance
     private var op = String()
-    private var comments = [Comment]() {
-        didSet {
-            self.commentsOutlineView.reloadData()
-            self.commentsOutlineView.scrollRowToVisible(0)
-            self.comments.forEach { commentsOutlineView.expandItem($0, expandChildren: true) }
-        }
-    }
+    private var comments = [Comment]()
     private dynamic var overallProgress: NSProgress?
 
     // MARK: View lifecycle
     override func viewWillAppear() {
         super.viewWillAppear()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "toggleCommentVisibility:", name: "ToggleCommentVisibilityNotification", object: nil)
         addObserver(self, forKeyPath: "overallProgress.fractionCompleted", options: [.New, .Initial], context: nil)
     }
 
     // MARK: Methods
     func updateComments(story: Story) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSAnimationContext.beginGrouping()
+        NSAnimationContext.runAnimationGroup({ context in
             self.commentsOutlineView.animator().hidden = true
             self.commentsStoryTitle.animator().hidden = true
             self.commentsStoryTitle.stringValue = story.title
             self.commentsStoryTitle.animator().hidden = false
-            NSAnimationContext.endGrouping()
-        }
+            }, completionHandler: nil)
 
-        if story.descendants == 0 {
-            NSAnimationContext.beginGrouping()
-            self.commentsPlaceholderLabel.animator().hidden = false
-            self.commentsPlaceholderLabel.stringValue = "No comments yet."
-            NSAnimationContext.endGrouping()
+        guard story.descendants != 0 else {
+            NSAnimationContext.runAnimationGroup({ context in
+                self.commentsPlaceholderLabel.animator().hidden = false
+                self.commentsPlaceholderLabel.stringValue = "No comments yet."
+                }, completionHandler: nil)
             return
         }
 
         op = story.by
 
-        dispatch_async(dispatch_get_main_queue()) {
-            NSAnimationContext.beginGrouping()
+        NSAnimationContext.runAnimationGroup({ context in
             self.commentsProgressOverlay.animator().hidden = false
             self.commentsPlaceholderLabel.animator().hidden = true
             self.commentsOutlineView.animator().hidden = true
-            NSAnimationContext.endGrouping()
-        }
+            }, completionHandler: nil)
 
-        self.overallProgress = NSProgress(totalUnitCount: Int64(story.descendants))
-        self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(story.descendants))
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.overallProgress = NSProgress(totalUnitCount: Int64(story.descendants))
+            self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(story.descendants))
 
-        API.fetchComments(story) { comments in
-            self.comments = comments
+            self.API.fetchComments(story) { comments in
+                self.comments = comments
 
-            dispatch_async(dispatch_get_main_queue()) {
-                NSAnimationContext.beginGrouping()
-                self.commentsOutlineView.animator().hidden = false
-                self.commentsProgressOverlay.animator().hidden = true
-                NSAnimationContext.endGrouping()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.commentsOutlineView.reloadData()
+                    self.commentsOutlineView.scrollRowToVisible(0)
+                    self.commentsOutlineView.expandItem(nil, expandChildren: true)
+
+                    NSAnimationContext.runAnimationGroup({ context in
+                        self.commentsOutlineView.animator().hidden = false
+                        self.commentsProgressOverlay.animator().hidden = true
+                        }, completionHandler: nil)
+                }
             }
-        }
 
-        self.overallProgress?.resignCurrent()
+            self.overallProgress?.resignCurrent()
+        }
     }
 
     private func configureCell(cellView: CommentTableCellView, comment: Comment) -> CommentTableCellView {
-        cellView.time.objectValue = comment.time
+        cellView.timeTextField.objectValue = comment.time
 
         if comment.deleted {
-            cellView.author.title = "[deleted]"
-            cellView.author.enabled = false
-            cellView.text.stringValue = ""
-            cellView.op.hidden = true
+            cellView.wantsLayer = true
+            cellView.layer?.opacity = 0.5
+            cellView.textContainerView.wantsLayer = false
+            cellView.authorButton.title = "[deleted]"
+            cellView.authorButton.enabled = false
+            cellView.textTextField.stringValue = ""
+            cellView.opButton.hidden = true
         } else {
-            cellView.author.attributedTitle = NSAttributedString(string: comment.by, attributes: [NSForegroundColorAttributeName: uniqueColorFromString(comment.by)])
-            cellView.op.hidden = (comment.by != op)
-            cellView.text.attributedStringValue = MarkupParser(input: comment.text).toAttributedString()
+            cellView.authorButton.title = comment.by
+            cellView.opButton.hidden = (comment.by != op)
+            cellView.textTextField.attributedStringValue = MarkupParser(input: comment.text).toAttributedString()
         }
 
         return cellView
     }
 
-// TODO: should be empirically tweaked to give legible results, and optionally made a String extension
-    private func uniqueColorFromString(string: String) -> NSColor {
-        srandom(UInt32(truncatingBitPattern: string.hashValue)) // careful about that overflow
-        let hue = CGFloat(Double(random() % 256) / 256.0),
-            saturation = CGFloat(Double(random() % 128) / 256.0 + 0.8),
-            brightness = CGFloat(Double(random() % 128) / 256.0 + 0.8)
-
-        return NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
-    }
-
 // MARK: Progress KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "overallProgress.fractionCompleted" {
             if let newValue = change?[NSKeyValueChangeNewKey] as? Double {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -148,6 +139,15 @@ extension CommentsViewController: NSOutlineViewDataSource {
         return comment.kids[index]
     }
 
+    func outlineView(outlineView: NSOutlineView, objectValueForTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
+        guard let column = tableColumn where column.identifier == "CommentColumn",
+            let comment = item as? Comment else {
+                return nil
+        }
+
+        return comment
+    }
+
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
         guard let comment = item as? Comment,
             cellView = outlineView.makeViewWithIdentifier("CommentColumn", owner: self) as? CommentTableCellView else {
@@ -167,16 +167,20 @@ extension CommentsViewController: NSOutlineViewDelegate {
         }
 
         let cellLevel = outlineView.levelForItem(item),
-            textWidth = (outlineView.frame.width - 40.0) - (CGFloat(cellLevel) * outlineView.indentationPerLevel)
+            textWidth = (outlineView.frame.width - 40) - (CGFloat(cellLevel) * outlineView.indentationPerLevel)
 
         cellView = configureCell(cellView, comment: comment)
 
-        let textHeight = cellView.text.attributedStringValue.boundingRectWithSize(
+        let textHeight = cellView.textTextField.attributedStringValue.boundingRectWithSize(
             NSSize(width: textWidth, height: CGFloat.max),
             options: [.UsesFontLeading, .UsesLineFragmentOrigin]
         ).height
 
-        return max(outlineView.rowHeight, textHeight + 45.0)
+        return textHeight + 45
+    }
+
+    func outlineView(outlineView: NSOutlineView, rowViewForItem item: AnyObject) -> NSTableRowView? {
+        return CommentTableRowView()
     }
 
     func outlineViewColumnDidResize(notification: NSNotification) {

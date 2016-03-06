@@ -15,58 +15,23 @@ class StoriesViewController: NSViewController {
     @IBOutlet weak var storiesTypeSegmentedControl: NSSegmentedControl!
     @IBOutlet weak var storiesCountPopUp: NSPopUpButton!
     @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var storiesProgressLabel: NSTextField!
     @IBOutlet weak var storiesProgressOverlay: NSStackView!
 
-    @IBAction func storiesCountUpdated(sender: NSPopUpButton) {
-        updateStories()
-    }
-
-    @IBAction func storiesTypeUpdated(sender: NSSegmentedControl) {
-        updateStories()
-    }
-
-    @IBAction func userDidSelectStory(sender: NSTableView) {
-        let splitViewController = parentViewController as! NSSplitViewController
-        let commentsPane = splitViewController.splitViewItems[1]
-        let commentsViewController = commentsPane.viewController as! CommentsViewController
-        let selectedStory = stories[storiesTableView.selectedRow]
-
-        if previouslySelectedStory?.id == selectedStory.id {
-            return
-        }
-
-        commentsViewController.updateComments(stories[storiesTableView.selectedRow])
-
-        previouslySelectedStory = stories[storiesTableView.selectedRow]
-    }
-
     // MARK: Properties
-    private let storiesCounts = [
-        "10": 10,
-        "20": 20,
-        "50": 50,
-    ]
-    private let storiesTypes = [
-        "Top": HackerNewsAPI.TopStories,
-        "New": HackerNewsAPI.NewStories
-    ]
-    private let API = APIClient()
-    private var stories = [Story]() {
-        didSet {
-            self.storiesTableView.reloadData()
-            self.storiesTableView.scrollRowToVisible(0)
-        }
-    }
+    private let storiesCounts = ["10": 10, "20": 20, "50": 50,]
+    private let storiesTypes = ["Top": HackerNewsAPI.TopStories, "New": HackerNewsAPI.NewStories]
+    private let API = APIClient.sharedInstance
+    private var stories = [Story]()
     private var previouslySelectedStory: Story?
+    private dynamic var overallProgress: NSProgress?
 
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        storiesTableView.selectionHighlightStyle = .Regular
-
         storiesCountPopUp.removeAllItems()
-        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0})
+        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0 })
 
         for (index, type) in storiesTypes.enumerate() {
             storiesTypeSegmentedControl.setLabel(type.0, forSegment: index)
@@ -79,80 +44,105 @@ class StoriesViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
 
-        API.addObserver(self, forKeyPath: "progress.fractionCompleted", options: [.New, .Initial], context: nil)
+        addObserver(self, forKeyPath: "overallProgress.fractionCompleted", options: [.New, .Initial], context: nil)
     }
 
     // MARK: Methods
-    func updateStories() {
-        let selectedCount = storiesCountPopUp.selectedItem?.title,
-        selectedTypeSegment = storiesTypeSegmentedControl.selectedSegment,
-        selectedType = storiesTypeSegmentedControl.labelForSegment(selectedTypeSegment)!
+    @IBAction private func storiesCountUpdated(sender: NSPopUpButton) {
+        updateStories()
+    }
 
-        dispatch_async(dispatch_get_main_queue()) {
-            NSAnimationContext.beginGrouping()
+    @IBAction private func storiesTypeUpdated(sender: NSSegmentedControl) {
+        updateStories()
+    }
+
+    @IBAction private func userDidSelectStory(sender: NSTableView) {
+        guard let splitViewController = parentViewController as? NSSplitViewController,
+            commentsViewController = splitViewController.splitViewItems[1].viewController as? CommentsViewController else {
+                return
+        }
+
+        let selectedStory = stories[storiesTableView.selectedRow]
+
+        if previouslySelectedStory?.id == selectedStory.id {
+            return
+        }
+
+        commentsViewController.updateComments(stories[storiesTableView.selectedRow])
+
+        previouslySelectedStory = stories[storiesTableView.selectedRow]
+    }
+
+    private func updateStories() {
+        guard let selectedCount = storiesCounts[(storiesCountPopUp.selectedItem?.title)!],
+            selectedType = storiesTypes[storiesTypeSegmentedControl.labelForSegment(storiesTypeSegmentedControl.selectedSegment)!] else {
+                return
+        }
+
+        NSAnimationContext.runAnimationGroup({ context in
             self.storiesTableView.animator().hidden = true
             self.storiesTypeSegmentedControl.enabled = false
             self.storiesCountPopUp.enabled = false
             self.storiesProgressOverlay.animator().hidden = false
-            NSAnimationContext.endGrouping()
-        }
+            }, completionHandler: nil)
 
-        API.fetchStories(storiesCounts[selectedCount!]!, source: storiesTypes[selectedType]!) { stories in
-            self.stories = stories
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.overallProgress = NSProgress(totalUnitCount: Int64(selectedCount))
+            self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(selectedCount))
 
-            dispatch_async(dispatch_get_main_queue()) {
-                NSAnimationContext.beginGrouping()
-                self.storiesTableView.animator().hidden = false
-                self.storiesTypeSegmentedControl.enabled = true
-                self.storiesCountPopUp.enabled = true
-                self.storiesProgressOverlay.animator().hidden = true
-                NSAnimationContext.endGrouping()
+            self.API.fetchStories(selectedCount, source: selectedType) { stories in
+                self.stories = stories
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.storiesTableView.reloadData()
+                    self.storiesTableView.scrollRowToVisible(0)
+
+                    NSAnimationContext.runAnimationGroup({ context in
+                        self.storiesTableView.animator().hidden = false
+                        self.storiesTypeSegmentedControl.animator().enabled = true
+                        self.storiesCountPopUp.animator().enabled = true
+                        self.storiesProgressOverlay.animator().hidden = true
+                        }, completionHandler: nil)
+                }
             }
+
+            self.overallProgress?.resignCurrent()
         }
     }
 
     private func configureCell(cellView: StoryTableCellView, row: Int) -> StoryTableCellView {
         let story = stories[row]
 
-        cellView.title.stringValue = story.title
-        cellView.by.stringValue = story.by
+        cellView.titleTextField.stringValue = story.title
+        cellView.byTextField.stringValue = story.by
 
         if let url = story.url {
-            cellView.URL.title = url.shortURL() ?? ""
-            cellView.URL.target = self
-            cellView.URL.action = "visitURL:"
+            cellView.URLButton.title = url.shortURL() ?? ""
         } else {
-            cellView.URL.hidden = true
+            cellView.URLButton.hidden = true
         }
 
-        cellView.comments.stringValue = String(format: story.comments.count > 1 ? "%d comments" : story.comments.count == 0 ? "no comments" : "%d comment", story.comments.count)
+        cellView.commentsTextField.stringValue = String(format: story.descendants > 1 ? "%d comments" : story.descendants == 0 ? "no comments" : "%d comment", story.descendants)
 
-        cellView.time.objectValue = story.time
+        cellView.timeTextField.objectValue = story.time
 
         return cellView
     }
 
-    // MARK: Actions
-    func visitURL(sender: AnyObject) {
-        guard let urlButton = sender as? NSView else {
-            return
+    private func handleCommentsUpdate(notification: NSNotification) {
+        if let completed = notification.userInfo?["completed"] as? Bool {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.storiesTableView.enabled = completed
+            }
         }
-
-        let row = storiesTableView.rowForView(urlButton)
-
-        guard row != -1, let url = stories[row].url else {
-            return
-        }
-
-        NSWorkspace.sharedWorkspace().openURL(url)
     }
 
     // MARK: Progress KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "progress.fractionCompleted" {
-            if let newValue = change?[NSKeyValueChangeNewKey] {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "overallProgress.fractionCompleted" {
+            if let newValue = change?[NSKeyValueChangeNewKey] as? Double {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.storiesProgressIndicator.doubleValue = newValue as! Double
+                    self.storiesProgressIndicator.doubleValue = newValue
                 }
             }
         }
@@ -176,12 +166,12 @@ extension StoriesViewController: NSTableViewDelegate {
         cellView = configureCell(cellView, row: row)
 
         let titleWidth = tableView.frame.width - 20.0,
-            textHeight = cellView.title.attributedStringValue.boundingRectWithSize(
+            titleHeight = cellView.titleTextField.attributedStringValue.boundingRectWithSize(
                 NSSize(width: titleWidth, height: CGFloat.max),
-                options: [.UsesFontLeading, .UsesLineFragmentOrigin]
+                options: .UsesLineFragmentOrigin
         ).height
 
-        return max(tableView.rowHeight, textHeight + 65.0)
+        return max(tableView.rowHeight, titleHeight + 56.0)
     }
 
     func tableViewColumnDidResize(notification: NSNotification) {
@@ -191,6 +181,14 @@ extension StoriesViewController: NSTableViewDelegate {
                 NSIndexSet(indexesInRange: NSMakeRange(0, self.storiesTableView.numberOfRows))
             )
             }, completionHandler: nil)
+    }
+
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+        guard let column = tableColumn where column.identifier == "StoryColumn" else {
+            return nil
+        }
+
+        return self.stories[row]
     }
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
