@@ -82,7 +82,7 @@ class CommentsViewController: NSViewController {
     }
 
     private func configureCell(cellView: CommentTableCellView, comment: Comment) -> CommentTableCellView {
-        cellView.timeTextField.objectValue = comment.time
+        cellView.timeTextField.stringValue = comment.time.timeAgo()
 
         if comment.deleted {
             cellView.wantsLayer = true

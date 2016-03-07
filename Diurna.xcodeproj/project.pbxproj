@@ -24,6 +24,7 @@
 		8DBCBF7B1C8B5EFE000066ED /* CommentTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCBF7A1C8B5EFE000066ED /* CommentTableRowView.swift */; };
 		8DC309521C6E0D3F00188137 /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC309511C6E0D3F00188137 /* MarkupParser.swift */; };
 		8DD8C2AD1C554AB200D8A673 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD8C2AC1C554AB200D8A673 /* Comment.swift */; };
+		8DD9B1B31C8D6A570042F89C /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9B1B21C8D6A570042F89C /* NSDate+TimeAgo.swift */; };
 		8DE13EDD1C63593C006774F4 /* CommentTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */; };
 		8DE13EE01C63A122006774F4 /* StoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */; };
 		8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92211C708E2800833317 /* UserDetailsViewController.swift */; };
@@ -74,6 +75,7 @@
 		8DC217B21C621DA0007EC0EE /* Diurna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diurna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC309511C6E0D3F00188137 /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
 		8DD8C2AC1C554AB200D8A673 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8DD9B1B21C8D6A570042F89C /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
 		8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableCellView.xib; sourceTree = "<group>"; };
 		8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryTableCellView.xib; sourceTree = "<group>"; };
 		8DEC92211C708E2800833317 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				8DC309511C6E0D3F00188137 /* MarkupParser.swift */,
 				8D2630331C754EC900CFFE62 /* NSAttributedString+MarkupParser.swift */,
 				8D2630351C755F4600CFFE62 /* NSURL+ShortURL.swift */,
+				8DD9B1B21C8D6A570042F89C /* NSDate+TimeAgo.swift */,
 				8D657E8F1C49A80500F31BB7 /* Assets.xcassets */,
 				8D657E941C49A80500F31BB7 /* Info.plist */,
 			);
@@ -269,6 +272,7 @@
 				8DD8C2AD1C554AB200D8A673 /* Comment.swift in Sources */,
 				8DC309521C6E0D3F00188137 /* MarkupParser.swift in Sources */,
 				8D0043551C4EE38F00C1F7D6 /* StoriesViewController.swift in Sources */,
+				8DD9B1B31C8D6A570042F89C /* NSDate+TimeAgo.swift in Sources */,
 				8D15A2ED1C5D0E23007AE60D /* CommentsViewController.swift in Sources */,
 				8D5ED1DB1C570165004440FD /* CommentTableCellView.swift in Sources */,
 				8DEEA5601C514150001DB85D /* Item.swift in Sources */,

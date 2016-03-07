@@ -98,6 +98,7 @@ class StoriesViewController: NSViewController {
                     self.storiesTableView.scrollRowToVisible(0)
 
                     NSAnimationContext.runAnimationGroup({ context in
+                        // context.duration = 1
                         self.storiesTableView.animator().hidden = false
                         self.storiesTypeSegmentedControl.animator().enabled = true
                         self.storiesCountPopUp.animator().enabled = true
@@ -116,15 +117,15 @@ class StoriesViewController: NSViewController {
         cellView.titleTextField.stringValue = story.title
         cellView.byTextField.stringValue = story.by
 
-        if let url = story.url {
-            cellView.URLButton.title = url.shortURL() ?? ""
+        if let URL = story.url, shortURL = URL.shortURL() {
+            cellView.URLButton.title = shortURL
         } else {
             cellView.URLButton.hidden = true
         }
 
         cellView.commentsTextField.stringValue = String(format: story.descendants > 1 ? "%d comments" : story.descendants == 0 ? "no comments" : "%d comment", story.descendants)
 
-        cellView.timeTextField.objectValue = story.time
+        cellView.timeTextField.stringValue = story.time.timeAgo()
 
         return cellView
     }

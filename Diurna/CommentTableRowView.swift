@@ -31,7 +31,7 @@ class CommentTableRowView: NSTableRowView {
             line.stroke()
 
             pos += 20
-            alpha -= 0.1
+            alpha -= 0.05
         }
     }
 }
