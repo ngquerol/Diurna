@@ -53,7 +53,8 @@ class APIClient: NSObject {
         }
 
         dispatch_group_notify(fetchGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            completion(data: self.sortStories(stories, source: source))
+            self.sortStories(&stories, source: source)
+            completion(data: stories)
         }
     }
 
@@ -71,7 +72,7 @@ class APIClient: NSObject {
         }
     }
 
-    func sortStories(var stories: [Story], source: HackerNewsAPI) -> [Story] {
+    func sortStories(inout stories: [Story], source: HackerNewsAPI) {
         switch source {
 
         case .NewStories:
@@ -86,8 +87,6 @@ class APIClient: NSObject {
 
         case _: break
         }
-
-        return stories
     }
 
     func fetchComments(story: Story, completion: (data: [Comment]) -> Void) {
