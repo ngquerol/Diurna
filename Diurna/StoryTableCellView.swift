@@ -13,10 +13,8 @@ class StoryTableCellView: NSTableCellView {
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var byTextField: NSTextField!
     @IBOutlet weak var URLButton: NSButton!
-    @IBOutlet weak var commentsTextField: NSTextField!
-    @IBOutlet weak var timeTextField: NSTextField!
+    @IBOutlet weak var subtitleTextField: NSTextField!
 
     // MARK: Initializers
     override init(frame: CGRect) {

@@ -115,17 +115,17 @@ class StoriesViewController: NSViewController {
         let story = stories[row]
 
         cellView.titleTextField.stringValue = story.title
-        cellView.byTextField.stringValue = story.by
 
         if let URL = story.url, shortURL = URL.shortURL() {
             cellView.URLButton.title = shortURL
+            cellView.URLButton.toolTip = URL.absoluteString
         } else {
             cellView.URLButton.hidden = true
         }
 
-        cellView.commentsTextField.stringValue = String(format: story.descendants > 1 ? "%d comments" : story.descendants == 0 ? "no comments" : "%d comment", story.descendants)
+        let comments = String(format: story.descendants > 1 ? "%d comments" : story.descendants == 0 ? "no comments" : "%d comment", story.descendants)
 
-        cellView.timeTextField.stringValue = story.time.timeAgo()
+        cellView.subtitleTextField.stringValue = "by \(story.by), \(story.time.timeAgo()) — \(comments)"
 
         return cellView
     }

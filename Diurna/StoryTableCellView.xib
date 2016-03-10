@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E61b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
@@ -8,10 +8,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="StoryTableCellView" customModule="Diurna" customModuleProvider="target">
             <connections>
                 <outlet property="URLButton" destination="YZD-Pr-m9v" id="KsK-Gf-squ"/>
-                <outlet property="byTextField" destination="o1O-0B-Ecm" id="T4i-v4-O3D"/>
-                <outlet property="commentsTextField" destination="FZx-mx-BpY" id="qEi-A5-TDe"/>
                 <outlet property="contentView" destination="Qwv-3f-faZ" id="6AJ-vu-3eB"/>
-                <outlet property="timeTextField" destination="2uR-kc-f2c" id="JVS-x9-kRP"/>
+                <outlet property="subtitleTextField" destination="0hO-dQ-GS4" id="kqM-d5-UFh"/>
                 <outlet property="titleTextField" destination="VN5-QY-8dE" id="qkF-eF-l3w"/>
             </connections>
         </customObject>
@@ -20,38 +18,6 @@
             <rect key="frame" x="0.0" y="0.0" width="380" height="73"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VN5-QY-8dE" userLabel="Title">
-                    <rect key="frame" x="8" y="51" width="364" height="17"/>
-                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Story title" id="m8d-nO-lHF">
-                        <font key="font" metaFont="systemMedium" size="13"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o1O-0B-Ecm" userLabel="By">
-                    <rect key="frame" x="8" y="5" width="38" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="poster" id="ErT-Pu-fMd">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="deviceWhite"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FZx-mx-BpY">
-                    <rect key="frame" x="47" y="5" width="59" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="comments" id="b9i-hS-N0g">
-                        <font key="font" metaFont="systemLight" size="11"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="deviceWhite"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2uR-kc-f2c">
-                    <rect key="frame" x="107" y="5" width="27" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="time" id="ZHl-Bw-wrv">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="deviceWhite"/>
-                    </textFieldCell>
-                </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-Pr-m9v">
                     <rect key="frame" x="10" y="26" width="35" height="17"/>
                     <buttonCell key="cell" type="inline" title="URL" bezelStyle="inline" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P3l-PX-1iq">
@@ -62,21 +28,31 @@
                         <action selector="visitURL:" target="-2" id="3D7-Xs-DTm"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-dQ-GS4">
+                    <rect key="frame" x="8" y="5" width="364" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="qdP-Mj-P8W">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VN5-QY-8dE" userLabel="Title">
+                    <rect key="frame" x="8" y="51" width="364" height="17"/>
+                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Story title" id="m8d-nO-lHF">
+                        <font key="font" metaFont="systemMedium" size="13"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="o1O-0B-Ecm" firstAttribute="top" secondItem="YZD-Pr-m9v" secondAttribute="bottom" constant="8" id="1HD-t5-r4z"/>
-                <constraint firstAttribute="bottom" secondItem="o1O-0B-Ecm" secondAttribute="bottom" constant="5" id="2tz-sa-AR9"/>
+                <constraint firstItem="0hO-dQ-GS4" firstAttribute="top" secondItem="YZD-Pr-m9v" secondAttribute="bottom" constant="8" id="1vr-7L-tfp"/>
                 <constraint firstItem="YZD-Pr-m9v" firstAttribute="leading" secondItem="VN5-QY-8dE" secondAttribute="leading" id="67f-pa-q2T"/>
-                <constraint firstItem="2uR-kc-f2c" firstAttribute="baseline" secondItem="FZx-mx-BpY" secondAttribute="baseline" id="8Ho-8n-lxp"/>
                 <constraint firstItem="VN5-QY-8dE" firstAttribute="leading" secondItem="Qwv-3f-faZ" secondAttribute="leading" constant="10" id="Ea4-7m-bvh"/>
-                <constraint firstItem="FZx-mx-BpY" firstAttribute="leading" secondItem="o1O-0B-Ecm" secondAttribute="trailing" constant="5" id="Ebb-lM-cCX"/>
-                <constraint firstItem="2uR-kc-f2c" firstAttribute="leading" secondItem="FZx-mx-BpY" secondAttribute="trailing" constant="5" id="H0I-5G-Sy6"/>
-                <constraint firstItem="FZx-mx-BpY" firstAttribute="top" secondItem="YZD-Pr-m9v" secondAttribute="bottom" constant="8" id="Jgs-9h-BkI"/>
-                <constraint firstItem="o1O-0B-Ecm" firstAttribute="leading" secondItem="YZD-Pr-m9v" secondAttribute="leading" id="Kca-to-YIw"/>
                 <constraint firstItem="YZD-Pr-m9v" firstAttribute="top" secondItem="VN5-QY-8dE" secondAttribute="bottom" constant="8" id="Wlh-T0-sT4"/>
                 <constraint firstItem="VN5-QY-8dE" firstAttribute="top" secondItem="Qwv-3f-faZ" secondAttribute="top" constant="5" id="aEc-2u-cFs"/>
-                <constraint firstItem="FZx-mx-BpY" firstAttribute="baseline" secondItem="o1O-0B-Ecm" secondAttribute="baseline" id="iin-IB-foJ"/>
-                <constraint firstItem="2uR-kc-f2c" firstAttribute="top" secondItem="YZD-Pr-m9v" secondAttribute="bottom" constant="8" id="loi-Di-CEK"/>
+                <constraint firstItem="0hO-dQ-GS4" firstAttribute="leading" secondItem="YZD-Pr-m9v" secondAttribute="leading" id="giI-xD-4Wt"/>
+                <constraint firstAttribute="trailing" secondItem="0hO-dQ-GS4" secondAttribute="trailing" constant="10" id="iGI-oh-DGu"/>
                 <constraint firstAttribute="trailing" secondItem="VN5-QY-8dE" secondAttribute="trailing" constant="10" id="qh5-CW-Fgt"/>
             </constraints>
         </tableCellView>
