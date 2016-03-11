@@ -80,10 +80,11 @@ class StoriesViewController: NSViewController {
         }
 
         NSAnimationContext.runAnimationGroup({ context in
-            self.storiesTableView.animator().hidden = true
+            context.allowsImplicitAnimation = true
+            self.storiesTableView.hidden = true
             self.storiesTypeSegmentedControl.enabled = false
             self.storiesCountPopUp.enabled = false
-            self.storiesProgressOverlay.animator().hidden = false
+            self.storiesProgressOverlay.hidden = false
             }, completionHandler: nil)
 
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
@@ -98,11 +99,11 @@ class StoriesViewController: NSViewController {
                     self.storiesTableView.scrollRowToVisible(0)
 
                     NSAnimationContext.runAnimationGroup({ context in
-                        // context.duration = 1
-                        self.storiesTableView.animator().hidden = false
-                        self.storiesTypeSegmentedControl.animator().enabled = true
-                        self.storiesCountPopUp.animator().enabled = true
-                        self.storiesProgressOverlay.animator().hidden = true
+                        context.allowsImplicitAnimation = true
+                        self.storiesTableView.hidden = false
+                        self.storiesTypeSegmentedControl.enabled = true
+                        self.storiesCountPopUp.enabled = true
+                        self.storiesProgressOverlay.hidden = true
                         }, completionHandler: nil)
                 }
             }
