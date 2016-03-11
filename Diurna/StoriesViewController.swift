@@ -93,19 +93,16 @@ class StoriesViewController: NSViewController {
 
             self.API.fetchStories(selectedCount, source: selectedType) { stories in
                 self.stories = stories
+                self.storiesTableView.reloadData()
+                self.storiesTableView.scrollRowToVisible(0)
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.storiesTableView.reloadData()
-                    self.storiesTableView.scrollRowToVisible(0)
-
-                    NSAnimationContext.runAnimationGroup({ context in
-                        context.allowsImplicitAnimation = true
-                        self.storiesTableView.hidden = false
-                        self.storiesTypeSegmentedControl.enabled = true
-                        self.storiesCountPopUp.enabled = true
-                        self.storiesProgressOverlay.hidden = true
-                        }, completionHandler: nil)
-                }
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.allowsImplicitAnimation = true
+                    self.storiesTableView.hidden = false
+                    self.storiesTypeSegmentedControl.enabled = true
+                    self.storiesCountPopUp.enabled = true
+                    self.storiesProgressOverlay.hidden = true
+                    }, completionHandler: nil)
             }
 
             self.overallProgress?.resignCurrent()

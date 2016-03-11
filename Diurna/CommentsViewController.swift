@@ -64,17 +64,14 @@ class CommentsViewController: NSViewController {
 
             self.API.fetchComments(story) { comments in
                 self.comments = comments
+                self.commentsOutlineView.reloadData()
+                self.commentsOutlineView.scrollRowToVisible(0)
+                self.commentsOutlineView.expandItem(nil, expandChildren: true)
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.commentsOutlineView.reloadData()
-                    self.commentsOutlineView.scrollRowToVisible(0)
-                    self.commentsOutlineView.expandItem(nil, expandChildren: true)
-
-                    NSAnimationContext.runAnimationGroup({ context in
-                        self.commentsOutlineView.animator().hidden = false
-                        self.commentsProgressOverlay.animator().hidden = true
-                        }, completionHandler: nil)
-                }
+                NSAnimationContext.runAnimationGroup({ context in
+                    self.commentsOutlineView.animator().hidden = false
+                    self.commentsProgressOverlay.animator().hidden = true
+                    }, completionHandler: nil)
             }
 
             self.overallProgress?.resignCurrent()

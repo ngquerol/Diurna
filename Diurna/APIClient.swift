@@ -52,7 +52,7 @@ class APIClient: NSObject {
             dispatch_group_leave(fetchGroup)
         }
 
-        dispatch_group_notify(fetchGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
             self.sortStories(&stories, source: source)
             completion(data: stories)
         }
@@ -103,7 +103,7 @@ class APIClient: NSObject {
             }
         }
 
-        dispatch_group_notify(fetchGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
             progress.completedUnitCount = progress.totalUnitCount
             completion(data: comments)
         }
@@ -125,7 +125,7 @@ class APIClient: NSObject {
                         }
                     }
 
-                    dispatch_group_notify(fetchGroup, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                    dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
                         self.cache.setObject(comment, forKey: id)
                         completion(data: comment)
                     }
@@ -137,7 +137,9 @@ class APIClient: NSObject {
     func fetchUser(id: String, completion: (data: User) -> Void) {
         fetchData(HackerNewsAPI.User(id).path) { data, error in
             if let userData = data, user = User(json: JSON(data: userData)) {
-                completion(data: user)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(data: user)
+                }
             }
         }
     }

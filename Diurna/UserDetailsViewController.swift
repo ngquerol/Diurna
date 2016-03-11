@@ -32,23 +32,21 @@ class UserDetailsViewController: NSViewController {
 
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             self.API.fetchUser(id) { user in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.karma.intValue = user.karma
-                    self.created.objectValue = user.created
+                self.karma.intValue = user.karma
+                self.created.objectValue = user.created
 
-                    if let aboutText = user.about {
-                        self.about.attributedStringValue = MarkupParser(input: aboutText).toAttributedString()
-                    } else {
-                        self.about.hidden = true
-                        self.separator.hidden = true
-                    }
-
-                    NSAnimationContext.runAnimationGroup({ context in
-                        self.contentView.animator().hidden = false
-                        self.userProgressIndicator.animator().hidden = true
-                        self.userProgressIndicator.stopAnimation(self)
-                        }, completionHandler: nil)
+                if let aboutText = user.about {
+                    self.about.attributedStringValue = MarkupParser(input: aboutText).toAttributedString()
+                } else {
+                    self.about.hidden = true
+                    self.separator.hidden = true
                 }
+
+                NSAnimationContext.runAnimationGroup({ context in
+                    self.contentView.animator().hidden = false
+                    self.userProgressIndicator.animator().hidden = true
+                    self.userProgressIndicator.stopAnimation(self)
+                    }, completionHandler: nil)
             }
         }
     }
