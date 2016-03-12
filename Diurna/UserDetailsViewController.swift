@@ -36,7 +36,7 @@ class UserDetailsViewController: NSViewController {
                 self.created.objectValue = user.created
 
                 if let aboutText = user.about {
-                    self.about.attributedStringValue = MarkupParser(input: aboutText).toAttributedString()
+                    self.about.attributedStringValue = aboutText
                 } else {
                     self.about.hidden = true
                     self.separator.hidden = true

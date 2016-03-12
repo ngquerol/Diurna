@@ -158,19 +158,25 @@ extension StoriesViewController: NSTableViewDataSource {
 // MARK: TableView Delegate
 extension StoriesViewController: NSTableViewDelegate {
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        guard var cellView = storiesTableView.makeViewWithIdentifier("StoryColumn", owner: self) as? StoryTableCellView else {
-            return tableView.rowHeight
-        }
-
-        cellView = configureCell(cellView, row: row)
-
-        let titleWidth = tableView.frame.width - 20.0,
-            titleHeight = cellView.titleTextField.attributedStringValue.boundingRectWithSize(
+        // FIXME:
+        // We avoid creating & reusing a cell for row height calculating purposes when 
+        // doing things this way, but we do have reproduce the cell's title formatting
+        // that is already defined in the corresponding XIB... Not very flexible
+        let formattedTitle = NSAttributedString(
+            string: stories[row].title, attributes:
+                [NSFontAttributeName: NSFont.systemFontOfSize(
+                    NSFont.systemFontSize(), weight: NSFontWeightMedium
+                    )
+            ]
+        ),
+            contentHeightWithoutTitle: CGFloat = 56.0,
+            titleWidth = tableView.frame.width - 20.0,
+            titleHeight = formattedTitle.boundingRectWithSize(
                 NSSize(width: titleWidth, height: CGFloat.max),
-                options: .UsesLineFragmentOrigin
+                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
         ).height
 
-        return max(tableView.rowHeight, titleHeight + 56.0)
+        return max(tableView.rowHeight, titleHeight + contentHeightWithoutTitle)
     }
 
     func tableViewColumnDidResize(notification: NSNotification) {

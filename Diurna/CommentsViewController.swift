@@ -92,7 +92,7 @@ class CommentsViewController: NSViewController {
         } else {
             cellView.authorButton.title = comment.by
             cellView.opButton.hidden = (comment.by != op)
-            cellView.textTextField.attributedStringValue = MarkupParser(input: comment.text).toAttributedString()
+            cellView.textTextField.attributedStringValue = comment.text
         }
 
         return cellView
@@ -158,22 +158,22 @@ extension CommentsViewController: NSOutlineViewDataSource {
 // MARK: NSOutlineView Delegate
 extension CommentsViewController: NSOutlineViewDelegate {
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
-        guard let comment = item as? Comment,
-            var cellView = commentsOutlineView.makeViewWithIdentifier("CommentColumn", owner: self) as? CommentTableCellView else {
-                return outlineView.rowHeight
+        guard let comment = item as? Comment else {
+            return outlineView.rowHeight
         }
 
-        let cellLevel = outlineView.levelForItem(item),
+        // FIXME:
+        // performance is satisfactory as of now, but this could use the help of a row height cache
+        let contentHeightWithoutText: CGFloat = 45.0,
+            cellLevel = outlineView.levelForItem(item),
             textWidth = (outlineView.frame.width - 40) - (CGFloat(cellLevel) * outlineView.indentationPerLevel)
 
-        cellView = configureCell(cellView, comment: comment)
-
-        let textHeight = cellView.textTextField.attributedStringValue.boundingRectWithSize(
+        let titleHeight = comment.text.boundingRectWithSize(
             NSSize(width: textWidth, height: CGFloat.max),
             options: [.UsesFontLeading, .UsesLineFragmentOrigin]
         ).height
 
-        return textHeight + 45
+        return titleHeight + contentHeightWithoutText
     }
 
     func outlineView(outlineView: NSOutlineView, rowViewForItem item: AnyObject) -> NSTableRowView? {

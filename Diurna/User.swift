@@ -13,12 +13,17 @@ struct User {
     let id: String
     let karma: Int32
     let created: NSDate
-    let about: String?
+    let about: NSAttributedString?
 
     init?(json: JSON) {
         self.id = json["id"].stringValue
         self.karma = json["karma"].int32Value
         self.created = NSDate(timeIntervalSince1970: json["created"].doubleValue)
-        self.about = json["about"].string
+
+        if let about = json["about"].string {
+            self.about = MarkupParser(input: about).toAttributedString()
+        } else {
+            self.about = nil
+        }
     }
 }

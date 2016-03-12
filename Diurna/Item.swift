@@ -14,11 +14,9 @@ class Item: Equatable {
     let time: NSDate
     let type: String
     let title: String
-    let text: String
     let by: String
 
     init?(json: JSON) {
-        self.text = json["text"].stringValue
         self.id = json["id"].intValue
         self.time = NSDate(timeIntervalSince1970: json["time"].doubleValue)
         self.type = json["type"].stringValue
