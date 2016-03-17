@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CommentTableCellView : NSTableCellView {
+class CommentTableCellView: NSTableCellView {
 
     // MARK: Outlets
     @IBOutlet var contentView: NSTableCellView!
@@ -17,6 +17,7 @@ class CommentTableCellView : NSTableCellView {
     @IBOutlet weak var timeTextField: NSTextField!
     @IBOutlet weak var textContainerView: NSView!
     @IBOutlet weak var textTextField: NSTextField!
+    @IBOutlet weak var showRepliesButton: NSButton!
 
     // MARK: Properties
     private var userDetailsPopover: NSPopover!
@@ -53,6 +54,18 @@ class CommentTableCellView : NSTableCellView {
     }
 
     // MARK: Methods
+    @IBAction func showReplies(sender: NSButton) {
+        guard let comment = self.objectValue as? Comment else {
+            return
+        }
+
+        if let buttonImage = self.showRepliesButton.image?.name() {
+            showRepliesButton.image = (buttonImage == NSImageNameAddTemplate) ? NSImage(named: NSImageNameRemoveTemplate) : NSImage(named: NSImageNameAddTemplate)
+        }
+
+        NSNotificationCenter.defaultCenter().postNotificationName("ToggleCommentVisibilityNotification", object: nil, userInfo: ["comment": comment])
+    }
+
     @IBAction private func showUserDetailsPopover(sender: NSButton) {
         createUserDetailsPopover()
         userDetailsPopover.showRelativeToRect(authorButton.bounds, ofView: authorButton, preferredEdge: .MaxY)
@@ -67,7 +80,6 @@ class CommentTableCellView : NSTableCellView {
         userDetailsPopover = NSPopover()
         userDetailsPopover.contentViewController = userDetailsViewController
         userDetailsPopover.behavior = .Transient
-        userDetailsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         userDetailsPopover.animates = true
         userDetailsPopover.delegate = self
 
@@ -76,7 +88,7 @@ class CommentTableCellView : NSTableCellView {
 }
 
 // MARK: Popover Delegate
-extension CommentTableCellView : NSPopoverDelegate {
+extension CommentTableCellView: NSPopoverDelegate {
     func popoverDidClose(notification: NSNotification) {
         userDetailsPopover = nil
     }
