@@ -122,12 +122,7 @@ class MarkupParser {
     }
 
     private func tagToFormattingOptions(tag: Tag) -> [String: AnyObject]? {
-        let defaultFormatting = [NSFontAttributeName: NSFont.systemFontOfSize(12.0)]
-
         switch tag.name {
-
-        case "p":
-            return defaultFormatting
 
         case "a":
             guard let urlString = tag.attributes["href"],
@@ -153,13 +148,16 @@ class MarkupParser {
         case "pre", "code":
             return [NSFontAttributeName: NSFont(name: "Menlo", size: 11.0) ?? NSFont.systemFontOfSize(11.0)]
 
-        case _: return defaultFormatting
+        case _: return [NSFontAttributeName: NSFont.systemFontOfSize(12.0)]
         }
     }
 
     func toAttributedString() -> NSAttributedString {
         let result = NSMutableAttributedString()
         let paragraphFormattingOptions = NSMutableParagraphStyle()
+
+        paragraphFormattingOptions.alignment = .Natural
+        paragraphFormattingOptions.hyphenationFactor = 1.0
 
         var formattingOptions: [String: AnyObject]? = [
             NSFontAttributeName: NSFont.systemFontOfSize(12.0),
