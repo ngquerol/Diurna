@@ -10,6 +10,8 @@ import Cocoa
 
 class CommentTableRowView: NSTableRowView {
 
+    let indentGuideColor = NSColor(calibratedHue: 1.0, saturation: 0.0, brightness: 0.85, alpha: 1.0)
+
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
 
@@ -18,20 +20,21 @@ class CommentTableRowView: NSTableRowView {
         }
 
         let cellXOrigin = cellView.frame.origin.x
+
         var pos: CGFloat = 10
-        var alpha: CGFloat = 0.5
+        var alpha: CGFloat = 1.0
 
         while pos < cellXOrigin {
             let line = NSBezierPath()
             line.lineWidth = 1.0
-            NSColor.gridColor().colorWithAlphaComponent(alpha).setStroke()
+            indentGuideColor.colorWithAlphaComponent(alpha).setStroke()
 
             line.moveToPoint(NSPoint(x: pos, y: NSMaxY(self.bounds)))
             line.lineToPoint(NSPoint(x: pos, y: NSMinY(self.bounds)))
             line.stroke()
 
             pos += 20
-            alpha -= 0.05
+            alpha -= 0.1
         }
     }
 }
