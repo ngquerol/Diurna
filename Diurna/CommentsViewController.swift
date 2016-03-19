@@ -21,7 +21,7 @@ class CommentsViewController: NSViewController {
 
     // MARK: Properties
     private let API = APIClient.sharedInstance
-    private var op = String()
+    private var selectedStory: Story?
     private var comments = [Comment]()
     private dynamic var overallProgress: NSProgress?
 
@@ -50,7 +50,7 @@ class CommentsViewController: NSViewController {
             return
         }
 
-        op = story.by
+        self.selectedStory = story
 
         NSAnimationContext.runAnimationGroup({ context in
             self.commentsProgressOverlay.animator().hidden = false
@@ -66,7 +66,6 @@ class CommentsViewController: NSViewController {
                 self.comments = comments
                 self.commentsOutlineView.reloadData()
                 self.commentsOutlineView.scrollRowToVisible(0)
-                self.commentsOutlineView.expandItem(nil, expandChildren: true)
 
                 NSAnimationContext.runAnimationGroup({ context in
                     self.commentsOutlineView.animator().hidden = false
@@ -75,6 +74,21 @@ class CommentsViewController: NSViewController {
             }
 
             self.overallProgress?.resignCurrent()
+        }
+    }
+
+    func toggleCommentVisibility(notification: NSNotification) {
+        guard notification.name == "ToggleCommentVisibilityNotification",
+            let toggledComment = notification.userInfo!["comment"] as? Comment else {
+                return
+        }
+
+        if commentsOutlineView.isItemExpanded(toggledComment) {
+            commentsOutlineView.collapseItem(toggledComment, collapseChildren: true)
+            commentsOutlineView.scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment))
+        } else {
+            commentsOutlineView.expandItem(toggledComment, expandChildren: true)
+            commentsOutlineView.scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment.kids[0]))
         }
     }
 
@@ -89,10 +103,13 @@ class CommentsViewController: NSViewController {
             cellView.authorButton.enabled = false
             cellView.textTextField.stringValue = ""
             cellView.opButton.hidden = true
+            cellView.showRepliesButton.hidden = true
         } else {
+            cellView.wantsLayer = false
             cellView.authorButton.title = comment.by
-            cellView.opButton.hidden = (comment.by != op)
+            cellView.opButton.hidden = (comment.by != selectedStory?.by)
             cellView.textTextField.attributedStringValue = comment.text
+            cellView.showRepliesButton.hidden = (comment.parent != selectedStory?.id) || (comment.kids.count == 0)
         }
 
         return cellView

@@ -9,14 +9,14 @@
 import SwiftyJSON
 
 class Comment: Item {
-    let parent: String
+    let parent: Int
     let deleted: Bool
     let text: NSAttributedString
     let kidsIds: [Int]
     var kids: [Comment]
 
     override init?(json: JSON) {
-        self.parent = json["parent"].stringValue
+        self.parent = json["parent"].intValue
         self.deleted = json["deleted"].boolValue
         self.text = MarkupParser(input: json["text"].stringValue).toAttributedString()
         self.kidsIds = json["kids"].arrayValue.map { $0.intValue }
