@@ -20,7 +20,7 @@ class StoriesViewController: NSViewController {
 
     // MARK: Properties
     private let API = APIClient.sharedInstance
-    private var selectedStoriesCategory: HackerNewsAPI = .NewStories
+    private var selectedStoriesCategory = HackerNewsAPI.NewStories
     private var selectedStoriesCount = 10
     private var stories = [Story]()
     private var previouslySelectedStory: Story?
@@ -30,7 +30,7 @@ class StoriesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sidebarButton.toolTip = "Toggle Sidebar"
+        sidebarButton.toolTip = "Toggle sidebar"
         storiesCountPopUpButton.toolTip = "Number of stories to display"
     }
 
@@ -57,12 +57,14 @@ class StoriesViewController: NSViewController {
         }
 
         switch selectedCategory {
-        case "Top": selectedStoriesCategory = .TopStories
-        case "New": selectedStoriesCategory = .NewStories
-        case "Ask": selectedStoriesCategory = .AskStories
-        case "Jobs": selectedStoriesCategory = .JobStories
-        case "Show": selectedStoriesCategory = .ShowStories
-        default: return
+        case HackerNewsAPI.TopStories.name: selectedStoriesCategory = .TopStories
+        case HackerNewsAPI.NewStories.name: selectedStoriesCategory = .NewStories
+        case HackerNewsAPI.AskStories.name: selectedStoriesCategory = .AskStories
+        case HackerNewsAPI.JobStories.name: selectedStoriesCategory = .JobStories
+        case HackerNewsAPI.ShowStories.name: selectedStoriesCategory = .ShowStories
+        default:
+            NSLog("%@: Unknown story type \"%@\"", self.className, selectedCategory)
+            return
         }
 
         updateStories(selectedStoriesCategory, storiesCount: selectedStoriesCount)

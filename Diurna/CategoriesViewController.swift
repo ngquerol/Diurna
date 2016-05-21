@@ -13,34 +13,20 @@ class CategoriesViewController: NSViewController {
     @IBOutlet weak var categoriesTableView: NSTableView!
 
     private let storiesTypes = [
-        "Top": HackerNewsAPI.TopStories,
-        "New": HackerNewsAPI.NewStories,
-        "Jobs": HackerNewsAPI.JobStories,
-        "Show": HackerNewsAPI.ShowStories,
-        "Ask": HackerNewsAPI.AskStories
+        HackerNewsAPI.TopStories.name: HackerNewsAPI.TopStories,
+        HackerNewsAPI.NewStories.name: HackerNewsAPI.NewStories,
+        HackerNewsAPI.JobStories.name: HackerNewsAPI.JobStories,
+        HackerNewsAPI.ShowStories.name: HackerNewsAPI.ShowStories,
+        HackerNewsAPI.AskStories.name: HackerNewsAPI.AskStories
     ]
 
     @IBAction func userDidSelectCategory(sender: NSTableView) {
         let selectedCategory = Array(storiesTypes.values)[sender.selectedRow]
-        var selectedCategoryString: String
-
-        switch selectedCategory {
-        case .TopStories: selectedCategoryString = "Top"
-        case .NewStories: selectedCategoryString = "New"
-        case .AskStories: selectedCategoryString = "Ask"
-        case .JobStories: selectedCategoryString = "Jobs"
-        case .ShowStories: selectedCategoryString = "Show"
-        default: selectedCategoryString = ""
-        }
-
-        guard selectedCategoryString != "" else {
-            return
-        }
 
         NSNotificationCenter.defaultCenter().postNotificationName(
             "NewStoriesCategorySelectedNotification",
             object: self,
-            userInfo: ["selectedCategory": selectedCategoryString]
+            userInfo: ["selectedCategory": selectedCategory.name]
         )
     }
 }

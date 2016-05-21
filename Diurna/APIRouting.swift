@@ -12,6 +12,7 @@ protocol APIEndpoint {
     var version: Int { get }
     var baseURL: NSURL { get }
     var path: NSURL { get }
+    var name: String { get }
 }
 
 enum HackerNewsAPI {
@@ -36,6 +37,17 @@ extension HackerNewsAPI: APIEndpoint {
         case .JobStories: return baseURL.URLByAppendingPathComponent("/jobstories.json")
         case .ShowStories: return baseURL.URLByAppendingPathComponent("/showstories.json")
         case .AskStories: return baseURL.URLByAppendingPathComponent("/askstories.json")
+        }
+    }
+    var name: String {
+        switch self {
+        case .Item(_): return "Item"
+        case .User(_): return "User"
+        case .TopStories: return "Top"
+        case .NewStories: return "New"
+        case .JobStories: return "Jobs"
+        case .ShowStories: return "Show"
+        case .AskStories: return "Ask"
         }
     }
 }
