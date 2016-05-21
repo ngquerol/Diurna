@@ -144,11 +144,9 @@ class APIClient: NSObject {
         }
     }
 
-    private func fetchData(url: NSURL, completion: (data: NSData?, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let dataTask = URLSession.dataTaskWithURL(url) { data, response, error in
+    private func fetchData(url: NSURL, completion: (data: NSData?, error: NSError?) -> Void) {
+        URLSession.dataTaskWithURL(url) { data, response, error in
             completion(data: data, error: error)
-        }
-        dataTask.resume()
-        return dataTask
+        }.resume()
     }
 }

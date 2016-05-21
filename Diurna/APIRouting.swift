@@ -19,9 +19,12 @@ enum HackerNewsAPI {
     case User(String)
     case TopStories
     case NewStories
+    case JobStories
+    case ShowStories
+    case AskStories
 }
 
-extension HackerNewsAPI : APIEndpoint {
+extension HackerNewsAPI: APIEndpoint {
     var version: Int { return 0 }
     var baseURL: NSURL { return NSURL(string: "https://hacker-news.firebaseio.com/v\(self.version)")! }
     var path: NSURL {
@@ -30,6 +33,9 @@ extension HackerNewsAPI : APIEndpoint {
         case .User(let id): return baseURL.URLByAppendingPathComponent("/user/\(id).json")
         case .TopStories: return baseURL.URLByAppendingPathComponent("/topstories.json")
         case .NewStories: return baseURL.URLByAppendingPathComponent("/newstories.json")
+        case .JobStories: return baseURL.URLByAppendingPathComponent("/jobstories.json")
+        case .ShowStories: return baseURL.URLByAppendingPathComponent("/showstories.json")
+        case .AskStories: return baseURL.URLByAppendingPathComponent("/askstories.json")
         }
     }
 }

@@ -29,7 +29,7 @@ class CommentsViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "toggleCommentVisibility:", name: "ToggleCommentVisibilityNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(toggleCommentVisibility(_:)), name: "ToggleCommentVisibilityNotification", object: nil)
         addObserver(self, forKeyPath: "overallProgress.fractionCompleted", options: [.New, .Initial], context: nil)
     }
 
@@ -83,12 +83,14 @@ class CommentsViewController: NSViewController {
                 return
         }
 
-        if commentsOutlineView.isItemExpanded(toggledComment) {
-            commentsOutlineView.collapseItem(toggledComment, collapseChildren: true)
-            commentsOutlineView.scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment))
+        let isCommentExpanded = commentsOutlineView.isItemExpanded(toggledComment)
+
+        if isCommentExpanded {
+            commentsOutlineView.animator().collapseItem(toggledComment, collapseChildren: true)
+            commentsOutlineView.animator().scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment))
         } else {
-            commentsOutlineView.expandItem(toggledComment, expandChildren: true)
-            commentsOutlineView.scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment.kids[0]))
+            commentsOutlineView.animator().expandItem(toggledComment, expandChildren: true)
+            commentsOutlineView.animator().scrollRowToVisible(commentsOutlineView.rowForItem(toggledComment.kids[0]))
         }
     }
 
@@ -194,15 +196,25 @@ extension CommentsViewController: NSOutlineViewDelegate {
     }
 
     func outlineView(outlineView: NSOutlineView, rowViewForItem item: AnyObject) -> NSTableRowView? {
-        return CommentTableRowView()
+        let identifier = "CommentRowView"
+
+        guard let rowView = outlineView.makeViewWithIdentifier(identifier, owner: nil) as? CommentTableRowView else {
+            let rowView = CommentTableRowView()
+            rowView.identifier = identifier
+            return rowView
+        }
+
+        return rowView
     }
 
     func outlineViewColumnDidResize(notification: NSNotification) {
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0
-            self.commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
-                NSIndexSet(indexesInRange: NSMakeRange(0, self.commentsOutlineView.numberOfRows))
-            )
-            }, completionHandler: nil)
+        NSAnimationContext.runAnimationGroup(
+            { context in
+                context.duration = 0
+                self.commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
+                    NSIndexSet(indexesInRange: NSMakeRange(0, self.commentsOutlineView.numberOfRows))
+                )
+            }, completionHandler: nil
+        )
     }
 }

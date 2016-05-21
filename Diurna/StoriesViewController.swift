@@ -12,16 +12,16 @@ class StoriesViewController: NSViewController {
 
     // MARK: Outlets
     @IBOutlet weak var storiesTableView: NSTableView!
-    @IBOutlet weak var storiesTypeSegmentedControl: NSSegmentedControl!
-    @IBOutlet weak var storiesCountPopUp: NSPopUpButton!
     @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var storiesProgressLabel: NSTextField!
     @IBOutlet weak var storiesProgressOverlay: NSStackView!
+    @IBOutlet weak var storiesCountPopUpButton: NSPopUpButton!
+    @IBOutlet weak var sidebarButton: NSButton!
 
     // MARK: Properties
-    private let storiesCounts = ["10": 10, "20": 20, "50": 50,]
-    private let storiesTypes = ["Top": HackerNewsAPI.TopStories, "New": HackerNewsAPI.NewStories]
     private let API = APIClient.sharedInstance
+    private var selectedStoriesCategory: HackerNewsAPI = .NewStories
+    private var selectedStoriesCount = 10
     private var stories = [Story]()
     private var previouslySelectedStory: Story?
     private dynamic var overallProgress: NSProgress?
@@ -30,35 +30,65 @@ class StoriesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        storiesCountPopUp.removeAllItems()
-        storiesCountPopUp.addItemsWithTitles(storiesCounts.map { $0.0 })
-
-        for (index, type) in storiesTypes.enumerate() {
-            storiesTypeSegmentedControl.setLabel(type.0, forSegment: index)
-        }
-        storiesTypeSegmentedControl.selectSegmentWithTag(0)
-
-        updateStories()
+        sidebarButton.toolTip = "Toggle Sidebar"
+        storiesCountPopUpButton.toolTip = "Number of stories to display"
     }
 
     override func viewWillAppear() {
         super.viewWillAppear()
 
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(updateStoriesCategory(_:)),
+            name: "NewStoriesCategorySelectedNotification", object: nil
+        )
+
         addObserver(self, forKeyPath: "overallProgress.fractionCompleted", options: [.New, .Initial], context: nil)
     }
 
-    // MARK: Methods
-    @IBAction private func storiesCountUpdated(sender: NSPopUpButton) {
-        updateStories()
+    override func viewDidAppear() {
+        updateStories(selectedStoriesCategory, storiesCount: selectedStoriesCount)
     }
 
-    @IBAction private func storiesTypeUpdated(sender: NSSegmentedControl) {
-        updateStories()
+    // MARK: Methods
+    func updateStoriesCategory(notification: NSNotification) {
+        guard let selectedCategory = notification.userInfo?["selectedCategory"] as? String else {
+            return
+        }
+
+        switch selectedCategory {
+        case "Top": selectedStoriesCategory = .TopStories
+        case "New": selectedStoriesCategory = .NewStories
+        case "Ask": selectedStoriesCategory = .AskStories
+        case "Jobs": selectedStoriesCategory = .JobStories
+        default: return
+        }
+
+        updateStories(selectedStoriesCategory, storiesCount: selectedStoriesCount)
+    }
+
+    @IBAction private func userDidChangeStoriesCount(sender: NSPopUpButton) {
+        guard let storiesCountItem = storiesCountPopUpButton.selectedItem,
+            storiesCount = Int(storiesCountItem.title) else {
+                return
+        }
+
+        selectedStoriesCount = storiesCount
+
+        updateStories(selectedStoriesCategory, storiesCount: storiesCount)
+    }
+
+    @IBAction private func userDidClickSidebarButton(sender: NSButton) {
+        guard let splitViewController = parentViewController as? NSSplitViewController else {
+            return
+        }
+
+        splitViewController.toggleSidebar(self)
     }
 
     @IBAction private func userDidSelectStory(sender: NSTableView) {
         guard let splitViewController = parentViewController as? NSSplitViewController,
-            commentsViewController = splitViewController.splitViewItems[1].viewController as? CommentsViewController else {
+            commentsViewController = splitViewController.splitViewItems[2].viewController as? CommentsViewController else {
                 return
         }
 
@@ -73,25 +103,18 @@ class StoriesViewController: NSViewController {
         previouslySelectedStory = stories[storiesTableView.selectedRow]
     }
 
-    private func updateStories() {
-        guard let selectedCount = storiesCounts[(storiesCountPopUp.selectedItem?.title)!],
-            selectedType = storiesTypes[storiesTypeSegmentedControl.labelForSegment(storiesTypeSegmentedControl.selectedSegment)!] else {
-                return
-        }
-
+    func updateStories(storiesType: HackerNewsAPI, storiesCount: Int) {
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = true
             self.storiesTableView.hidden = true
-            self.storiesTypeSegmentedControl.enabled = false
-            self.storiesCountPopUp.enabled = false
             self.storiesProgressOverlay.hidden = false
             }, completionHandler: nil)
 
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            self.overallProgress = NSProgress(totalUnitCount: Int64(selectedCount))
-            self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(selectedCount))
+            self.overallProgress = NSProgress(totalUnitCount: Int64(storiesCount))
+            self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(storiesCount))
 
-            self.API.fetchStories(selectedCount, source: selectedType) { stories in
+            self.API.fetchStories(storiesCount, source: storiesType) { stories in
                 self.stories = stories
                 self.storiesTableView.reloadData()
                 self.storiesTableView.scrollRowToVisible(0)
@@ -99,8 +122,6 @@ class StoriesViewController: NSViewController {
                 NSAnimationContext.runAnimationGroup({ context in
                     context.allowsImplicitAnimation = true
                     self.storiesTableView.hidden = false
-                    self.storiesTypeSegmentedControl.enabled = true
-                    self.storiesCountPopUp.enabled = true
                     self.storiesProgressOverlay.hidden = true
                     }, completionHandler: nil)
             }
@@ -159,7 +180,7 @@ extension StoriesViewController: NSTableViewDataSource {
 extension StoriesViewController: NSTableViewDelegate {
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         // FIXME:
-        // We avoid creating & reusing a cell for row height calculating purposes when 
+        // We avoid creating & reusing a cell for row height calculating purposes when
         // doing things this way, but we do have reproduce the cell's title formatting
         // that is already defined in the corresponding XIB... Not very flexible
         let formattedTitle = NSAttributedString(
