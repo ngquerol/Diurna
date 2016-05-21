@@ -109,6 +109,7 @@ class CommentsViewController: NSViewController {
         } else {
             cellView.wantsLayer = false
             cellView.authorButton.title = comment.by
+            cellView.authorButton.enabled = true
             cellView.opButton.hidden = (comment.by != selectedStory?.by)
             cellView.textTextField.attributedStringValue = comment.text
             cellView.showRepliesButton.hidden = (comment.parent != selectedStory?.id) || (comment.kids.count == 0)

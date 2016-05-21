@@ -28,7 +28,7 @@ class CategoryTableRowView: NSTableRowView {
             cellView.textField?.textColor = NSColor.whiteColor()
         } else {
             CGContextSetFillColorWithColor(cgContext, NSColor.whiteColor().CGColor)
-            cellView.textField?.textColor = NSColor.tertiaryLabelColor()
+            cellView.textField?.textColor = NSColor.blackColor()
         }
 
         CGContextFillRect(cgContext, dirtyRect)

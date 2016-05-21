@@ -144,14 +144,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="140" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8GW-kl-qeu">
+                                <rect key="frame" x="32" y="453" width="76" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Categories" id="O99-hj-cwz">
+                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="OFS-3P-Mk1">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="470"/>
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="450"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="v0F-gB-XsW">
-                                    <rect key="frame" x="0.0" y="0.0" width="140" height="470"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="25" viewBased="YES" id="U9R-Xi-FUO">
-                                            <rect key="frame" x="0.0" y="0.0" width="140" height="470"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.0" green="0.41176470590000003" blue="0.85098039219999999" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -215,8 +223,10 @@
                             </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="8GW-kl-qeu" firstAttribute="top" secondItem="dSa-hq-HkD" secondAttribute="top" constant="30" id="0tM-bv-IAA"/>
                             <constraint firstItem="OFS-3P-Mk1" firstAttribute="leading" secondItem="dSa-hq-HkD" secondAttribute="leading" id="FVx-6z-5md"/>
-                            <constraint firstItem="OFS-3P-Mk1" firstAttribute="top" secondItem="dSa-hq-HkD" secondAttribute="top" constant="30" id="ern-ic-AG3"/>
+                            <constraint firstItem="8GW-kl-qeu" firstAttribute="centerX" secondItem="dSa-hq-HkD" secondAttribute="centerX" id="YnD-90-lcB"/>
+                            <constraint firstItem="OFS-3P-Mk1" firstAttribute="top" secondItem="dSa-hq-HkD" secondAttribute="top" constant="50" id="ern-ic-AG3"/>
                             <constraint firstAttribute="trailing" secondItem="OFS-3P-Mk1" secondAttribute="trailing" id="nLi-yr-MeT"/>
                             <constraint firstAttribute="bottom" secondItem="OFS-3P-Mk1" secondAttribute="bottom" id="t8y-Yk-Wrc"/>
                         </constraints>
@@ -448,7 +458,7 @@
                                 <rect key="frame" x="-2" y="241" width="504" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="No story selected" id="pvr-bT-tBF">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
