@@ -28,8 +28,8 @@
 		8DD9B1B31C8D6A570042F89C /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9B1B21C8D6A570042F89C /* NSDate+TimeAgo.swift */; };
 		8DE13EDD1C63593C006774F4 /* CommentTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */; };
 		8DE13EE01C63A122006774F4 /* StoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */; };
-		8DE63BB71CED0D2E004C7A93 /* UserDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE63BB61CED0D2E004C7A93 /* UserDetails.xib */; };
-		8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92211C708E2800833317 /* UserDetailsViewController.swift */; };
+		8DE63BB71CED0D2E004C7A93 /* UserDetailsPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE63BB61CED0D2E004C7A93 /* UserDetailsPopoverViewController.xib */; };
+		8DEC92221C708E2800833317 /* UserDetailsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */; };
 		8DEC92261C71F4B300833317 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92251C71F4B300833317 /* User.swift */; };
 		8DEEA5601C514150001DB85D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEEA55F1C514150001DB85D /* Item.swift */; };
 		8DEEA5621C52CB45001DB85D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DEEA5611C52CB45001DB85D /* Main.storyboard */; };
@@ -81,8 +81,8 @@
 		8DD9B1B21C8D6A570042F89C /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
 		8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableCellView.xib; sourceTree = "<group>"; };
 		8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryTableCellView.xib; sourceTree = "<group>"; };
-		8DE63BB61CED0D2E004C7A93 /* UserDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetails.xib; sourceTree = "<group>"; };
-		8DEC92211C708E2800833317 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		8DE63BB61CED0D2E004C7A93 /* UserDetailsPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailsPopoverViewController.xib; sourceTree = "<group>"; };
+		8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsPopoverViewController.swift; sourceTree = "<group>"; };
 		8DEC92251C71F4B300833317 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DEEA55F1C514150001DB85D /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8DEEA5611C52CB45001DB85D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 				8D657EBA1C49A90B00F31BB7 /* StoriesViewController.swift */,
 				8D15A2EC1C5D0E23007AE60D /* CommentsViewController.swift */,
 				8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */,
-				8DEC92211C708E2800833317 /* UserDetailsViewController.swift */,
+				8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 			children = (
 				8DE13EDC1C63593C006774F4 /* CommentTableCellView.xib */,
 				8DE13EDF1C63A122006774F4 /* StoryTableCellView.xib */,
-				8DE63BB61CED0D2E004C7A93 /* UserDetails.xib */,
+				8DE63BB61CED0D2E004C7A93 /* UserDetailsPopoverViewController.xib */,
 				8DEEA5611C52CB45001DB85D /* Main.storyboard */,
 			);
 			name = Resources;
@@ -243,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE13EDD1C63593C006774F4 /* CommentTableCellView.xib in Resources */,
-				8DE63BB71CED0D2E004C7A93 /* UserDetails.xib in Resources */,
+				8DE63BB71CED0D2E004C7A93 /* UserDetailsPopoverViewController.xib in Resources */,
 				8DEEA5621C52CB45001DB85D /* Main.storyboard in Resources */,
 				8DE13EE01C63A122006774F4 /* StoryTableCellView.xib in Resources */,
 			);
@@ -278,7 +278,7 @@
 				8D7503B61C5834F500844C85 /* APIRouting.swift in Sources */,
 				8D2630361C755F4600CFFE62 /* NSURL+ShortURL.swift in Sources */,
 				8D0043531C4EE38F00C1F7D6 /* Story.swift in Sources */,
-				8DEC92221C708E2800833317 /* UserDetailsViewController.swift in Sources */,
+				8DEC92221C708E2800833317 /* UserDetailsPopoverViewController.swift in Sources */,
 				8D0043541C4EE38F00C1F7D6 /* APIClient.swift in Sources */,
 				8D708E3A1C7F6E300089BD7D /* CommentsOutlineView.swift in Sources */,
 				8D2630341C754EC900CFFE62 /* NSAttributedString+MarkupParser.swift in Sources */,

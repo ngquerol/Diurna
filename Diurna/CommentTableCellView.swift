@@ -21,7 +21,6 @@ class CommentTableCellView: NSTableCellView {
 
     // MARK: Properties
     private var userDetailsPopover: NSPopover!
-    private var userDetailsViewController: NSViewController!
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -63,27 +62,36 @@ class CommentTableCellView: NSTableCellView {
             showRepliesButton.image = (buttonImage == NSImageNameAddTemplate) ? NSImage(named: NSImageNameRemoveTemplate) : NSImage(named: NSImageNameAddTemplate)
         }
 
-        NSNotificationCenter.defaultCenter().postNotificationName("ToggleCommentVisibilityNotification", object: nil, userInfo: ["comment": comment])
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            "ToggleCommentVisibilityNotification",
+            object: nil,
+            userInfo: ["comment": comment]
+        )
     }
 
     @IBAction private func showUserDetailsPopover(sender: NSButton) {
         createUserDetailsPopover()
-        userDetailsPopover.showRelativeToRect(authorButton.bounds, ofView: authorButton, preferredEdge: .MaxY)
+        userDetailsPopover.showRelativeToRect(
+            authorButton.bounds,
+            ofView: authorButton,
+            preferredEdge: .MaxY
+        )
     }
 
     private func createUserDetailsPopover() {
-        guard let userDetailsViewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("UserDetailsViewController") as? UserDetailsViewController,
-            comment = self.objectValue as? Comment else {
-                return
+        guard let comment = self.objectValue as? Comment else {
+            return
         }
 
+        let userDetailsPopoverViewController = UserDetailsPopoverViewController()
+
         userDetailsPopover = NSPopover()
-        userDetailsPopover.contentViewController = userDetailsViewController
+        userDetailsPopover.contentViewController = userDetailsPopoverViewController
         userDetailsPopover.behavior = .Transient
         userDetailsPopover.animates = true
         userDetailsPopover.delegate = self
 
-        userDetailsViewController.getUserInfo(comment.by)
+        userDetailsPopoverViewController.getUserInfo(comment.by)
     }
 }
 

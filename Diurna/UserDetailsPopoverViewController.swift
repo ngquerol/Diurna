@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class UserDetailsViewController: NSViewController {
+class UserDetailsPopoverViewController: NSViewController {
 
     @IBOutlet weak var contentView: NSStackView!
     @IBOutlet weak var userProgressIndicator: NSProgressIndicator!

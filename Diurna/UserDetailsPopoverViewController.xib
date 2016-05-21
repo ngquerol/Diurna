@@ -6,14 +6,15 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="UserDetailsViewController" customModule="Diurna" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="UserDetailsPopoverViewController" customModule="Diurna" customModuleProvider="target">
             <connections>
-                <outlet property="about" destination="lms-3v-RcY" id="ERT-53-TPY"/>
-                <outlet property="contentView" destination="CL8-Vk-VWp" id="btQ-Kc-vrL"/>
-                <outlet property="created" destination="fHm-pr-5rl" id="nDY-3s-xsY"/>
-                <outlet property="karma" destination="fOh-m5-GoP" id="WSn-Vn-jIf"/>
-                <outlet property="separator" destination="TCu-1F-zXv" id="Zem-xS-N2V"/>
-                <outlet property="userProgressIndicator" destination="v5B-cN-aBh" id="HGd-gK-yW9"/>
+                <outlet property="about" destination="lms-3v-RcY" id="Gbd-1v-l6l"/>
+                <outlet property="contentView" destination="CL8-Vk-VWp" id="tSa-mQ-oc1"/>
+                <outlet property="created" destination="fHm-pr-5rl" id="PtO-oV-z5N"/>
+                <outlet property="karma" destination="fOh-m5-GoP" id="ABZ-VD-CRL"/>
+                <outlet property="separator" destination="TCu-1F-zXv" id="OsJ-6m-5ZZ"/>
+                <outlet property="userProgressIndicator" destination="v5B-cN-aBh" id="igm-uq-EI1"/>
+                <outlet property="view" destination="RzR-dj-aGb" id="CRZ-a7-awY"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

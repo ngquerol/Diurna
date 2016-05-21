@@ -79,7 +79,7 @@ class CommentsViewController: NSViewController {
 
     func toggleCommentVisibility(notification: NSNotification) {
         guard notification.name == "ToggleCommentVisibilityNotification",
-            let toggledComment = notification.userInfo!["comment"] as? Comment else {
+            let toggledComment = notification.userInfo?["comment"] as? Comment else {
                 return
         }
 
@@ -208,12 +208,11 @@ extension CommentsViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewColumnDidResize(notification: NSNotification) {
-        NSAnimationContext.runAnimationGroup(
-            { context in
-                context.duration = 0
-                self.commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
-                    NSIndexSet(indexesInRange: NSMakeRange(0, self.commentsOutlineView.numberOfRows))
-                )
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0
+            self.commentsOutlineView.noteHeightOfRowsWithIndexesChanged(
+                NSIndexSet(indexesInRange: NSMakeRange(0, self.commentsOutlineView.numberOfRows))
+            )
             }, completionHandler: nil
         )
     }
