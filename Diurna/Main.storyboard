@@ -244,7 +244,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="71" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="v5w-j5-ky0">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="470"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="0.0" height="10"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -299,7 +299,7 @@
                                 <rect key="frame" x="127" y="475" width="46" height="19"/>
                                 <popUpButtonCell key="cell" type="roundRect" title="10" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Er9-PX-8nB" id="09G-Gn-wQr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <menu key="menu" id="GhZ-26-I7C">
                                         <items>
                                             <menuItem title="10" state="on" id="Er9-PX-8nB">
@@ -341,14 +341,14 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bEi-5y-zLu">
-                                <rect key="frame" x="265" y="470" width="30" height="30"/>
+                                <rect key="frame" x="265" y="469" width="30" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="c4B-P8-vga"/>
                                     <constraint firstAttribute="width" constant="30" id="yDd-9w-272"/>
                                 </constraints>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="1Sz-44-EeK">
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSListViewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Sz-44-EeK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="userDidClickSidebarButton:" target="Pqr-aU-vhO" id="ktM-HS-2Gf"/>
@@ -540,7 +540,7 @@
             <objects>
                 <splitViewController id="1Wn-mi-uyW" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem canCollapse="YES" behavior="sidebar" id="g0c-Qg-9Xw"/>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="g0c-Qg-9Xw"/>
                         <splitViewItem id="exp-Sb-JXN"/>
                         <splitViewItem holdingPriority="255" id="7Rf-fB-Oeh"/>
                     </splitViewItems>

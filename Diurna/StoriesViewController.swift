@@ -61,6 +61,7 @@ class StoriesViewController: NSViewController {
         case "New": selectedStoriesCategory = .NewStories
         case "Ask": selectedStoriesCategory = .AskStories
         case "Jobs": selectedStoriesCategory = .JobStories
+        case "Show": selectedStoriesCategory = .ShowStories
         default: return
         }
 

@@ -29,6 +29,7 @@ class CategoriesViewController: NSViewController {
         case .NewStories: selectedCategoryString = "New"
         case .AskStories: selectedCategoryString = "Ask"
         case .JobStories: selectedCategoryString = "Jobs"
+        case .ShowStories: selectedCategoryString = "Show"
         default: selectedCategoryString = ""
         }
 
