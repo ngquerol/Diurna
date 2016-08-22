@@ -8,111 +8,132 @@
 
 import Cocoa
 
-extension Character {
-    func isMemberOf(set: NSCharacterSet) -> Bool {
-        let bridgedCharacter = (String(self) as NSString).characterAtIndex(0)
-        return set.characterIsMember(bridgedCharacter)
+private extension Character {
+    func isMemberOf(_ set: CharacterSet) -> Bool {
+        let bridgedCharacter = String(self).unicodeScalars.first!
+        return set.contains(bridgedCharacter)
     }
 }
 
-struct Parser {
+fileprivate struct Parser {
     private var pos: String.Index
     private let input: String
 
     init(inputString: String) {
-        self.input = inputString
-        self.pos = self.input.startIndex
+        input = inputString
+        pos = input.startIndex
     }
 
     func nextCharacter() -> Character {
-        return input[self.pos]
+        return input[pos]
     }
 
-    func startsWith(s: String) -> Bool {
-        return self.input.substringFromIndex(self.pos).hasPrefix(s)
+    func startsWith(_ s: String) -> Bool {
+        return input.substring(from: pos).hasPrefix(s)
     }
 
     func eof() -> Bool {
-        return self.pos >= self.input.endIndex
+        return pos >= input.endIndex
     }
 
+    @discardableResult
     mutating func consumeCharacter() -> Character {
-        let char = self.input[self.pos]
-        self.pos = self.pos.successor()
+        let char = input[pos]
+        pos = input.index(after: pos)
         return char
     }
 
-    mutating func consumeWhile(predicate: Character -> Bool) -> String {
+    @discardableResult
+    mutating func consumeWhile( _ predicate: (Character) -> Bool) -> String {
         var result = String()
-        while !self.eof() && predicate(self.nextCharacter()) { result.append(consumeCharacter()) }
+        while !eof() && predicate(nextCharacter()) { result.append(consumeCharacter()) }
         return result
     }
 
     mutating func consumeWhitespace() {
-        self.consumeWhile { $0.isMemberOf(NSCharacterSet.whitespaceCharacterSet()) }
+        consumeWhile { $0.isMemberOf(CharacterSet.whitespaces) }
     }
 }
 
-class MarkupParser {
+fileprivate struct Tag {
+    let name: String
+    let attributes: [String: String]
+}
+
+struct MarkupParserConfiguration {
+    var codeBlockColor: NSColor = .lightGray
+    var urlColor: NSColor = .blue
+    var regularFont: NSFont = .systemFont(ofSize: 12.0)
+    var monospaceFont: NSFont = NSFont(name: "Menlo", size: 11.0)!
+    var textAlignment: NSTextAlignment = .natural
+}
+
+struct MarkupParser {
     private var parser: Parser
+    private var parserConfiguration: MarkupParserConfiguration
 
     init(input: String) {
-        self.parser = Parser(inputString: input)
+        parser = Parser(inputString: input)
+        parserConfiguration = MarkupParserConfiguration()
     }
 
-    struct Tag {
-        let name: String
-        let attributes: [String: String]
+    init(input: String, configuration: MarkupParserConfiguration) {
+        parser = Parser(inputString: input)
+        parserConfiguration = configuration
     }
 
-    private func parseTagName() -> String {
-        let tagCharacterSet = NSMutableCharacterSet(charactersInString: "/")
-        tagCharacterSet.formUnionWithCharacterSet(NSCharacterSet.alphanumericCharacterSet())
-        return parser.consumeWhile { $0.isMemberOf(tagCharacterSet) }
+    private mutating func parseTagName() -> String {
+        let tagCharacterSet = NSMutableCharacterSet(charactersIn: "/")
+        tagCharacterSet.formUnion(with: CharacterSet.alphanumerics)
+        return parser.consumeWhile { $0.isMemberOf(tagCharacterSet as CharacterSet) }
     }
 
-    private func parseText() -> String {
+    private mutating func parseText() -> String {
         return CFXMLCreateStringByUnescapingEntities(
             nil,
-            parser.consumeWhile { $0 != "<" },
+            parser.consumeWhile { $0 != "<" } as CFString!,
             nil
-        ) as String
+            ) as String
     }
 
-    private func parseAttribute() -> (String, String) {
-        let name = self.parseTagName()
+    private mutating func parseAttribute() -> (String, String) {
+        let name = parseTagName()
         parser.consumeCharacter()
-        let value = self.parseAttributeValue()
+        let value = parseAttributeValue()
+
         return (name, value)
     }
 
-    private func parseAttributeValue() -> String {
+    private mutating func parseAttributeValue() -> String {
         let openQuote = parser.consumeCharacter(),
-            value = CFXMLCreateStringByUnescapingEntities(
-                nil,
-                parser.consumeWhile { $0 != openQuote },
-                nil
-        )
+        unescapedValue = parser.consumeWhile { $0 != openQuote },
+                                             value = CFXMLCreateStringByUnescapingEntities(
+                                                nil,
+                                                unescapedValue as CFString,
+                                                nil
+                                                ) as String
+
         parser.consumeCharacter()
-        return value as String
+
+        return value
     }
 
-    private func parseAttributes() -> [String: String] {
+    private mutating func parseAttributes() -> [String: String] {
         var attributes: [String: String] = [:]
 
         while parser.nextCharacter() != ">" {
             parser.consumeWhitespace()
-            let (name, value) = self.parseAttribute()
+            let (name, value) = parseAttribute()
             attributes[name] = value
         }
 
         return attributes
     }
 
-    private func parseTag() -> Tag {
+    private mutating func parseTag() -> Tag {
         parser.consumeCharacter()
-        let name = self.parseTagName()
-        let attributes = self.parseAttributes()
+        let name = parseTagName(),
+        attributes = parseAttributes()
         parser.consumeCharacter()
 
         return Tag(
@@ -121,71 +142,69 @@ class MarkupParser {
         )
     }
 
-    private func tagToFormattingOptions(tag: Tag) -> [String: AnyObject]? {
+    private func getFormattingAttributes(for tag: Tag) -> [String: Any] {
         switch tag.name {
-
         case "a":
             guard let urlString = tag.attributes["href"],
-                url = NSURL(string: urlString) else {
-                    return [:]
+                let url = URL(string: urlString) else {
+                    return [NSFontAttributeName: parserConfiguration.regularFont]
             }
 
             return [
-                NSLinkAttributeName: url,
-                NSFontAttributeName: NSFont.systemFontOfSize(12.0),
-                NSForegroundColorAttributeName: NSColor.blueColor(),
-                NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
+                NSLinkAttributeName: url as Any,
+                NSFontAttributeName: parserConfiguration.regularFont,
+                NSForegroundColorAttributeName: parserConfiguration.urlColor,
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue as Any
             ]
 
         case "i":
             return [
-                NSFontAttributeName: NSFontManager.sharedFontManager().convertFont(
-                    NSFont.systemFontOfSize(12.0),
-                    toHaveTrait: .ItalicFontMask
+                NSFontAttributeName: NSFontManager.shared().convert(
+                    parserConfiguration.regularFont,
+                    toHaveTrait: .italicFontMask
                 )
             ]
 
-        case "pre", "code":
-            return [NSFontAttributeName: NSFont(name: "Menlo", size: 11.0) ?? NSFont.systemFontOfSize(11.0)]
+        case "code":
+            return [
+                NSFontAttributeName: parserConfiguration.monospaceFont,
+                CodeBlockAttributeName: parserConfiguration.codeBlockColor
+            ]
 
-        case _: return [NSFontAttributeName: NSFont.systemFontOfSize(12.0)]
+        default: return [NSFontAttributeName: parserConfiguration.regularFont]
         }
     }
 
-    func toAttributedString() -> NSAttributedString {
-        let result = NSMutableAttributedString()
-        let paragraphFormattingOptions = NSMutableParagraphStyle()
+    mutating func toAttributedString() -> NSAttributedString {
+        let result = NSMutableAttributedString(),
+        paragraphSeparator = NSAttributedString(string: "\n\n")
+        var formattingAttributes: [String: Any] = [NSFontAttributeName: parserConfiguration.regularFont]
 
-        paragraphFormattingOptions.alignment = .Natural
-        paragraphFormattingOptions.hyphenationFactor = 1.0
-
-        var formattingOptions: [String: AnyObject]? = [
-            NSFontAttributeName: NSFont.systemFontOfSize(12.0),
-            NSParagraphStyleAttributeName: paragraphFormattingOptions
-        ]
+        result.beginEditing()
 
         while !parser.eof() {
             switch parser.nextCharacter() {
-
             case "<":
-                let tag = self.parseTag()
-                formattingOptions = tagToFormattingOptions(tag)
+                let tag = parseTag()
+
                 if tag.name == "p" {
-                    result.appendAttributedString(
-                        NSAttributedString(string: "\u{2028}\u{2028}", attributes: formattingOptions)
-                    )
+                    result.append(paragraphSeparator)
+                } else {
+                    formattingAttributes = getFormattingAttributes(for: tag)
                 }
 
             case _:
-                result.appendAttributedString(
+                result.append(
                     NSAttributedString(
-                        string: self.parseText(),
-                        attributes: formattingOptions
+                        string: parseText(),
+                        attributes: formattingAttributes
                     )
                 )
             }
         }
-
+        
+        result.endEditing()
+        
         return result
     }
 }

@@ -10,54 +10,67 @@ import Cocoa
 
 class CategoriesViewController: NSViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var categoriesTableView: NSTableView!
 
-    private let storiesTypes = [
-        HackerNewsAPI.TopStories.name: HackerNewsAPI.TopStories,
-        HackerNewsAPI.NewStories.name: HackerNewsAPI.NewStories,
-        HackerNewsAPI.JobStories.name: HackerNewsAPI.JobStories,
-        HackerNewsAPI.ShowStories.name: HackerNewsAPI.ShowStories,
-        HackerNewsAPI.AskStories.name: HackerNewsAPI.AskStories
-    ]
+    // MARK: View lifecycle
+    override func viewDidAppear() {
+        super.viewDidAppear()
 
-    @IBAction func userDidSelectCategory(sender: NSTableView) {
-        let selectedCategory = Array(storiesTypes.values)[sender.selectedRow]
+        notifyCategoryChange()
+    }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(
-            "NewStoriesCategorySelectedNotification",
+    // MARK: Methods
+    @IBAction func categoriesTableViewSelectionChanged(_ sender: NSTableView) {
+        notifyCategoryChange()
+    }
+
+    private func notifyCategoryChange() {
+        guard let selectedCategory = StoryType(rawValue: StoryType.allValues[categoriesTableView.selectedRow]) else { return }
+
+        NotificationCenter.default.post(
+            name: .newCategorySelectedNotification,
             object: self,
-            userInfo: ["selectedCategory": selectedCategory.name]
+            userInfo: ["selectedCategory": selectedCategory.rawValue]
         )
     }
 }
 
+// MARK: - Notifications
+extension Notification.Name {
+    static let newCategorySelectedNotification = Notification.Name("NewCategorySelectedNotification")
+}
+
+// MARK: - NSTableView Data Source
 extension CategoriesViewController: NSTableViewDataSource {
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return storiesTypes.count
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return StoryType.allValues.count
     }
 }
 
+// MARK: - NSTableView Delegate
 extension CategoriesViewController: NSTableViewDelegate {
-
-    func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        let identifier = "CategoryRowView"
-
-        guard let rowView = tableView.makeViewWithIdentifier(identifier, owner: nil) as? CategoryTableRowView else {
-            let rowView = CategoryTableRowView()
-            rowView.identifier = identifier
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        guard let rowView = tableView.make(withIdentifier: CategoryRowView.rowIdentifier, owner: self) as? CategoryRowView else {
+            let rowView = CategoryRowView()
+            rowView.identifier = CategoryRowView.rowIdentifier
             return rowView
         }
 
         return rowView
     }
 
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cellView = tableView.makeViewWithIdentifier("CategoryColumn", owner: nil) as? NSTableCellView else {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let cellView = tableView.make(withIdentifier: "CategoryCell", owner: self) as? NSTableCellView else {
             return nil
         }
 
-        cellView.textField?.stringValue = Array(storiesTypes.keys)[row]
-
+        if let storyType = StoryType(rawValue: StoryType.allValues[row]) {
+            let displayableName = storyType.rawValue.capitalized
+            cellView.imageView?.image = NSImage(named: "\(displayableName)IconTemplate")
+            cellView.imageView?.toolTip = "\(displayableName)"
+        }
+        
         return cellView
     }
 }

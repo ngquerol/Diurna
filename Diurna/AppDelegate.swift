@@ -9,28 +9,37 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject {
 
-    weak var window: NSWindow?
+    // MARK: Properties
+    lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: "AboutWindow")
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        guard let window = NSApplication.sharedApplication().windows.first else { return }
-
-        window.titleVisibility = .Hidden
-        window.titlebarAppearsTransparent = true
-        window.movableByWindowBackground = true
-        window.styleMask |= NSFullSizeContentViewWindowMask
-        window.styleMask |= NSTexturedBackgroundWindowMask
-        window.backgroundColor = NSColor.whiteColor()
-
-        window.standardWindowButton(NSWindowButton.CloseButton)?.frame.origin.y -= 3
-        window.standardWindowButton(NSWindowButton.ZoomButton)?.frame.origin.y -= 3
-        window.standardWindowButton(NSWindowButton.MiniaturizeButton)?.frame.origin.y -= 3
+    // MARK: Methods
+    @IBAction func showAboutWindow(_ sender: NSMenuItem) {
+        aboutWindow.showWindow(sender)
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) { }
+    // TODO: Use a notification instead of accessing the SplitViewController directly
+    @IBAction func toggleSidebar(_ sender: NSMenuItem) {
+        guard let window = NSApp.windows.first,
+            let splitViewController = window.contentViewController as? NSSplitViewController else { return }
+        
+        splitViewController.toggleSidebar(sender)
+    }
 
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    @IBAction func toggleComments(_ sender: NSMenuItem) {
+        guard let window = NSApp.windows.first,
+            let splitViewController = window.contentViewController as? NSSplitViewController else { return }
+
+        let commentsView = splitViewController.splitViewItems[2]
+
+        commentsView.animator().isCollapsed = !commentsView.isCollapsed
+    }
+}
+
+// MARK: - NSApplicationDelegate
+extension AppDelegate: NSApplicationDelegate {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
 }

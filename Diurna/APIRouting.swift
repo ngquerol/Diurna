@@ -6,48 +6,46 @@
 //  Copyright © 2016 Nicolas Gaulard-Querol. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 protocol APIEndpoint {
     var version: Int { get }
-    var baseURL: NSURL { get }
-    var path: NSURL { get }
-    var name: String { get }
+    var baseURL: URL { get }
+    var path: URL { get }
+}
+
+enum StoryType: String {
+    static let allValues = ["top", "best", "new", "job", "show", "ask"]
+    case top = "top"
+    case best = "best"
+    case new = "new"
+    case job = "job"
+    case show = "show"
+    case ask = "ask"
 }
 
 enum HackerNewsAPI {
-    case Item(Int)
-    case User(String)
-    case TopStories
-    case NewStories
-    case JobStories
-    case ShowStories
-    case AskStories
+    case item(Int)
+    case user(String)
+    case stories(StoryType)
 }
 
 extension HackerNewsAPI: APIEndpoint {
     var version: Int { return 0 }
-    var baseURL: NSURL { return NSURL(string: "https://hacker-news.firebaseio.com/v\(self.version)")! }
-    var path: NSURL {
+    var baseURL: URL { return URL(string: "https://hacker-news.firebaseio.com/v\(version)")! }
+    var path: URL {
         switch self {
-        case .Item(let id): return baseURL.URLByAppendingPathComponent("/item/\(id).json")
-        case .User(let id): return baseURL.URLByAppendingPathComponent("/user/\(id).json")
-        case .TopStories: return baseURL.URLByAppendingPathComponent("/topstories.json")
-        case .NewStories: return baseURL.URLByAppendingPathComponent("/newstories.json")
-        case .JobStories: return baseURL.URLByAppendingPathComponent("/jobstories.json")
-        case .ShowStories: return baseURL.URLByAppendingPathComponent("/showstories.json")
-        case .AskStories: return baseURL.URLByAppendingPathComponent("/askstories.json")
-        }
-    }
-    var name: String {
-        switch self {
-        case .Item(_): return "Item"
-        case .User(_): return "User"
-        case .TopStories: return "Top"
-        case .NewStories: return "New"
-        case .JobStories: return "Jobs"
-        case .ShowStories: return "Show"
-        case .AskStories: return "Ask"
+        case .item(let id): return baseURL.appendingPathComponent("item/\(id).json")
+        case .user(let id): return baseURL.appendingPathComponent("user/\(id).json")
+        case .stories(let type):
+            switch type {
+            case .top: return baseURL.appendingPathComponent("topstories.json")
+            case .best: return baseURL.appendingPathComponent("beststories.json")
+            case .new: return  baseURL.appendingPathComponent("newstories.json")
+            case .job: return baseURL.appendingPathComponent("jobstories.json")
+            case .show: return baseURL.appendingPathComponent("showstories.json")
+            case .ask: return baseURL.appendingPathComponent("askstories.json")
+            }
         }
     }
 }

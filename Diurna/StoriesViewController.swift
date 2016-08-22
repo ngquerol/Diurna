@@ -11,222 +11,186 @@ import Cocoa
 class StoriesViewController: NSViewController {
 
     // MARK: Outlets
+    @IBOutlet weak var storiesToolbarView: NSView!
+    @IBOutlet weak var storiesScrollView: NSScrollView!
     @IBOutlet weak var storiesTableView: NSTableView!
     @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var storiesProgressLabel: NSTextField!
     @IBOutlet weak var storiesProgressOverlay: NSStackView!
-    @IBOutlet weak var storiesCountPopUpButton: NSPopUpButton!
-    @IBOutlet weak var sidebarButton: NSButton!
-
-    // MARK: Properties
-    private let API = APIClient.sharedInstance
-    private var selectedStoriesCategory = HackerNewsAPI.NewStories
-    private var selectedStoriesCount = 10
-    private var stories = [Story]()
-    private var previouslySelectedStory: Story?
-    private dynamic var overallProgress: NSProgress?
-
-    // MARK: View lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        sidebarButton.toolTip = "Toggle sidebar"
-        storiesCountPopUpButton.toolTip = "Number of stories to display"
+    @IBOutlet weak var storiesCountPopUpButton: NSPopUpButton! {
+        didSet {
+            storiesCountPopUpButton.toolTip = "Number of stories to display"
+        }
     }
 
+    // MARK: Properties
+    fileprivate let API: APIClient = MockAPIClient.sharedInstance
+    fileprivate let dummyCellView = StoryCellView()
+    fileprivate var selectedStoriesType = StoryType.new
+    fileprivate var selectedStoriesCount = 10
+    fileprivate var stories = [Story]() {
+        didSet {
+            stories.sort()
+            storiesTableView.reloadData()
+        }
+    }
+    fileprivate var selectedStory: Story?
+    fileprivate dynamic var overallProgress: Progress?
+
+    // MARK: (De)initializer(s)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // MARK: View lifecycle
     override func viewWillAppear() {
         super.viewWillAppear()
 
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
-            selector: #selector(updateStoriesCategory(_:)),
-            name: "NewStoriesCategorySelectedNotification", object: nil
+            selector: .updateStoriesCategory,
+            name: .newCategorySelectedNotification,
+            object: nil
         )
 
-        addObserver(self, forKeyPath: "overallProgress.fractionCompleted", options: [.New, .Initial], context: nil)
-    }
-
-    override func viewDidAppear() {
-        updateStories(selectedStoriesCategory, storiesCount: selectedStoriesCount)
+        addObserver(
+            self,
+            forKeyPath: #keyPath(overallProgress.fractionCompleted),
+            options: [.new],
+            context: nil
+        )
     }
 
     // MARK: Methods
-    func updateStoriesCategory(notification: NSNotification) {
-        guard let selectedCategory = notification.userInfo?["selectedCategory"] as? String else {
-            return
+    func updateStoriesCategory(_ notification: Notification) {
+        guard notification.name == .newCategorySelectedNotification,
+            let categoryName = notification.userInfo?["selectedCategory"] as? String else {
+                return
         }
 
-        switch selectedCategory {
-        case HackerNewsAPI.TopStories.name: selectedStoriesCategory = .TopStories
-        case HackerNewsAPI.NewStories.name: selectedStoriesCategory = .NewStories
-        case HackerNewsAPI.AskStories.name: selectedStoriesCategory = .AskStories
-        case HackerNewsAPI.JobStories.name: selectedStoriesCategory = .JobStories
-        case HackerNewsAPI.ShowStories.name: selectedStoriesCategory = .ShowStories
-        default:
-            NSLog("%@: Unknown story type \"%@\"", self.className, selectedCategory)
-            return
+        if let category = StoryType(rawValue: categoryName) {
+            selectedStoriesType = category
+            updateStories()
+        } else {
+            NSLog("%@: Unknown story type \"%@\"", className, categoryName)
         }
-
-        updateStories(selectedStoriesCategory, storiesCount: selectedStoriesCount)
     }
 
-    @IBAction private func userDidChangeStoriesCount(sender: NSPopUpButton) {
+    @IBAction func userDidSelectStory(_ sender: NSTableView) {
+        guard selectedStory?.id != stories[storiesTableView.selectedRow].id else { return }
+
+        selectedStory = stories[storiesTableView.selectedRow]
+
+        NotificationCenter.default.post(
+            name: .storySelectionNotification,
+            object: self,
+            userInfo: [
+                "story": stories[storiesTableView.selectedRow]
+            ]
+        )
+    }
+
+    @IBAction fileprivate func storiesCountButtonValueChanged(_ sender: NSPopUpButton) {
         guard let storiesCountItem = storiesCountPopUpButton.selectedItem,
-            storiesCount = Int(storiesCountItem.title) else {
+            let storiesCount = Int(storiesCountItem.title) else {
                 return
         }
 
         selectedStoriesCount = storiesCount
 
-        updateStories(selectedStoriesCategory, storiesCount: storiesCount)
+        updateStories()
     }
 
-    @IBAction private func userDidClickSidebarButton(sender: NSButton) {
-        guard let splitViewController = parentViewController as? NSSplitViewController else {
-            return
-        }
+    func updateStories() {
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.current().allowsImplicitAnimation = true
+        storiesTableView.isHidden = true
+        storiesProgressOverlay.isHidden = false
+        NSAnimationContext.endGrouping()
 
-        splitViewController.toggleSidebar(self)
-    }
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.overallProgress = Progress(totalUnitCount: Int64(self.selectedStoriesCount))
+            self.overallProgress?.becomeCurrent(withPendingUnitCount: Int64(self.selectedStoriesCount))
 
-    @IBAction private func userDidSelectStory(sender: NSTableView) {
-        guard let splitViewController = parentViewController as? NSSplitViewController,
-            commentsViewController = splitViewController.splitViewItems[2].viewController as? CommentsViewController else {
-                return
-        }
-
-        let selectedStory = stories[storiesTableView.selectedRow]
-
-        if previouslySelectedStory?.id == selectedStory.id {
-            return
-        }
-
-        commentsViewController.updateComments(stories[storiesTableView.selectedRow])
-
-        previouslySelectedStory = stories[storiesTableView.selectedRow]
-    }
-
-    func updateStories(storiesType: HackerNewsAPI, storiesCount: Int) {
-        NSAnimationContext.runAnimationGroup({ context in
-            context.allowsImplicitAnimation = true
-            self.storiesTableView.hidden = true
-            self.storiesProgressOverlay.hidden = false
-            }, completionHandler: nil)
-
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            self.overallProgress = NSProgress(totalUnitCount: Int64(storiesCount))
-            self.overallProgress?.becomeCurrentWithPendingUnitCount(Int64(storiesCount))
-
-            self.API.fetchStories(storiesCount, source: storiesType) { stories in
+            self.API.fetchStories(of: self.selectedStoriesType, count: self.selectedStoriesCount) { stories in
                 self.stories = stories
-                self.storiesTableView.reloadData()
                 self.storiesTableView.scrollRowToVisible(0)
 
-                NSAnimationContext.runAnimationGroup({ context in
-                    context.allowsImplicitAnimation = true
-                    self.storiesTableView.hidden = false
-                    self.storiesProgressOverlay.hidden = true
-                    }, completionHandler: nil)
+                DispatchQueue.main.async {
+                    NSAnimationContext.beginGrouping()
+                    self.storiesProgressOverlay.animator().isHidden = true
+                    NSAnimationContext.current().completionHandler = {
+                        self.storiesTableView.animator().isHidden = false
+                    }
+                    NSAnimationContext.endGrouping()
+                }
             }
 
             self.overallProgress?.resignCurrent()
         }
     }
 
-    private func configureCell(cellView: StoryTableCellView, row: Int) -> StoryTableCellView {
-        let story = stories[row]
-
-        cellView.titleTextField.stringValue = story.title
-
-        if let URL = story.url, shortURL = URL.shortURL() {
-            cellView.URLButton.title = shortURL
-            cellView.URLButton.toolTip = URL.absoluteString
-        } else {
-            cellView.URLButton.hidden = true
+    // MARK: Key-Value Observing
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard keyPath == #keyPath(overallProgress.fractionCompleted),
+            let newValue = change?[NSKeyValueChangeKey.newKey] as? Double else {
+                return
         }
 
-        let comments = String(format: story.descendants > 1 ? "%d comments" : story.descendants == 0 ? "no comments" : "%d comment", story.descendants)
-
-        cellView.subtitleTextField.stringValue = "by \(story.by), \(story.time.timeAgo()) — \(comments)"
-
-        return cellView
-    }
-
-    private func handleCommentsUpdate(notification: NSNotification) {
-        if let completed = notification.userInfo?["completed"] as? Bool {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.storiesTableView.enabled = completed
-            }
-        }
-    }
-
-    // MARK: Progress KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "overallProgress.fractionCompleted" {
-            if let newValue = change?[NSKeyValueChangeNewKey] as? Double {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.storiesProgressIndicator.doubleValue = newValue
-                }
-            }
+        DispatchQueue.main.async {
+            self.storiesProgressIndicator.doubleValue = newValue
         }
     }
 }
 
-// MARK: TableView Source
+// MARK: - Notifications
+extension Notification.Name {
+    static let storySelectionNotification = Notification.Name("StorySelectionNotification")
+}
+
+// MARK: - Selectors
+private extension Selector {
+    static let updateStoriesCategory = #selector(StoriesViewController.updateStoriesCategory(_:))
+}
+
+// MARK: - NSTableView Data Source
 extension StoriesViewController: NSTableViewDataSource {
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return stories.count
     }
 }
 
-// MARK: TableView Delegate
+// MARK: - NSTableView Delegate
 extension StoriesViewController: NSTableViewDelegate {
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        // FIXME:
-        // We avoid creating & reusing a cell for row height calculating purposes when
-        // doing things this way, but we do have reproduce the cell's title formatting
-        // that is already defined in the corresponding XIB... Not very flexible
-        let formattedTitle = NSAttributedString(
-            string: stories[row].title, attributes:
-                [NSFontAttributeName: NSFont.systemFontOfSize(
-                    NSFont.systemFontSize(), weight: NSFontWeightMedium
-                    )
-            ]
-        ),
-            contentHeightWithoutTitle: CGFloat = 56.0,
-            titleWidth = tableView.frame.width - 20.0,
-            titleHeight = formattedTitle.boundingRectWithSize(
-                NSSize(width: titleWidth, height: CGFloat.max),
-                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
-        ).height
-
-        return max(tableView.rowHeight, titleHeight + contentHeightWithoutTitle)
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        dummyCellView.configureFor(stories[row])
+        return dummyCellView.heightForWidth(tableView.frame.width)
     }
 
-    func tableViewColumnDidResize(notification: NSNotification) {
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 0
-            self.storiesTableView.noteHeightOfRowsWithIndexesChanged(
-                NSIndexSet(indexesInRange: NSMakeRange(0, self.storiesTableView.numberOfRows))
-            )
-            }, completionHandler: nil)
+    func tableViewColumnDidResize(_ notification: Notification) {
+        guard notification.name == Notification.Name.NSTableViewColumnDidResize else { return }
+
+        let visibleRowsRange = storiesTableView.rows(in: storiesTableView.visibleRect)
+
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.current().duration = 0
+        storiesTableView.noteHeightOfRows(
+            withIndexesChanged: IndexSet(integersIn: visibleRowsRange.toRange()!)
+        )
+        NSAnimationContext.endGrouping()
     }
 
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        guard let column = tableColumn where column.identifier == "StoryColumn" else {
-            return nil
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let story = stories[row]
+
+        guard let cellView = tableView.make(withIdentifier: CommentCellView.reuseIdentifier, owner: self) as? StoryCellView else {
+            let cellView = StoryCellView()
+            cellView.configureFor(story)
+            return cellView
         }
-
-        return self.stories[row]
-    }
-
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cellView = tableView.makeViewWithIdentifier("StoryColumn", owner: self) as? StoryTableCellView else {
-            return nil
-        }
-
-        configureCell(cellView, row: row)
-
+        
+        cellView.configureFor(story)
+        
         return cellView
     }
 }

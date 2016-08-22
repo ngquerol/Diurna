@@ -6,24 +6,23 @@
 //  Copyright © 2016 Nicolas Gaulard-Querol. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 import SwiftyJSON
 
 struct User {
     let id: String
-    let karma: Int32
-    let created: NSDate
+    let karma: Int
+    let created: Date
     let about: NSAttributedString?
 
-    init?(json: JSON) {
-        self.id = json["id"].stringValue
-        self.karma = json["karma"].int32Value
-        self.created = NSDate(timeIntervalSince1970: json["created"].doubleValue)
-
-        if let about = json["about"].string {
-            self.about = MarkupParser(input: about).toAttributedString()
+    init(json: JSON) {
+        id = json["id"].stringValue
+        karma = json["karma"].intValue
+        created = Date(timeIntervalSince1970: json["created"].doubleValue)
+        if let aboutString = json["about"].string {
+            about = aboutString.parseMarkup()
         } else {
-            self.about = nil
+            about = nil
         }
     }
 }

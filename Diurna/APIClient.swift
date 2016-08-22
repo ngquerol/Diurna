@@ -1,152 +1,273 @@
 //
-//  FirebaseAPIClient.swift
+//  APIClient.swift
 //  Diurna
 //
 //  Created by Nicolas Gaulard-Querol on 16/01/2016.
 //  Copyright © 2016 Nicolas Gaulard-Querol. All rights reserved.
 //
 
+import Foundation
 import SwiftyJSON
 
-/// All that is needed to get data from the chosen Hacker News API.
-/// TODO: Error Handling 😜
-class APIClient: NSObject {
+protocol APIClient {
+    func fetchStories(of type: StoryType, count: Int, completion: @escaping (_ data: [Story]) -> Void)
+    func fetchComments(of story: Story, completion: @escaping (_ data: [Comment]) -> Void)
+    func fetchUser(with id: String, completion: @escaping (_ data: User) -> Void)
+}
+
+enum APIError: Error {
+    case networkError(NSError)
+    case invalidHTTPResponse(HTTPURLResponse)
+    case emptyResponse
+    case unknown
+}
+
+extension APIError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .networkError(let error): return error.localizedDescription
+        case .invalidHTTPResponse(let response): return "Invalid HTTP status code: \(response.statusCode)"
+        case .emptyResponse: return "Response body is empty"
+        case .unknown: return "Unknown / Unhandled error"
+        }
+    }
+}
+
+struct MockAPIClient {
+    static let sharedInstance = MockAPIClient()
+
+    fileprivate var mockJSON = [String:[Int:JSON]]()
+
+    private init() {
+        for type in StoryType.allValues {
+            mockJSON[type] = [:]
+
+            guard let path = Bundle.main.path(forResource: "TestData/\(type)stories", ofType: "json"),
+                let fileContent = try? String(contentsOfFile: path, encoding: String.Encoding.utf8),
+                let stringData = fileContent.data(using: String.Encoding.utf8) else {
+                    continue
+            }
+
+            JSON(data: stringData).arrayValue.forEach {
+                let storyID = $0.dictionaryValue["id"]!.intValue
+                mockJSON[type]![storyID] = $0
+            }
+        }
+    }
+
+    fileprivate func loadComments(json: [JSON]) -> [Comment] {
+        var comments = [Comment]()
+
+        for commentJSON in json {
+            let comment = Comment(json: commentJSON),
+                kidsJSON = commentJSON["kids"].arrayValue
+
+            if !kidsJSON.isEmpty {
+                comment.kids = loadComments(json: kidsJSON)
+            }
+
+            comments.append(comment)
+        }
+
+        return comments
+    }
+}
+
+extension MockAPIClient: APIClient {
+    func fetchStories(of type: StoryType, count: Int, completion: @escaping (_ data: [Story]) -> Void) {
+        if let stories = mockJSON[type.rawValue] {
+            DispatchQueue.main.async {
+                completion(stories.values.prefix(count).flatMap { Story(json: $0) })
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion([Story]())
+            }
+        }
+    }
+
+    func fetchComments(of story: Story, completion: @escaping (_ data: [Comment]) -> Void) {
+        for json in mockJSON.values {
+            guard let story = json[story.id] else { continue }
+
+            DispatchQueue.main.async {
+                completion(self.loadComments(json: story["kids"].arrayValue))
+            }
+            return
+        }
+
+        DispatchQueue.main.async {
+            completion([])
+        }
+    }
+
+    func fetchUser(with id: String, completion: @escaping (_ data: User) -> Void) {
+        let fakeUserJSON = JSON([
+            "id": id,
+            "karma": 42,
+            "created": 1304177034,
+            "about": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
+        ])
+
+        DispatchQueue.main.async {
+            completion(User(json: fakeUserJSON))
+        }
+    }
+}
+
+// TODO: Error Handling 😜
+struct FirebaseAPIClient {
 
     // MARK: Properties
-    static let sharedInstance = APIClient()
-    private var URLSession: NSURLSession
-    private var cache: NSCache
+    static let sharedInstance = FirebaseAPIClient()
+    private var URLSession: Foundation.URLSession
 
     // MARK: Initializers
-    private override init() {
-        self.URLSession = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration()
-        )
-        self.cache = NSCache()
+    private init() {
+        let sessionConfig = URLSessionConfiguration.default
+
+        sessionConfig.timeoutIntervalForRequest = 10.0
+        sessionConfig.timeoutIntervalForResource = 20.0
+        sessionConfig.httpShouldUsePipelining = true
+        sessionConfig.httpAdditionalHeaders = [
+            "Accept": "application/json",
+            "Accept-Charset": "utf-8",
+            "Accept-Encoding": "gzip, deflate"
+        ]
+
+        self.URLSession = Foundation.URLSession(configuration: sessionConfig)
     }
 
     // MARK: Methods
-    func fetchStories(count: Int = 500, source: HackerNewsAPI, completion: (data: [Story]) -> Void) {
-        let fetchGroup = dispatch_group_create(),
-            progress = NSProgress(totalUnitCount: Int64(count))
-        var stories = [Story]()
-
-        dispatch_group_enter(fetchGroup)
-        fetchStoriesIds(source, count: count) { storiesIds in
-            for id in storiesIds {
-                if let cachedStory = self.cache.objectForKey(id) as? Story {
-                    stories.append(cachedStory)
-                } else {
-                    dispatch_group_enter(fetchGroup)
-                    self.fetchData(HackerNewsAPI.Item(id).path) { data, error in
-                        if let storyData = data,
-                            story = Story(json: JSON(data: storyData)) {
-                                stories.append(story)
-                                self.cache.setObject(story, forKey: id)
-                                progress.completedUnitCount += 1
-                                dispatch_group_leave(fetchGroup)
-                        }
-                    }
-                }
-            }
-            dispatch_group_leave(fetchGroup)
-        }
-
-        dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
-            self.sortStories(&stories, source: source)
-            completion(data: stories)
-        }
-    }
-
-    func fetchStoriesIds(source: HackerNewsAPI, count: Int = 500, completion: ([Int]) -> Void) {
-        fetchData(source.path) { data, error in
-            if let storiesData = data {
-                let storiesIds = JSON(data: storiesData)
+    fileprivate func fetchStoriesIds(of type: StoryType, count: Int = 500, completion: @escaping ([Int]) -> Void) {
+        httpGet(HackerNewsAPI.stories(type).path, dataHandler: { data in
+                let storiesIds = JSON(data: data)
                     .arrayValue
                     .prefix(count)
-                    .reverse()
                     .map { $0.intValue }
 
-                completion(storiesIds)
+                DispatchQueue.main.async {
+                    completion(storiesIds)
+                }
+            }, errorHandler: { err in
+                NSLog(err.description)
             }
-        }
+        )
     }
 
-    func sortStories(inout stories: [Story], source: HackerNewsAPI) {
-        switch source {
+    fileprivate func fetchComment(_ id: Int, completion: @escaping (_ data: Comment) -> Void) {
+        httpGet(HackerNewsAPI.item(id).path, dataHandler: { data in
+                let comment = Comment(json: JSON(data: data))
 
-        case .NewStories:
-            stories.sortInPlace { (s1, s2) -> Bool in
-                return s1.time.compare(s2.time) == NSComparisonResult.OrderedDescending
-            }
+                guard !comment.kidsIds.isEmpty else {
+                    completion(comment)
+                    return
+                }
 
-        case .TopStories:
-            stories.sortInPlace { (s1, s2) -> Bool in
-                return s1.rank > s2.rank
-            }
+                let fetchGroup = DispatchGroup()
+                var children = [Comment?](repeating: nil, count: comment.kidsIds.count)
 
-        case _: break
-        }
-    }
-
-    func fetchComments(story: Story, completion: (data: [Comment]) -> Void) {
-        let fetchGroup = dispatch_group_create(),
-            progress = NSProgress(totalUnitCount: Int64(story.kids.count))
-        var comments = [Comment]()
-
-        for id in story.kids {
-            dispatch_group_enter(fetchGroup)
-            fetchComment(id) { comment in
-                comments.append(comment)
-                progress.completedUnitCount += 1
-                dispatch_group_leave(fetchGroup)
-            }
-        }
-
-        dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
-            progress.completedUnitCount = progress.totalUnitCount
-            completion(data: comments)
-        }
-    }
-
-    private func fetchComment(id: Int, completion: (data: Comment) -> Void) {
-        if let cachedComment = self.cache.objectForKey(id) as? Comment {
-            completion(data: cachedComment)
-        } else {
-            fetchData(HackerNewsAPI.Item(id).path) { data, error in
-                if let commentData = data, comment = Comment(json: JSON(data: commentData)) {
-                    let fetchGroup = dispatch_group_create()
-
-                    for id in comment.kidsIds {
-                        dispatch_group_enter(fetchGroup)
-                        self.fetchComment(id) { childComment in
-                            comment.kids.append(childComment)
-                            dispatch_group_leave(fetchGroup)
-                        }
-                    }
-
-                    dispatch_group_notify(fetchGroup, dispatch_get_main_queue()) {
-                        self.cache.setObject(comment, forKey: id)
-                        completion(data: comment)
+                for (i, id) in comment.kidsIds.enumerated() {
+                    fetchGroup.enter()
+                    self.fetchComment(id) { childComment in
+                        children[i] = childComment
+                        fetchGroup.leave()
                     }
                 }
-            }
-        }
-    }
 
-    func fetchUser(id: String, completion: (data: User) -> Void) {
-        fetchData(HackerNewsAPI.User(id).path) { data, error in
-            if let userData = data, user = User(json: JSON(data: userData)) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(data: user)
+                fetchGroup.notify(queue: DispatchQueue.main) {
+                    comment.kids = children.flatMap { $0 }
+                    completion(comment)
                 }
+            }, errorHandler: { err in
+                NSLog(err.description)
             }
-        }
+        )
     }
 
-    private func fetchData(url: NSURL, completion: (data: NSData?, error: NSError?) -> Void) {
-        URLSession.dataTaskWithURL(url) { data, response, error in
-            completion(data: data, error: error)
+    fileprivate func httpGet(_ url: URL, dataHandler: @escaping (_ data: Data) -> Void, errorHandler: @escaping (_ error: APIError) -> Void) {
+        URLSession.dataTask(with: url) { data, response, error in
+            switch (data, response as? HTTPURLResponse, error) {
+            case (_, _, let .some(error)):
+                errorHandler(.networkError(error as NSError))
+
+            case (_, let .some(response), _) where !(200..<300 ~= response.statusCode):
+                errorHandler(.invalidHTTPResponse(response))
+
+            case (let data, _, _) where data == nil || data?.count == 0:
+                errorHandler(.emptyResponse)
+
+            case (let .some(data), _, _):
+                dataHandler(data)
+
+            default:
+                errorHandler(.unknown)
+            }
         }.resume()
+    }
+}
+
+extension FirebaseAPIClient: APIClient {
+    func fetchStories(of type: StoryType, count: Int, completion: @escaping (_ data: [Story]) -> Void) {
+        let fetchGroup = DispatchGroup(),
+            progress = Progress(totalUnitCount: Int64(count))
+        var stories = [Story?](repeating: nil, count: count)
+
+        fetchGroup.enter()
+        fetchStoriesIds(of: type, count: count) { storiesIds in
+            for (i, id) in storiesIds.enumerated() {
+                fetchGroup.enter()
+                self.httpGet(HackerNewsAPI.item(id).path, dataHandler: { data in
+                        stories[i] = Story(json: JSON(data: data))
+                        progress.completedUnitCount += 1
+                        fetchGroup.leave()
+                    }, errorHandler: { err in
+                        NSLog(err.description)
+                        progress.completedUnitCount += 1
+                        fetchGroup.leave()
+                    }
+                )
+            }
+            fetchGroup.leave()
+        }
+
+        fetchGroup.notify(queue: DispatchQueue.main) {
+            completion(stories.flatMap { $0 })
+        }
+    }
+
+    func fetchComments(of story: Story, completion: @escaping (_ data: [Comment]) -> Void) {
+        guard !story.kids.isEmpty else {
+            completion([])
+            return
+        }
+
+        let fetchGroup = DispatchGroup(),
+            progress = Progress(totalUnitCount: Int64(story.kids.count))
+        var topLevelComments = [Comment?](repeating: nil, count: story.kids.count)
+
+        for (i, id) in story.kids.enumerated() {
+            fetchGroup.enter()
+            fetchComment(id) { comment in
+                topLevelComments[i] = comment
+                progress.completedUnitCount += 1
+                fetchGroup.leave()
+            }
+        }
+
+        fetchGroup.notify(queue: DispatchQueue.main) {
+            completion(topLevelComments.flatMap { $0 })
+        }
+    }
+
+    func fetchUser(with id: String, completion: @escaping (_ data: User) -> Void) {
+        httpGet(HackerNewsAPI.user(id).path, dataHandler: { data in
+                DispatchQueue.main.async {
+                    completion(User(json: JSON(data: data)))
+                }
+            }, errorHandler: { err in
+                NSLog(err.description)
+            }
+        )
     }
 }

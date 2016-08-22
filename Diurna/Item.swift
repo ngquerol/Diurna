@@ -6,25 +6,23 @@
 //  Copyright © 2016 Nicolas Gaulard-Querol. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 import SwiftyJSON
 
-class Item: Equatable {
+class Item {
     let id: Int
-    let time: NSDate
+    let time: Date
     let type: String
-    let title: String
-    let by: String
 
-    init?(json: JSON) {
-        self.id = json["id"].intValue
-        self.time = NSDate(timeIntervalSince1970: json["time"].doubleValue)
-        self.type = json["type"].stringValue
-        self.title = json["title"].stringValue
-        self.by = json["by"].stringValue
+    init(json: JSON) {
+        id = json["id"].intValue
+        time = Date(timeIntervalSince1970: json["time"].doubleValue)
+        type = json["type"].stringValue
     }
 }
 
-func == (x: Item, y: Item) -> Bool {
-    return x.id == y.id
+extension Item: Equatable { }
+
+func ==(lhs: Item, rhs: Item) -> Bool {
+    return lhs.id == rhs.id
 }
