@@ -25,3 +25,22 @@ class MainWindowController: NSWindowController {
         window.standardWindowButton(NSWindowButton.miniaturizeButton)?.frame.origin.y -= 4
     }
 }
+
+extension MainWindowController: NSWindowDelegate {
+    func windowWillEnterFullScreen(_ notification: Notification) {
+        guard notification.name == .NSWindowWillEnterFullScreen else { return }
+
+        NotificationCenter.default.post(name: .enterFullScreenNotification, object: self)
+    }
+
+    func windowWillExitFullScreen(_ notification: Notification) {
+        guard notification.name == .NSWindowWillExitFullScreen else { return }
+
+        NotificationCenter.default.post(name: .exitFullScreenNotification, object: self)
+    }
+}
+
+extension Notification.Name {
+    static let enterFullScreenNotification = Notification.Name("EnterFullScreenNotification")
+    static let exitFullScreenNotification = Notification.Name("ExitFullScreenNotification")
+}
