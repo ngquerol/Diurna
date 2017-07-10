@@ -11,23 +11,22 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject {
 
+    // MARK: Outlets
+    @IBOutlet weak var themesMenu: NSMenuItem!
+
     // MARK: Properties
-    lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: "AboutWindow")
+    lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: .aboutWindow)
 
     // MARK: Methods
-    @IBAction func showAboutWindow(_ sender: NSMenuItem) {
-        aboutWindow.showWindow(sender)
-    }
-
     // TODO: Use a notification instead of accessing the SplitViewController directly
     @IBAction func toggleSidebar(_ sender: NSMenuItem) {
         guard let window = NSApp.windows.first,
             let splitViewController = window.contentViewController as? NSSplitViewController else { return }
-        
+
         splitViewController.toggleSidebar(sender)
     }
 
-    @IBAction func toggleComments(_ sender: NSMenuItem) {
+    @IBAction func toggleComments(_: NSMenuItem) {
         guard let window = NSApp.windows.first,
             let splitViewController = window.contentViewController as? NSSplitViewController else { return }
 
@@ -35,11 +34,16 @@ class AppDelegate: NSObject {
 
         commentsView.animator().isCollapsed = !commentsView.isCollapsed
     }
+
+    @IBAction func userDidChangeTheme(_ sender: NSMenuItem) {
+        print(sender.title)
+    }
 }
 
 // MARK: - NSApplicationDelegate
 extension AppDelegate: NSApplicationDelegate {
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+
+    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         return true
     }
 }

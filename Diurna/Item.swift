@@ -7,21 +7,27 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class Item {
-    let id: Int
-    let time: Date
-    let type: String
-
-    init(json: JSON) {
-        id = json["id"].intValue
-        time = Date(timeIntervalSince1970: json["time"].doubleValue)
-        type = json["type"].stringValue
-    }
+enum ItemType: String, Decodable {
+    case comment
+    case job
+    case story
+    case poll
+    case pollopt
 }
 
-extension Item: Equatable { }
+protocol Item: Decodable {
+
+    var id: Int { get }
+
+    var time: Date { get }
+
+    var type: ItemType { get }
+
+    init?(dictionary: [String: Any?])
+}
+
+extension Equatable where Self: Item { }
 
 func ==(lhs: Item, rhs: Item) -> Bool {
     return lhs.id == rhs.id

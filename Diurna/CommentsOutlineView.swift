@@ -11,13 +11,11 @@ import Cocoa
 class CommentsOutlineView: NSOutlineView {
 
     // MARK: Methods
-
     // Don't show the disclosure triangle
-    override func frameOfOutlineCell(atRow row: Int) -> NSRect {
-        return NSRect.zero
+    override func frameOfOutlineCell(atRow _: Int) -> NSRect {
+        return .zero
     }
 
-    // Get back the space reserved for the disclosure cell
     override func frameOfCell(atColumn column: Int, row: Int) -> NSRect {
         var frame = super.frameOfCell(atColumn: column, row: row)
 
@@ -29,26 +27,26 @@ class CommentsOutlineView: NSOutlineView {
 
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil),
-        rowAtPoint = row(at: point)
+            rowAtPoint = row(at: point)
 
-        guard rowAtPoint != -1, 0..<numberOfRows ~= rowAtPoint else { return nil }
+        guard rowAtPoint != -1, 0 ..< numberOfRows ~= rowAtPoint else { return nil }
 
         let menu = NSMenu(title: "Comment Context Menu"),
-        item = menu.addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
+            item = menu.addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
 
         item.representedObject = rowAtPoint
 
         return menu
     }
 
-    func openCommentInBrowser(_ sender: NSMenuItem) {
+    @objc func openCommentInBrowser(_ sender: NSMenuItem) {
         guard let row = sender.representedObject as? Int,
             let comment = item(atRow: row) as? Comment else { return }
 
         let commentURL = HackerNewsWebpage.item(comment.id).path
 
         do {
-            try NSWorkspace.shared().open(commentURL, options: .withoutActivation, configuration: [:])
+            try NSWorkspace.shared.open(commentURL, options: .withoutActivation, configuration: [:])
         } catch let error as NSError {
             NSAlert(error: error).runModal()
         }

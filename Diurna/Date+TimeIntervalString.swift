@@ -11,7 +11,7 @@ import Cocoa
 // Note to self: this property is global, but only visible in this file.
 private var formatter: DateComponentsFormatter = {
     var calendar = Calendar.current,
-    formatter = DateComponentsFormatter()
+        formatter = DateComponentsFormatter()
 
     calendar.locale = Locale(identifier: "en_EN")
 
@@ -28,23 +28,21 @@ extension Date {
     /// If said amount is less or equal than a minute, returns "just now".
     /// - callout note: returns "some time { ago | from now }" as a fallback if formatting fails.
     var timeIntervalString: String {
-        get {
-            let now = Date(),
+        let now = Date(),
             components = Calendar.current.dateComponents(
                 [.minute, .hour, .day, .year],
                 from: self,
                 to: now
             )
 
-            if Calendar.current.isDateInToday(now)
-                && components.hour == 0
-                && components.minute == 0 {
-                return "just now"
-            }
-
-            let timeString = formatter.string(from: components) ?? "some time"
-
-            return now < self ?  "\(timeString) from now" : "\(timeString) ago"
+        if Calendar.current.isDateInToday(now)
+            && components.hour == 0
+            && components.minute == 0 {
+            return "just now"
         }
+
+        let timeString = formatter.string(from: components) ?? "some time"
+
+        return now < self ? "\(timeString) from now" : "\(timeString) ago"
     }
 }

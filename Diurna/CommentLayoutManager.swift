@@ -8,87 +8,103 @@
 
 import Cocoa
 
-let CodeBlockAttributeName = "CodeBlockAttributeName"
-
 class CommentLayoutManager: NSLayoutManager {
 
-    override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
-        super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
+    override func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+        super.drawBackground(forGlyphRange: glyphsToShow, at: origin)
 
-        let charRange = characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+        drawCodeBlocks(forGlyphRange: glyphsToShow, at: origin)
+    }
 
-        textStorage?.enumerateAttribute(CodeBlockAttributeName, in: charRange, options: []) { attributeValue, attributeRange, _ in
-            if let codeBlockColor = attributeValue as? NSColor {
-                drawCodeBlock(with: codeBlockColor, for: attributeRange, at: origin)
+    private func drawCodeBlocks(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+        guard
+            let textStorage = textStorage,
+            let cgContext = NSGraphicsContext.current?.cgContext
+        else {
+            return
+        }
+
+        let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+
+        textStorage.enumerateAttribute(.codeBlock, in: characterRange, options: []) { value, range, _ in
+            guard value != nil else { return }
+
+            let blockquoteGlyphRange = glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+            var blockRect: CGRect?
+
+            enumerateLineFragments(forGlyphRange: blockquoteGlyphRange) { rect, _, _, _, _ in
+                let lineRect = rect.offsetBy(dx: origin.x, dy: origin.y).integral
+                blockRect = blockRect == nil ? lineRect : blockRect?.union(lineRect)
+            }
+
+            if let blockRect = blockRect {
+                let addedHeight: CGFloat = NSFont.systemFontSize,
+                    widthAdjustement: CGFloat = 5,
+                    blockRect = NSRect(
+                        x: blockRect.origin.x + widthAdjustement / 2,
+                        y: blockRect.origin.y - addedHeight / 2,
+                        width: blockRect.width - widthAdjustement,
+                        height: blockRect.height + addedHeight
+                    )
+
+                drawCodeBlock(in: blockRect, with: cgContext)
             }
         }
     }
 
-    private func drawCodeBlock(with color: NSColor, for range: NSRange, at origin: NSPoint) {
-        let activeRange = glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-
-        guard let container = textContainer(forGlyphAt: activeRange.location, effectiveRange: nil) else { return }
-
-        var textRect = boundingRect(
-            forGlyphRange: activeRange,
-            in: container
-            ).offsetBy(dx: origin.x, dy: origin.y)
-
-        textRect.origin.x -= 2.5
-        textRect.size.width += 5.0
-
-        if let context = NSGraphicsContext.current()?.cgContext {
-            context.saveGState()
-
-            let fillColor = color.blended(withFraction: 0.75, of: .white)!,
-            strokeColor = color.blended(withFraction: 0.25, of: .white)!,
-            path = NSBezierPath(roundedRect: textRect, xRadius: 3.0, yRadius: 3.0)
-
-            context.setStrokeColor(strokeColor.cgColor)
-            context.setFillColor(fillColor.cgColor)
-
-            context.addPath(path.CGPath!)
-            context.drawPath(using: .stroke)
-            context.fill(textRect)
-
-            context.restoreGState()
+    private func drawCodeBlock(in rect: CGRect, with context: CGContext) {
+        guard let roundRectPath = NSBezierPath(roundedRect: rect, xRadius: 2.5, yRadius: 2.5).cgPath else {
+            return
         }
+
+        context.saveGState()
+
+        context.addPath(roundRectPath)
+        context.setFillColor(Themes.current.codeBlockColor.cgColor)
+        context.setStrokeColor(Themes.current.dividerColor.cgColor)
+        context.drawPath(using: .fillStroke)
+
+        context.restoreGState()
     }
 }
 
 private extension NSBezierPath {
-    var CGPath: CGPath? {
-        get {
-            guard elementCount != 0 else { return nil }
+    var cgPath: CGPath? {
+        guard elementCount != 0 else { return nil }
 
-            let path = CGMutablePath()
-            var didClosePath = false
+        let path = CGMutablePath()
+        var didClosePath = false
 
-            for i in 0..<self.elementCount {
-                var points = [NSPoint](repeating: NSZeroPoint, count: 3)
+        for i in 0 ..< elementCount {
+            var points = [NSPoint](repeating: NSZeroPoint, count: 3)
 
-                switch element(at: i, associatedPoints: &points) {
-                case .moveToBezierPathElement:
-                    path.move(to: CGPoint(x: points[0].x, y: points[0].y))
-                case .lineToBezierPathElement:
-                    path.addLine(to: CGPoint(x: points[0].x, y: points[0].y))
-                case .curveToBezierPathElement:
-                    path.addCurve(
-                        to: CGPoint(x: points[2].x, y: points[2].y),
-                        control1: CGPoint(x: points[0].x, y: points[0].y),
-                        control2: CGPoint(x: points[1].x, y: points[1].y)
-                    )
-                case .closePathBezierPathElement:
-                    path.closeSubpath()
-                    didClosePath = true;
-                }
-            }
-
-            if !didClosePath {
+            switch element(at: i, associatedPoints: &points) {
+            case .moveToBezierPathElement:
+                path.move(to: CGPoint(x: points[0].x, y: points[0].y))
+            case .lineToBezierPathElement:
+                path.addLine(to: CGPoint(x: points[0].x, y: points[0].y))
+            case .curveToBezierPathElement:
+                path.addCurve(
+                    to: CGPoint(x: points[2].x, y: points[2].y),
+                    control1: CGPoint(x: points[0].x, y: points[0].y),
+                    control2: CGPoint(x: points[1].x, y: points[1].y)
+                )
+            case .closePathBezierPathElement:
                 path.closeSubpath()
+                didClosePath = true
             }
-            
-            return path.copy()
         }
+
+        if !didClosePath {
+            path.closeSubpath()
+        }
+
+        return path.copy()
     }
+}
+
+// MARK: - NSAttributedStringKey
+
+extension NSAttributedStringKey {
+    static let codeBlock = NSAttributedStringKey(rawValue: "CodeBlockAttributeName")
 }

@@ -15,7 +15,7 @@ private extension Character {
     }
 }
 
-fileprivate struct Parser {
+private struct Parser {
     private var pos: String.Index
     private let input: String
 
@@ -44,7 +44,7 @@ fileprivate struct Parser {
     }
 
     @discardableResult
-    mutating func consumeWhile( _ predicate: (Character) -> Bool) -> String {
+    mutating func consumeWhile(_ predicate: (Character) -> Bool) -> String {
         var result = String()
         while !eof() && predicate(nextCharacter()) { result.append(consumeCharacter()) }
         return result
@@ -55,14 +55,12 @@ fileprivate struct Parser {
     }
 }
 
-fileprivate struct Tag {
+private struct Tag {
     let name: String
     let attributes: [String: String]
 }
 
 struct MarkupParserConfiguration {
-    var codeBlockColor: NSColor = .lightGray
-    var urlColor: NSColor = .blue
     var regularFont: NSFont = .systemFont(ofSize: 12.0)
     var monospaceFont: NSFont = NSFont(name: "Menlo", size: 11.0)!
     var textAlignment: NSTextAlignment = .natural
@@ -93,7 +91,7 @@ struct MarkupParser {
             nil,
             parser.consumeWhile { $0 != "<" } as CFString!,
             nil
-            ) as String
+        ) as String
     }
 
     private mutating func parseAttribute() -> (String, String) {
@@ -106,12 +104,12 @@ struct MarkupParser {
 
     private mutating func parseAttributeValue() -> String {
         let openQuote = parser.consumeCharacter(),
-        unescapedValue = parser.consumeWhile { $0 != openQuote },
-                                             value = CFXMLCreateStringByUnescapingEntities(
-                                                nil,
-                                                unescapedValue as CFString,
-                                                nil
-                                                ) as String
+            unescapedValue = parser.consumeWhile { $0 != openQuote },
+            value = CFXMLCreateStringByUnescapingEntities(
+                nil,
+                unescapedValue as CFString,
+                nil
+            ) as String
 
         parser.consumeCharacter()
 
@@ -133,7 +131,7 @@ struct MarkupParser {
     private mutating func parseTag() -> Tag {
         parser.consumeCharacter()
         let name = parseTagName(),
-        attributes = parseAttributes()
+            attributes = parseAttributes()
         parser.consumeCharacter()
 
         return Tag(
@@ -142,43 +140,46 @@ struct MarkupParser {
         )
     }
 
-    private func getFormattingAttributes(for tag: Tag) -> [String: Any] {
+    private func getFormattingAttributes(for tag: Tag) -> [NSAttributedStringKey: Any] {
         switch tag.name {
         case "a":
             guard let urlString = tag.attributes["href"],
                 let url = URL(string: urlString) else {
-                    return [NSFontAttributeName: parserConfiguration.regularFont]
+                return [.font: parserConfiguration.regularFont]
             }
 
             return [
-                NSLinkAttributeName: url as Any,
-                NSFontAttributeName: parserConfiguration.regularFont,
-                NSForegroundColorAttributeName: parserConfiguration.urlColor,
-                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue as Any
+                .link: url as Any,
+                .font: parserConfiguration.regularFont,
+                .foregroundColor: Themes.current.urlColor,
+                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
             ]
 
         case "i":
             return [
-                NSFontAttributeName: NSFontManager.shared().convert(
+                .font: NSFontManager.shared.convert(
                     parserConfiguration.regularFont,
                     toHaveTrait: .italicFontMask
-                )
+                ),
             ]
 
         case "code":
             return [
-                NSFontAttributeName: parserConfiguration.monospaceFont,
-                CodeBlockAttributeName: parserConfiguration.codeBlockColor
+                .font: parserConfiguration.monospaceFont,
+                .codeBlock: Themes.current.codeBlockColor,
             ]
 
-        default: return [NSFontAttributeName: parserConfiguration.regularFont]
+        case "p": fallthrough
+
+        default:
+            return [.font: parserConfiguration.regularFont]
         }
     }
 
     mutating func toAttributedString() -> NSAttributedString {
         let result = NSMutableAttributedString(),
-        paragraphSeparator = NSAttributedString(string: "\n\n")
-        var formattingAttributes: [String: Any] = [NSFontAttributeName: parserConfiguration.regularFont]
+            paragraphSeparator = NSAttributedString(string: "\n\n")
+        var formattingAttributes: [NSAttributedStringKey: Any] = [.font: parserConfiguration.regularFont]
 
         result.beginEditing()
 
@@ -189,9 +190,9 @@ struct MarkupParser {
 
                 if tag.name == "p" {
                     result.append(paragraphSeparator)
-                } else {
-                    formattingAttributes = getFormattingAttributes(for: tag)
                 }
+
+                formattingAttributes = getFormattingAttributes(for: tag)
 
             case _:
                 result.append(
@@ -202,9 +203,9 @@ struct MarkupParser {
                 )
             }
         }
-        
+
         result.endEditing()
-        
+
         return result
     }
 }

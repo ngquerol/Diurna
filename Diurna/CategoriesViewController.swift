@@ -11,18 +11,27 @@ import Cocoa
 class CategoriesViewController: NSViewController {
 
     // MARK: Outlets
+    @IBOutlet var categoriesVisualEffectView: NSVisualEffectView!
+    
     @IBOutlet var categoriesScrollView: NSScrollView! {
         didSet {
             categoriesScrollView.automaticallyAdjustsContentInsets = false
             categoriesScrollView.contentInsets.top = topEdgeInset
         }
     }
+
     @IBOutlet weak var categoriesTableView: NSTableView!
 
     // MARK: Properties
     private let topEdgeInset: CGFloat = 29.0
 
-    // MARK: View lifecycle
+    // MARK: View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        categoriesVisualEffectView.appearance = Themes.current.visualEffectAppearance
+    }
+
     override func viewWillAppear() {
         super.viewWillAppear()
 
@@ -47,23 +56,24 @@ class CategoriesViewController: NSViewController {
         notifyCategoryChange()
     }
 
-    // MARK: (De)initializers
+    // MARK: (De)initializer
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: Methods
-    @IBAction func categoriesTableViewSelectionChanged(_ sender: NSTableView) {
+    // MARK: Actions
+    @IBAction func categoriesTableViewSelectionChanged(_: NSTableView) {
         notifyCategoryChange()
     }
 
-    func didEnterFullScreen(_ notification: Notification) {
+    // MARK: Methods
+    @objc func didEnterFullScreen(_ notification: Notification) {
         guard notification.name == .enterFullScreenNotification else { return }
 
         categoriesScrollView.contentInsets.top = 0.0
     }
 
-    func didExitFullScreen(_ notification: Notification) {
+    @objc func didExitFullScreen(_ notification: Notification) {
         guard notification.name == .exitFullScreenNotification else { return }
 
         categoriesScrollView.contentInsets.top = topEdgeInset
@@ -93,7 +103,7 @@ private extension Selector {
 
 // MARK: - NSTableView Data Source
 extension CategoriesViewController: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         return StoryType.allValues.count
     }
 }
@@ -101,9 +111,9 @@ extension CategoriesViewController: NSTableViewDataSource {
 // MARK: - NSTableView Delegate
 extension CategoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        guard let rowView = tableView.make(withIdentifier: CategoryRowView.rowIdentifier, owner: self) as? CategoryRowView else {
+        guard let rowView = tableView.makeView(withIdentifier: CategoryRowView.reuseIdentifier, owner: self) as? CategoryRowView else {
             let rowView = CategoryRowView()
-            rowView.identifier = CategoryRowView.rowIdentifier
+            rowView.identifier = CategoryRowView.reuseIdentifier
             return rowView
         }
 
@@ -111,16 +121,18 @@ extension CategoriesViewController: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cellView = tableView.make(withIdentifier: "CategoryCell", owner: self) as? NSTableCellView else {
+        let categoryCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("CategoryCell")
+
+        guard let cellView = tableView.makeView(withIdentifier: categoryCellIdentifier, owner: self) as? NSTableCellView else {
             return nil
         }
 
         if let storyType = StoryType(rawValue: StoryType.allValues[row]) {
             let displayableName = storyType.rawValue.capitalized
-            cellView.imageView?.image = NSImage(named: "\(displayableName)IconTemplate")
+            cellView.imageView?.image = NSImage(named: NSImage.Name("\(displayableName)IconTemplate"))
             cellView.imageView?.toolTip = "\(displayableName)"
         }
-        
+
         return cellView
     }
 }

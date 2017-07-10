@@ -1,5 +1,5 @@
 //
-//  StoryTableCell.swift
+//  StoryCellView.swift
 //  Diurna
 //
 //  Created by Nicolas Gaulard-Querol on 20/01/2016.
@@ -11,78 +11,59 @@ import Cocoa
 class StoryCellView: NSTableCellView {
 
     // MARK: Outlets
-    @IBOutlet var contentView: NSTableCellView! {
-        didSet {
-            contentView.frame = bounds
-            contentView.autoresizingMask = [.viewHeightSizable, .viewWidthSizable]
-            addSubview(contentView)
-        }
-    }
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var urlButton: NSButton!
+    @IBOutlet weak var urlButton: ThemeableButton!
     @IBOutlet weak var authorDateTextField: NSTextField!
     @IBOutlet weak var votesCommentsStackView: NSStackView!
-    @IBOutlet weak var votesImageView: NSImageView! {
-        didSet {
-            //votesImageView.tintImage(with: .orange)
-        }
-    }
+    @IBOutlet weak var votesImageView: NSImageView!
     @IBOutlet weak var votesTextField: NSTextField!
-    @IBOutlet weak var commentsImageView: NSImageView! {
-        didSet {
-            //commentsImageView.tintImage(with: .orange)
-        }
-    }
+    @IBOutlet weak var commentsImageView: NSImageView!
     @IBOutlet weak var commentsTextField: NSTextField!
-    @IBOutlet weak var cellSeparator: NSBox!
-    @IBOutlet weak var titleButtonSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleURLSpacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleSubtitleSpacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leftCellSpacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightCellSpacingConstraint: NSLayoutConstraint!
 
     // MARK: Properties
-    static let reuseIdentifier = "StoryCell"
-
-    override var backgroundStyle: NSBackgroundStyle {
+    override var backgroundStyle: NSView.BackgroundStyle {
         didSet {
             if backgroundStyle == .dark {
-                titleTextField.textColor = .white
-                authorDateTextField.textColor = .white
-                votesImageView.tintImage(with: .white)
-                votesTextField.textColor = .white
-                commentsImageView.tintImage(with: .white)
-                commentsTextField.textColor = .white
-                cellSeparator.isHidden = true
+                titleTextField.textColor = Themes.current.cellHighlightForegroundColor
+                authorDateTextField.textColor = Themes.current.cellHighlightForegroundColor
+                votesImageView.tintImage(with: Themes.current.cellHighlightForegroundColor)
+                votesTextField.textColor = Themes.current.cellHighlightForegroundColor
+                commentsImageView.tintImage(with: Themes.current.cellHighlightForegroundColor)
+                commentsTextField.textColor = Themes.current.cellHighlightForegroundColor
+                urlButton.borderColor = Themes.current.dividerColor
+                urlButton.textColor = Themes.current.cellHighlightForegroundColor
             } else {
-                titleTextField.textColor = .black
-                authorDateTextField.textColor = .secondaryLabelColor
-                votesImageView.tintImage(with: .black)
-                votesTextField.textColor = .secondaryLabelColor
-                commentsImageView.tintImage(with: .black)
-                commentsTextField.textColor = .secondaryLabelColor
-                cellSeparator.isHidden = false
+                titleTextField.textColor = Themes.current.normalTextColor
+                authorDateTextField.textColor = Themes.current.normalTextColor
+                votesImageView.tintImage(with: Themes.current.normalTextColor)
+                votesTextField.textColor = Themes.current.normalTextColor
+                commentsImageView.tintImage(with: Themes.current.normalTextColor)
+                commentsTextField.textColor = Themes.current.normalTextColor
+                urlButton.borderColor = Themes.current.dividerColor
+                urlButton.textColor = Themes.current.normalTextColor
             }
         }
     }
 
-    // MARK: Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonSetup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonSetup()
-    }
-
-    private func commonSetup() {
-        Bundle.main.loadNibNamed("StoryCellView", owner: self, topLevelObjects: nil)
-
-        identifier = StoryCellView.reuseIdentifier
-    }
-
     // MARK: Methods
+    @IBAction private func visitURL(_: NSButton) {
+        guard let story = objectValue as? Story,
+            story.url != nil,
+            let url = story.url else {
+            return
+        }
+
+        do {
+            try NSWorkspace.shared.open(url, options: .withoutActivation, configuration: [:])
+        } catch let error as NSError {
+            NSAlert(error: error).runModal()
+        }
+    }
+
     func configureFor(_ story: Story) {
         titleTextField.stringValue = story.title
 
@@ -90,17 +71,17 @@ class StoryCellView: NSTableCellView {
             urlButton.title = shortURL
             urlButton.toolTip = URL.absoluteString
             urlButton.isHidden = false
-            titleButtonSpacingConstraint.priority = NSLayoutPriorityRequired - 1.0
-            titleSubtitleSpacingConstraint.priority = NSLayoutPriorityDefaultHigh
+            titleURLSpacingConstraint.priority = .almostRequired
+            titleSubtitleSpacingConstraint.priority = .defaultHigh
         } else {
             urlButton.isHidden = true
-            titleButtonSpacingConstraint.priority = NSLayoutPriorityDefaultHigh
-            titleSubtitleSpacingConstraint.priority = NSLayoutPriorityRequired - 1.0
+            titleURLSpacingConstraint.priority = .defaultHigh
+            titleSubtitleSpacingConstraint.priority = .almostRequired
         }
 
         authorDateTextField.stringValue = "by \(story.by), \(story.time.timeIntervalString)"
 
-        if story.type != "job" {
+        if story.type == .story {
             votesTextField.stringValue = String(story.score - 1)
             votesTextField.toolTip = "\(story.score - 1) " + (story.score - 1 > 1 ? "votes" : "vote")
             commentsTextField.stringValue = String(story.descendants)
@@ -119,20 +100,17 @@ class StoryCellView: NSTableCellView {
         titleTextField.preferredMaxLayoutWidth = availableWidth
         authorDateTextField.preferredMaxLayoutWidth = availableWidth
 
-        return contentView.fittingSize.height
+        return fittingSize.height
     }
+}
 
-    @IBAction private func visitURL(_ sender: NSButton) {
-        guard let story = objectValue as? Story,
-            story.url != nil,
-            let url = story.url else {
-                return
-        }
+// MARK: - Reusable
+extension StoryCellView: Reusable {
+    static let reuseIdentifier = NSUserInterfaceItemIdentifier("StoryCell")
+}
 
-        do {
-            try NSWorkspace.shared().open(url, options: .withoutActivation, configuration: [String: Any]())
-        } catch let error as NSError {
-            NSAlert(error: error).runModal()
-        }
-    }
+// MARK: - NSLayoutConstraint.Priority
+private extension NSLayoutConstraint.Priority {
+    static let almostRequired = NSLayoutConstraint.Priority(NSLayoutConstraint.Priority.required.rawValue - 1.0)
+    static let almostHigh = NSLayoutConstraint.Priority(NSLayoutConstraint.Priority.defaultHigh.rawValue - 1.0)
 }

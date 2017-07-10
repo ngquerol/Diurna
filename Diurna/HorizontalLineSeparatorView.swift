@@ -8,28 +8,26 @@
 
 import Cocoa
 
-@IBDesignable
-class HorizontalLineSeparatorView: NSView {
+@IBDesignable class HorizontalLineSeparatorView: NSView {
 
-    @IBInspectable var separatorColor: NSColor = .gridColor
+    // MARK: Properties
     @IBInspectable var separatorThickness: CGFloat = 1.0
     @IBInspectable var leftInset: CGFloat = 0.0
     @IBInspectable var rightInset: CGFloat = 0.0
 
     override var intrinsicContentSize: NSSize {
-        get {
-            return NSSize(width: NSViewNoIntrinsicMetric, height: separatorThickness)
-        }
+        return NSSize(width: NSView.noIntrinsicMetric, height: separatorThickness)
     }
 
+    // MARK: Methods
     override func draw(_ dirtyRect: NSRect) {
-        separatorColor.set()
-        
-        NSRectFill(
-            NSRect(x: leftInset,
-                   y: NSMidY(dirtyRect) - (separatorThickness / 2),
-                   width: NSWidth(dirtyRect) - (leftInset + rightInset),
-                   height: separatorThickness)
-        )
+        Themes.current.dividerColor.set()
+
+        let drawingRect = NSRect(x: leftInset,
+               y: dirtyRect.midY - (separatorThickness / 2),
+               width: dirtyRect.width - (leftInset + rightInset),
+               height: separatorThickness)
+
+        drawingRect.fill()
     }
 }

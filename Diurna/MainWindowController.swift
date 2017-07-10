@@ -10,6 +10,7 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
 
+    // MARK: Window Lifecycle
     override func windowDidLoad() {
         super.windowDidLoad()
 
@@ -18,28 +19,30 @@ class MainWindowController: NSWindowController {
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
         window.isMovableByWindowBackground = true
-        window.backgroundColor = .white
+        window.backgroundColor = Themes.current.backgroundColor
 
-        window.standardWindowButton(NSWindowButton.closeButton)?.frame.origin.y -= 4
-        window.standardWindowButton(NSWindowButton.zoomButton)?.frame.origin.y -= 4
-        window.standardWindowButton(NSWindowButton.miniaturizeButton)?.frame.origin.y -= 4
+        window.standardWindowButton(.closeButton)?.frame.origin.y -= 5
+        window.standardWindowButton(.zoomButton)?.frame.origin.y -= 5
+        window.standardWindowButton(.miniaturizeButton)?.frame.origin.y -= 5
     }
 }
 
+// MARK: - NSWindowDelegate
 extension MainWindowController: NSWindowDelegate {
     func windowWillEnterFullScreen(_ notification: Notification) {
-        guard notification.name == .NSWindowWillEnterFullScreen else { return }
+        guard notification.name == NSWindow.willEnterFullScreenNotification else { return }
 
         NotificationCenter.default.post(name: .enterFullScreenNotification, object: self)
     }
 
     func windowWillExitFullScreen(_ notification: Notification) {
-        guard notification.name == .NSWindowWillExitFullScreen else { return }
+        guard notification.name == NSWindow.willExitFullScreenNotification else { return }
 
         NotificationCenter.default.post(name: .exitFullScreenNotification, object: self)
     }
 }
 
+// MARK: - Notifications
 extension Notification.Name {
     static let enterFullScreenNotification = Notification.Name("EnterFullScreenNotification")
     static let exitFullScreenNotification = Notification.Name("ExitFullScreenNotification")

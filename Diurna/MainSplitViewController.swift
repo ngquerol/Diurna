@@ -10,22 +10,28 @@ import Cocoa
 
 class MainSplitViewController: NSSplitViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var sidebarSplitViewItem: NSSplitViewItem! {
         didSet {
             sidebarSplitViewItem.minimumThickness = 68.0
             sidebarSplitViewItem.maximumThickness = 68.0
-
             sidebarSplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
     }
+
     @IBOutlet weak var storiesSplitViewItem: NSSplitViewItem!
-    @IBOutlet weak var detailSplitViewItem: NSSplitViewItem! {
+    @IBOutlet weak var commentsSplitViewItem: NSSplitViewItem! {
         didSet {
-            detailSplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+            commentsSplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
     }
 
-    // MARK: View lifecycle
+    // MARK: (De)initializer
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // MARK: View Lifecycle
     override func viewWillAppear() {
         super.viewWillAppear()
 
@@ -38,11 +44,11 @@ class MainSplitViewController: NSSplitViewController {
     }
 
     // MARK: Methods
-    func openStoryDetailsPane(_ notification: Notification) {
+    @objc func openStoryDetailsPane(_ notification: Notification) {
         guard notification.name == .storySelectionNotification else { return }
 
-        if detailSplitViewItem.isCollapsed {
-            detailSplitViewItem.animator().isCollapsed = false
+        if commentsSplitViewItem.isCollapsed {
+            commentsSplitViewItem.animator().isCollapsed = false
         }
     }
 }

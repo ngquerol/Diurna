@@ -7,22 +7,29 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-struct User {
+struct User: Decodable {
+
     let id: String
-    let karma: Int
-    let created: Date
-    let about: NSAttributedString?
 
-    init(json: JSON) {
-        id = json["id"].stringValue
-        karma = json["karma"].intValue
-        created = Date(timeIntervalSince1970: json["created"].doubleValue)
-        if let aboutString = json["about"].string {
-            about = aboutString.parseMarkup()
-        } else {
-            about = nil
+    let karma: Int
+
+    let created: Date
+
+    let about: String?
+
+    init?(dictionary: [String: Any?]) {
+        guard
+            let id = dictionary["id"] as? String,
+            let karma = dictionary["karma"] as? Int,
+            let createdEpoch = dictionary["created"] as? TimeInterval
+        else {
+            return nil
         }
+
+        self.id = id
+        self.karma = karma
+        self.created = Date(timeIntervalSince1970: createdEpoch)
+        self.about = dictionary["about"] as? String
     }
 }
