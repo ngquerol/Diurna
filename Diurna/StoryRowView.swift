@@ -29,17 +29,14 @@ class StoryRowView: NSTableRowView {
         let bottomRect = NSMakeRect(0, 0, bounds.maxX, 1.0),
             topRect = NSMakeRect(0, bounds.maxY - 1.0, bounds.maxX, 1.0)
 
+        Themes.current.dividerColor.setFill()
+
         if isSelected {
-            Themes.current.dividerColor.setFill()
-
             bottomRect.fill()
-            topRect.fill()
-        } else {
-            Themes.current.dividerColor.setFill()
+        }
 
-            if !isNextRowSelected {
-                topRect.fill()
-            }
+        if !isNextRowSelected {
+            topRect.fill()
         }
     }
 }

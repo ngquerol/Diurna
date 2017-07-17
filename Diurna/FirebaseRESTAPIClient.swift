@@ -37,7 +37,7 @@ struct FirebaseRESTAPIClient {
     // MARK: Methods
     private func fetchStoriesIds(ofType type: StoryType, count: Int = 500, completion: @escaping (Result<[Int], APIError>) -> Void) {
         getResource(HackerNewsAPI.stories(ofType: type)) { dataResult in
-            dataResult.map { data in
+            _ = dataResult.map { data in
                 do {
                     completion(.success(try self.decoder.decode([Int].self, from: data)))
                 } catch {
@@ -82,7 +82,7 @@ struct FirebaseRESTAPIClient {
     private func getItem<T: Item>(withId id: Int, completion: @escaping (Result<T, APIError>) -> Void) {
         let itemUrl = HackerNewsAPI.item(withId: id).path.appendingPathExtension("json"),
             dataTask = urlSession.dataTask(with: itemUrl) { data, response, error in
-                self.validateResponse(data, response, error).map { data in
+                _ = self.validateResponse(data, response, error).map { data in
                     do {
                         completion(.success(try self.decoder.decode(T.self, from: data)))
                     } catch {
@@ -190,7 +190,7 @@ extension FirebaseRESTAPIClient: HackerNewsAPIClient {
 
     func fetchUser(with name: String, completion: @escaping (Result<User, APIError>) -> Void) {
         getResource(HackerNewsAPI.user(withName: name)) { dataResult in
-            dataResult.map { data in
+            _ = dataResult.map { data in
                 DispatchQueue.main.async {
                     do {
                         completion(.success(try self.decoder.decode(User.self, from: data)))
