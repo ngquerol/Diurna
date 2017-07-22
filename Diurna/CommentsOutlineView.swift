@@ -29,19 +29,20 @@ class CommentsOutlineView: NSOutlineView {
         let point = convert(event.locationInWindow, from: nil),
             rowAtPoint = row(at: point)
 
-        guard rowAtPoint != -1, 0 ..< numberOfRows ~= rowAtPoint else { return nil }
+        guard rowAtPoint != -1 else { return nil }
 
         let menu = NSMenu(title: "Comment Context Menu"),
-            item = menu.addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
+            menuItem = menu.addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
 
-        item.representedObject = rowAtPoint
+        guard let comment = item(atRow: rowAtPoint) as? Comment else { return nil }
+
+        menuItem.representedObject = comment
 
         return menu
     }
 
     @objc func openCommentInBrowser(_ sender: NSMenuItem) {
-        guard let row = sender.representedObject as? Int,
-            let comment = item(atRow: row) as? Comment else { return }
+        guard let comment = sender.representedObject as? Comment else { return }
 
         let commentURL = HackerNewsWebpage.item(comment.id).path
 

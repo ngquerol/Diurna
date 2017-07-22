@@ -29,6 +29,7 @@
 		8D5ED1DB1C570165004440FD /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentCellView.swift */; };
 		8D708E3A1C7F6E300089BD7D /* CommentsOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */; };
 		8D72DFC71C50313100ADEBB8 /* StoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */; };
+		8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D766FC01F23C53400534769 /* StoriesTableView.swift */; };
 		8D7856AE1DCE45E50051F3E2 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7856AD1DCE45E50051F3E2 /* AboutWindowController.swift */; };
 		8D7A6AFD1C9DBDF0002B119C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */; };
 		8D8105231DCE53200031AE2C /* UserDetailsPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D8105221DCE53200031AE2C /* UserDetailsPopoverView.xib */; };
@@ -105,6 +106,7 @@
 		8D657EC91C49BCD100F31BB7 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsOutlineView.swift; sourceTree = "<group>"; };
 		8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCellView.swift; sourceTree = "<group>"; };
+		8D766FC01F23C53400534769 /* StoriesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableView.swift; sourceTree = "<group>"; };
 		8D7856AD1DCE45E50051F3E2 /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		8D8105221DCE53200031AE2C /* UserDetailsPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailsPopoverView.xib; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */,
 				8DA296A11D2ABEC50072DABB /* HorizontalLineSeparatorView.swift */,
 				8DA296A31D2AD5BD0072DABB /* LightColoredBadgeView.swift */,
+				8D766FC01F23C53400534769 /* StoriesTableView.swift */,
 				8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */,
 				8DC9412F1E3CF626008BB0A5 /* StoryRowView.swift */,
 				8D29AC0E1E7A1118002FFB32 /* ThemeableButton.swift */,
@@ -415,6 +418,7 @@
 				8DDF25BB1EED577900402E54 /* ClickableTextField.swift in Sources */,
 				8D7A6AFD1C9DBDF0002B119C /* CategoriesViewController.swift in Sources */,
 				8D9B33F51E74AF2F007B5E1F /* FirebaseRESTAPIClient.swift in Sources */,
+				8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */,
 				8DC941371E3D0308008BB0A5 /* Theme.swift in Sources */,
 				8D86F4491CF7343900017E47 /* AboutViewController.swift in Sources */,
 				8D5D02051D67AEEC00D22259 /* NSImageView+Tint.swift in Sources */,
