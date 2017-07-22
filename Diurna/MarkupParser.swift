@@ -81,9 +81,9 @@ struct MarkupParser {
     }
 
     private mutating func parseTagName() -> String {
-        let tagCharacterSet = NSMutableCharacterSet(charactersIn: "/")
-        tagCharacterSet.formUnion(with: CharacterSet.alphanumerics)
-        return parser.consumeWhile { $0.isMemberOf(tagCharacterSet as CharacterSet) }
+        var tagCharacterSet = CharacterSet(charactersIn: "/")
+        tagCharacterSet.formUnion(CharacterSet.alphanumerics)
+        return parser.consumeWhile { $0.isMemberOf(tagCharacterSet) }
     }
 
     private mutating func parseText() -> String {
@@ -164,43 +164,52 @@ struct MarkupParser {
             ]
 
         case "code":
+            let paragraphStyle = NSMutableParagraphStyle()
+
+            paragraphStyle.lineBreakMode = .byCharWrapping
+
             return [
                 .font: parserConfiguration.monospaceFont,
                 .codeBlock: Themes.current.codeBlockColor,
+                .paragraphStyle: paragraphStyle
             ]
 
         case "p": fallthrough
 
-        default:
+        case _:
             return [.font: parserConfiguration.regularFont]
         }
     }
 
+    private mutating func handleTag(_ result: NSMutableAttributedString) -> [NSAttributedStringKey: Any] {
+        let tag = parseTag()
+
+        if tag.name == "p" {
+            result.append(NSAttributedString(string: "\n\n"))
+        }
+
+        return getFormattingAttributes(for: tag)
+    }
+
+    private mutating func handleText(_ result: NSMutableAttributedString, formattingAttributes: [NSAttributedStringKey: Any]) -> NSAttributedString {
+            return NSAttributedString(
+                string: parseText(),
+                attributes: formattingAttributes
+            )
+    }
+
     mutating func toAttributedString() -> NSAttributedString {
-        let result = NSMutableAttributedString(),
-            paragraphSeparator = NSAttributedString(string: "\n\n")
-        var formattingAttributes: [NSAttributedStringKey: Any] = [.font: parserConfiguration.regularFont]
+        let result = NSMutableAttributedString()
+        var formattingAttributes: [NSAttributedStringKey: Any] = [
+            .font: parserConfiguration.regularFont
+        ]
 
         result.beginEditing()
 
         while !parser.eof() {
             switch parser.nextCharacter() {
-            case "<":
-                let tag = parseTag()
-
-                if tag.name == "p" {
-                    result.append(paragraphSeparator)
-                }
-
-                formattingAttributes = getFormattingAttributes(for: tag)
-
-            case _:
-                result.append(
-                    NSAttributedString(
-                        string: parseText(),
-                        attributes: formattingAttributes
-                    )
-                )
+            case "<": formattingAttributes = handleTag(result)
+            case _: result.append(handleText(result, formattingAttributes: formattingAttributes))
             }
         }
 
