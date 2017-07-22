@@ -30,14 +30,10 @@ class MainWindowController: NSWindowController {
 // MARK: - NSWindowDelegate
 extension MainWindowController: NSWindowDelegate {
     func windowWillEnterFullScreen(_ notification: Notification) {
-        guard notification.name == NSWindow.willEnterFullScreenNotification else { return }
-
         NotificationCenter.default.post(name: .enterFullScreenNotification, object: self)
     }
 
     func windowWillExitFullScreen(_ notification: Notification) {
-        guard notification.name == NSWindow.willExitFullScreenNotification else { return }
-
         NotificationCenter.default.post(name: .exitFullScreenNotification, object: self)
     }
 }

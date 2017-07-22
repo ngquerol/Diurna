@@ -317,7 +317,6 @@ extension CommentsViewController: NSOutlineViewDelegate {
 
     func outlineViewColumnDidResize(_ notification: Notification) {
         guard
-            notification.name == NSTableView.columnDidResizeNotification,
             let visibleRowsRange = Range(commentsOutlineView.rows(in: commentsOutlineView.visibleRect))
         else {
             return

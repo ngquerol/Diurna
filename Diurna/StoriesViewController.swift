@@ -12,17 +12,20 @@ class StoriesViewController: NSViewController {
 
     // MARK: Outlets
     @IBOutlet weak var storiesToolbarView: NSView!
+
     @IBOutlet weak var storiesScrollView: NSScrollView! {
         didSet {
             storiesScrollView.backgroundColor = Themes.current.backgroundColor
         }
     }
+
     @IBOutlet weak var storiesTableView: NSTableView! {
         didSet {
             storiesTableView.isHidden = true
             storiesTableView.backgroundColor = Themes.current.backgroundColor
         }
     }
+
     @IBOutlet weak var storiesPlaceholderTextField: NSTextField! {
         didSet {
             storiesPlaceholderTextField.isHidden = true
@@ -30,22 +33,28 @@ class StoriesViewController: NSViewController {
     }
 
     @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
+
     @IBOutlet weak var storiesProgressLabel: NSTextField!
+
     @IBOutlet weak var storiesProgressOverlay: NSStackView! {
         didSet {
             storiesProgressOverlay.isHidden = true
         }
     }
+
     @IBOutlet weak var storiesTypeTextField: NSTextField! {
         didSet {
             storiesTypeTextField.textColor = Themes.current.normalTextColor
         }
     }
+
     @IBOutlet weak var storiesCountPopUpButton: NSPopUpButton! {
         didSet {
             storiesCountPopUpButton.toolTip = "Number of stories to display"
         }
     }
+
+    @IBOutlet weak var storiesSearchField: NSSearchField!
 
     // MARK: Properties
     fileprivate var storiesDataSource: [Story] = [] {
@@ -205,10 +214,7 @@ extension StoriesViewController: NSTableViewDelegate {
     }
 
     func tableViewColumnDidResize(_ notification: Notification) {
-        guard
-            notification.name == NSTableView.columnDidResizeNotification,
-            let visibleRowsRange = Range(storiesTableView.rows(in: storiesTableView.visibleRect))
-        else {
+        guard let visibleRowsRange = Range(storiesTableView.rows(in: storiesTableView.visibleRect)) else {
             return
         }
 
