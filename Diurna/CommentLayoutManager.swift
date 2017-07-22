@@ -33,21 +33,20 @@ class CommentLayoutManager: NSLayoutManager {
             var blockRect: CGRect?
 
             enumerateLineFragments(forGlyphRange: blockquoteGlyphRange) { rect, _, _, _, _ in
-                let lineRect = rect.offsetBy(dx: origin.x, dy: origin.y).integral
+                let lineRect = rect.offsetBy(dx: origin.x, dy: origin.y)
                 blockRect = blockRect == nil ? lineRect : blockRect?.union(lineRect)
             }
 
             if let blockRect = blockRect {
-                let addedHeight: CGFloat = NSFont.systemFontSize,
-                    widthAdjustement: CGFloat = 5,
-                    blockRect = NSRect(
-                        x: blockRect.origin.x + widthAdjustement / 2,
-                        y: blockRect.origin.y - addedHeight / 2,
-                        width: blockRect.width - widthAdjustement,
-                        height: blockRect.height + addedHeight
+                let widthAdjustment: CGFloat = 5,
+                    effectiveBlockRect = NSRect(
+                        x: blockRect.origin.x + widthAdjustment / 2,
+                        y: blockRect.origin.y,
+                        width: blockRect.width - widthAdjustment,
+                        height: blockRect.height
                     )
 
-                drawCodeBlock(in: blockRect, with: cgContext)
+                drawCodeBlock(in: effectiveBlockRect.integral, with: cgContext)
             }
         }
     }
