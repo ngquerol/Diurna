@@ -54,8 +54,6 @@ class StoriesViewController: NSViewController {
         }
     }
 
-    @IBOutlet weak var storiesSearchField: NSSearchField!
-
     // MARK: Properties
     fileprivate var storiesDataSource: [Story] = [] {
         didSet {
@@ -239,10 +237,12 @@ extension StoriesViewController: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellView = tableView.makeView(withIdentifier: StoryCellView.reuseIdentifier, owner: self) as? StoryCellView
-
-        cellView?.configureFor(storiesDataSource[row])
+        let cellView = tableView.makeView(withIdentifier: StoryCellView.reuseIdentifier, owner: self) as? StoryCellView,
+            story = storiesDataSource[row]
         
+        cellView?.configureFor(story)
+        cellView?.objectValue = storiesDataSource[row]
+
         return cellView
     }
 }

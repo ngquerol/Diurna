@@ -17,8 +17,6 @@ class CommentCellView: NSTableCellView {
 
     @IBOutlet weak var timeTextField: NSTextField!
 
-    @IBOutlet weak var repliesStackView: NSStackView!
-
     @IBOutlet weak var repliesButton: DisclosureButtonView!
 
     @IBOutlet weak var repliesTextField: NSTextField!
@@ -35,8 +33,8 @@ class CommentCellView: NSTableCellView {
     // MARK: Properties
     var isExpanded: Bool = true {
         didSet {
-            //repliesTextField.isHidden = isExpanded
             repliesButton.isExpanded = isExpanded
+            repliesTextField.animator().isHidden = isExpanded
         }
     }
 
@@ -90,7 +88,6 @@ class CommentCellView: NSTableCellView {
             authorTextField.stringValue = "[deleted]"
             authorTextField.textColor = Themes.current.disabledTextColor
             timeTextField.textColor = Themes.current.disabledTextColor
-            repliesStackView.isHidden = true
             return
         }
 
@@ -99,8 +96,6 @@ class CommentCellView: NSTableCellView {
         authorTextField.textColor = Themes.current.primaryTextColor
 
         opBadgeView.isHidden = comment.by != story?.by
-
-        repliesTextField.isHidden = isExpanded
 
         commentTextView.attributedStringValue = comment.text.parseMarkup() 
         commentTextView.setTextColor(

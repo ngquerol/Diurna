@@ -304,12 +304,11 @@ extension CommentsViewController: NSOutlineViewDelegate {
 
         if outlineView.isExpandable(comment) {
             let repliesCount = commentsOutlineView.numberOfChildren(ofItem: comment)
-
-            cellView.repliesStackView.isHidden = false
-            cellView.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
             cellView.isExpanded = outlineView.isItemExpanded(comment)
+            cellView.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
         } else {
-            cellView.repliesStackView.isHidden = true
+            cellView.repliesButton.isHidden = true
+            cellView.repliesTextField.isHidden = true
         }
 
         return cellView

@@ -15,14 +15,10 @@ import Cocoa
 
     @IBInspectable var expandImage: NSImage = #imageLiteral(resourceName: "ExpandIcon")
 
-    @IBInspectable var isExpanded: Bool = true
-
-    override var title: String {
-        get {
-            return isExpanded ? "Collapse this comment" : "Expand this comment"
+    @IBInspectable var isExpanded: Bool = true {
+        didSet {
+            toolTip = isExpanded ? "Collapse this comment" : "Expand this comment"
         }
-
-        set { }
     }
 
     // MARK: View Lifecycle
@@ -47,13 +43,13 @@ import Cocoa
             destinationAngle = currentAngle + rotationAngle
 
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.fromValue = NSNumber(value: currentAngle)
-        animation.toValue = NSNumber(value: destinationAngle)
+        animation.fromValue = currentAngle as NSNumber
+        animation.toValue = destinationAngle as NSNumber
         animation.duration = 0.25
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
         layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        layer?.position = CGPoint(x: frame.origin.x + frame.midX, y: frame.origin.y + frame.midY)
+        layer?.position = CGPoint(x: frame.midX, y: frame.midY)
         layer?.add(animation, forKey: nil)
         layer?.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(destinationAngle)))
     }

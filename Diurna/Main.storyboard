@@ -819,7 +819,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEd-dx-TsX">
-                                                                    <rect key="frame" x="10" y="39" width="197" height="20"/>
+                                                                    <rect key="frame" x="10" y="39" width="121" height="20"/>
                                                                     <subviews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-YZ-5w8" customClass="ClickableTextField" customModule="Diurna" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="4" width="37" height="13"/>
@@ -865,14 +865,6 @@
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffe-D6-n9g">
-                                                                            <rect key="frame" x="124" y="5" width="75" height="11"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="# replies hidden" usesSingleLineMode="YES" id="MS1-aE-tzb">
-                                                                                <font key="font" metaFont="miniSystem"/>
-                                                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="OVQ-Fq-dCY"/>
@@ -881,15 +873,21 @@
                                                                         <integer value="1000"/>
                                                                         <integer value="1000"/>
                                                                         <integer value="1000"/>
-                                                                        <integer value="1000"/>
                                                                     </visibilityPriorities>
                                                                     <customSpacing>
                                                                         <real value="3.4028234663852886e+38"/>
                                                                         <real value="3.4028234663852886e+38"/>
                                                                         <real value="3.4028234663852886e+38"/>
-                                                                        <real value="3.4028234663852886e+38"/>
                                                                     </customSpacing>
                                                                 </stackView>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffe-D6-n9g">
+                                                                    <rect key="frame" x="337" y="44" width="75" height="11"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="# replies hidden" usesSingleLineMode="YES" id="MS1-aE-tzb">
+                                                                        <font key="font" metaFont="miniSystem"/>
+                                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11q-hU-2bm" customClass="DisclosureButtonView" customModule="Diurna" customModuleProvider="target">
                                                                     <rect key="frame" x="420" y="42" width="15" height="15"/>
                                                                     <constraints>
@@ -936,8 +934,10 @@
                                                                 <constraint firstItem="e0T-uR-vXa" firstAttribute="top" secondItem="Pev-75-hHW" secondAttribute="bottom" constant="5" id="9JY-GI-oza"/>
                                                                 <constraint firstAttribute="bottom" secondItem="e0T-uR-vXa" secondAttribute="bottom" constant="5" id="D5F-pp-kYz"/>
                                                                 <constraint firstItem="e0T-uR-vXa" firstAttribute="trailing" secondItem="Pev-75-hHW" secondAttribute="trailing" id="FFe-Qd-POT"/>
+                                                                <constraint firstItem="11q-hU-2bm" firstAttribute="leading" secondItem="Ffe-D6-n9g" secondAttribute="trailing" constant="10" id="JBZ-ot-fs8"/>
                                                                 <constraint firstItem="e0T-uR-vXa" firstAttribute="leading" secondItem="Pev-75-hHW" secondAttribute="leading" id="OeS-Pb-w28"/>
                                                                 <constraint firstItem="Pev-75-hHW" firstAttribute="top" secondItem="LEd-dx-TsX" secondAttribute="bottom" constant="5" id="PUW-dx-eni"/>
+                                                                <constraint firstItem="Ffe-D6-n9g" firstAttribute="centerY" secondItem="11q-hU-2bm" secondAttribute="centerY" id="SC2-qZ-xvF"/>
                                                                 <constraint firstItem="11q-hU-2bm" firstAttribute="centerY" secondItem="LEd-dx-TsX" secondAttribute="centerY" id="hcz-kY-fxm"/>
                                                                 <constraint firstItem="LEd-dx-TsX" firstAttribute="leading" secondItem="K2k-gF-5pE" secondAttribute="leading" constant="10" id="irf-Ql-aZe"/>
                                                                 <constraint firstItem="LEd-dx-TsX" firstAttribute="top" secondItem="K2k-gF-5pE" secondAttribute="top" constant="5" id="xam-dO-kPR"/>
