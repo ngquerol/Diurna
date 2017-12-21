@@ -19,35 +19,24 @@ final class Comment: Item {
 
     let parent: Int
 
-    let deleted: Bool
+    let deleted: Bool?
 
-    let text: String
+    let text: String?
 
     let by: String?
 
-    let kidsIds: [Int]
+    let kidsIds: [Int]?
 
-    var kids: [Comment] = []
+    var kids: [Comment]? = []
 
-    init?(dictionary: [String: Any?]) {
-        guard
-            let id = dictionary["id"] as? Int,
-            let timeEpoch = dictionary["time"] as? TimeInterval,
-            let typeString = dictionary["type"] as? String,
-            let type = ItemType(rawValue: typeString),
-            let parent = dictionary["parent"] as? Int
-        else {
-            return nil
-        }
-
-        self.id = id
-        self.time = Date(timeIntervalSince1970: timeEpoch)
-        self.type = type
-        self.parent = parent
-        self.by = dictionary["by"] as? String ?? "[deleted]"
-        self.text = dictionary["text"] as? String ?? ""
-        self.kidsIds = (dictionary["kids"] as? [Int]) ?? []
-        self.kids.reserveCapacity(self.kidsIds.count)
-        self.deleted = dictionary["deleted"] as? Bool ?? false
+    enum CodingKeys: String, CodingKey {
+        case id
+        case time
+        case type
+        case parent
+        case deleted
+        case text
+        case by
+        case kidsIds = "kids"
     }
 }

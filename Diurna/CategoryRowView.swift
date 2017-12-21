@@ -11,9 +11,9 @@ import Cocoa
 class CategoryRowView: NSTableRowView {
 
     // MARK: Properties
-    // this disables the default blue highlight
     override var isEmphasized: Bool {
         get {
+            // this disables the default blue highlight
             return false
         }
 
@@ -21,8 +21,7 @@ class CategoryRowView: NSTableRowView {
     }
 }
 
-// MARK: - Reusable
-extension CategoryRowView: Reusable {
-
-    static let reuseIdentifier = NSUserInterfaceItemIdentifier("CategoryRow")
+// MARK: - NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    static let categoryRow = NSUserInterfaceItemIdentifier("CategoryRow")
 }

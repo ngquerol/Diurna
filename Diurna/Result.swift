@@ -16,7 +16,7 @@ enum Result<T, E: Error> {
         self = optionalValue.map(Result.success) ?? .failure(error)
     }
 
-    init( _ throwing: () throws -> T) {
+    init(_ throwing: () throws -> T) {
         do {
             self = .success(try throwing())
         } catch {
@@ -26,7 +26,7 @@ enum Result<T, E: Error> {
 
     var value: T? {
         switch self {
-        case .success(let value): return value
+        case let .success(value): return value
         case .failure: return nil
         }
     }
@@ -34,7 +34,7 @@ enum Result<T, E: Error> {
     var error: E? {
         switch self {
         case .success: return nil
-        case .failure(let error): return error
+        case let .failure(error): return error
         }
     }
 
@@ -47,15 +47,15 @@ enum Result<T, E: Error> {
 
     func map<U>(_ transform: (T) -> U) -> Result<U, E> {
         switch self {
-        case .success(let value): return .success(transform(value))
-        case .failure(let error): return .failure(error)
+        case let .success(value): return .success(transform(value))
+        case let .failure(error): return .failure(error)
         }
     }
 
     func flatMap<U>(_ transform: (T) -> Result<U, E>) -> Result<U, E> {
         switch self {
-        case .success(let value): return transform(value)
-        case .failure(let error): return .failure(error)
+        case let .success(value): return transform(value)
+        case let .failure(error): return .failure(error)
         }
     }
 }
@@ -63,8 +63,8 @@ enum Result<T, E: Error> {
 extension Result: CustomStringConvertible {
     var description: String {
         switch self {
-        case .success(let value): return ".success(\(value))"
-        case .failure(let error): return ".failure(\(error))"
+        case let .success(value): return ".success(\(value))"
+        case let .failure(error): return ".failure(\(error))"
         }
     }
 }

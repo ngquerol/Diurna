@@ -11,18 +11,14 @@ import Cocoa
 class StoryCellView: NSTableCellView {
 
     // MARK: Outlets
-    @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var urlButton: ThemeableButton!
-    @IBOutlet weak var authorDateTextField: NSTextField!
-    @IBOutlet weak var votesCommentsStackView: NSStackView!
-    @IBOutlet weak var votesImageView: NSImageView!
-    @IBOutlet weak var votesTextField: NSTextField!
-    @IBOutlet weak var commentsImageView: NSImageView!
-    @IBOutlet weak var commentsTextField: NSTextField!
-    @IBOutlet weak var titleURLSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleSubtitleSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leftCellSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightCellSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var titleTextField: NSTextField!
+    @IBOutlet var urlButton: ThemeableButton!
+    @IBOutlet var authorDateTextField: NSTextField!
+    @IBOutlet var storyStatusView: StoryStatusView!
+    @IBOutlet var titleURLSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var titleSubtitleSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var leftCellSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var rightCellSpacingConstraint: NSLayoutConstraint!
 
     // MARK: Properties
     override var backgroundStyle: NSView.BackgroundStyle {
@@ -30,26 +26,58 @@ class StoryCellView: NSTableCellView {
             if backgroundStyle == .dark {
                 titleTextField.textColor = Themes.current.cellHighlightForegroundColor
                 authorDateTextField.textColor = Themes.current.cellHighlightForegroundColor
-                votesImageView.tintImage(with: Themes.current.cellHighlightForegroundColor)
-                votesTextField.textColor = Themes.current.cellHighlightForegroundColor
-                commentsImageView.tintImage(with: Themes.current.cellHighlightForegroundColor)
-                commentsTextField.textColor = Themes.current.cellHighlightForegroundColor
-                urlButton.borderColor = Themes.current.dividerColor
+                urlButton.borderColor = Themes.current.cellHighlightForegroundColor.blended(withFraction: 0.75, of: .white)!
                 urlButton.textColor = Themes.current.cellHighlightForegroundColor
             } else {
                 titleTextField.textColor = Themes.current.normalTextColor
                 authorDateTextField.textColor = Themes.current.normalTextColor
-                votesImageView.tintImage(with: Themes.current.normalTextColor)
-                votesTextField.textColor = Themes.current.normalTextColor
-                commentsImageView.tintImage(with: Themes.current.normalTextColor)
-                commentsTextField.textColor = Themes.current.normalTextColor
                 urlButton.borderColor = Themes.current.dividerColor
                 urlButton.textColor = Themes.current.normalTextColor
             }
         }
     }
 
+    override var objectValue: Any? {
+        didSet {
+            guard let story = objectValue as? Story else {
+                return
+            }
+
+            titleTextField.stringValue = story.title
+
+            if let URL = story.url, let shortURL = URL.shortURL {
+                urlButton.title = shortURL
+                urlButton.toolTip = URL.absoluteString
+                urlButton.isHidden = false
+                titleURLSpacingConstraint.priority = .almostRequired
+                titleSubtitleSpacingConstraint.priority = .defaultHigh
+            } else {
+                urlButton.isHidden = true
+                titleURLSpacingConstraint.priority = .defaultHigh
+                titleSubtitleSpacingConstraint.priority = .almostRequired
+            }
+
+            authorDateTextField.stringValue = "by \(story.by), \(story.time.timeIntervalString)"
+
+            if story.type == .story {
+                storyStatusView.score = story.score - 1
+                storyStatusView.comments = story.descendants ?? 0
+                storyStatusView.isHidden = false
+            } else {
+                storyStatusView.isHidden = true
+            }
+        }
+    }
+
     // MARK: Methods
+    override func layout() {
+        super.layout()
+
+        titleTextField.preferredMaxLayoutWidth = titleTextField.frame.size.width
+
+        super.layout()
+    }
+
     @IBAction private func visitURL(_: NSButton) {
         guard let story = objectValue as? Story,
             story.url != nil,
@@ -63,50 +91,11 @@ class StoryCellView: NSTableCellView {
             NSAlert(error: error).runModal()
         }
     }
-
-    func configureFor(_ story: Story) {
-        titleTextField.stringValue = story.title
-
-        if let URL = story.url, let shortURL = URL.shortURL {
-            urlButton.title = shortURL
-            urlButton.toolTip = URL.absoluteString
-            urlButton.isHidden = false
-            titleURLSpacingConstraint.priority = .almostRequired
-            titleSubtitleSpacingConstraint.priority = .defaultHigh
-        } else {
-            urlButton.isHidden = true
-            titleURLSpacingConstraint.priority = .defaultHigh
-            titleSubtitleSpacingConstraint.priority = .almostRequired
-        }
-
-        authorDateTextField.stringValue = "by \(story.by), \(story.time.timeIntervalString)"
-
-        if story.type == .story {
-            votesTextField.stringValue = String(story.score - 1)
-            votesTextField.toolTip = "\(story.score - 1) " + (story.score - 1 > 1 ? "votes" : "vote")
-            commentsTextField.stringValue = String(story.descendants)
-            commentsTextField.toolTip = "\(story.descendants) " + (story.descendants > 1 ? "comments" : "comment")
-            votesCommentsStackView.isHidden = false
-        } else {
-            votesCommentsStackView.isHidden = true
-        }
-
-        objectValue = story
-    }
-
-    func heightForWidth(_ width: CGFloat) -> CGFloat {
-        let availableWidth = width - (leftCellSpacingConstraint.constant + rightCellSpacingConstraint.constant)
-
-        titleTextField.preferredMaxLayoutWidth = availableWidth
-        authorDateTextField.preferredMaxLayoutWidth = availableWidth
-
-        return fittingSize.height
-    }
 }
 
-// MARK: - Reusable
-extension StoryCellView: Reusable {
-    static let reuseIdentifier = NSUserInterfaceItemIdentifier("StoryCell")
+// MARK: - NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    static let storyCell = NSUserInterfaceItemIdentifier("StoryCell")
 }
 
 // MARK: - NSLayoutConstraint.Priority

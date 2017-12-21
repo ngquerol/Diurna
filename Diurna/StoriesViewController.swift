@@ -8,67 +8,57 @@
 
 import Cocoa
 
-class StoriesViewController: NSViewController {
+class StoriesViewController: NSViewController, NetworkingAware {
 
     // MARK: Outlets
+    @IBOutlet weak var scrollView: NSScrollView! {
+        didSet {
+            scrollView.backgroundColor = Themes.current.backgroundColor
+        }
+    }
+
+    @IBOutlet weak var tableView: NSTableView! {
+        didSet {
+            tableView.isHidden = true
+            tableView.backgroundColor = Themes.current.backgroundColor
+            prototypeCellView = tableView.makeView(
+                withIdentifier: .storyCell,
+                owner: self
+            ) as? StoryCellView
+        }
+    }
+
     @IBOutlet weak var storiesToolbarView: NSView!
 
-    @IBOutlet weak var storiesScrollView: NSScrollView! {
+    @IBOutlet weak var placeholderTextField: NSTextField! {
         didSet {
-            storiesScrollView.backgroundColor = Themes.current.backgroundColor
+            placeholderTextField.isHidden = true
         }
     }
 
-    @IBOutlet weak var storiesTableView: NSTableView! {
+    @IBOutlet weak var progressOverlay: ProgressOverlayView! {
         didSet {
-            storiesTableView.isHidden = true
-            storiesTableView.backgroundColor = Themes.current.backgroundColor
-        }
-    }
-
-    @IBOutlet weak var storiesPlaceholderTextField: NSTextField! {
-        didSet {
-            storiesPlaceholderTextField.isHidden = true
-        }
-    }
-
-    @IBOutlet weak var storiesProgressIndicator: NSProgressIndicator!
-
-    @IBOutlet weak var storiesProgressLabel: NSTextField!
-
-    @IBOutlet weak var storiesProgressOverlay: NSStackView! {
-        didSet {
-            storiesProgressOverlay.isHidden = true
-        }
-    }
-
-    @IBOutlet weak var storiesTypeTextField: NSTextField! {
-        didSet {
-            storiesTypeTextField.textColor = Themes.current.normalTextColor
-        }
-    }
-
-    @IBOutlet weak var storiesCountPopUpButton: NSPopUpButton! {
-        didSet {
-            storiesCountPopUpButton.toolTip = "Number of stories to display"
+            progressOverlay.isHidden = true
+            progressOverlay.progressIndicator.maxValue = 1.0
+            progressOverlay.progressMessage.stringValue = "Loading stories..."
         }
     }
 
     // MARK: Properties
-    fileprivate var storiesDataSource: [Story] = [] {
+    private var storiesDataSource: [Story] = [] {
         didSet {
             storiesDataSource.sort()
-            storiesTableView.reloadData()
+            tableView.reloadData()
         }
     }
 
-    fileprivate var selectedStory: Story?
-
-    private let API: HackerNewsAPIClient = FirebaseAPIClient.sharedInstance
+    private var selectedStory: Story?
 
     private var selectedStoriesType: StoryType = .new
 
     private var selectedStoriesCount = 10
+
+    private var prototypeCellView: StoryCellView?
 
     private var progressObservation: NSKeyValueObservation?
 
@@ -90,23 +80,11 @@ class StoriesViewController: NSViewController {
     }
 
     // MARK: Actions
-    @IBAction func userDidSelectStory(_: NSTableView) {
-        guard selectedStory?.id != storiesDataSource[storiesTableView.selectedRow].id else { return }
-
-        selectedStory = storiesDataSource[storiesTableView.selectedRow]
-
-        NotificationCenter.default.post(
-            name: .storySelectionNotification,
-            object: self,
-            userInfo: [
-                "story": storiesDataSource[storiesTableView.selectedRow],
-            ]
-        )
-    }
-
-    @IBAction private func storiesCountButtonValueChanged(_: NSPopUpButton) {
-        guard let storiesCountItem = storiesCountPopUpButton.selectedItem,
-            let storiesCount = Int(storiesCountItem.title) else {
+    @IBAction private func storiesCountButtonValueChanged(_ button: NSPopUpButton) {
+        guard
+            let storiesCountItem = button.selectedItem,
+            let storiesCount = Int(storiesCountItem.title)
+        else {
             return
         }
 
@@ -123,7 +101,6 @@ class StoriesViewController: NSViewController {
         }
 
         if let category = StoryType(rawValue: categoryName) {
-            storiesTypeTextField.stringValue = categoryName.capitalized
             selectedStoriesType = category
             updateStories()
         } else {
@@ -134,50 +111,47 @@ class StoriesViewController: NSViewController {
     func updateStories() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.allowsImplicitAnimation = true
-        storiesPlaceholderTextField.isHidden = true
-        storiesTableView.isHidden = true
-        storiesProgressOverlay.isHidden = false
+        placeholderTextField.isHidden = true
+        tableView.isHidden = true
+        progressOverlay.isHidden = false
         NSAnimationContext.endGrouping()
 
         let progress = Progress(totalUnitCount: Int64(selectedStoriesCount))
-        progress.becomeCurrent(withPendingUnitCount: Int64(selectedStoriesCount))
 
-        progressObservation = progress.observe(\.fractionCompleted, options: [.initial, .new]) { object, _ in
+        progress.becomeCurrent(withPendingUnitCount: Int64(selectedStoriesCount))
+        
+        progressObservation = progress.observe(\.fractionCompleted, options: [.new, .initial]) { progress, _ in
             DispatchQueue.main.async {
-                self.storiesProgressIndicator.doubleValue = object.fractionCompleted
+                self.progressOverlay.progressIndicator.doubleValue = progress.fractionCompleted
             }
         }
 
-        API.fetchStories(of: selectedStoriesType, count: selectedStoriesCount) { [weak self] storiesResults in
+        apiClient.fetchStories(of: selectedStoriesType, count: selectedStoriesCount) { [weak self] storiesResults in
             guard let `self` = self else { return }
 
-            var fetchErrors = [APIError]()
             let stories: [Story] = storiesResults.flatMap {
                 switch $0 {
                 case let .success(story): return story
-                case let .failure(error):
-                    fetchErrors.append(error)
-                    return nil
+                case .failure:
+                    return nil // TODO: Display (non-user facing) error
                 }
             }
 
-            fetchErrors.forEach { NSLog("Failed to fetch story: %@", $0.localizedDescription) }
+            self.progressObservation = nil
 
             self.storiesDataSource = stories
-            self.storiesTableView.scrollRowToVisible(0)
+            self.tableView.scrollRowToVisible(0)
 
             // Enqueue the animations on the main thread, to give the time to the progress
             // indicator to update to its maxValue.
             DispatchQueue.main.async {
                 NSAnimationContext.beginGrouping()
-                self.storiesProgressOverlay.animator().isHidden = true
                 NSAnimationContext.current.completionHandler = {
-                    self.storiesTableView.animator().isHidden = false
+                    self.tableView.animator().isHidden = false
                 }
+                self.progressOverlay.animator().isHidden = true
                 NSAnimationContext.endGrouping()
             }
-
-            progress.resignCurrent()
         }
     }
 }
@@ -202,47 +176,63 @@ extension StoriesViewController: NSTableViewDataSource {
 // MARK: - NSTableView Delegate
 extension StoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        guard let cellView = tableView.makeView(withIdentifier: StoryCellView.reuseIdentifier, owner: self) as? StoryCellView else {
+        guard let dummyCellView = prototypeCellView else {
             return tableView.rowHeight
         }
 
-        cellView.configureFor(storiesDataSource[row])
+        dummyCellView.objectValue = storiesDataSource[row]
+        dummyCellView.bounds.size.width = tableView.bounds.width
+        dummyCellView.layoutSubtreeIfNeeded()
 
-        return cellView.heightForWidth(tableView.frame.width)
-    }
-
-    func tableViewColumnDidResize(_ notification: Notification) {
-        guard let visibleRowsRange = Range(storiesTableView.rows(in: storiesTableView.visibleRect)) else {
-            return
-        }
-
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.duration = 0
-        storiesTableView.noteHeightOfRows(
-            withIndexesChanged: IndexSet(integersIn: visibleRowsRange)
-        )
-        NSAnimationContext.endGrouping()
+        return dummyCellView.fittingSize.height
     }
 
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         guard 0 ..< storiesDataSource.count ~= row else { return nil }
 
-        guard let rowView = tableView.makeView(withIdentifier: StoryRowView.reuseIdentifier, owner: self) as? StoryRowView else {
-            let rowView = StoryRowView(frame: .zero)
-            rowView.identifier = StoryRowView.reuseIdentifier
-            return rowView
-        }
-
-        return rowView
+        return tableView.makeView(withIdentifier: .storyRow, owner: self) as? StoryRowView
     }
 
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellView = tableView.makeView(withIdentifier: StoryCellView.reuseIdentifier, owner: self) as? StoryCellView,
+    func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
+        let cellView = tableView.makeView(withIdentifier: .storyCell, owner: self) as? StoryCellView,
             story = storiesDataSource[row]
-        
-        cellView?.configureFor(story)
+
+        cellView?.objectValue = story
         cellView?.objectValue = storiesDataSource[row]
 
         return cellView
+    }
+
+    func tableViewColumnDidResize(_: Notification) {
+        guard
+            let visibleRowsRange = Range(tableView.rows(in: tableView.visibleRect))
+        else {
+            return
+        }
+
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.current.duration = 0
+        tableView.noteHeightOfRows(
+            withIndexesChanged: IndexSet(integersIn: visibleRowsRange)
+        )
+        NSAnimationContext.endGrouping()
+    }
+
+    func tableViewSelectionDidChange(_: Notification) {
+        guard
+            selectedStory?.id != storiesDataSource[tableView.selectedRow].id
+        else {
+            return
+        }
+
+        selectedStory = storiesDataSource[tableView.selectedRow]
+
+        NotificationCenter.default.post(
+            name: .storySelectionNotification,
+            object: self,
+            userInfo: [
+                "story": storiesDataSource[tableView.selectedRow],
+            ]
+        )
     }
 }

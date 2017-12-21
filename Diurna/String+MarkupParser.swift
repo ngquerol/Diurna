@@ -9,8 +9,8 @@
 import Foundation
 
 extension String {
-    func parseMarkup(configuration: MarkupParserConfiguration = MarkupParserConfiguration()) -> NSAttributedString {
-        var parser = MarkupParser(input: self, configuration: configuration)
+    func parseMarkup() -> NSAttributedString {
+        var parser = MarkupParser(input: self)
         return parser.toAttributedString()
     }
 }

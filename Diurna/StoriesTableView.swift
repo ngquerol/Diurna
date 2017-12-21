@@ -10,14 +10,15 @@ import Cocoa
 
 class StoriesTableView: NSTableView {
 
+    // MARK: Methods
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil),
-        rowAtPoint = row(at: point)
+            rowAtPoint = row(at: point)
 
         guard rowAtPoint != -1 else { return nil }
 
         let menu = NSMenu(title: "Story Context Menu"),
-        item = menu.addItem(withTitle: "Open in browser", action: .openStoryInBrowser, keyEquivalent: "")
+            item = menu.addItem(withTitle: "Open in browser", action: .openStoryInBrowser, keyEquivalent: "")
 
         guard
             let cellView = view(atColumn: 0, row: rowAtPoint, makeIfNecessary: false) as? StoryCellView,
@@ -25,7 +26,7 @@ class StoriesTableView: NSTableView {
         else {
             return nil
         }
-        
+
         item.representedObject = story
 
         return menu

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ItemType: String, Decodable {
+enum ItemType: String, JSONDecodable {
     case comment
     case job
     case story
@@ -16,19 +16,23 @@ enum ItemType: String, Decodable {
     case pollopt
 }
 
-protocol Item: Decodable {
+protocol Item: JSONDecodable, Hashable {
 
     var id: Int { get }
 
     var time: Date { get }
 
     var type: ItemType { get }
-
-    init?(dictionary: [String: Any?])
 }
 
-extension Equatable where Self: Item { }
+// MARK: - Hashable
+extension Hashable where Self: Item {
 
-func ==(lhs: Item, rhs: Item) -> Bool {
-    return lhs.id == rhs.id
+    var hashValue: Int {
+        return id.hashValue
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

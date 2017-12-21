@@ -1,6 +1,6 @@
 import Cocoa
 
-class CommentTextView: NSTextView {
+class MarkupTextView: NSTextView {
 
     // MARK: Properties
     override var intrinsicContentSize: NSSize {
@@ -13,12 +13,12 @@ class CommentTextView: NSTextView {
 
         // FIXME: The text container's width is supposed to update according to the text view's frame,
         // but it is seems `widthTracksTextView` is not enough here.
-        let availableWidth = bounds.width - textContainerInset.width
+        let availableWidth = bounds.width// - textContainerInset.width
 
         container.size = NSSize(width: availableWidth, height: .greatestFiniteMagnitude)
         manager.ensureLayout(for: container)
 
-        var textSize = manager.usedRect(for: container).size
+        var textSize = manager.usedRect(for: container).integral.size
 
         textSize.height += textContainerInset.height
 
@@ -34,23 +34,14 @@ class CommentTextView: NSTextView {
         return origin
     }
 
-    var attributedStringValue: NSAttributedString {
-        set {
-            textStorage?.setAttributedString(newValue)
-        }
-
-        get {
-            return attributedString()
-        }
-    }
-
     // MARK: Initializers
     override init(frame frameRect: NSRect) {
         let textStorage = NSTextStorage(),
-            layoutManager = CommentLayoutManager(),
+            layoutManager = MarkupLayoutManager(),
             textContainer = NSTextContainer(size: CGSize(width: 0, height: CGFloat.greatestFiniteMagnitude))
 
         textContainer.widthTracksTextView = true
+        textContainer.lineFragmentPadding = 0.0
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
 
@@ -63,35 +54,17 @@ class CommentTextView: NSTextView {
         super.init(coder: coder)
 
         let textStorage = NSTextStorage(),
-            layoutManager = CommentLayoutManager(),
+            layoutManager = MarkupLayoutManager(),
             textContainer = NSTextContainer(size: CGSize(width: 0, height: CGFloat.greatestFiniteMagnitude))
 
         textContainer.widthTracksTextView = true
+        textContainer.lineFragmentPadding = 0.0
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
 
         replaceTextContainer(textContainer)
 
         commonSetup()
-    }
-
-    private func commonSetup() {
-        textContainerInset = NSSize(width: 5.0, height: 5.0) // FIXME: @IBInspectable et al.
-        isHorizontallyResizable = false
-        isVerticallyResizable = false
-        drawsBackground = true
-        isEditable = false
-        isSelectable = true
-        isRichText = false
-        usesRuler = false
-        usesFontPanel = false
-        isGrammarCheckingEnabled = false
-        isContinuousSpellCheckingEnabled = false
-        isAutomaticSpellingCorrectionEnabled = false
-        smartInsertDeleteEnabled = false
-        isAutomaticTextReplacementEnabled = false
-
-        delegate = self
     }
 
     // MARK: Methods
@@ -108,12 +81,31 @@ class CommentTextView: NSTextView {
 
         invalidateIntrinsicContentSize()
     }
+
+    private func commonSetup() {
+        textContainerInset = NSSize(width: 5.0, height: 5.0) // FIXME: @IBInspectable et al.
+        isHorizontallyResizable = false
+        isVerticallyResizable = true
+        drawsBackground = true
+        isEditable = false
+        isSelectable = true
+        isRichText = false
+        usesRuler = false
+        usesFontPanel = false
+        isGrammarCheckingEnabled = false
+        isContinuousSpellCheckingEnabled = false
+        isAutomaticSpellingCorrectionEnabled = false
+        smartInsertDeleteEnabled = false
+        isAutomaticTextReplacementEnabled = false
+
+        delegate = self
+    }
 }
 
 // MARK: - NSTextView Delegate
-extension CommentTextView: NSTextViewDelegate {
-    func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
-        let hiddenSubmenusTitles = [ "Spelling and Grammar", "Substitutions", "Speech" ]
+extension MarkupTextView: NSTextViewDelegate {
+    func textView(_: NSTextView, menu: NSMenu, for _: NSEvent, at _: Int) -> NSMenu? {
+        let hiddenSubmenusTitles = ["Spelling and Grammar", "Substitutions", "Speech"]
 
         hiddenSubmenusTitles.flatMap { menu.item(withTitle: $0) }.forEach { menu.removeItem($0) }
 

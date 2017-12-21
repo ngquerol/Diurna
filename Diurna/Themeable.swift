@@ -12,4 +12,3 @@ protocol Themeable {
     func themeDidChange(_ notification: Notification)
     func updateColors(from theme: ColorTheme)
 }
-

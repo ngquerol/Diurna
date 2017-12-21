@@ -11,9 +11,8 @@ import Cocoa
 class CommentsOutlineView: NSOutlineView {
 
     // MARK: Methods
-    // Don't show the disclosure triangle
     override func frameOfOutlineCell(atRow _: Int) -> NSRect {
-        return .zero
+        return .zero // don't show the disclosure triangle
     }
 
     override func frameOfCell(atColumn column: Int, row: Int) -> NSRect {
@@ -29,13 +28,15 @@ class CommentsOutlineView: NSOutlineView {
         let point = convert(event.locationInWindow, from: nil),
             rowAtPoint = row(at: point)
 
-        guard rowAtPoint != -1 else { return nil }
+        guard
+            rowAtPoint != -1,
+            let comment = item(atRow: rowAtPoint) as? Comment
+        else {
+            return nil
+        }
 
         let menu = NSMenu(title: "Comment Context Menu"),
             menuItem = menu.addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
-
-        guard let comment = item(atRow: rowAtPoint) as? Comment else { return nil }
-
         menuItem.representedObject = comment
 
         return menu

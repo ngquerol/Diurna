@@ -10,6 +10,7 @@ import AppKit
 
 @IBDesignable class ThemeableButton: NSButton {
 
+    // MARK: Properties
     @IBInspectable var widthPadding: CGFloat {
         get {
             return themeableCell?.widthPadding ?? 10
@@ -86,6 +87,7 @@ import AppKit
         return cell as? ThemeableCell
     }
 
+    // MARK: Methods
     override func resetCursorRects() {
         if let cursor = cursor {
             addCursorRect(bounds, cursor: cursor)
@@ -97,6 +99,7 @@ import AppKit
 
 class ThemeableCell: NSButtonCell {
 
+    // MARK: Properties
     var widthPadding: CGFloat = 10
 
     var heightPadding: CGFloat = 0
@@ -153,6 +156,7 @@ class ThemeableCell: NSButtonCell {
                       height: buttonSize.height + 2.0 * heightPadding)
     }
 
+    // MARK: Methods
     override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
         backgroundColor = flag ? highlightedButtonColor : buttonColor
 
@@ -213,7 +217,7 @@ class ThemeableCell: NSButtonCell {
 
         attributedTitle = NSAttributedString(string: title, attributes: [
             NSAttributedStringKey.foregroundColor: isHighlighted ? highlightedTextColor : textColor,
-            NSAttributedStringKey.font: font
+            NSAttributedStringKey.font: font,
         ])
     }
 }

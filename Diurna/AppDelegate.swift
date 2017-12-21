@@ -18,6 +18,7 @@ class AppDelegate: NSObject {
     lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: .aboutWindow)
 
     // MARK: Methods
+
     // TODO: Use a notification instead of accessing the SplitViewController directly
     @IBAction func toggleSidebar(_ sender: NSMenuItem) {
         guard let window = NSApp.windows.first,

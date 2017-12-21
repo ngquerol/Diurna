@@ -29,7 +29,7 @@ private struct Parser {
     }
 
     func startsWith(_ s: String) -> Bool {
-        return input.substring(from: pos).hasPrefix(s)
+        return input[pos...].hasPrefix(s)
     }
 
     func eof() -> Bool {
@@ -60,24 +60,15 @@ private struct Tag {
     let attributes: [String: String]
 }
 
-struct MarkupParserConfiguration {
-    var regularFont: NSFont = .systemFont(ofSize: 12.0)
-    var monospaceFont: NSFont = NSFont(name: "Menlo", size: 11.0)!
-    var textAlignment: NSTextAlignment = .natural
-}
-
 struct MarkupParser {
     private var parser: Parser
-    private var parserConfiguration: MarkupParserConfiguration
+    private let leadingSpaceRegex = try! NSRegularExpression(
+        pattern: "^(\\s{2,4})(\\S.*)$",
+        options: .anchorsMatchLines
+    )
 
     init(input: String) {
         parser = Parser(inputString: input)
-        parserConfiguration = MarkupParserConfiguration()
-    }
-
-    init(input: String, configuration: MarkupParserConfiguration) {
-        parser = Parser(inputString: input)
-        parserConfiguration = configuration
     }
 
     private mutating func parseTagName() -> String {
@@ -143,14 +134,16 @@ struct MarkupParser {
     private func getFormattingAttributes(for tag: Tag) -> [NSAttributedStringKey: Any] {
         switch tag.name {
         case "a":
-            guard let urlString = tag.attributes["href"],
-                let url = URL(string: urlString) else {
-                return [.font: parserConfiguration.regularFont]
+            guard
+                let urlString = tag.attributes["href"],
+                let url = URL(string: urlString)
+            else {
+                return [.font: Themes.current.regularFont]
             }
 
             return [
                 .link: url as Any,
-                .font: parserConfiguration.regularFont,
+                .font: Themes.current.regularFont,
                 .foregroundColor: Themes.current.urlColor,
                 .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
             ]
@@ -158,58 +151,84 @@ struct MarkupParser {
         case "i":
             return [
                 .font: NSFontManager.shared.convert(
-                    parserConfiguration.regularFont,
+                    Themes.current.regularFont,
                     toHaveTrait: .italicFontMask
                 ),
             ]
 
         case "code":
-            let paragraphStyle = NSMutableParagraphStyle()
+            let paragraphStyle = NSMutableParagraphStyle(),
+                font = Themes.current.monospaceFont
 
             paragraphStyle.lineBreakMode = .byCharWrapping
+            paragraphStyle.headIndent = 10.0
+            paragraphStyle.firstLineHeadIndent = 10.0
+            paragraphStyle.tailIndent = -10.0
+            paragraphStyle.paragraphSpacing = 5.0
+            paragraphStyle.paragraphSpacingBefore = 5.0
 
             return [
-                .font: parserConfiguration.monospaceFont,
+                .font: font,
                 .codeBlock: Themes.current.codeBlockColor,
-                .paragraphStyle: paragraphStyle
+                .paragraphStyle: paragraphStyle,
             ]
 
-        case "p": fallthrough
-
         case _:
-            return [.font: parserConfiguration.regularFont]
+            return [
+                .font: Themes.current.regularFont,
+                .foregroundColor: Themes.current.normalTextColor,
+            ]
         }
     }
 
-    private mutating func handleTag(_ result: NSMutableAttributedString) -> [NSAttributedStringKey: Any] {
+    private mutating func handleTag(_ result: NSMutableAttributedString) -> Tag {
         let tag = parseTag()
 
         if tag.name == "p" {
             result.append(NSAttributedString(string: "\n\n"))
         }
 
-        return getFormattingAttributes(for: tag)
+        return tag
     }
 
-    private mutating func handleText(_ result: NSMutableAttributedString, formattingAttributes: [NSAttributedStringKey: Any]) -> NSAttributedString {
-            return NSAttributedString(
-                string: parseText(),
-                attributes: formattingAttributes
+    private mutating func handleText(for tag: Tag?) -> NSAttributedString {
+        var formattingAttributes: [NSAttributedStringKey: Any]
+
+        if let tag = tag {
+            formattingAttributes = getFormattingAttributes(for: tag)
+        } else {
+            formattingAttributes = [.font: Themes.current.regularFont]
+        }
+
+        var text = parseText()
+
+        if tag?.name == "code" {
+            let wholeTextRange = NSRange(0 ..< text.count)
+
+            text = leadingSpaceRegex.stringByReplacingMatches(
+                in: text,
+                options: [],
+                range: wholeTextRange,
+                withTemplate: "$2"
             )
+        }
+
+        return NSAttributedString(
+            string: text,
+            attributes: formattingAttributes
+        )
     }
 
     mutating func toAttributedString() -> NSAttributedString {
         let result = NSMutableAttributedString()
-        var formattingAttributes: [NSAttributedStringKey: Any] = [
-            .font: parserConfiguration.regularFont
-        ]
+        var currentTag: Tag?
 
         result.beginEditing()
 
         while !parser.eof() {
             switch parser.nextCharacter() {
-            case "<": formattingAttributes = handleTag(result)
-            case _: result.append(handleText(result, formattingAttributes: formattingAttributes))
+            case "<": currentTag = handleTag(result)
+            case _: result.append(handleText(for: currentTag))
             }
         }
 

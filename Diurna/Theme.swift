@@ -13,10 +13,12 @@ extension Notification.Name {
 }
 
 protocol Themeable {
-    func updateColors(from theme: ColorTheme)
+    func updateColors(from theme: Theme)
 }
 
-protocol ColorTheme {
+protocol Theme {
+    var regularFont: NSFont { get }
+    var monospaceFont: NSFont { get }
     var normalTextColor: NSColor { get }
     var primaryTextColor: NSColor { get }
     var secondaryTextColor: NSColor { get }
@@ -31,14 +33,16 @@ protocol ColorTheme {
     var visualEffectAppearance: NSAppearance { get }
 }
 
-extension ColorTheme {
+extension Theme {
+    var regularFont: NSFont { return NSFont.systemFont(ofSize: 12.0) }
+    var monospaceFont: NSFont { return NSFont.userFixedPitchFont(ofSize: 11.0)! }
     var primaryTextColor: NSColor { return normalTextColor.withAlphaComponent(1) }
-    var secondaryTextColor: NSColor { return normalTextColor.withAlphaComponent(0.7) }
-    var disabledTextColor: NSColor { return normalTextColor.withAlphaComponent(0.5) }
+    var secondaryTextColor: NSColor { return normalTextColor.withAlphaComponent(0.5) }
+    var disabledTextColor: NSColor { return normalTextColor.withAlphaComponent(0.25) }
     var dividerColor: NSColor { return backgroundColor.blended(withFraction: 0.2, of: primaryTextColor)! }
 }
 
-struct LightTheme: ColorTheme {
+struct LightTheme: Theme {
     let normalTextColor = NSColor.black
     let backgroundColor = NSColor.white
     let cellHighlightForegroundColor = NSColor(calibratedRed: 21 / 255, green: 123 / 255, blue: 242 / 255, alpha: 1)
@@ -51,7 +55,7 @@ struct LightTheme: ColorTheme {
     fileprivate init() {}
 }
 
-struct DarkTheme: ColorTheme {
+struct DarkTheme: Theme {
     let normalTextColor = NSColor.white
     let backgroundColor = NSColor(calibratedRed: 33 / 255, green: 33 / 255, blue: 33 / 255, alpha: 1)
     let cellHighlightForegroundColor = NSColor.white
@@ -65,10 +69,10 @@ struct DarkTheme: ColorTheme {
 }
 
 struct Themes {
-    static let light: ColorTheme = LightTheme()
-    static let dark: ColorTheme = DarkTheme()
+    static let light: Theme = LightTheme()
+    static let dark: Theme = DarkTheme()
     static let currentThemeKey: String = "CurrentTheme"
-    static var current: ColorTheme = Themes.light {
+    static var current: Theme = Themes.light {
         didSet {
             DistributedNotificationCenter.default.post(
                 name: .ThemeChangedNotification,

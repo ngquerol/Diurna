@@ -31,11 +31,11 @@ extension HackerNewsWebpage: WebItem {
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
 
         switch self {
-        case .item(let id):
+        case let .item(id):
             components.queryItems = [URLQueryItem(name: "id", value: "\(id)")]
             return components.url!.appendingPathComponent(name)
 
-        case .user(let id):
+        case let .user(id):
             components.queryItems = [URLQueryItem(name: "id", value: "\(id)")]
             return components.url!.appendingPathComponent(name)
         }

@@ -13,7 +13,18 @@ struct FirebaseRESTAPIClient {
     // MARK: Properties
     static let sharedInstance = FirebaseRESTAPIClient()
 
-    private let decoder: JSONDecoder
+    private let requestsQueue = DispatchQueue(
+        label: "fr.ngquerol.Diurna.APIRequestsQueue",
+        qos: .userInitiated,
+        attributes: .concurrent
+    )
+
+    private let responsesQueue = DispatchQueue(
+        label: "fr.ngquerol.Diurna.APIResultsQueue",
+        qos: .userInitiated
+    )
+
+    private let jsonDecoder = JSONDecoder()
 
     private var urlSession: URLSession
 
@@ -21,77 +32,16 @@ struct FirebaseRESTAPIClient {
     private init() {
         let sessionConfig = URLSessionConfiguration.default
 
-        sessionConfig.timeoutIntervalForRequest = 10.0
-        sessionConfig.timeoutIntervalForResource = 20.0
+        sessionConfig.timeoutIntervalForRequest = 10
+        sessionConfig.timeoutIntervalForResource = 20
         sessionConfig.httpShouldUsePipelining = true
         sessionConfig.httpAdditionalHeaders = [
             "Accept": "application/json",
             "Accept-Charset": "utf-8",
-            "Accept-Encoding": "gzip, deflate"
+            "Accept-Encoding": "gzip, deflate",
         ]
 
-        decoder = JSONDecoder()
         urlSession = URLSession(configuration: sessionConfig)
-    }
-
-    // MARK: Methods
-    private func fetchStoriesIds(ofType type: StoryType, count: Int = 500, completion: @escaping (Result<[Int], APIError>) -> Void) {
-        getResource(HackerNewsAPI.stories(ofType: type)) { dataResult in
-            _ = dataResult.map { data in
-                do {
-                    completion(.success(try self.decoder.decode([Int].self, from: data)))
-                } catch {
-                    completion(.failure(APIError.invalidJSON))
-                }
-            }
-        }
-    }
-
-    private func fetchStory(withId id: Int, completion: @escaping (Result<Story, APIError>) -> Void) {
-        getItem(withId: id) { (storyResult: Result<Story, APIError>) in
-            completion(storyResult)
-        }
-    }
-
-    private func fetchComment(withId id: Int, completion: @escaping (Result<Comment, APIError>) -> Void) {
-        getItem(withId: id) { (commentResult: Result<Comment, APIError>) in
-            guard let comment = commentResult.value, !comment.kidsIds.isEmpty else {
-                completion(commentResult)
-                return
-            }
-
-            self.getItems(withIds: comment.kidsIds) { (childrenResults: [Result<Comment, APIError>]) in
-                comment.kids = childrenResults.flatMap { $0.value }
-            }
-        }
-    }
-
-    private func getResource(_ resource: HackerNewsAPI, completion: @escaping (Result<Data, APIError>) -> Void) {
-        let resourceUrl = resource.path.appendingPathExtension("json"),
-            dataTask = urlSession.dataTask(with: resourceUrl) { data, response, error in
-                let dataResult = self.validateResponse(data, response, error).flatMap { _ in
-                    Result(data, failWith: .unknown)
-                }
-
-                completion(dataResult)
-            }
-
-        dataTask.resume()
-    }
-
-    private func getItem<T: Item>(withId id: Int, completion: @escaping (Result<T, APIError>) -> Void) {
-        let itemUrl = HackerNewsAPI.item(withId: id).path.appendingPathExtension("json"),
-            dataTask = urlSession.dataTask(with: itemUrl) { data, response, error in
-                _ = self.validateResponse(data, response, error).map { data in
-                    do {
-                        completion(.success(try self.decoder.decode(T.self, from: data)))
-                    } catch {
-                        completion(.failure(APIError.invalidJSON))
-                    }
-                }
-            }
-
-        dataTask.resume()
     }
 
     private func validateResponse(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Result<Data, APIError> {
@@ -108,96 +58,163 @@ struct FirebaseRESTAPIClient {
         case let (.some(data), _, _):
             return .success(data)
 
-        default:
+        case _:
             return .failure(.unknown)
         }
     }
 
-    private func getItems<T: Item>(withIds ids: [Int], completion: @escaping ([Result<T, APIError>]) -> Void) {
-        let fetchGroup = DispatchGroup()
-        var itemsResults = [Int: Result<T, APIError>]()
+    private func getResource(_ resource: HackerNewsAPI, completion: @escaping (Result<Data, APIError>) -> Void) {
+        let resourceUrl = resource.path.appendingPathExtension("json"),
+            dataTask = urlSession.dataTask(with: resourceUrl) { data, response, error in
+                completion(self.validateResponse(data, response, error))
+            }
+
+        dataTask.resume()
+    }
+
+    private func fetchItem<T: Item>(withId id: Int, completion: @escaping (Result<T, APIError>) -> Void) {
+        let itemUrl = HackerNewsAPI.item(withId: id).path.appendingPathExtension("json"),
+            dataTask = urlSession.dataTask(with: itemUrl) { data, response, error in
+                let itemResult = self.validateResponse(data, response, error).flatMap { data in
+                    Result(T(jsonData: data), failWith: .invalidJSON)
+                }
+
+                completion(itemResult)
+            }
+
+        dataTask.resume()
+    }
+
+    private func fetchItems<T: Item>(withIds ids: [Int], completion: @escaping ([Result<T, APIError>]) -> Void) {
+        let fetchGroup = DispatchGroup(),
+            progress = Progress(totalUnitCount: Int64(ids.count))
+        var itemsResults = [Result<T, APIError>?](repeating: nil, count: ids.count)
 
         for (index, id) in ids.enumerated() {
             fetchGroup.enter()
-            getItem(withId: id) { (resourceResult: Result<T, APIError>) in
-                itemsResults[index] = resourceResult
-                fetchGroup.leave()
+            requestsQueue.async {
+                self.fetchItem(withId: id) { (itemResult: Result<T, APIError>) in
+                    self.responsesQueue.async {
+                        itemsResults[index] = itemResult
+                        progress.completedUnitCount += 1
+                        fetchGroup.leave()
+                    }
+                }
             }
         }
 
-        completion(itemsResults.sorted { $0.key < $1.key }.map { $0.value })
+        fetchGroup.notify(queue: responsesQueue) {
+            progress.completedUnitCount = progress.totalUnitCount
+            completion(itemsResults.flatMap { $0 })
+        }
+    }
+
+    private func fetchStoriesIds(of type: StoryType, count: Int = 500, completion: @escaping (Result<[Int], APIError>) -> Void) {
+        getResource(HackerNewsAPI.stories(ofType: type)) { dataResult in
+            let idsResult = dataResult.flatMap { data in
+                Result({ () -> [Int] in 
+                    let ids = try self.jsonDecoder.decode([Int].self, from: data)
+                    return Array(ids.prefix(through: count - 1))
+                })
+            }
+
+            completion(idsResult)
+        }
+    }
+
+    private func fetchCommentTree(_ id: Int, completion: @escaping (Result<Comment, APIError>) -> Void) {
+        requestsQueue.async {
+            self.fetchItem(withId: id) { (commentResult: Result<Comment, APIError>) in
+                guard
+                    let comment = commentResult.value,
+                    let kidsIds = comment.kidsIds,
+                    !kidsIds.isEmpty
+                else {
+                    return completion(commentResult)
+                }
+
+                let fetchGroup = DispatchGroup(),
+                progress = Progress(totalUnitCount: Int64(kidsIds.count))
+                var children = [Comment?](repeating: nil, count: kidsIds.count)
+
+                for (index, id) in kidsIds.enumerated() {
+                    fetchGroup.enter()
+                    self.requestsQueue.async {
+                        self.fetchCommentTree(id) { child in
+                            children[index] = child.value
+                            progress.completedUnitCount += 1
+                            fetchGroup.leave()
+                        }
+                    }
+                }
+
+                fetchGroup.notify(queue: self.responsesQueue) {
+                    progress.completedUnitCount = progress.totalUnitCount
+                    comment.kids = children.flatMap { $0 }
+                    completion(.success(comment))
+                }
+            }
+        }
     }
 }
 
 // MARK: - HackerNewsAPIClient
 
 extension FirebaseRESTAPIClient: HackerNewsAPIClient {
+
     func fetchStories(of type: StoryType, count: Int, completion: @escaping ([Result<Story, APIError>]) -> Void) {
-        let fetchGroup = DispatchGroup(),
-            progress = Progress(totalUnitCount: Int64(count))
-        var stories = [Int: Result<Story, APIError>]()
+        let progress = Progress(totalUnitCount: Int64(count))
 
-        fetchGroup.enter()
-
-        fetchStoriesIds(ofType: type, count: count) { storiesIdsResult in
-            guard let storiesIds = storiesIdsResult.value else {
-                fetchGroup.leave()
-                return
-            }
-
-            for (idx, id) in storiesIds.enumerated() {
-                fetchGroup.enter()
-                self.fetchStory(withId: id) { storyResult in
-                    stories[idx] = storyResult
-                    progress.completedUnitCount += 1
-                    fetchGroup.leave()
+        fetchStoriesIds(of: type, count: count) { idsResult in
+            guard let ids = idsResult.value else {
+                return DispatchQueue.main.async {
+                    completion([])
                 }
             }
 
-            fetchGroup.leave()
-        }
+            progress.becomeCurrent(withPendingUnitCount: Int64(count))
 
-        fetchGroup.notify(queue: DispatchQueue.main) {
-            progress.completedUnitCount = progress.totalUnitCount
-            completion(stories.sorted { $0.key < $1.key }.map { $0.1 })
+            self.fetchItems(withIds: ids) { storiesResult in
+                DispatchQueue.main.async {
+                    completion(storiesResult)
+                }
+            }
         }
     }
 
     func fetchComments(of story: Story, completion: @escaping ([Result<Comment, APIError>]) -> Void) {
-        guard !story.kids.isEmpty else {
-            completion([])
-            return
+        guard let kids = story.kids else {
+            return completion([])
         }
 
         let fetchGroup = DispatchGroup(),
-            progress = Progress(totalUnitCount: Int64(story.kids.count))
-        var topLevelComments = [Int: Result<Comment, APIError>]()
+        progress = Progress(totalUnitCount: Int64(kids.count))
+        var topLevelComments = [Result<Comment, APIError>?](repeating: nil, count: kids.count)
 
-        for (idx, id) in story.kids.enumerated() {
+        for (index, id) in kids.enumerated() {
             fetchGroup.enter()
-            fetchComment(withId: id) { commentResult in
-                topLevelComments[idx] = commentResult
-                progress.completedUnitCount += 1
-                fetchGroup.leave()
+            requestsQueue.async {
+                self.fetchCommentTree(id) { comment in
+                    topLevelComments[index] = comment
+                    progress.completedUnitCount += 1
+                    fetchGroup.leave()
+                }
             }
         }
 
-        fetchGroup.notify(queue: DispatchQueue.main) {
+        fetchGroup.notify(queue: .main) {
             progress.completedUnitCount = progress.totalUnitCount
-            completion(topLevelComments.sorted { $0.key < $1.key }.map { $0.value })
+            completion(topLevelComments.flatMap { $0 })
         }
     }
 
     func fetchUser(with name: String, completion: @escaping (Result<User, APIError>) -> Void) {
-        getResource(HackerNewsAPI.user(withName: name)) { dataResult in
-            _ = dataResult.map { data in
-                DispatchQueue.main.async {
-                    do {
-                        completion(.success(try self.decoder.decode(User.self, from: data)))
-                    } catch {
-                        completion(.failure(APIError.invalidJSON))
-                    }
+        requestsQueue.async {
+            self.getResource(HackerNewsAPI.user(withName: name)) { dataResult in
+                let userResult = dataResult.flatMap {
+                    Result(User(jsonData: $0), failWith: APIError.invalidJSON)
                 }
+                DispatchQueue.main.async { completion(userResult) }
             }
         }
     }

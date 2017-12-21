@@ -10,13 +10,15 @@ import Cocoa
 
 class ClickableTextField: NSTextField {
 
-    override func mouseDown(with event: NSEvent) {
+    override func mouseDown(with _: NSEvent) {
         guard isEnabled else { return }
 
         sendAction(action, to: target)
     }
 
     override func resetCursorRects() {
+        guard isEnabled else { return }
+
         addCursorRect(bounds, cursor: .pointingHand)
     }
 }

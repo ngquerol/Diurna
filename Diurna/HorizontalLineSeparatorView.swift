@@ -12,7 +12,9 @@ import Cocoa
 
     // MARK: Properties
     @IBInspectable var separatorThickness: CGFloat = 1.0
+
     @IBInspectable var leftInset: CGFloat = 0.0
+    
     @IBInspectable var rightInset: CGFloat = 0.0
 
     override var intrinsicContentSize: NSSize {
@@ -24,9 +26,9 @@ import Cocoa
         Themes.current.dividerColor.set()
 
         let drawingRect = NSRect(x: leftInset,
-               y: dirtyRect.midY - (separatorThickness / 2),
-               width: dirtyRect.width - (leftInset + rightInset),
-               height: separatorThickness)
+                                 y: dirtyRect.midY - (separatorThickness / 2),
+                                 width: dirtyRect.width - (leftInset + rightInset),
+                                 height: separatorThickness)
 
         drawingRect.fill()
     }

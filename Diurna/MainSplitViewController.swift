@@ -20,40 +20,10 @@ class MainSplitViewController: NSSplitViewController {
     }
 
     @IBOutlet weak var storiesSplitViewItem: NSSplitViewItem!
-    @IBOutlet weak var commentsSplitViewItem: NSSplitViewItem! {
+    
+    @IBOutlet weak var storySplitViewItem: NSSplitViewItem! {
         didSet {
-            commentsSplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+            storySplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
     }
-
-    // MARK: (De)initializer
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    // MARK: View Lifecycle
-    override func viewWillAppear() {
-        super.viewWillAppear()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: .openStoryDetailsPane,
-            name: .storySelectionNotification,
-            object: nil
-        )
-    }
-
-    // MARK: Methods
-    @objc func openStoryDetailsPane(_ notification: Notification) {
-        guard notification.name == .storySelectionNotification else { return }
-
-        if commentsSplitViewItem.isCollapsed {
-            commentsSplitViewItem.animator().isCollapsed = false
-        }
-    }
-}
-
-// MARK: - Selectors
-private extension Selector {
-    static let openStoryDetailsPane = #selector(MainSplitViewController.openStoryDetailsPane(_:))
 }

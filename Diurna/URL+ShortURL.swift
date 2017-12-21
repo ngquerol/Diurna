@@ -19,7 +19,7 @@ extension URL {
         }
 
         if let match = host.range(of: undesirablePrefixesPattern, options: .regularExpression) {
-            return host.substring(from: match.upperBound)
+            return String(host[match.upperBound...])
         }
 
         return host

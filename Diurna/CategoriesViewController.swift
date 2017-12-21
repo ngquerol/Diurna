@@ -12,18 +12,12 @@ class CategoriesViewController: NSViewController {
 
     // MARK: Outlets
     @IBOutlet var categoriesVisualEffectView: NSVisualEffectView!
-    
-    @IBOutlet var categoriesScrollView: NSScrollView! {
-        didSet {
-            categoriesScrollView.automaticallyAdjustsContentInsets = false
-            categoriesScrollView.contentInsets.top = topEdgeInset
-        }
-    }
+
+    @IBOutlet var categoriesScrollView: NSScrollView!
 
     @IBOutlet weak var categoriesTableView: NSTableView!
-
-    // MARK: Properties
-    private let topEdgeInset: CGFloat = 29.0
+    
+    @IBOutlet weak var categoriesTableViewTopSpacingConstraint: NSLayoutConstraint!
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -61,22 +55,17 @@ class CategoriesViewController: NSViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: Actions
-    @IBAction func categoriesTableViewSelectionChanged(_: NSTableView) {
-        notifyCategoryChange()
-    }
-
     // MARK: Methods
     @objc func didEnterFullScreen(_ notification: Notification) {
         guard notification.name == .enterFullScreenNotification else { return }
 
-        categoriesScrollView.contentInsets.top = 0.0
+        categoriesTableViewTopSpacingConstraint.constant = 0.0
     }
 
     @objc func didExitFullScreen(_ notification: Notification) {
         guard notification.name == .exitFullScreenNotification else { return }
 
-        categoriesScrollView.contentInsets.top = topEdgeInset
+        categoriesTableViewTopSpacingConstraint.constant = 29.0
     }
 
     private func notifyCategoryChange() {
@@ -95,6 +84,11 @@ extension Notification.Name {
     static let newCategorySelectedNotification = Notification.Name("NewCategorySelectedNotification")
 }
 
+// MARK: - NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    static let categoryCell = NSUserInterfaceItemIdentifier("CategoryCell")
+}
+
 // MARK: - Selectors
 private extension Selector {
     static let didEnterFullScreen = #selector(CategoriesViewController.didEnterFullScreen(_:))
@@ -111,26 +105,26 @@ extension CategoriesViewController: NSTableViewDataSource {
 // MARK: - NSTableView Delegate
 extension CategoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        guard let rowView = tableView.makeView(withIdentifier: CategoryRowView.reuseIdentifier, owner: self) as? CategoryRowView else {
-            let rowView = CategoryRowView()
-            rowView.identifier = CategoryRowView.reuseIdentifier
-            return rowView
-        }
+        guard 0 ..< StoryType.allValues.count ~= row else { return nil }
 
-        return rowView
+        return tableView.makeView(withIdentifier: .categoryRow, owner: self) as? NSTableRowView
     }
 
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let categoryCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("CategoryCell")
+    func tableView(_: NSTableView, heightOfRow _: Int) -> CGFloat {
+        return 30.0
+    }
 
-        guard let cellView = tableView.makeView(withIdentifier: categoryCellIdentifier, owner: self) as? NSTableCellView else {
-            return nil
-        }
+    func tableViewSelectionDidChange(_: Notification) {
+        notifyCategoryChange()
+    }
+
+    func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
+        let cellView = tableView.makeView(withIdentifier: .categoryCell, owner: self) as? NSTableCellView
 
         if let storyType = StoryType(rawValue: StoryType.allValues[row]) {
             let displayableName = storyType.rawValue.capitalized
-            cellView.imageView?.image = NSImage(named: NSImage.Name("\(displayableName)IconTemplate"))
-            cellView.imageView?.toolTip = "\(displayableName)"
+            cellView?.imageView?.image = NSImage(named: NSImage.Name("\(displayableName)IconTemplate"))
+            cellView?.imageView?.toolTip = "\(displayableName)"
         }
 
         return cellView

@@ -11,54 +11,10 @@ import Cocoa
 class CommentsViewController: NSViewController {
 
     // MARK: Outlets
-    @IBOutlet var contentView: NSView!
-
-    @IBOutlet weak var storyDetailsStackView: NSStackView! {
-        didSet {
-            storyDetailsStackView.isHidden = true
-        }
-    }
-
-    @IBOutlet weak var storyTitleTextField: NSTextField! {
-        didSet {
-            storyTitleTextField.backgroundColor = Themes.current.backgroundColor
-            storyTitleTextField.textColor = Themes.current.normalTextColor
-        }
-    }
-
-    @IBOutlet weak var storyDetailsTextField: NSTextField! {
-        didSet {
-            storyDetailsTextField.isHidden = true
-        }
-    }
-
-    @IBOutlet var storyTitleCenterConstraint: NSLayoutConstraint! {
-        didSet {
-            storyTitleCenterConstraint.isActive = false
-        }
-    }
-
-    @IBOutlet var storyDetailsCenterConstraint: NSLayoutConstraint! {
-        didSet {
-            storyDetailsCenterConstraint.isActive = false
-        }
-    }
-
-    @IBOutlet var storyTitleWidthConstraint: NSLayoutConstraint! {
-        didSet {
-            storyTitleWidthConstraint.isActive = false
-        }
-    }
-
-    @IBOutlet var storyDetailsWidthConstraint: NSLayoutConstraint! {
-        didSet {
-            storyDetailsWidthConstraint.isActive = false
-        }
-    }
-
+    @IBOutlet weak var commentsScrollViewWidthConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var commentsScrollView: NSScrollView! {
         didSet {
-            commentsScrollView.isHidden = true
             commentsScrollView.backgroundColor = Themes.current.backgroundColor
         }
     }
@@ -66,16 +22,18 @@ class CommentsViewController: NSViewController {
     @IBOutlet weak var commentsOutlineView: NSOutlineView! {
         didSet {
             commentsOutlineView.backgroundColor = Themes.current.backgroundColor
+            prototypeCellView = commentsOutlineView.makeView(
+                withIdentifier: .commentCell,
+                owner: self
+            ) as? CommentCellView
         }
     }
 
-    @IBOutlet weak var commentsProgressIndicator: NSProgressIndicator!
-
-    @IBOutlet weak var commentsProgressLabel: NSTextField!
-
-    @IBOutlet weak var commentsProgressStackView: NSStackView! {
+    @IBOutlet weak var progressOverlay: ProgressOverlayView! {
         didSet {
-            commentsProgressStackView.isHidden = true
+            progressOverlay.isHidden = true
+            progressOverlay.progressMessage.stringValue = "Loading comments..."
+            progressOverlay.progressIndicator.maxValue = 1.0
         }
     }
 
@@ -86,39 +44,25 @@ class CommentsViewController: NSViewController {
     }
 
     // MARK: Properties
-    fileprivate var commentsDataSource: [Comment] = [] {
+    var selectedStory: Story? {
+        didSet {
+            updateComments()
+        }
+    }
+
+    private var commentsDataSource: [Comment] = [] {
         didSet {
             commentsOutlineView.reloadData()
         }
     }
 
-    fileprivate var selectedStory: Story?
-
-    private let API: HackerNewsAPIClient = FirebaseAPIClient.sharedInstance
-
-    private lazy var rowHeightCache: NSCache<Comment, NSNumber> = {
-        let cache: NSCache<Comment, NSNumber> = NSCache()
-        cache.countLimit = 500
-        return cache
-    }()
-
+    private var prototypeCellView: CommentCellView?
+    
     private var progressObservation: NSKeyValueObservation?
-
-    // MARK: (De)initializer
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 
     // MARK: View Lifecycle
     override func viewWillAppear() {
         super.viewWillAppear()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: .updateViews,
-            name: .storySelectionNotification,
-            object: nil
-        )
 
         NotificationCenter.default.addObserver(
             self,
@@ -128,14 +72,10 @@ class CommentsViewController: NSViewController {
         )
     }
 
-    override func viewWillLayout() {
-        super.viewWillLayout()
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
 
-        let widthInsets = storyDetailsStackView.edgeInsets.left + storyDetailsStackView.edgeInsets.right,
-            availableWidth = storyDetailsStackView.frame.width - widthInsets
-
-        storyTitleTextField.preferredMaxLayoutWidth = availableWidth
-        storyDetailsTextField.preferredMaxLayoutWidth = availableWidth
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: Methods
@@ -154,69 +94,51 @@ class CommentsViewController: NSViewController {
         }
     }
 
-    @objc func updateViews(_ notification: Notification) {
-        guard notification.name == .storySelectionNotification,
-            let story = notification.userInfo?["story"] as? Story else {
+    private func updateComments() {
+        guard let story = selectedStory else {
             return
         }
 
-        selectedStory = story
-
-        updateDetails(from: story)
-        updateComments(from: story)
-    }
-
-    private func updateDetails(from story: Story) {
-        storyTitleTextField.stringValue = story.title
-        storyTitleTextField.toolTip = story.title
-        storyDetailsTextField.attributedStringValue = story.text?.parseMarkup() ?? NSAttributedString()
-
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.allowsImplicitAnimation = true
-        storyDetailsStackView.isHidden = false
-        storyDetailsTextField.isHidden = story.text == nil
-        NSAnimationContext.endGrouping()
-    }
-
-    private func updateComments(from story: Story) {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.allowsImplicitAnimation = true
         commentsScrollView.isHidden = true
         NSAnimationContext.endGrouping()
 
         guard story.descendants != 0 else {
+            commentsDataSource = []
             commentsPlaceholder.animator().isHidden = false
             return
         }
 
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.allowsImplicitAnimation = true
-        commentsProgressStackView.isHidden = false
+        progressOverlay.isHidden = false
         commentsPlaceholder.isHidden = true
         NSAnimationContext.endGrouping()
 
-        let progress = Progress(totalUnitCount: Int64(story.descendants))
+        let progress = Progress(totalUnitCount: Int64(story.descendants ?? -1))
 
-        progress.becomeCurrent(withPendingUnitCount: Int64(story.descendants))
+        progress.becomeCurrent(withPendingUnitCount: Int64(story.descendants ?? -1))
 
         progressObservation = progress.observe(\.fractionCompleted, options: [.initial, .new]) {
             object, _ in
-                DispatchQueue.main.async {
-                    self.commentsProgressIndicator.doubleValue = object.fractionCompleted
-                }
+            DispatchQueue.main.async {
+                self.progressOverlay.progressIndicator.doubleValue = object.fractionCompleted
             }
+        }
 
-        API.fetchComments(of: story) { [weak self] commentsResults in
+        apiClient.fetchComments(of: story) { [weak self] commentsResults in
             guard let `self` = self else { return }
 
             let comments: [Comment] = commentsResults.flatMap {
                 switch $0 {
-                case .success(let comment): return comment
-                case .failure(let error):
-                    NSLog("Failed to fetch comment: %@", error.localizedDescription)
-                    return nil
+                case let .success(comment): return comment
+                case .failure:
+                    return nil // TODO: Display (non-user facing) error
                 }
             }
+
+            self.progressObservation = nil
 
             self.commentsDataSource = comments
             self.commentsOutlineView.expandItem(nil, expandChildren: true)
@@ -226,34 +148,45 @@ class CommentsViewController: NSViewController {
             // indicator to update to its maxValue.
             DispatchQueue.main.async {
                 NSAnimationContext.beginGrouping()
-                self.commentsProgressStackView.animator().isHidden = true
                 NSAnimationContext.current.completionHandler = {
                     self.commentsScrollView.animator().isHidden = false
                 }
+                self.progressOverlay.animator().isHidden = true
                 NSAnimationContext.endGrouping()
             }
-
-            progress.resignCurrent()
         }
     }
 }
 
 // MARK: - Selectors
 private extension Selector {
-    static let updateViews = #selector(CommentsViewController.updateViews(_:))
     static let toggleCommentReplies = #selector(CommentsViewController.toggleCommentReplies(_:))
 }
+
+// MARK: - NetworkingAware
+extension CommentsViewController: NetworkingAware {}
 
 // MARK: - NSOutlineView Data Source
 extension CommentsViewController: NSOutlineViewDataSource {
     func outlineView(_: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        guard item != nil, let comment = item as? Comment else { return commentsDataSource.count }
-        return comment.kids.count
+        guard
+            item != nil,
+            let comment = item as? Comment,
+            let kids = comment.kids
+        else {
+            return commentsDataSource.count
+        }
+        return kids.count
     }
 
     func outlineView(_: NSOutlineView, isItemExpandable: Any) -> Bool {
-        guard let comment = isItemExpandable as? Comment else { return false }
-        return !comment.kids.isEmpty
+        guard
+            let comment = isItemExpandable as? Comment,
+            let kids = comment.kids
+        else {
+            return false
+        }
+        return !kids.isEmpty
     }
 
     func outlineView(_: NSOutlineView, objectValueFor _: NSTableColumn?, byItem item: Any?) -> Any? {
@@ -262,70 +195,61 @@ extension CommentsViewController: NSOutlineViewDataSource {
     }
 
     func outlineView(_: NSOutlineView, child: Int, ofItem: Any?) -> Any {
-        guard let comment = ofItem as? Comment else { return commentsDataSource[child] }
-        return comment.kids[child]
+        guard
+            let comment = ofItem as? Comment,
+            let kids = comment.kids
+        else {
+            return commentsDataSource[child]
+        }
+        return kids[child]
     }
 }
 
 // MARK: - NSOutlineView Delegate
 extension CommentsViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        guard let comment = item as? Comment else {
-            return outlineView.rowHeight
-        }
-
-        if let cachedRowHeight = rowHeightCache.object(forKey: comment) {
-            return CGFloat(cachedRowHeight.floatValue)
-        }
-
-        guard let cellView = outlineView.makeView(withIdentifier: CommentCellView.reuseIdentifier, owner: self) as? CommentCellView else {
+        guard
+            let comment = item as? Comment,
+            let dummyCellView = prototypeCellView
+        else {
             return outlineView.rowHeight
         }
 
         let cellLevel = CGFloat(outlineView.level(forItem: comment)),
-            availableWidth = outlineView.frame.width - (outlineView.indentationPerLevel * cellLevel)
+            availableWidth = outlineView.bounds.width - (outlineView.indentationPerLevel * cellLevel)
 
-        cellView.configureFor(comment, story: selectedStory)
+        dummyCellView.bounds.size = NSSize(width: availableWidth, height: 0)
+        dummyCellView.objectValue = comment
+        dummyCellView.layoutSubtreeIfNeeded()
 
-        let calculatedRowHeight = cellView.heightForWidth(availableWidth)
-
-        rowHeightCache.setObject(NSNumber(value: Float(calculatedRowHeight)), forKey: comment)
-
-        return calculatedRowHeight
+        return dummyCellView.fittingSize.height
     }
 
     func outlineView(_ outlineView: NSOutlineView, viewFor _: NSTableColumn?, item: Any) -> NSView? {
-        guard let comment = item as? Comment,
-            let cellView = outlineView.makeView(withIdentifier: CommentCellView.reuseIdentifier, owner: self) as? CommentCellView else {
-            return nil
-        }
+        let comment = item as? Comment,
+            cellView = outlineView.makeView(withIdentifier: .commentCell, owner: self) as? CommentCellView
 
-        cellView.configureFor(comment, story: selectedStory)
+        cellView?.objectValue = comment
+        cellView?.isExpandable = outlineView.isExpandable(comment)
+        cellView?.isExpanded = (cellView?.isExpandable ?? false) && outlineView.isItemExpanded(comment)
+        cellView?.opBadgeView.isHidden = comment?.by != selectedStory?.by
 
-        if outlineView.isExpandable(comment) {
-            let repliesCount = commentsOutlineView.numberOfChildren(ofItem: comment)
-            cellView.isExpanded = outlineView.isItemExpanded(comment)
-            cellView.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
-        } else {
-            cellView.repliesButton.isHidden = true
-            cellView.repliesTextField.isHidden = true
-        }
+        let repliesCount = commentsOutlineView.numberOfChildren(ofItem: comment)
+
+        cellView?.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
+        cellView?.replyArrowTextField.isHidden = repliesCount == 0
 
         return cellView
     }
 
-    func outlineViewColumnDidResize(_ notification: Notification) {
-        guard
-            let visibleRowsRange = Range(commentsOutlineView.rows(in: commentsOutlineView.visibleRect))
-        else {
-            return
-        }
+    func outlineViewColumnDidResize(_: Notification) {
+        let wholeRowsIndexes: IndexSet = IndexSet(integersIn:0..<commentsOutlineView.numberOfRows)
 
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.duration = 0
-        commentsOutlineView.noteHeightOfRows(
-            withIndexesChanged: IndexSet(integersIn: visibleRowsRange)
-        )
-        NSAnimationContext.endGrouping()
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0
+            commentsOutlineView.noteHeightOfRows(
+                withIndexesChanged: wholeRowsIndexes
+            )
+        })
     }
 }

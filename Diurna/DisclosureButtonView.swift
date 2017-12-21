@@ -15,16 +15,20 @@ import Cocoa
 
     @IBInspectable var expandImage: NSImage = #imageLiteral(resourceName: "ExpandIcon")
 
+    @IBInspectable var expandedTooltip: String = ""
+
+    @IBInspectable var collapsedTooltip: String = ""
+
     @IBInspectable var isExpanded: Bool = true {
         didSet {
-            toolTip = isExpanded ? "Collapse this comment" : "Expand this comment"
+            toolTip = isExpanded ? expandedTooltip : collapsedTooltip
         }
     }
 
     // MARK: View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         image = isExpanded ? collapseImage : expandImage
     }
 
@@ -50,7 +54,12 @@ import Cocoa
 
         layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         layer?.position = CGPoint(x: frame.midX, y: frame.midY)
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.image = self.isExpanded ? self.collapseImage : self.expandImage
+        }
         layer?.add(animation, forKey: nil)
-        layer?.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(destinationAngle)))
+        CATransaction.commit()
     }
 }

@@ -11,6 +11,10 @@ import Cocoa
 class StoryRowView: NSTableRowView {
 
     // MARK: Properties
+    override var isOpaque: Bool {
+        return true
+    }
+    
     override var isNextRowSelected: Bool {
         didSet {
             setNeedsDisplay(bounds)
@@ -26,8 +30,8 @@ class StoryRowView: NSTableRowView {
     }
 
     override func drawSeparator(in _: NSRect) {
-        let bottomRect = NSMakeRect(0, 0, bounds.maxX, 1.0),
-            topRect = NSMakeRect(0, bounds.maxY - 1.0, bounds.maxX, 1.0)
+        let bottomRect = NSRect(x: 0, y: 0, width: bounds.maxX, height: 1.0),
+            topRect = NSRect(x: 0, y: bounds.maxY - 1.0, width: bounds.maxX, height: 1.0)
 
         Themes.current.dividerColor.setFill()
 
@@ -41,7 +45,7 @@ class StoryRowView: NSTableRowView {
     }
 }
 
-// MARK: - Reusable
-extension StoryRowView: Reusable {
-    static let reuseIdentifier = NSUserInterfaceItemIdentifier("StoryRow")
+// MARK: - NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    static let storyRow = NSUserInterfaceItemIdentifier("StoryRow")
 }

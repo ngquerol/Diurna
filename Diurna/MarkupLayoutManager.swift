@@ -1,5 +1,5 @@
 //
-//  CommentLayoutManager.swift
+//  MarkupLayoutManager.swift
 //  Diurna
 //
 //  Created by Nicolas Gaulard-Querol on 28/07/2016.
@@ -8,14 +8,16 @@
 
 import Cocoa
 
-class CommentLayoutManager: NSLayoutManager {
+class MarkupLayoutManager: NSLayoutManager {
 
+    // MARK: Properties
     override func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
-        super.drawBackground(forGlyphRange: glyphsToShow, at: origin)
-
         drawCodeBlocks(forGlyphRange: glyphsToShow, at: origin)
+
+        super.drawBackground(forGlyphRange: glyphsToShow, at: origin)
     }
 
+    // MARK: Methods
     private func drawCodeBlocks(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         guard
             let textStorage = textStorage,
@@ -29,10 +31,10 @@ class CommentLayoutManager: NSLayoutManager {
         textStorage.enumerateAttribute(.codeBlock, in: characterRange, options: []) { value, range, _ in
             guard value != nil else { return }
 
-            let blockquoteGlyphRange = glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+            let blockGlyphRange = glyphRange(forCharacterRange: range, actualCharacterRange: nil)
             var blockRect: CGRect?
 
-            enumerateLineFragments(forGlyphRange: blockquoteGlyphRange) { rect, _, _, _, _ in
+            enumerateLineFragments(forGlyphRange: blockGlyphRange) { rect, _, _, _, _ in
                 let lineRect = rect.offsetBy(dx: origin.x, dy: origin.y)
                 blockRect = blockRect == nil ? lineRect : blockRect?.union(lineRect)
             }
@@ -67,6 +69,7 @@ class CommentLayoutManager: NSLayoutManager {
     }
 }
 
+// MARK: - NSBezierPath
 private extension NSBezierPath {
     var cgPath: CGPath? {
         guard elementCount != 0 else { return nil }
@@ -103,7 +106,6 @@ private extension NSBezierPath {
 }
 
 // MARK: - NSAttributedStringKey
-
 extension NSAttributedStringKey {
     static let codeBlock = NSAttributedStringKey(rawValue: "CodeBlockAttributeName")
 }

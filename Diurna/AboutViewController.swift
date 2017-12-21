@@ -12,9 +12,13 @@ class AboutViewController: NSViewController {
 
     // MARK: Outlets
     @IBOutlet weak var iconImageView: NSImageView!
+
     @IBOutlet weak var nameTextField: NSTextField!
+
     @IBOutlet weak var versionTextField: NSTextField!
+
     @IBOutlet var creditsTextView: NSTextView!
+    
     @IBOutlet weak var copyrightTextField: NSTextField!
 
     // MARK: View Lifecycle
@@ -34,7 +38,7 @@ class AboutViewController: NSViewController {
         let bundleName = info["CFBundleName"] as? String ?? "Diurna",
             bundleVersion = info["CFBundleShortVersionString"] as? String ?? "?",
             bundleBuild = info["CFBundleVersion"] as? String ?? "?",
-            copyright = info["NSHumanReadableCopyright"] as? String ?? "© 2016 Nicolas Gaulard-Querol, all rights reserved"
+            copyright = info["NSHumanReadableCopyright"] as? String ?? "© 2017 Nicolas Gaulard-Querol, all rights reserved"
 
         nameTextField.stringValue = bundleName
         versionTextField.stringValue = "Version \(bundleVersion) (\(bundleBuild))"
@@ -51,7 +55,7 @@ class AboutViewController: NSViewController {
             options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.rtf],
             documentAttributes: nil
         ) {
-            creditsTextView.textStorage?.setAttributedString(creditsText)
+            creditsTextView.attributedStringValue = creditsText
         }
     }
 }

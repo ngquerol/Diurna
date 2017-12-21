@@ -39,6 +39,7 @@ import AppKit
     }
 
     @IBInspectable var borderWidth: CGFloat = 0.0
+    
     @IBInspectable var cornerRadius: CGFloat = 0.0
 
     // MARK: Properties
@@ -57,7 +58,7 @@ import AppKit
         return paragraphStyle
     }
 
-    private var titleAttributedString: NSAttributedString = NSAttributedString()
+    private var titleAttributedString: NSAttributedString = .empty
 
     private var isPressed = false {
         didSet {

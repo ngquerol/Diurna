@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Decodable {
+struct User: JSONDecodable {
 
     let id: String
 
@@ -17,19 +17,4 @@ struct User: Decodable {
     let created: Date
 
     let about: String?
-
-    init?(dictionary: [String: Any?]) {
-        guard
-            let id = dictionary["id"] as? String,
-            let karma = dictionary["karma"] as? Int,
-            let createdEpoch = dictionary["created"] as? TimeInterval
-        else {
-            return nil
-        }
-
-        self.id = id
-        self.karma = karma
-        self.created = Date(timeIntervalSince1970: createdEpoch)
-        self.about = dictionary["about"] as? String
-    }
 }

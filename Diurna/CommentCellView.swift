@@ -11,19 +11,19 @@ import Cocoa
 class CommentCellView: NSTableCellView {
 
     // MARK: Outlets
-    @IBOutlet weak var authorTextField: NSTextField!
+    @IBOutlet weak var replyArrowTextField: NSTextField!
 
-    @IBOutlet weak var opBadgeView: LightColoredBadgeView!
+    @IBOutlet var authorTextField: NSTextField!
 
-    @IBOutlet weak var timeTextField: NSTextField!
+    @IBOutlet var opBadgeView: LightColoredBadgeView!
 
-    @IBOutlet weak var repliesButton: DisclosureButtonView!
+    @IBOutlet var timeTextField: NSTextField!
 
-    @IBOutlet weak var repliesTextField: NSTextField!
+    @IBOutlet var repliesButton: DisclosureButtonView!
 
-    @IBOutlet weak var commentTextSeparator: HorizontalLineSeparatorView!
+    @IBOutlet var repliesTextField: NSTextField!
 
-    @IBOutlet var commentTextView: CommentTextView! {
+    @IBOutlet var commentTextView: MarkupTextView! {
         didSet {
             commentTextView.backgroundColor = Themes.current.backgroundColor
             commentTextView.textColor = Themes.current.normalTextColor
@@ -31,10 +31,52 @@ class CommentCellView: NSTableCellView {
     }
 
     // MARK: Properties
-    var isExpanded: Bool = true {
+    override var objectValue: Any? {
         didSet {
-            repliesButton.isExpanded = isExpanded
-            repliesTextField.animator().isHidden = isExpanded
+            guard let comment = objectValue as? Comment else {
+                return
+            }
+
+            timeTextField.stringValue = comment.time.timeIntervalString
+            timeTextField.toolTip = comment.time.description(with: Locale.autoupdatingCurrent)
+            timeTextField.textColor = Themes.current.secondaryTextColor
+
+            guard comment.deleted != true else {
+                commentTextView.attributedStringValue = .empty
+                opBadgeView.isHidden = true
+                authorTextField.isEnabled = false
+                authorTextField.stringValue = "[deleted]"
+                authorTextField.textColor = Themes.current.disabledTextColor
+                timeTextField.textColor = Themes.current.disabledTextColor
+                return
+            }
+
+            if let author = comment.by {
+                authorTextField.stringValue = author
+                authorTextField.isEnabled = true
+                authorTextField.toolTip = "See \(author)'s profile"
+            } else {
+                authorTextField.stringValue = "unknown"
+                authorTextField.isEnabled = false
+                authorTextField.toolTip = ""
+            }
+
+            authorTextField.textColor = Themes.current.primaryTextColor
+            commentTextView.attributedStringValue = comment.text?.parseMarkup() ?? .empty
+        }
+    }
+
+    var isExpandable: Bool = false {
+        didSet {
+            repliesButton.isHidden = !isExpandable
+            repliesTextField.isHidden = !isExpandable
+        }
+    }
+
+    var isExpanded: Bool = false {
+        didSet {
+            repliesButton.isExpanded = isExpandable && isExpanded
+            repliesTextField.animator().isHidden = !isExpandable || isExpanded
         }
     }
 
@@ -66,52 +108,20 @@ class CommentCellView: NSTableCellView {
     }
 
     @IBAction private func showUserDetailsPopover(_: NSTextField) {
-        guard let user = (objectValue as? Comment)?.by,
-            let userDetailsPopoverViewController = userDetailsPopover.contentViewController as? UserDetailsPopoverViewController else {
+        guard
+            let user = (objectValue as? Comment)?.by,
+            let userDetailsPopoverViewController = userDetailsPopover.contentViewController as? UserDetailsPopoverViewController
+        else {
             return
         }
 
-        userDetailsPopover.show(relativeTo: authorTextField.bounds, of: authorTextField, preferredEdge: .maxY)
-        userDetailsPopoverViewController.getUserInfo(user)
-    }
-
-    // MARK: Methods
-    func configureFor(_ comment: Comment, story: Story?) {
-        timeTextField.stringValue = comment.time.timeIntervalString
-        timeTextField.toolTip = comment.time.description(with: Locale.autoupdatingCurrent)
-        timeTextField.textColor = Themes.current.secondaryTextColor
-
-        guard !comment.deleted else {
-            commentTextView.attributedStringValue = NSAttributedString()
-            opBadgeView.isHidden = true
-            authorTextField.isEnabled = false
-            authorTextField.stringValue = "[deleted]"
-            authorTextField.textColor = Themes.current.disabledTextColor
-            timeTextField.textColor = Themes.current.disabledTextColor
-            return
-        }
-
-        authorTextField.stringValue = comment.by ?? "unknown"
-        authorTextField.isEnabled = comment.by != nil
-        authorTextField.textColor = Themes.current.primaryTextColor
-
-        opBadgeView.isHidden = comment.by != story?.by
-
-        commentTextView.attributedStringValue = comment.text.parseMarkup() 
-        commentTextView.setTextColor(
-            Themes.current.normalTextColor,
-            range: NSRange(0 ..< commentTextView.attributedString().length)
+        userDetailsPopover.show(
+            relativeTo: authorTextField.bounds,
+            of: authorTextField,
+            preferredEdge: .maxY
         )
 
-        objectValue = comment
-    }
-
-    func heightForWidth(_ width: CGFloat) -> CGFloat {
-        frame.size.width = width
-
-        layoutSubtreeIfNeeded()
-
-        return fittingSize.height
+        userDetailsPopoverViewController.show(user)
     }
 }
 
@@ -120,10 +130,10 @@ extension Notification.Name {
     static let toggleCommentRepliesNotification = Notification.Name("ToggleCommentRepliesNotification")
 }
 
+// MARK: - NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    static let commentCell = NSUserInterfaceItemIdentifier("CommentCell")
+}
+
 // MARK: - NSPopover Delegate
 extension CommentCellView: NSPopoverDelegate {}
-
-// MARK: - Reusable
-extension CommentCellView: Reusable {
-    static let reuseIdentifier = NSUserInterfaceItemIdentifier("CommentCell")
-}
