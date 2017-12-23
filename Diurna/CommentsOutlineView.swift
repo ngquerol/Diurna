@@ -11,6 +11,35 @@ import Cocoa
 class CommentsOutlineView: NSOutlineView {
 
     // MARK: Methods
+    func flashRow(at rowIndex: Int, with color: NSColor) {
+        guard let rowView = rowView(atRow: rowIndex, makeIfNecessary: false) else {
+            return
+        }
+
+        let currentBackgroundColor = rowView.backgroundColor
+
+        rowView.layer?.masksToBounds = true
+        rowView.layer?.cornerRadius = 5
+        rowView.layer?.borderWidth = 10
+        rowView.layer?.borderColor = .clear
+        rowView.layer?.bounds = rowView.bounds.insetBy(dx: 5, dy: 5)
+        rowView.layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        rowView.layer?.position = CGPoint(x: rowView.frame.midX, y: rowView.frame.midY)
+
+        NSAnimationContext.runAnimationGroup({ _ in
+            scrollRowToVisible(rowIndex)
+        }, completionHandler: {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.25
+                rowView.animator().backgroundColor = color
+            }, completionHandler: {
+                NSAnimationContext.runAnimationGroup({ _ in
+                    rowView.animator().backgroundColor = currentBackgroundColor
+                })
+            })
+        })
+    }
+
     override func frameOfOutlineCell(atRow _: Int) -> NSRect {
         return .zero // don't show the disclosure triangle
     }

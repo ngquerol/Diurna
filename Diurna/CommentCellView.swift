@@ -11,11 +11,19 @@ import Cocoa
 class CommentCellView: NSTableCellView {
 
     // MARK: Outlets
-    @IBOutlet weak var replyArrowTextField: NSTextField!
+    @IBOutlet var replyArrowTextField: ClickableTextField! {
+        didSet {
+            replyArrowTextField.toolTip = "Go to parent comment"
+        }
+    }
 
     @IBOutlet var authorTextField: NSTextField!
 
-    @IBOutlet var opBadgeView: LightColoredBadgeView!
+    @IBOutlet var opBadgeView: LightColoredBadgeView! {
+        didSet {
+            opBadgeView.toolTip = "Story author"
+        }
+    }
 
     @IBOutlet var timeTextField: NSTextField!
 
@@ -107,6 +115,20 @@ class CommentCellView: NSTableCellView {
         )
     }
 
+    @IBAction private func goToParentComment(_: ClickableTextField) {
+        guard let comment = objectValue as? Comment else {
+            return
+        }
+
+        NotificationCenter.default.post(
+            name: .goToParentCommentNotification,
+            object: self,
+            userInfo: [
+                "childComment": comment,
+            ]
+        )
+    }
+
     @IBAction private func showUserDetailsPopover(_: NSTextField) {
         guard
             let user = (objectValue as? Comment)?.by,
@@ -128,6 +150,7 @@ class CommentCellView: NSTableCellView {
 // MARK: - Notifications
 extension Notification.Name {
     static let toggleCommentRepliesNotification = Notification.Name("ToggleCommentRepliesNotification")
+    static let goToParentCommentNotification = Notification.Name("GoToParentCommentNotification")
 }
 
 // MARK: - NSUserInterfaceItemIdentifier

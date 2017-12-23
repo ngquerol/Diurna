@@ -403,7 +403,7 @@
                 </viewController>
                 <customObject id="Vjy-01-kSQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="292"/>
+            <point key="canvasLocation" x="2151" y="202"/>
         </scene>
         <!--Story Master View Controller-->
         <scene sceneID="xeR-Wv-iY9">
@@ -689,7 +689,7 @@
                 </viewController>
                 <customObject id="TL9-7f-rZu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163" y="876"/>
+            <point key="canvasLocation" x="2267" y="764"/>
         </scene>
         <!--Main Split View Controller-->
         <scene sceneID="eZM-FY-2yT">
@@ -729,14 +729,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="75" horizontalPageScroll="10" verticalLineScroll="75" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="UAN-Vz-6co">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="75" horizontalPageScroll="10" verticalLineScroll="75" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="UAN-Vz-6co" customClass="FadingScrollView" customModule="Diurna" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="KCB-tL-oux">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="20" outlineTableColumn="1MB-pD-h4x" id="TlW-kW-eAR" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="20" outlineTableColumn="1MB-pD-h4x" id="TlW-kW-eAR" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="195"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="0.0" height="5"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -762,13 +762,16 @@
                                                                 <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEd-dx-TsX">
                                                                     <rect key="frame" x="15" y="45" width="141" height="20"/>
                                                                     <subviews>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-Nh-E3J">
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-Nh-E3J" customClass="ClickableTextField" customModule="Diurna" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="5" width="16" height="11"/>
                                                                             <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="⮑" id="kBX-1q-R0k">
                                                                                 <font key="font" metaFont="miniSystem"/>
                                                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <connections>
+                                                                                <action selector="goToParentComment:" target="K2k-gF-5pE" id="JAT-WT-QyD"/>
+                                                                            </connections>
                                                                         </textField>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-YZ-5w8" customClass="ClickableTextField" customModule="Diurna" customModuleProvider="target">
                                                                             <rect key="frame" x="15" y="3" width="40" height="14"/>
@@ -781,7 +784,7 @@
                                                                                 <action selector="showUserDetailsPopover:" target="K2k-gF-5pE" id="k1b-Dq-8UX"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <customView toolTip="Author" translatesAutoresizingMaskIntoConstraints="NO" id="lHq-S8-1tH" customClass="LightColoredBadgeView" customModule="Diurna" customModuleProvider="target">
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="lHq-S8-1tH" customClass="LightColoredBadgeView" customModule="Diurna" customModuleProvider="target">
                                                                             <rect key="frame" x="58" y="3" width="25" height="15"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="15" id="RFF-3o-mlI"/>
@@ -817,7 +820,6 @@
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="OVQ-Fq-dCY"/>
-                                                                        <constraint firstItem="2l4-Nh-E3J" firstAttribute="centerY" secondItem="tfM-YZ-5w8" secondAttribute="centerY" id="Poo-eP-X1q"/>
                                                                     </constraints>
                                                                     <visibilityPriorities>
                                                                         <integer value="1000"/>
@@ -897,6 +899,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
+                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="5" bottom="0.0"/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="n1v-Ml-1pt">
                                     <rect key="frame" x="-100" y="-100" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -943,7 +946,7 @@
                 </viewController>
                 <customObject id="6hK-0V-FEK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099" y="1342"/>
+            <point key="canvasLocation" x="2100" y="1272"/>
         </scene>
         <!--Story Details View Controller-->
         <scene sceneID="uwq-OP-dde">

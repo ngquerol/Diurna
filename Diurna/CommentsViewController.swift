@@ -11,15 +11,13 @@ import Cocoa
 class CommentsViewController: NSViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var commentsScrollViewWidthConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var commentsScrollView: NSScrollView! {
         didSet {
             commentsScrollView.backgroundColor = Themes.current.backgroundColor
         }
     }
 
-    @IBOutlet weak var commentsOutlineView: NSOutlineView! {
+    @IBOutlet weak var commentsOutlineView: CommentsOutlineView! {
         didSet {
             commentsOutlineView.backgroundColor = Themes.current.backgroundColor
             prototypeCellView = commentsOutlineView.makeView(
@@ -70,6 +68,13 @@ class CommentsViewController: NSViewController {
             name: .toggleCommentRepliesNotification,
             object: nil
         )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: .scrollToParentComment,
+            name: .goToParentCommentNotification,
+            object: nil
+        )
     }
 
     override func viewWillDisappear() {
@@ -92,6 +97,26 @@ class CommentsViewController: NSViewController {
         } else {
             commentsOutlineView.animator().expandItem(comment, expandChildren: toggleReplies)
         }
+    }
+
+    @objc func goToParentComment(_ notification: Notification) {
+        guard
+            let comment = notification.userInfo?["childComment"] as? Comment
+        else {
+            return
+        }
+
+        let parentComment = commentsOutlineView.parent(forItem: comment),
+            parentCommentRowIndex = commentsOutlineView.row(forItem: parentComment)
+
+        guard parentCommentRowIndex != -1 else {
+            return
+        }
+
+        commentsOutlineView.flashRow(
+            at: parentCommentRowIndex,
+            with: Themes.current.cellHighlightForegroundColor.blended(withFraction: 0.75, of: .white)!
+        )
     }
 
     private func updateComments() {
@@ -161,6 +186,7 @@ class CommentsViewController: NSViewController {
 // MARK: - Selectors
 private extension Selector {
     static let toggleCommentReplies = #selector(CommentsViewController.toggleCommentReplies(_:))
+    static let scrollToParentComment = #selector(CommentsViewController.goToParentComment(_:))
 }
 
 // MARK: - NetworkingAware
@@ -235,9 +261,8 @@ extension CommentsViewController: NSOutlineViewDelegate {
         cellView?.opBadgeView.isHidden = comment?.by != selectedStory?.by
 
         let repliesCount = commentsOutlineView.numberOfChildren(ofItem: comment)
-
         cellView?.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
-        cellView?.replyArrowTextField.isHidden = repliesCount == 0
+        cellView?.replyArrowTextField.isHidden = commentsOutlineView.parent(forItem: comment) == nil
 
         return cellView
     }
@@ -253,3 +278,4 @@ extension CommentsViewController: NSOutlineViewDelegate {
         })
     }
 }
+

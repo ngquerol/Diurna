@@ -85,8 +85,8 @@ class MarkupTextView: NSTextView {
     private func commonSetup() {
         textContainerInset = NSSize(width: 5.0, height: 5.0) // FIXME: @IBInspectable et al.
         isHorizontallyResizable = false
-        isVerticallyResizable = true
-        drawsBackground = true
+        isVerticallyResizable = false
+        drawsBackground = false
         isEditable = false
         isSelectable = true
         isRichText = false

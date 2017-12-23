@@ -28,6 +28,7 @@
 		8D4630981E7B073600B31BA9 /* TransparentDividerSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4630971E7B073600B31BA9 /* TransparentDividerSplitView.swift */; };
 		8D4DC0071D4A534F0066EB11 /* MarkupLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */; };
 		8D4DC0091D4A53830066EB11 /* MarkupTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */; };
+		8D4DC54B1FEC210B003997C5 /* FadingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC54A1FEC210B003997C5 /* FadingScrollView.swift */; };
 		8D5D02051D67AEEC00D22259 /* NSImageView+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5D02041D67AEEC00D22259 /* NSImageView+Tint.swift */; };
 		8D5DB2181D637909009A8E71 /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = 8D5DB2171D637909009A8E71 /* TestData */; };
 		8D5ED1DB1C570165004440FD /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentCellView.swift */; };
@@ -86,6 +87,7 @@
 		8D4630971E7B073600B31BA9 /* TransparentDividerSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentDividerSplitView.swift; sourceTree = "<group>"; };
 		8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupLayoutManager.swift; sourceTree = "<group>"; };
 		8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTextView.swift; sourceTree = "<group>"; };
+		8D4DC54A1FEC210B003997C5 /* FadingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadingScrollView.swift; sourceTree = "<group>"; };
 		8D5D02041D67AEEC00D22259 /* NSImageView+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImageView+Tint.swift"; sourceTree = "<group>"; };
 		8D5DB2171D637909009A8E71 /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestData; sourceTree = "<group>"; };
 		8D5ED1DA1C570165004440FD /* CommentCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				8DDF25BA1EED577900402E54 /* ClickableTextField.swift */,
 				8D5ED1DA1C570165004440FD /* CommentCellView.swift */,
 				8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */,
+				8D4DC54A1FEC210B003997C5 /* FadingScrollView.swift */,
 				8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */,
 				8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */,
 				8DA296A11D2ABEC50072DABB /* HorizontalLineSeparatorView.swift */,
@@ -439,6 +442,7 @@
 				8D2630341C754EC900CFFE62 /* String+MarkupParser.swift in Sources */,
 				8D72DFC71C50313100ADEBB8 /* StoryCellView.swift in Sources */,
 				8D16E97E1D217A9700FD1153 /* MainWindowController.swift in Sources */,
+				8D4DC54B1FEC210B003997C5 /* FadingScrollView.swift in Sources */,
 				8DEC92261C71F4B300833317 /* User.swift in Sources */,
 				8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */,
 				8DA296A21D2ABEC50072DABB /* HorizontalLineSeparatorView.swift in Sources */,
