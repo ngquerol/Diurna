@@ -11,6 +11,7 @@ import Cocoa
 class CommentCellView: NSTableCellView {
 
     // MARK: Outlets
+
     @IBOutlet var replyArrowTextField: ClickableTextField! {
         didSet {
             replyArrowTextField.toolTip = "Go to parent comment"
@@ -39,6 +40,7 @@ class CommentCellView: NSTableCellView {
     }
 
     // MARK: Properties
+
     override var objectValue: Any? {
         didSet {
             guard let comment = objectValue as? Comment else {
@@ -101,6 +103,7 @@ class CommentCellView: NSTableCellView {
     }()
 
     // MARK: Actions
+
     @IBAction private func toggleReplies(_: NSButton) {
         let toggleChildren = NSEvent.modifierFlags.contains(.option)
 
@@ -148,15 +151,18 @@ class CommentCellView: NSTableCellView {
 }
 
 // MARK: - Notifications
+
 extension Notification.Name {
     static let toggleCommentRepliesNotification = Notification.Name("ToggleCommentRepliesNotification")
     static let goToParentCommentNotification = Notification.Name("GoToParentCommentNotification")
 }
 
 // MARK: - NSUserInterfaceItemIdentifier
+
 extension NSUserInterfaceItemIdentifier {
     static let commentCell = NSUserInterfaceItemIdentifier("CommentCell")
 }
 
 // MARK: - NSPopover Delegate
+
 extension CommentCellView: NSPopoverDelegate {}

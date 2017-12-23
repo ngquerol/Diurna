@@ -11,6 +11,7 @@ import Cocoa
 class MainWindowController: NSWindowController {
 
     // MARK: Window Lifecycle
+
     override func windowDidLoad() {
         super.windowDidLoad()
 
@@ -28,6 +29,7 @@ class MainWindowController: NSWindowController {
 }
 
 // MARK: - NSWindowDelegate
+
 extension MainWindowController: NSWindowDelegate {
     func windowWillEnterFullScreen(_: Notification) {
         NotificationCenter.default.post(name: .enterFullScreenNotification, object: self)
@@ -39,6 +41,7 @@ extension MainWindowController: NSWindowDelegate {
 }
 
 // MARK: - Notifications
+
 extension Notification.Name {
     static let enterFullScreenNotification = Notification.Name("EnterFullScreenNotification")
     static let exitFullScreenNotification = Notification.Name("ExitFullScreenNotification")

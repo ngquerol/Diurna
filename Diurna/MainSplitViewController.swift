@@ -11,7 +11,8 @@ import Cocoa
 class MainSplitViewController: NSSplitViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var sidebarSplitViewItem: NSSplitViewItem! {
+
+    @IBOutlet var sidebarSplitViewItem: NSSplitViewItem! {
         didSet {
             sidebarSplitViewItem.minimumThickness = 68.0
             sidebarSplitViewItem.maximumThickness = 68.0
@@ -19,9 +20,9 @@ class MainSplitViewController: NSSplitViewController {
         }
     }
 
-    @IBOutlet weak var storiesSplitViewItem: NSSplitViewItem!
-    
-    @IBOutlet weak var storySplitViewItem: NSSplitViewItem! {
+    @IBOutlet var storiesSplitViewItem: NSSplitViewItem!
+
+    @IBOutlet var storySplitViewItem: NSSplitViewItem! {
         didSet {
             storySplitViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }

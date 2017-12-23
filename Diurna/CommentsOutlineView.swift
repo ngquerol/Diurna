@@ -11,6 +11,7 @@ import Cocoa
 class CommentsOutlineView: NSOutlineView {
 
     // MARK: Methods
+
     func flashRow(at rowIndex: Int, with color: NSColor) {
         guard let rowView = rowView(atRow: rowIndex, makeIfNecessary: false) else {
             return
@@ -85,6 +86,7 @@ class CommentsOutlineView: NSOutlineView {
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let openCommentInBrowser = #selector(CommentsOutlineView.openCommentInBrowser(_:))
 }

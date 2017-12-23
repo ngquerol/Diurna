@@ -26,6 +26,7 @@ protocol Item: JSONDecodable, Hashable {
 }
 
 // MARK: - Hashable
+
 extension Hashable where Self: Item {
 
     var hashValue: Int {

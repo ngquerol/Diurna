@@ -11,6 +11,7 @@ import Cocoa
 class StoryDetailsViewController: NSViewController {
 
     // MARK: Outlets
+
     @IBOutlet var titleTextField: NSTextField! {
         didSet {
             titleTextField.backgroundColor = Themes.current.backgroundColor
@@ -37,15 +38,16 @@ class StoryDetailsViewController: NSViewController {
 
     @IBOutlet var contentTextField: NSTextField!
 
-    @IBOutlet weak var contentTextFieldMaxHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var contentTextFieldMaxHeightConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var contentDisclosureButton: DisclosureButtonView! {
+    @IBOutlet var contentDisclosureButton: DisclosureButtonView! {
         didSet {
             contentDisclosureButton.isExpanded = true
         }
     }
 
     // MARK: Properties
+
     var selectedStory: Story? {
         didSet {
             guard let story = selectedStory else {
@@ -61,6 +63,7 @@ class StoryDetailsViewController: NSViewController {
     private let storyContentExpandedHeight: CGFloat = 150
 
     // MARK: View lifecycle
+
     override func viewDidLayout() {
         super.viewDidLayout()
 
@@ -70,7 +73,7 @@ class StoryDetailsViewController: NSViewController {
         contentTextField.preferredMaxLayoutWidth = availableWidth
     }
 
-    @IBAction func userDidToggleDescription(_ sender: Any) {
+    @IBAction func userDidToggleDescription(_: Any) {
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = true
             context.duration = 0.25
@@ -80,6 +83,7 @@ class StoryDetailsViewController: NSViewController {
     }
 
     // MARK: Methods
+
     private func updateViews(with story: Story) {
         titleTextField.stringValue = story.title
         titleTextField.toolTip = story.title

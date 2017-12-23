@@ -11,6 +11,7 @@ import Foundation
 struct FirebaseRESTAPIClient {
 
     // MARK: Properties
+
     static let sharedInstance = FirebaseRESTAPIClient()
 
     private let requestsQueue = DispatchQueue(
@@ -29,6 +30,7 @@ struct FirebaseRESTAPIClient {
     private var urlSession: URLSession
 
     // MARK: Initializers
+
     private init() {
         let sessionConfig = URLSessionConfiguration.default
 
@@ -49,7 +51,7 @@ struct FirebaseRESTAPIClient {
         case let (_, _, .some(error)):
             return .failure(.networkError(error as NSError))
 
-        case let (_, .some(response), _) where !(200..<300 ~= response.statusCode):
+        case let (_, .some(response), _) where !(200 ..< 300 ~= response.statusCode):
             return .failure(.invalidHTTPResponse(response))
 
         case let (data, _, _) where data == nil || data?.count == 0:
@@ -112,7 +114,7 @@ struct FirebaseRESTAPIClient {
     private func fetchStoriesIds(of type: StoryType, count: Int = 500, completion: @escaping (Result<[Int], APIError>) -> Void) {
         getResource(HackerNewsAPI.stories(ofType: type)) { dataResult in
             let idsResult = dataResult.flatMap { data in
-                Result({ () -> [Int] in 
+                Result({ () -> [Int] in
                     let ids = try self.jsonDecoder.decode([Int].self, from: data)
                     return Array(ids.prefix(through: count - 1))
                 })
@@ -134,7 +136,7 @@ struct FirebaseRESTAPIClient {
                 }
 
                 let fetchGroup = DispatchGroup(),
-                progress = Progress(totalUnitCount: Int64(kidsIds.count))
+                    progress = Progress(totalUnitCount: Int64(kidsIds.count))
                 var children = [Comment?](repeating: nil, count: kidsIds.count)
 
                 for (index, id) in kidsIds.enumerated() {
@@ -188,7 +190,7 @@ extension FirebaseRESTAPIClient: HackerNewsAPIClient {
         }
 
         let fetchGroup = DispatchGroup(),
-        progress = Progress(totalUnitCount: Int64(kids.count))
+            progress = Progress(totalUnitCount: Int64(kids.count))
         var topLevelComments = [Result<Comment, APIError>?](repeating: nil, count: kids.count)
 
         for (index, id) in kids.enumerated() {

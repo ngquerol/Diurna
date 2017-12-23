@@ -11,13 +11,14 @@ import Cocoa
 class CommentsViewController: NSViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var commentsScrollView: NSScrollView! {
+
+    @IBOutlet var commentsScrollView: NSScrollView! {
         didSet {
             commentsScrollView.backgroundColor = Themes.current.backgroundColor
         }
     }
 
-    @IBOutlet weak var commentsOutlineView: CommentsOutlineView! {
+    @IBOutlet var commentsOutlineView: CommentsOutlineView! {
         didSet {
             commentsOutlineView.backgroundColor = Themes.current.backgroundColor
             prototypeCellView = commentsOutlineView.makeView(
@@ -27,7 +28,7 @@ class CommentsViewController: NSViewController {
         }
     }
 
-    @IBOutlet weak var progressOverlay: ProgressOverlayView! {
+    @IBOutlet var progressOverlay: ProgressOverlayView! {
         didSet {
             progressOverlay.isHidden = true
             progressOverlay.progressMessage.stringValue = "Loading comments..."
@@ -35,13 +36,14 @@ class CommentsViewController: NSViewController {
         }
     }
 
-    @IBOutlet weak var commentsPlaceholder: NSTextField! {
+    @IBOutlet var commentsPlaceholder: NSTextField! {
         didSet {
             commentsPlaceholder.isHidden = true
         }
     }
 
     // MARK: Properties
+
     var selectedStory: Story? {
         didSet {
             updateComments()
@@ -55,10 +57,11 @@ class CommentsViewController: NSViewController {
     }
 
     private var prototypeCellView: CommentCellView?
-    
+
     private var progressObservation: NSKeyValueObservation?
 
     // MARK: View Lifecycle
+
     override func viewWillAppear() {
         super.viewWillAppear()
 
@@ -84,6 +87,7 @@ class CommentsViewController: NSViewController {
     }
 
     // MARK: Methods
+
     @objc func toggleCommentReplies(_ notification: Notification) {
         guard notification.name == .toggleCommentRepliesNotification,
             let cellView = notification.object as? CommentCellView,
@@ -184,15 +188,18 @@ class CommentsViewController: NSViewController {
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let toggleCommentReplies = #selector(CommentsViewController.toggleCommentReplies(_:))
     static let scrollToParentComment = #selector(CommentsViewController.goToParentComment(_:))
 }
 
 // MARK: - NetworkingAware
+
 extension CommentsViewController: NetworkingAware {}
 
 // MARK: - NSOutlineView Data Source
+
 extension CommentsViewController: NSOutlineViewDataSource {
     func outlineView(_: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         guard
@@ -232,6 +239,7 @@ extension CommentsViewController: NSOutlineViewDataSource {
 }
 
 // MARK: - NSOutlineView Delegate
+
 extension CommentsViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         guard
@@ -268,7 +276,7 @@ extension CommentsViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewColumnDidResize(_: Notification) {
-        let wholeRowsIndexes: IndexSet = IndexSet(integersIn:0..<commentsOutlineView.numberOfRows)
+        let wholeRowsIndexes: IndexSet = IndexSet(integersIn: 0 ..< commentsOutlineView.numberOfRows)
 
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0
@@ -278,4 +286,3 @@ extension CommentsViewController: NSOutlineViewDelegate {
         })
     }
 }
-

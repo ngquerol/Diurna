@@ -11,6 +11,7 @@ import Cocoa
 class TransparentDividerSplitView: NSSplitView {
 
     // MARK: Properties
+
     override var dividerColor: NSColor {
         return Themes.current.dividerColor
     }

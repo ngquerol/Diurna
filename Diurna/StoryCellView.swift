@@ -11,6 +11,7 @@ import Cocoa
 class StoryCellView: NSTableCellView {
 
     // MARK: Outlets
+
     @IBOutlet var titleTextField: NSTextField!
     @IBOutlet var urlButton: ThemeableButton!
     @IBOutlet var authorDateTextField: NSTextField!
@@ -21,6 +22,7 @@ class StoryCellView: NSTableCellView {
     @IBOutlet var rightCellSpacingConstraint: NSLayoutConstraint!
 
     // MARK: Properties
+
     override var backgroundStyle: NSView.BackgroundStyle {
         didSet {
             if backgroundStyle == .dark {
@@ -70,6 +72,7 @@ class StoryCellView: NSTableCellView {
     }
 
     // MARK: Methods
+
     override func layout() {
         super.layout()
 
@@ -94,11 +97,13 @@ class StoryCellView: NSTableCellView {
 }
 
 // MARK: - NSUserInterfaceItemIdentifier
+
 extension NSUserInterfaceItemIdentifier {
     static let storyCell = NSUserInterfaceItemIdentifier("StoryCell")
 }
 
 // MARK: - NSLayoutConstraint.Priority
+
 private extension NSLayoutConstraint.Priority {
     static let almostRequired = NSLayoutConstraint.Priority(NSLayoutConstraint.Priority.required.rawValue - 1.0)
     static let almostHigh = NSLayoutConstraint.Priority(NSLayoutConstraint.Priority.defaultHigh.rawValue - 1.0)

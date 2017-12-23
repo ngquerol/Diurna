@@ -12,9 +12,11 @@ import Cocoa
 class AppDelegate: NSObject {
 
     // MARK: Outlets
-    @IBOutlet weak var themesMenu: NSMenuItem!
+
+    @IBOutlet var themesMenu: NSMenuItem!
 
     // MARK: Properties
+
     lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: .aboutWindow)
 
     // MARK: Methods
@@ -42,6 +44,7 @@ class AppDelegate: NSObject {
 }
 
 // MARK: - NSApplicationDelegate
+
 extension AppDelegate: NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {

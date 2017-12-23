@@ -11,19 +11,21 @@ import Cocoa
 class StoryMasterViewController: NSViewController {
 
     // MARK: Properties
+
     private var detailsViewController: StoryDetailsViewController? {
         didSet {
             detailsViewController?.view.isHidden = true
         }
     }
-    
-    private var commentsViewController: CommentsViewController?  {
+
+    private var commentsViewController: CommentsViewController? {
         didSet {
             commentsViewController?.view.isHidden = true
         }
     }
 
     // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +58,7 @@ class StoryMasterViewController: NSViewController {
     }
 
     // MARK: Methods
+
     @objc func showStory(_ notification: Notification) {
         guard
             notification.name == .storySelectionNotification,
@@ -73,6 +76,7 @@ class StoryMasterViewController: NSViewController {
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let showStory = #selector(StoryMasterViewController.showStory(_:))
 }

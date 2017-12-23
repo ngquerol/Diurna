@@ -3,6 +3,7 @@ import Cocoa
 class MarkupTextView: NSTextView {
 
     // MARK: Properties
+
     override var intrinsicContentSize: NSSize {
         guard
             let container = textContainer,
@@ -13,7 +14,7 @@ class MarkupTextView: NSTextView {
 
         // FIXME: The text container's width is supposed to update according to the text view's frame,
         // but it is seems `widthTracksTextView` is not enough here.
-        let availableWidth = bounds.width// - textContainerInset.width
+        let availableWidth = bounds.width // - textContainerInset.width
 
         container.size = NSSize(width: availableWidth, height: .greatestFiniteMagnitude)
         manager.ensureLayout(for: container)
@@ -35,6 +36,7 @@ class MarkupTextView: NSTextView {
     }
 
     // MARK: Initializers
+
     override init(frame frameRect: NSRect) {
         let textStorage = NSTextStorage(),
             layoutManager = MarkupLayoutManager(),
@@ -68,6 +70,7 @@ class MarkupTextView: NSTextView {
     }
 
     // MARK: Methods
+
     override func layout() {
         super.layout()
 
@@ -103,6 +106,7 @@ class MarkupTextView: NSTextView {
 }
 
 // MARK: - NSTextView Delegate
+
 extension MarkupTextView: NSTextViewDelegate {
     func textView(_: NSTextView, menu: NSMenu, for _: NSEvent, at _: Int) -> NSMenu? {
         let hiddenSubmenusTitles = ["Spelling and Grammar", "Substitutions", "Speech"]

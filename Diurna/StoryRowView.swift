@@ -11,10 +11,11 @@ import Cocoa
 class StoryRowView: NSTableRowView {
 
     // MARK: Properties
+
     override var isOpaque: Bool {
         return true
     }
-    
+
     override var isNextRowSelected: Bool {
         didSet {
             setNeedsDisplay(bounds)
@@ -22,6 +23,7 @@ class StoryRowView: NSTableRowView {
     }
 
     // MARK: Methods
+
     override func drawSelection(in dirtyRect: NSRect) {
         guard selectionHighlightStyle != .none else { return }
 
@@ -46,6 +48,7 @@ class StoryRowView: NSTableRowView {
 }
 
 // MARK: - NSUserInterfaceItemIdentifier
+
 extension NSUserInterfaceItemIdentifier {
     static let storyRow = NSUserInterfaceItemIdentifier("StoryRow")
 }

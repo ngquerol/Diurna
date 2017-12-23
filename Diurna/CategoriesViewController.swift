@@ -11,15 +11,17 @@ import Cocoa
 class CategoriesViewController: NSViewController {
 
     // MARK: Outlets
+
     @IBOutlet var categoriesVisualEffectView: NSVisualEffectView!
 
     @IBOutlet var categoriesScrollView: NSScrollView!
 
-    @IBOutlet weak var categoriesTableView: NSTableView!
-    
-    @IBOutlet weak var categoriesTableViewTopSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var categoriesTableView: NSTableView!
+
+    @IBOutlet var categoriesTableViewTopSpacingConstraint: NSLayoutConstraint!
 
     // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,11 +53,13 @@ class CategoriesViewController: NSViewController {
     }
 
     // MARK: (De)initializer
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: Methods
+
     @objc func didEnterFullScreen(_ notification: Notification) {
         guard notification.name == .enterFullScreenNotification else { return }
 
@@ -80,22 +84,26 @@ class CategoriesViewController: NSViewController {
 }
 
 // MARK: - Notifications
+
 extension Notification.Name {
     static let newCategorySelectedNotification = Notification.Name("NewCategorySelectedNotification")
 }
 
 // MARK: - NSUserInterfaceItemIdentifier
+
 extension NSUserInterfaceItemIdentifier {
     static let categoryCell = NSUserInterfaceItemIdentifier("CategoryCell")
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let didEnterFullScreen = #selector(CategoriesViewController.didEnterFullScreen(_:))
     static let didExitFullScreen = #selector(CategoriesViewController.didExitFullScreen(_:))
 }
 
 // MARK: - NSTableView Data Source
+
 extension CategoriesViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
         return StoryType.allValues.count
@@ -103,6 +111,7 @@ extension CategoriesViewController: NSTableViewDataSource {
 }
 
 // MARK: - NSTableView Delegate
+
 extension CategoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         guard 0 ..< StoryType.allValues.count ~= row else { return nil }

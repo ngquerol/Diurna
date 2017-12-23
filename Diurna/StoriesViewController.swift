@@ -11,13 +11,14 @@ import Cocoa
 class StoriesViewController: NSViewController, NetworkingAware {
 
     // MARK: Outlets
-    @IBOutlet weak var scrollView: NSScrollView! {
+
+    @IBOutlet var scrollView: NSScrollView! {
         didSet {
             scrollView.backgroundColor = Themes.current.backgroundColor
         }
     }
 
-    @IBOutlet weak var tableView: NSTableView! {
+    @IBOutlet var tableView: NSTableView! {
         didSet {
             tableView.isHidden = true
             tableView.backgroundColor = Themes.current.backgroundColor
@@ -28,15 +29,15 @@ class StoriesViewController: NSViewController, NetworkingAware {
         }
     }
 
-    @IBOutlet weak var storiesToolbarView: NSView!
+    @IBOutlet var storiesToolbarView: NSView!
 
-    @IBOutlet weak var placeholderTextField: NSTextField! {
+    @IBOutlet var placeholderTextField: NSTextField! {
         didSet {
             placeholderTextField.isHidden = true
         }
     }
 
-    @IBOutlet weak var progressOverlay: ProgressOverlayView! {
+    @IBOutlet var progressOverlay: ProgressOverlayView! {
         didSet {
             progressOverlay.isHidden = true
             progressOverlay.progressIndicator.maxValue = 1.0
@@ -45,6 +46,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
     }
 
     // MARK: Properties
+
     private var storiesDataSource: [Story] = [] {
         didSet {
             storiesDataSource.sort()
@@ -63,11 +65,13 @@ class StoriesViewController: NSViewController, NetworkingAware {
     private var progressObservation: NSKeyValueObservation?
 
     // MARK: (De)initializer
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: View Lifecycle
+
     override func viewWillAppear() {
         super.viewWillAppear()
 
@@ -80,6 +84,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
     }
 
     // MARK: Actions
+
     @IBAction private func storiesCountButtonValueChanged(_ button: NSPopUpButton) {
         guard
             let storiesCountItem = button.selectedItem,
@@ -94,6 +99,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
     }
 
     // MARK: Methods
+
     @objc func updateStoriesCategory(_ notification: Notification) {
         guard notification.name == .newCategorySelectedNotification,
             let categoryName = notification.userInfo?["selectedCategory"] as? String else {
@@ -119,7 +125,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
         let progress = Progress(totalUnitCount: Int64(selectedStoriesCount))
 
         progress.becomeCurrent(withPendingUnitCount: Int64(selectedStoriesCount))
-        
+
         progressObservation = progress.observe(\.fractionCompleted, options: [.new, .initial]) { progress, _ in
             DispatchQueue.main.async {
                 self.progressOverlay.progressIndicator.doubleValue = progress.fractionCompleted
@@ -157,16 +163,19 @@ class StoriesViewController: NSViewController, NetworkingAware {
 }
 
 // MARK: - Notifications
+
 extension Notification.Name {
     static let storySelectionNotification = Notification.Name("StorySelectionNotification")
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let updateStoriesCategory = #selector(StoriesViewController.updateStoriesCategory(_:))
 }
 
 // MARK: - NSTableView Data Source
+
 extension StoriesViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
         return storiesDataSource.count
@@ -174,6 +183,7 @@ extension StoriesViewController: NSTableViewDataSource {
 }
 
 // MARK: - NSTableView Delegate
+
 extension StoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         guard let dummyCellView = prototypeCellView else {

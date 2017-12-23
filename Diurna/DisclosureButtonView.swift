@@ -11,6 +11,7 @@ import Cocoa
 @IBDesignable class DisclosureButtonView: NSButton {
 
     // MARK: Properties
+
     @IBInspectable var collapseImage: NSImage = #imageLiteral(resourceName: "CollapseIcon")
 
     @IBInspectable var expandImage: NSImage = #imageLiteral(resourceName: "ExpandIcon")
@@ -26,6 +27,7 @@ import Cocoa
     }
 
     // MARK: View Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -33,6 +35,7 @@ import Cocoa
     }
 
     // MARK: Methods
+
     override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
         isExpanded = !isExpanded
 

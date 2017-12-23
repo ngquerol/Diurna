@@ -11,6 +11,7 @@ import Cocoa
 class StoriesTableView: NSTableView {
 
     // MARK: Methods
+
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil),
             rowAtPoint = row(at: point)
@@ -46,6 +47,7 @@ class StoriesTableView: NSTableView {
 }
 
 // MARK: - Selectors
+
 private extension Selector {
     static let openStoryInBrowser = #selector(StoriesTableView.openStoryInBrowser(_:))
 }

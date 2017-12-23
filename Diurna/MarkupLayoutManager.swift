@@ -11,6 +11,7 @@ import Cocoa
 class MarkupLayoutManager: NSLayoutManager {
 
     // MARK: Properties
+
     override func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         drawCodeBlocks(forGlyphRange: glyphsToShow, at: origin)
 
@@ -18,6 +19,7 @@ class MarkupLayoutManager: NSLayoutManager {
     }
 
     // MARK: Methods
+
     private func drawCodeBlocks(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         guard
             let textStorage = textStorage,
@@ -70,6 +72,7 @@ class MarkupLayoutManager: NSLayoutManager {
 }
 
 // MARK: - NSBezierPath
+
 private extension NSBezierPath {
     var cgPath: CGPath? {
         guard elementCount != 0 else { return nil }
@@ -106,6 +109,7 @@ private extension NSBezierPath {
 }
 
 // MARK: - NSAttributedStringKey
+
 extension NSAttributedStringKey {
     static let codeBlock = NSAttributedStringKey(rawValue: "CodeBlockAttributeName")
 }

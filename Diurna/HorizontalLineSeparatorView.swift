@@ -11,10 +11,11 @@ import Cocoa
 @IBDesignable class HorizontalLineSeparatorView: NSView {
 
     // MARK: Properties
+
     @IBInspectable var separatorThickness: CGFloat = 1.0
 
     @IBInspectable var leftInset: CGFloat = 0.0
-    
+
     @IBInspectable var rightInset: CGFloat = 0.0
 
     override var intrinsicContentSize: NSSize {
@@ -22,6 +23,7 @@ import Cocoa
     }
 
     // MARK: Methods
+
     override func draw(_ dirtyRect: NSRect) {
         Themes.current.dividerColor.set()
 

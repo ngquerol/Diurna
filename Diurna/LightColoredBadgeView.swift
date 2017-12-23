@@ -11,6 +11,7 @@ import AppKit
 @IBDesignable class LightColoredBadgeView: NSView {
 
     // MARK: Outlets
+
     @IBInspectable var text: String = "Badge" {
         didSet {
             updateTitleAttributedString()
@@ -39,10 +40,11 @@ import AppKit
     }
 
     @IBInspectable var borderWidth: CGFloat = 0.0
-    
+
     @IBInspectable var cornerRadius: CGFloat = 0.0
 
     // MARK: Properties
+
     override var intrinsicContentSize: NSSize {
         let titleSize = titleAttributedString.size()
         return NSSize(width: ceil(titleSize.width) + horizontalPadding * 2, height: titleSize.height)
@@ -68,6 +70,7 @@ import AppKit
     }
 
     // MARK: Methods
+
     override func mouseDown(with _: NSEvent) {
         isPressed = true
     }

@@ -11,17 +11,19 @@ import Cocoa
 class StoryStatusView: NSView {
 
     // MARK: Outlets
+
     @IBOutlet var view: NSView!
 
-    @IBOutlet weak var scoreImageView: NSImageView!
+    @IBOutlet var scoreImageView: NSImageView!
 
-    @IBOutlet weak var scoreTextField: NSTextField!
+    @IBOutlet var scoreTextField: NSTextField!
 
-    @IBOutlet weak var commentsImageView: NSImageView!
+    @IBOutlet var commentsImageView: NSImageView!
 
-    @IBOutlet weak var commentsTextField: NSTextField!
+    @IBOutlet var commentsTextField: NSTextField!
 
     // MARK: Properties
+
     var score: Int = 0 {
         didSet {
             scoreTextField.stringValue = score.kFormatted
@@ -49,6 +51,7 @@ class StoryStatusView: NSView {
     }
 
     // MARK: Initializers
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
@@ -57,12 +60,13 @@ class StoryStatusView: NSView {
             owner: self,
             topLevelObjects: nil
         )
-        self.addSubview(self.view)
-        self.view.frame = self.bounds
+        addSubview(view)
+        view.frame = bounds
     }
 }
 
 // MARK: - NSNib.Name
+
 private extension NSNib.Name {
     static let storyStatusView = NSNib.Name("StoryStatusView")
 }

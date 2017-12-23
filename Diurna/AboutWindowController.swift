@@ -11,6 +11,7 @@ import Cocoa
 class AboutWindowController: NSWindowController {
 
     // MARK: Window Lifecycle
+
     override func windowDidLoad() {
         super.windowDidLoad()
 

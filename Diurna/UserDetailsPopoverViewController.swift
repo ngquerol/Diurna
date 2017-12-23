@@ -11,6 +11,7 @@ import Cocoa
 class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
 
     // MARK: Outlets
+
     @IBOutlet var contentStackView: NSStackView! {
         didSet {
             contentStackView.isHidden = true
@@ -42,6 +43,7 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
     @IBOutlet var aboutTextView: NSTextView!
 
     // MARK: Methods
+
     func show(_ name: String) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let `self` = self else { return }
@@ -75,6 +77,7 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
 }
 
 // MARK: - NSNib.Name
+
 extension NSNib.Name {
     static let userDetailsPopover = NSNib.Name("UserDetailsPopoverView")
 }

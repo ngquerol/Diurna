@@ -6,12 +6,13 @@
 //  Copyright © 2017 Nicolas Gaulard-Querol. All rights reserved.
 //
 
-import Foundation
 import Firebase
+import Foundation
 
 struct FirebaseAPIClient {
 
     // MARK: Properties
+
     static let sharedInstance = FirebaseAPIClient()
 
     private let requestsQueue = DispatchQueue(
@@ -26,11 +27,13 @@ struct FirebaseAPIClient {
     )
 
     // MARK: Initializers
+
     private init() {
         Firebase.defaultConfig().callbackQueue = responsesQueue
     }
 
     // MARK: Methods
+
     private func fetchItem<T: Item>(withId id: Int, completion: @escaping (Result<T, APIError>) -> Void) {
         let itemRefUrl = HackerNewsAPI.item(withId: id).path.absoluteString
 

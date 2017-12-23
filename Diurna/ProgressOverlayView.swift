@@ -11,6 +11,7 @@ import Cocoa
 class ProgressOverlayView: NSView {
 
     // MARK: Outlets
+
     @IBOutlet var view: NSView!
 
     @IBOutlet var progressStackView: NSStackView!
@@ -20,6 +21,7 @@ class ProgressOverlayView: NSView {
     @IBOutlet var progressIndicator: NSProgressIndicator!
 
     // MARK: Initializers
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
@@ -28,12 +30,13 @@ class ProgressOverlayView: NSView {
             owner: self,
             topLevelObjects: nil
         )
-        self.addSubview(self.view)
-        self.view.frame = self.bounds
+        addSubview(view)
+        view.frame = bounds
     }
 }
 
 // MARK: - NSNib.Name
+
 private extension NSNib.Name {
     static let progressOverlayView = NSNib.Name("ProgressOverlayView")
 }

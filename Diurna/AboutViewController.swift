@@ -11,17 +11,19 @@ import Cocoa
 class AboutViewController: NSViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var iconImageView: NSImageView!
 
-    @IBOutlet weak var nameTextField: NSTextField!
+    @IBOutlet var iconImageView: NSImageView!
 
-    @IBOutlet weak var versionTextField: NSTextField!
+    @IBOutlet var nameTextField: NSTextField!
+
+    @IBOutlet var versionTextField: NSTextField!
 
     @IBOutlet var creditsTextView: NSTextView!
-    
-    @IBOutlet weak var copyrightTextField: NSTextField!
+
+    @IBOutlet var copyrightTextField: NSTextField!
 
     // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,7 @@ class AboutViewController: NSViewController {
     }
 
     // MARK: Methods
+
     private func loadBundleInfo() {
         guard let info = Bundle.main.infoDictionary else { return }
 
