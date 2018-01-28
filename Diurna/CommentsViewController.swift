@@ -117,8 +117,8 @@ class CommentsViewController: NSViewController {
             return
         }
 
-        commentsOutlineView.flashRow(
-            at: parentCommentRowIndex,
+        commentsOutlineView.flashCell(
+            atColumn: 0, row: parentCommentRowIndex,
             with: Themes.current.cellHighlightForegroundColor.blended(withFraction: 0.75, of: .white)!
         )
     }
@@ -159,7 +159,7 @@ class CommentsViewController: NSViewController {
         apiClient.fetchComments(of: story) { [weak self] commentsResults in
             guard let `self` = self else { return }
 
-            let comments: [Comment] = commentsResults.flatMap {
+            let comments: [Comment] = commentsResults.compactMap {
                 switch $0 {
                 case let .success(comment): return comment
                 case .failure:
