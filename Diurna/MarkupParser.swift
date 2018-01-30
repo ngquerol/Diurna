@@ -80,7 +80,7 @@ struct MarkupParser {
     private mutating func parseText() -> String {
         return CFXMLCreateStringByUnescapingEntities(
             nil,
-            parser.consumeWhile { $0 != "<" } as CFString!,
+            parser.consumeWhile { $0 != "<" } as CFString,
             nil
         ) as String
     }
