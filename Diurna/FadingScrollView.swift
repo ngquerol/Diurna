@@ -8,9 +8,11 @@
 
 import Cocoa
 
-class FadingScrollView: NSScrollView {
+@IBDesignable class FadingScrollView: NSScrollView {
 
-    let fadePercentage: Float = 0.05
+    @IBInspectable var topFadePercentage: CGFloat = 0
+
+    @IBInspectable var bottomFadePercentage: CGFloat = 0
 
     override func layout() {
         super.layout()
@@ -32,9 +34,9 @@ class FadingScrollView: NSScrollView {
         gradientLayer.colors = [transparent, opaque, opaque, transparent]
         gradientLayer.locations = [
             0,
-            NSNumber(value: fadePercentage),
-//            NSNumber(value: 1 - fadePercentage),
-            1
+            (topFadePercentage / 100) as NSNumber,
+            (1 - (bottomFadePercentage / 100)) as NSNumber,
+            1,
         ]
 
         maskLayer.addSublayer(gradientLayer)
