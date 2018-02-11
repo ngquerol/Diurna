@@ -51,6 +51,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
     private var stories: [Story] = [] {
         didSet {
+            stories.sort()
             filteredStoriesDataSource = stories
         }
     }
