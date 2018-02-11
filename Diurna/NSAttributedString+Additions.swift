@@ -17,11 +17,11 @@ extension NSTextView {
 
     var attributedStringValue: NSAttributedString {
         get {
-            return attributedString()
+            return self.attributedString()
         }
 
         set {
-            textStorage?.setAttributedString(newValue)
+            self.textStorage?.setAttributedString(newValue)
         }
     }
 }

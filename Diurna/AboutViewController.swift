@@ -18,7 +18,7 @@ class AboutViewController: NSViewController {
 
     @IBOutlet var versionTextField: NSTextField!
 
-    @IBOutlet var creditsTextView: NSTextView!
+    @IBOutlet var creditsTextView: SelfSizingTextView!
 
     @IBOutlet var copyrightTextField: NSTextField!
 

@@ -30,21 +30,19 @@ class StoryDetailsViewController: NSViewController {
         }
     }
 
-    @IBOutlet var storyStatusView: StoryStatusView!
+    @IBOutlet var statusView: StoryStatusView!
 
-    @IBOutlet var storyStatusBottomSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomSpacingConstraint: NSLayoutConstraint!
 
-    @IBOutlet var storyStatusContentSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var contentSpacingConstraint: NSLayoutConstraint!
 
-    @IBOutlet var contentTextField: NSTextField!
+    @IBOutlet var contentScrollView: FadingScrollView!
 
-    @IBOutlet var contentTextFieldMaxHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var contentScrollViewHeightConstraint: NSLayoutConstraint!
 
-    @IBOutlet var contentDisclosureButton: DisclosureButtonView! {
-        didSet {
-            contentDisclosureButton.isExpanded = true
-        }
-    }
+    @IBOutlet var contentTextView: SelfSizingTextView!
+
+    @IBOutlet var contentDisclosureButton: DisclosureButtonView!
 
     // MARK: Properties
 
@@ -58,10 +56,6 @@ class StoryDetailsViewController: NSViewController {
         }
     }
 
-    private let storyContentCollapsedHeight: CGFloat = 0
-
-    private let storyContentExpandedHeight: CGFloat = 150
-
     // MARK: View lifecycle
 
     override func viewDidLayout() {
@@ -70,16 +64,22 @@ class StoryDetailsViewController: NSViewController {
         let availableWidth = view.bounds.width - (titleLeadingSpaceConstraint.constant + titleTrailingSpaceConstraint.constant)
 
         titleTextField.preferredMaxLayoutWidth = availableWidth
-        contentTextField.preferredMaxLayoutWidth = availableWidth
     }
 
     @IBAction func userDidToggleDescription(_: Any) {
-        NSAnimationContext.runAnimationGroup({ context in
-            context.allowsImplicitAnimation = true
-            context.duration = 0.25
-            contentTextFieldMaxHeightConstraint.constant = contentDisclosureButton.isExpanded ? storyContentExpandedHeight : storyContentCollapsedHeight
-            contentTextField.isHidden = !contentDisclosureButton.isExpanded
-        })
+        if contentDisclosureButton.isExpanded {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.25
+                contentScrollViewHeightConstraint.animator().constant = contentTextView.fittingSize.height
+                contentScrollView.animator().isHidden = !self.contentDisclosureButton.isExpanded
+            })
+        } else {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.25
+                contentScrollView.animator().isHidden = !contentDisclosureButton.isExpanded
+                contentScrollViewHeightConstraint.animator().constant = 0
+            })
+        }
     }
 
     // MARK: Methods
@@ -91,25 +91,25 @@ class StoryDetailsViewController: NSViewController {
 
         detailsTextField.stringValue = "by \(story.by), \(story.time.timeIntervalString)"
 
-        storyStatusView.score = story.score - 1
-        storyStatusView.comments = story.descendants ?? 0
+        statusView.score = story.score - 1
+        statusView.comments = story.descendants ?? 0
 
-        // TODO: height of content based on string height, with max
-
-        if let storyText = story.text?.parseMarkup() {
-            contentTextField.attributedStringValue = storyText
-            contentTextField.isHidden = false
+        if let text = story.text?.parseMarkup() {
+            contentTextView.attributedStringValue = text
+            contentScrollView.isHidden = false
             contentDisclosureButton.isHidden = false
 
-            storyStatusContentSpacingConstraint.priority = .defaultHigh
-            storyStatusBottomSpacingConstraint.priority = .defaultLow
+            contentSpacingConstraint.priority = .defaultHigh
+            bottomSpacingConstraint.priority = .defaultLow
         } else {
-            contentTextField.attributedStringValue = .empty
-            contentTextField.isHidden = true
+            contentTextView.attributedStringValue = .empty
+            contentScrollView.isHidden = true
             contentDisclosureButton.isHidden = true
 
-            storyStatusContentSpacingConstraint.priority = .defaultLow
-            storyStatusBottomSpacingConstraint.priority = .defaultHigh
+            contentSpacingConstraint.priority = .defaultLow
+            bottomSpacingConstraint.priority = .defaultHigh
         }
+
+        contentScrollViewHeightConstraint.constant = contentDisclosureButton.isExpanded ? contentTextView.fittingSize.height : 0
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14087.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -75,7 +75,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="270" height="75"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="QOb-ev-D0g">
+                                                <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="QOb-ev-D0g" customClass="SelfSizingTextView" customModule="Diurna" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="270" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,34 +191,13 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="hFA-yB-Ems">
+                            <menuItem title="Edit" id="8ZL-fD-S6R">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Edit" id="oi3-qk-dZS">
-                                    <items>
-                                        <menuItem title="Copy" keyEquivalent="c" id="1YI-iZ-hTt">
-                                            <connections>
-                                                <action selector="copy:" target="Ady-hI-5gd" id="hUZ-5k-CVf"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select All" keyEquivalent="a" id="G7C-xG-bGx">
-                                            <connections>
-                                                <action selector="selectAll:" target="Ady-hI-5gd" id="xX2-8l-M2a"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
                             </menuItem>
                             <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Theme" id="s3W-w6-HFU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Theme" id="Gx7-bx-Nbx"/>
-                                            <connections>
-                                                <action selector="userDidChangeTheme:" target="Voe-Tx-rLC" id="zac-gm-pQn"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Toggle Sidebar" keyEquivalent="s" id="omY-Hg-1Xe" userLabel="Toggle Sidebar">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
@@ -277,11 +256,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Diurna" customModuleProvider="target">
-                    <connections>
-                        <outlet property="themesMenu" destination="s3W-w6-HFU" id="aa1-XV-GSP"/>
-                    </connections>
-                </customObject>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Diurna" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="66"/>
@@ -471,6 +446,18 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="0f4-xb-55e">
                                 <rect key="frame" x="0.0" y="471" width="300" height="29"/>
                                 <subviews>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-4d-cqz">
+                                        <rect key="frame" x="7" y="5" width="239" height="19"/>
+                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="W6w-Gm-rbf">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                        <connections>
+                                            <action selector="userDidTypeInSearchField:" target="Pqr-aU-vhO" id="zie-ym-4ug"/>
+                                            <outlet property="delegate" destination="Pqr-aU-vhO" id="sYu-FK-b3t"/>
+                                        </connections>
+                                    </searchField>
                                     <popUpButton toolTip="Number of stories to display" focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-FV-neJ">
                                         <rect key="frame" x="251" y="6" width="44" height="17"/>
                                         <popUpButtonCell key="cell" type="roundRect" title="10" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" focusRingType="exterior" imageScaling="axesIndependently" inset="2" selectedItem="Er9-PX-8nB" id="09G-Gn-wQr">
@@ -489,14 +476,17 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
-                                            <action selector="storiesCountButtonValueChanged:" target="Pqr-aU-vhO" id="7Kf-rl-GgV"/>
+                                            <action selector="storiesCountButtonValueChanged:" target="Pqr-aU-vhO" id="Pcq-oI-8Kb"/>
                                         </connections>
                                     </popUpButton>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ux9-FV-neJ" firstAttribute="centerY" secondItem="0f4-xb-55e" secondAttribute="centerY" id="5bL-Ga-tR8"/>
                                     <constraint firstAttribute="trailing" secondItem="ux9-FV-neJ" secondAttribute="trailing" constant="5" id="JUb-xr-64o"/>
+                                    <constraint firstItem="3ML-4d-cqz" firstAttribute="leading" secondItem="0f4-xb-55e" secondAttribute="leading" constant="7" id="LIa-09-t1W"/>
+                                    <constraint firstItem="ux9-FV-neJ" firstAttribute="leading" secondItem="3ML-4d-cqz" secondAttribute="trailing" constant="5" id="Lcz-A8-wQn"/>
                                     <constraint firstAttribute="height" constant="29" id="Xag-ll-4ir"/>
+                                    <constraint firstItem="3ML-4d-cqz" firstAttribute="centerY" secondItem="0f4-xb-55e" secondAttribute="centerY" id="a5f-Hh-pZh"/>
                                 </constraints>
                             </customView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cvm-mh-jeN">
@@ -683,6 +673,7 @@
                         <outlet property="placeholderTextField" destination="9LL-xn-OtE" id="cq4-mP-1Nj"/>
                         <outlet property="progressOverlay" destination="u9t-ND-cNT" id="1pW-c0-WUx"/>
                         <outlet property="scrollView" destination="JMM-Nw-2a3" id="Eap-Na-BlV"/>
+                        <outlet property="storiesSearchField" destination="3ML-4d-cqz" id="Cyg-4k-twe"/>
                         <outlet property="storiesToolbarView" destination="0f4-xb-55e" id="hjy-1F-h7q"/>
                         <outlet property="tableView" destination="v5w-j5-ky0" id="pQx-eZ-FCL"/>
                     </connections>
@@ -736,7 +727,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="20" outlineTableColumn="1MB-pD-h4x" id="TlW-kW-eAR" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="195"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="0.0" height="5"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -899,7 +890,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
-                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="5" bottom="0.0"/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="n1v-Ml-1pt">
                                     <rect key="frame" x="-100" y="-100" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -908,6 +898,14 @@
                                     <rect key="frame" x="-16" y="0.0" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomFadePercentage">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRH-qd-Gfs">
                                 <rect key="frame" x="166" y="92" width="119" height="17"/>
@@ -953,11 +951,11 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="yvb-zs-IZn" customClass="StoryDetailsViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5RG-L3-Bcg">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="114"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="242"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ1-xw-L6H">
-                                <rect key="frame" x="13" y="86" width="73" height="18"/>
+                                <rect key="frame" x="13" y="214" width="73" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="Story Title" usesSingleLineMode="YES" id="XRz-61-6XS">
                                     <font key="font" metaFont="systemMedium" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -965,7 +963,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98B-NR-Pxm">
-                                <rect key="frame" x="13" y="60" width="126" height="16"/>
+                                <rect key="frame" x="13" y="188" width="126" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="il2-Lg-Auk"/>
                                 </constraints>
@@ -976,23 +974,57 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cS3-1K-Zw2" customClass="StoryStatusView" customModule="Diurna" customModuleProvider="target">
-                                <rect key="frame" x="340" y="58" width="95" height="20"/>
+                                <rect key="frame" x="340" y="186" width="95" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="B6d-9d-Cti"/>
                                     <constraint firstAttribute="height" constant="20" id="Bre-bf-nb7"/>
                                 </constraints>
                             </customView>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcu-vZ-kql">
-                                <rect key="frame" x="13" y="26" width="424" height="17"/>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="ksJ-Bx-Fvf" customClass="FadingScrollView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="15" y="26" width="420" height="150"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="a0i-yE-D16">
+                                    <rect key="frame" x="0.0" y="0.0" width="420" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="MlT-S3-Kln" customClass="SelfSizingTextView" customModule="Diurna" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="420" height="150"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment content="Story content">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="pFN-4e-YJE"/>
+                                    <constraint firstAttribute="height" constant="150" id="1t5-ds-nT9"/>
                                 </constraints>
-                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="Story content" id="HDC-lg-0gN">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="en0-U7-OKO">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="CbX-S9-wzB">
+                                    <rect key="frame" x="404" y="0.0" width="16" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
                             <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="by7-df-eux" customClass="DisclosureButtonView" customModule="Diurna" customModuleProvider="target">
                                 <rect key="frame" x="217" y="5" width="16" height="16"/>
                                 <constraints>
@@ -1015,30 +1047,31 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="98B-NR-Pxm" firstAttribute="leading" secondItem="PQ1-xw-L6H" secondAttribute="leading" id="0cs-qy-Gem"/>
-                            <constraint firstItem="tcu-vZ-kql" firstAttribute="leading" secondItem="PQ1-xw-L6H" secondAttribute="leading" id="4lW-Gq-ngo"/>
                             <constraint firstItem="PQ1-xw-L6H" firstAttribute="top" secondItem="5RG-L3-Bcg" secondAttribute="top" constant="10" id="EQT-QA-yJh"/>
-                            <constraint firstItem="tcu-vZ-kql" firstAttribute="top" secondItem="cS3-1K-Zw2" secondAttribute="bottom" priority="750" constant="15" id="HaT-Pg-p70"/>
-                            <constraint firstItem="tcu-vZ-kql" firstAttribute="trailing" secondItem="cS3-1K-Zw2" secondAttribute="trailing" id="T5t-MB-GK4"/>
-                            <constraint firstItem="by7-df-eux" firstAttribute="centerX" secondItem="tcu-vZ-kql" secondAttribute="centerX" id="Tfz-1W-Cwx"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="top" secondItem="cS3-1K-Zw2" secondAttribute="bottom" priority="750" constant="10" id="QwQ-zX-OXa"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="leading" secondItem="PQ1-xw-L6H" secondAttribute="leading" id="TLt-oF-3d3"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="trailing" secondItem="cS3-1K-Zw2" secondAttribute="trailing" id="ZcZ-Dk-Woj"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PQ1-xw-L6H" secondAttribute="trailing" constant="15" id="Zka-NN-4Fg"/>
                             <constraint firstAttribute="trailing" secondItem="cS3-1K-Zw2" secondAttribute="trailing" constant="15" id="aio-cW-0Q1"/>
                             <constraint firstItem="cS3-1K-Zw2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="98B-NR-Pxm" secondAttribute="trailing" constant="30" id="cJg-uN-aKf"/>
+                            <constraint firstItem="by7-df-eux" firstAttribute="top" secondItem="ksJ-Bx-Fvf" secondAttribute="bottom" constant="5" id="erO-ow-3VY"/>
                             <constraint firstItem="cS3-1K-Zw2" firstAttribute="centerY" secondItem="98B-NR-Pxm" secondAttribute="centerY" id="gqP-tp-8bV"/>
+                            <constraint firstItem="by7-df-eux" firstAttribute="centerX" secondItem="5RG-L3-Bcg" secondAttribute="centerX" id="m3J-KL-VTW"/>
                             <constraint firstItem="98B-NR-Pxm" firstAttribute="top" secondItem="PQ1-xw-L6H" secondAttribute="bottom" constant="10" id="mBb-fz-cab"/>
                             <constraint firstAttribute="bottom" secondItem="by7-df-eux" secondAttribute="bottom" constant="5" id="mt5-nm-ydN"/>
                             <constraint firstItem="PQ1-xw-L6H" firstAttribute="leading" secondItem="5RG-L3-Bcg" secondAttribute="leading" constant="15" id="s5d-Jv-9PR"/>
                             <constraint firstAttribute="bottom" secondItem="cS3-1K-Zw2" secondAttribute="bottom" priority="250" id="t2t-9D-zcc"/>
-                            <constraint firstItem="by7-df-eux" firstAttribute="top" secondItem="tcu-vZ-kql" secondAttribute="bottom" constant="5" id="uIj-nb-i3r"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomSpacingConstraint" destination="t2t-9D-zcc" id="Dbr-0X-HI9"/>
                         <outlet property="contentDisclosureButton" destination="by7-df-eux" id="CKZ-zF-2m6"/>
-                        <outlet property="contentTextField" destination="tcu-vZ-kql" id="qwf-Mr-mSW"/>
-                        <outlet property="contentTextFieldMaxHeightConstraint" destination="pFN-4e-YJE" id="HeQ-9B-xGF"/>
+                        <outlet property="contentScrollView" destination="ksJ-Bx-Fvf" id="pMu-fq-QiW"/>
+                        <outlet property="contentScrollViewHeightConstraint" destination="1t5-ds-nT9" id="hCS-Td-Yzt"/>
+                        <outlet property="contentSpacingConstraint" destination="QwQ-zX-OXa" id="oif-mW-Tdn"/>
+                        <outlet property="contentTextView" destination="MlT-S3-Kln" id="tXo-2t-m3i"/>
                         <outlet property="detailsTextField" destination="98B-NR-Pxm" id="Tw7-Wq-3zN"/>
-                        <outlet property="storyStatusBottomSpacingConstraint" destination="t2t-9D-zcc" id="Dbr-0X-HI9"/>
-                        <outlet property="storyStatusContentSpacingConstraint" destination="HaT-Pg-p70" id="egm-3w-ujL"/>
-                        <outlet property="storyStatusView" destination="cS3-1K-Zw2" id="7pG-PH-uwt"/>
+                        <outlet property="statusView" destination="cS3-1K-Zw2" id="7pG-PH-uwt"/>
                         <outlet property="titleLeadingSpaceConstraint" destination="s5d-Jv-9PR" id="TEB-Lg-kvo"/>
                         <outlet property="titleTextField" destination="PQ1-xw-L6H" id="s9Y-o0-8db"/>
                         <outlet property="titleTrailingSpaceConstraint" destination="Zka-NN-4Fg" id="sgf-yC-4yN"/>

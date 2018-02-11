@@ -25,6 +25,7 @@
 		8D323F611D66496200B33DA9 /* WebRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D323F601D66496200B33DA9 /* WebRouting.swift */; };
 		8D3489CC1CFB07F6007A37C9 /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3489CB1CFB07F6007A37C9 /* CategoryRowView.swift */; };
 		8D3DD41F1F6B4785007415B6 /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3DD41E1F6B4785007415B6 /* JSONDecodable.swift */; };
+		8D4569352002E52000CDAC92 /* SelfSizingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4569342002E52000CDAC92 /* SelfSizingTextView.swift */; };
 		8D4630981E7B073600B31BA9 /* TransparentDividerSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4630971E7B073600B31BA9 /* TransparentDividerSplitView.swift */; };
 		8D4DC0071D4A534F0066EB11 /* MarkupLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */; };
 		8D4DC0091D4A53830066EB11 /* MarkupTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */; };
@@ -84,6 +85,7 @@
 		8D323F601D66496200B33DA9 /* WebRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRouting.swift; sourceTree = "<group>"; };
 		8D3489CB1CFB07F6007A37C9 /* CategoryRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
 		8D3DD41E1F6B4785007415B6 /* JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
+		8D4569342002E52000CDAC92 /* SelfSizingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingTextView.swift; sourceTree = "<group>"; };
 		8D4630971E7B073600B31BA9 /* TransparentDividerSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentDividerSplitView.swift; sourceTree = "<group>"; };
 		8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupLayoutManager.swift; sourceTree = "<group>"; };
 		8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTextView.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				8DA296A11D2ABEC50072DABB /* HorizontalLineSeparatorView.swift */,
 				8DA296A31D2AD5BD0072DABB /* LightColoredBadgeView.swift */,
 				8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */,
+				8D4569342002E52000CDAC92 /* SelfSizingTextView.swift */,
 				8D766FC01F23C53400534769 /* StoriesTableView.swift */,
 				8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */,
 				8DC9412F1E3CF626008BB0A5 /* StoryRowView.swift */,
@@ -364,7 +367,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Nicolas Gaulard-Querol";
 				TargetAttributes = {
 					8D657E891C49A80500F31BB7 = {
@@ -433,6 +436,7 @@
 				8D7EC20F1FE5997400126BFF /* Int+KFormatted.swift in Sources */,
 				8D0043531C4EE38F00C1F7D6 /* Story.swift in Sources */,
 				8D7EC20D1FE1E8F000126BFF /* NSAttributedString+Additions.swift in Sources */,
+				8D4569352002E52000CDAC92 /* SelfSizingTextView.swift in Sources */,
 				8DEC92221C708E2800833317 /* UserDetailsPopoverViewController.swift in Sources */,
 				8D0043541C4EE38F00C1F7D6 /* APIClient.swift in Sources */,
 				8DF93B661E66FB8600F3CA51 /* FirebaseAPIClient.swift in Sources */,
@@ -481,12 +485,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -533,12 +539,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -569,6 +577,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8JTCTCWN2;
@@ -593,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8JTCTCWN2;
@@ -608,6 +618,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.Diurna;
 				PRODUCT_NAME = Diurna;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;

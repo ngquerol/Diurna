@@ -82,3 +82,8 @@ struct Themes {
         }
     }
 }
+
+extension NSImage.Name {
+    static let comments = NSImage.Name("CommentsIcon")
+    static let votes = NSImage.Name("VotesIcon")
+}

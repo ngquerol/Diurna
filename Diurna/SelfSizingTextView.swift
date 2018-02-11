@@ -48,13 +48,8 @@ class SelfSizingTextView: NSTextView {
         }
     }
 
-    var attributedStringValue: NSAttributedString {
-        get {
-            return attributedString()
-        }
-
-        set {
-            textStorage?.setAttributedString(newValue)
+    override var attributedStringValue: NSAttributedString {
+        didSet {
             invalidateIntrinsicContentSize()
         }
     }

@@ -68,7 +68,7 @@ struct FirebaseAPIClient {
 
         fetchGroup.notify(queue: responsesQueue) {
             progress.completedUnitCount = progress.totalUnitCount
-            completion(itemsResults.flatMap { $0 })
+            completion(itemsResults.compactMap { $0 })
         }
     }
 
@@ -120,7 +120,7 @@ struct FirebaseAPIClient {
 
                 fetchGroup.notify(queue: self.responsesQueue) {
                     progress.completedUnitCount = progress.totalUnitCount
-                    comment.kids = children.flatMap { $0 }
+                    comment.kids = children.compactMap { $0 }
                     completion(.success(comment))
                 }
             }
@@ -174,7 +174,7 @@ extension FirebaseAPIClient: HackerNewsAPIClient {
 
         fetchGroup.notify(queue: .main) {
             progress.completedUnitCount = progress.totalUnitCount
-            completion(topLevelComments.flatMap { $0 })
+            completion(topLevelComments.compactMap { $0 })
         }
     }
 

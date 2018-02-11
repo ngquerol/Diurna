@@ -30,11 +30,19 @@ class StoryCellView: NSTableCellView {
                 authorDateTextField.textColor = Themes.current.cellHighlightForegroundColor
                 urlButton.borderColor = Themes.current.cellHighlightForegroundColor.blended(withFraction: 0.75, of: .white)!
                 urlButton.textColor = Themes.current.cellHighlightForegroundColor
+                storyStatusView.commentsImageView.image = NSImage(named: .comments)?.tint(with: Themes.current.cellHighlightForegroundColor)
+                storyStatusView.commentsTextField.textColor = Themes.current.cellHighlightForegroundColor
+                storyStatusView.scoreImageView.image = NSImage(named: .votes)?.tint(with: Themes.current.cellHighlightForegroundColor)
+                storyStatusView.scoreTextField.textColor = Themes.current.cellHighlightForegroundColor
             } else {
                 titleTextField.textColor = Themes.current.normalTextColor
-                authorDateTextField.textColor = Themes.current.normalTextColor
+                authorDateTextField.textColor = Themes.current.secondaryTextColor
                 urlButton.borderColor = Themes.current.dividerColor
                 urlButton.textColor = Themes.current.normalTextColor
+                storyStatusView.commentsImageView.image = NSImage(named: .comments)?.tint(with: Themes.current.secondaryTextColor)
+                storyStatusView.commentsTextField.textColor = Themes.current.secondaryTextColor
+                storyStatusView.scoreImageView.image = NSImage(named: .votes)?.tint(with: Themes.current.secondaryTextColor)
+                storyStatusView.scoreTextField.textColor = Themes.current.secondaryTextColor
             }
         }
     }

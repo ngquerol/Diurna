@@ -31,6 +31,8 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
     @IBOutlet var storiesToolbarView: NSView!
 
+    @IBOutlet var storiesSearchField: NSSearchField!
+
     @IBOutlet var placeholderTextField: NSTextField! {
         didSet {
             placeholderTextField.isHidden = true
@@ -47,9 +49,14 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
     // MARK: Properties
 
-    private var storiesDataSource: [Story] = [] {
+    private var stories: [Story] = [] {
         didSet {
-            storiesDataSource.sort()
+            filteredStoriesDataSource = stories
+        }
+    }
+
+    private var filteredStoriesDataSource: [Story] = [] {
+        didSet {
             tableView.reloadData()
         }
     }
@@ -85,7 +92,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
     // MARK: Actions
 
-    @IBAction private func storiesCountButtonValueChanged(_ button: NSPopUpButton) {
+    @IBAction func storiesCountButtonValueChanged(_ button: NSPopUpButton) {
         guard
             let storiesCountItem = button.selectedItem,
             let storiesCount = Int(storiesCountItem.title)
@@ -98,11 +105,25 @@ class StoriesViewController: NSViewController, NetworkingAware {
         updateStories()
     }
 
+    @IBAction func userDidTypeInSearchField(_ sender: NSSearchField) {
+        let trimmedSearchString = sender.stringValue.trimmingCharacters(in: .whitespaces)
+
+        guard trimmedSearchString.count > 0 else {
+            return
+        }
+
+        filteredStoriesDataSource = stories.filter {
+            $0.title.localizedCaseInsensitiveContains(storiesSearchField.stringValue)
+        }
+    }
+
     // MARK: Methods
 
     @objc func updateStoriesCategory(_ notification: Notification) {
-        guard notification.name == .newCategorySelectedNotification,
-            let categoryName = notification.userInfo?["selectedCategory"] as? String else {
+        guard
+            notification.name == .newCategorySelectedNotification,
+            let categoryName = notification.userInfo?["selectedCategory"] as? String
+        else {
             return
         }
 
@@ -114,7 +135,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
         }
     }
 
-    func updateStories() {
+    @objc func updateStories() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.allowsImplicitAnimation = true
         placeholderTextField.isHidden = true
@@ -135,7 +156,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
         apiClient.fetchStories(of: selectedStoriesType, count: selectedStoriesCount) { [weak self] storiesResults in
             guard let `self` = self else { return }
 
-            let stories: [Story] = storiesResults.flatMap {
+            let stories: [Story] = storiesResults.compactMap {
                 switch $0 {
                 case let .success(story): return story
                 case .failure:
@@ -145,7 +166,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
             self.progressObservation = nil
 
-            self.storiesDataSource = stories
+            self.stories = stories
             self.tableView.scrollRowToVisible(0)
 
             // Enqueue the animations on the main thread, to give the time to the progress
@@ -178,7 +199,7 @@ private extension Selector {
 
 extension StoriesViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return storiesDataSource.count
+        return filteredStoriesDataSource.count
     }
 }
 
@@ -190,25 +211,22 @@ extension StoriesViewController: NSTableViewDelegate {
             return tableView.rowHeight
         }
 
-        dummyCellView.objectValue = storiesDataSource[row]
+        dummyCellView.objectValue = filteredStoriesDataSource[row]
         dummyCellView.bounds.size.width = tableView.bounds.width
         dummyCellView.layoutSubtreeIfNeeded()
 
         return dummyCellView.fittingSize.height
     }
 
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        guard 0 ..< storiesDataSource.count ~= row else { return nil }
-
+    func tableView(_ tableView: NSTableView, rowViewForRow _: Int) -> NSTableRowView? {
         return tableView.makeView(withIdentifier: .storyRow, owner: self) as? StoryRowView
     }
 
     func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         let cellView = tableView.makeView(withIdentifier: .storyCell, owner: self) as? StoryCellView,
-            story = storiesDataSource[row]
+            story = filteredStoriesDataSource[row]
 
         cellView?.objectValue = story
-        cellView?.objectValue = storiesDataSource[row]
 
         return cellView
     }
@@ -229,20 +247,29 @@ extension StoriesViewController: NSTableViewDelegate {
     }
 
     func tableViewSelectionDidChange(_: Notification) {
-        guard
-            selectedStory?.id != storiesDataSource[tableView.selectedRow].id
-        else {
+        let newlySelectedStory = filteredStoriesDataSource[tableView.selectedRow]
+
+        guard selectedStory?.id != newlySelectedStory.id else {
             return
         }
 
-        selectedStory = storiesDataSource[tableView.selectedRow]
+        selectedStory = newlySelectedStory
 
         NotificationCenter.default.post(
             name: .storySelectionNotification,
             object: self,
             userInfo: [
-                "story": storiesDataSource[tableView.selectedRow],
+                "story": newlySelectedStory,
             ]
         )
+    }
+}
+
+// MARK: - NSSearchFieldDelegate
+
+extension StoriesViewController: NSSearchFieldDelegate {
+
+    func searchFieldDidEndSearching(_: NSSearchField) {
+        filteredStoriesDataSource = stories
     }
 }

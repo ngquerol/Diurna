@@ -120,7 +120,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="mN2-S6-2Oy">
+                                    <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="mN2-S6-2Oy" customClass="SelfSizingTextView" customModule="Diurna" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,9 +131,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </clipView>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="100" id="gpP-qx-89v"/>
-                            </constraints>
                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="I8v-5z-CZj">
                                 <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -142,6 +139,14 @@
                                 <rect key="frame" x="284" y="0.0" width="16" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="topFadePercentage">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="bottomFadePercentage">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </scrollView>
                     </subviews>
                     <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="5" bottom="5"/>

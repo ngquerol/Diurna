@@ -11,10 +11,6 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject {
 
-    // MARK: Outlets
-
-    @IBOutlet var themesMenu: NSMenuItem!
-
     // MARK: Properties
 
     lazy var aboutWindow: NSWindowController = AboutWindowController(windowNibName: .aboutWindow)
@@ -36,10 +32,6 @@ class AppDelegate: NSObject {
         let commentsView = splitViewController.splitViewItems[2]
 
         commentsView.animator().isCollapsed = !commentsView.isCollapsed
-    }
-
-    @IBAction func userDidChangeTheme(_ sender: NSMenuItem) {
-        print(sender.title)
     }
 }
 
