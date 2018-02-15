@@ -133,7 +133,10 @@ class CommentsViewController: NSViewController {
         commentsScrollView.isHidden = true
         NSAnimationContext.endGrouping()
 
-        guard story.descendants != 0 else {
+        guard
+            let descendants = story.descendants,
+            descendants != 0
+        else {
             commentsDataSource = []
             commentsPlaceholder.animator().isHidden = false
             return
@@ -145,9 +148,9 @@ class CommentsViewController: NSViewController {
         commentsPlaceholder.isHidden = true
         NSAnimationContext.endGrouping()
 
-        let progress = Progress(totalUnitCount: Int64(story.descendants ?? -1))
+        let progress = Progress(totalUnitCount: Int64(descendants))
 
-        progress.becomeCurrent(withPendingUnitCount: Int64(story.descendants ?? -1))
+        progress.becomeCurrent(withPendingUnitCount: Int64(descendants))
 
         progressObservation = progress.observe(\.fractionCompleted, options: [.initial, .new]) {
             object, _ in
