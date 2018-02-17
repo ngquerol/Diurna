@@ -40,6 +40,17 @@ class CommentsOutlineView: NSOutlineView {
         })
     }
 
+    func numberOfDescendants(ofItem item: Any?) -> Int {
+        let childrenCount = numberOfChildren(ofItem: item),
+            childOfItem = { index in self.child(index, ofItem: item) }
+
+        guard childrenCount > 0 else { return 0 }
+
+        return (0..<childrenCount).map(childOfItem).reduce(childrenCount) { res, item in
+            res + numberOfDescendants(ofItem: item)
+        }
+    }
+
     override func frameOfOutlineCell(atRow _: Int) -> NSRect {
         return .zero // don't show the disclosure triangle
     }
@@ -89,3 +100,4 @@ class CommentsOutlineView: NSOutlineView {
 private extension Selector {
     static let openCommentInBrowser = #selector(CommentsOutlineView.openCommentInBrowser(_:))
 }
+

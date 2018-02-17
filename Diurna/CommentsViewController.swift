@@ -271,7 +271,7 @@ extension CommentsViewController: NSOutlineViewDelegate {
         cellView?.isExpanded = (cellView?.isExpandable ?? false) && outlineView.isItemExpanded(comment)
         cellView?.opBadgeView.isHidden = comment?.by != selectedStory?.by
 
-        let repliesCount = commentsOutlineView.numberOfChildren(ofItem: comment)
+        let repliesCount = commentsOutlineView.numberOfDescendants(ofItem: comment)
         cellView?.repliesTextField.stringValue = "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
         cellView?.replyArrowTextField.isHidden = commentsOutlineView.parent(forItem: comment) == nil
 
