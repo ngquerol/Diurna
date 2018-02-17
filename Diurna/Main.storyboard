@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14087.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14092"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -193,6 +193,18 @@
                             </menuItem>
                             <menuItem title="Edit" id="8ZL-fD-S6R">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Edit" id="loA-aa-ISg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="m5e-4v-64I">
+                                    <items>
+                                        <menuItem title="Search stories..." keyEquivalent="f" id="BjG-Yz-6oM">
+                                            <connections>
+                                                <action selector="searchStories:" target="Voe-Tx-rLC" id="8Dz-fO-LXD"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -446,13 +458,18 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="0f4-xb-55e">
                                 <rect key="frame" x="0.0" y="471" width="300" height="29"/>
                                 <subviews>
-                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-4d-cqz">
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-4d-cqz" customClass="DebouncedSearchField" customModule="Diurna" customModuleProvider="target">
                                         <rect key="frame" x="7" y="5" width="239" height="19"/>
-                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="W6w-Gm-rbf">
+                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="W6w-Gm-rbf">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="userDidTypeInSearchField:" target="Pqr-aU-vhO" id="zie-ym-4ug"/>
                                             <outlet property="delegate" destination="Pqr-aU-vhO" id="sYu-FK-b3t"/>
@@ -542,7 +559,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="18" id="GNc-nB-QZW"/>
                                                                     </constraints>
-                                                                    <buttonCell key="cell" type="roundRect" title="domain.tld" bezelStyle="roundedRect" image="buttonCell:Mcx-oC-G0f:image" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mcx-oC-G0f" customClass="ThemeableCell" customModule="Diurna" customModuleProvider="target">
+                                                                    <buttonCell key="cell" type="roundRect" title="domain.tld" bezelStyle="roundedRect" image="buttonCell:Mcx-oC-G0f:image" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mcx-oC-G0f" customClass="ThemeableCell" customModule="Diurna" customModuleProvider="target">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                     </buttonCell>

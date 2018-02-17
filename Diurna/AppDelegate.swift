@@ -17,17 +17,36 @@ class AppDelegate: NSObject {
 
     // MARK: Methods
 
-    // TODO: Use a notification instead of accessing the SplitViewController directly
     @IBAction func toggleSidebar(_ sender: NSMenuItem) {
-        guard let window = NSApp.windows.first,
-            let splitViewController = window.contentViewController as? NSSplitViewController else { return }
+        guard
+            let window = NSApp.windows.first,
+            let splitViewController = window.contentViewController as? NSSplitViewController
+        else {
+            return
+        }
 
         splitViewController.toggleSidebar(sender)
     }
 
+    @IBAction func searchStories(_: NSMenuItem) {
+        guard
+            let window = NSApp.windows.first,
+            let splitViewController = window.contentViewController as? NSSplitViewController,
+            let storiesViewController = splitViewController.splitViewItems[1].viewController as? StoriesViewController
+        else {
+            return
+        }
+
+        window.makeFirstResponder(storiesViewController.storiesSearchField)
+    }
+
     @IBAction func toggleComments(_: NSMenuItem) {
-        guard let window = NSApp.windows.first,
-            let splitViewController = window.contentViewController as? NSSplitViewController else { return }
+        guard
+            let window = NSApp.windows.first,
+            let splitViewController = window.contentViewController as? NSSplitViewController
+        else {
+            return
+        }
 
         let commentsView = splitViewController.splitViewItems[2]
 

@@ -19,6 +19,7 @@
 		8D1DAB541FDDD47600FF4FCC /* StoryStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */; };
 		8D2630341C754EC900CFFE62 /* String+MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */; };
 		8D2630361C755F4600CFFE62 /* URL+ShortURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */; };
+		8D2851282030B54600B202C3 /* DebouncedSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2851272030B54600B202C3 /* DebouncedSearchField.swift */; };
 		8D29AC0F1E7A1118002FFB32 /* ThemeableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D29AC0E1E7A1118002FFB32 /* ThemeableButton.swift */; };
 		8D2FC6A51FDD681800E22E24 /* ProgressOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */; };
 		8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */; };
@@ -79,6 +80,7 @@
 		8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryStatusView.swift; sourceTree = "<group>"; };
 		8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MarkupParser.swift"; sourceTree = "<group>"; };
 		8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ShortURL.swift"; sourceTree = "<group>"; };
+		8D2851272030B54600B202C3 /* DebouncedSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedSearchField.swift; sourceTree = "<group>"; };
 		8D29AC0E1E7A1118002FFB32 /* ThemeableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeableButton.swift; sourceTree = "<group>"; };
 		8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressOverlayView.xib; sourceTree = "<group>"; };
 		8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlayView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				8DDF25BA1EED577900402E54 /* ClickableTextField.swift */,
 				8D5ED1DA1C570165004440FD /* CommentCellView.swift */,
 				8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */,
+				8D2851272030B54600B202C3 /* DebouncedSearchField.swift */,
 				8D4DC54A1FEC210B003997C5 /* FadingScrollView.swift */,
 				8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */,
 				8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */,
@@ -428,6 +431,7 @@
 				8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */,
 				8DC941371E3D0308008BB0A5 /* Theme.swift in Sources */,
 				8D86F4491CF7343900017E47 /* AboutViewController.swift in Sources */,
+				8D2851282030B54600B202C3 /* DebouncedSearchField.swift in Sources */,
 				8D5D02051D67AEEC00D22259 /* NSImageView+Tint.swift in Sources */,
 				8D2630361C755F4600CFFE62 /* URL+ShortURL.swift in Sources */,
 				8DD8CBC91D706E08005F4238 /* Result.swift in Sources */,
@@ -618,7 +622,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.Diurna;
 				PRODUCT_NAME = Diurna;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;

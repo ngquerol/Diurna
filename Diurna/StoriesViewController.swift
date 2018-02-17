@@ -31,7 +31,7 @@ class StoriesViewController: NSViewController, NetworkingAware {
 
     @IBOutlet var storiesToolbarView: NSView!
 
-    @IBOutlet var storiesSearchField: NSSearchField!
+    @IBOutlet var storiesSearchField: DebouncedSearchField!
 
     @IBOutlet var placeholderTextField: NSTextField! {
         didSet {
@@ -106,15 +106,16 @@ class StoriesViewController: NSViewController, NetworkingAware {
         updateStories()
     }
 
-    @IBAction func userDidTypeInSearchField(_ sender: NSSearchField) {
-        let trimmedSearchString = sender.stringValue.trimmingCharacters(in: .whitespaces)
+    @IBAction func userDidTypeInSearchField(_ sender: Any) {
+        let trimmedSearchString = storiesSearchField.stringValue.trimmingCharacters(in: .whitespaces)
 
         guard trimmedSearchString.count > 0 else {
+            filteredStoriesDataSource = stories
             return
         }
 
         filteredStoriesDataSource = stories.filter {
-            $0.title.localizedCaseInsensitiveContains(storiesSearchField.stringValue)
+            $0.title.localizedCaseInsensitiveContains(trimmedSearchString)
         }
     }
 
