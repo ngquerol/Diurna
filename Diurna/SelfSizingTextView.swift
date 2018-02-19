@@ -20,6 +20,10 @@ class SelfSizingTextView: NSTextView {
             return NSSize(width: NSView.noIntrinsicMetric, height: NSView.noIntrinsicMetric)
         }
 
+        guard self.attributedStringValue.length > 0 else {
+            return .zero
+        }
+
         let availableWidth = frame.width - textContainerInset.width
 
         container.size = NSSize(width: availableWidth, height: .greatestFiniteMagnitude)
