@@ -28,9 +28,17 @@ class CommentCellView: NSTableCellView {
 
     @IBOutlet var timeTextField: NSTextField!
 
-    @IBOutlet var repliesButton: DisclosureButtonView!
+    @IBOutlet var repliesButton: DisclosureButtonView! {
+        didSet {
+            repliesButton.isHidden = true
+        }
+    }
 
-    @IBOutlet var repliesTextField: NSTextField!
+    @IBOutlet var repliesTextField: NSTextField! {
+        didSet {
+            repliesTextField.isHidden = true
+        }
+    }
 
     @IBOutlet var commentTextView: MarkupTextView! {
         didSet {
