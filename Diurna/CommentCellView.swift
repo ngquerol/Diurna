@@ -104,7 +104,7 @@ class CommentCellView: NSTableCellView {
 
         popover.behavior = .transient
         popover.animates = true
-        popover.delegate = self
+        popover.delegate = userDetailsPopoverViewController
         popover.contentViewController = userDetailsPopoverViewController
 
         return popover
@@ -170,7 +170,3 @@ extension Notification.Name {
 extension NSUserInterfaceItemIdentifier {
     static let commentCell = NSUserInterfaceItemIdentifier("CommentCell")
 }
-
-// MARK: - NSPopover Delegate
-
-extension CommentCellView: NSPopoverDelegate {}

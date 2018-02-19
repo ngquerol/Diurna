@@ -24,13 +24,25 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
         }
     }
 
+    @IBOutlet var usernameTextField: NSTextField! {
+        didSet {
+            usernameTextField.isHidden = true
+        }
+    }
+
+    @IBOutlet var usernameSeparator: NSBox! {
+        didSet {
+            usernameSeparator.isHidden = true
+        }
+    }
+
     @IBOutlet var createdTextField: NSTextField!
 
     @IBOutlet var karmaTextField: NSTextField!
 
-    @IBOutlet var separatorBox: NSBox! {
+    @IBOutlet var descriptionSeparator: NSBox! {
         didSet {
-            separatorBox.isHidden = true
+            descriptionSeparator.isHidden = true
         }
     }
 
@@ -52,6 +64,7 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
                 switch userResult {
 
                 case let .success(user):
+                    self.usernameTextField.stringValue = user.id
                     self.karmaTextField.integerValue = user.karma
                     self.createdTextField.objectValue = user.created
                     self.aboutTextView.attributedStringValue = user.about?.parseMarkup() ?? .empty
@@ -60,7 +73,7 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
                     }) {
                         NSAnimationContext.runAnimationGroup({ _ in
                             self.aboutScrollView.isHidden = self.aboutTextView.attributedStringValue.length == 0
-                            self.separatorBox.isHidden = self.aboutScrollView.isHidden
+                            self.descriptionSeparator.isHidden = self.aboutScrollView.isHidden
                         }) {
                             NSAnimationContext.runAnimationGroup({ _ in
                                 self.contentStackView.animator().isHidden = false
@@ -80,4 +93,21 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
 
 extension NSNib.Name {
     static let userDetailsPopover = NSNib.Name("UserDetailsPopoverView")
+}
+
+// MARK: - NSPopover Delegate
+
+extension UserDetailsPopoverViewController: NSPopoverDelegate {
+
+    func popoverShouldDetach(_: NSPopover) -> Bool {
+        return true
+    }
+
+    func popoverDidDetach(_ popover: NSPopover) {
+        NSAnimationContext.runAnimationGroup({ context in
+            context.allowsImplicitAnimation = true
+            self.usernameTextField.isHidden = false
+            self.usernameSeparator.isHidden = false
+        })
+    }
 }
