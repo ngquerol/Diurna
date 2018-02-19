@@ -61,14 +61,28 @@ private struct Tag {
 }
 
 struct MarkupParser {
-    private var parser: Parser
-    private let leadingSpaceRegex = try! NSRegularExpression(
+
+    private static let leadingSpaceRegex = try! NSRegularExpression(
         pattern: "^(\\s{2,4})(\\S.*)$",
         options: .anchorsMatchLines
     )
 
+    private let codeParagraphStyle: NSParagraphStyle
+
+    private var parser: Parser
+
     init(input: String) {
         parser = Parser(inputString: input)
+
+        let codeParagraphStyle = NSMutableParagraphStyle()
+        codeParagraphStyle.lineBreakMode = .byCharWrapping
+        codeParagraphStyle.headIndent = 10.0
+        codeParagraphStyle.firstLineHeadIndent = 10.0
+        codeParagraphStyle.tailIndent = -10.0
+        codeParagraphStyle.paragraphSpacing = 5.0
+        codeParagraphStyle.paragraphSpacingBefore = 5.0
+
+        self.codeParagraphStyle = codeParagraphStyle
     }
 
     private mutating func parseTagName() -> String {
@@ -157,20 +171,10 @@ struct MarkupParser {
             ]
 
         case "code":
-            let paragraphStyle = NSMutableParagraphStyle(),
-                font = Themes.current.monospaceFont
-
-            paragraphStyle.lineBreakMode = .byCharWrapping
-            paragraphStyle.headIndent = 10.0
-            paragraphStyle.firstLineHeadIndent = 10.0
-            paragraphStyle.tailIndent = -10.0
-            paragraphStyle.paragraphSpacing = 5.0
-            paragraphStyle.paragraphSpacingBefore = 5.0
-
             return [
-                .font: font,
+                .font: Themes.current.monospaceFont,
                 .codeBlock: Themes.current.codeBlockColor,
-                .paragraphStyle: paragraphStyle,
+                .paragraphStyle: codeParagraphStyle,
             ]
 
         case _:
@@ -205,7 +209,7 @@ struct MarkupParser {
         if tag?.name == "code" {
             let wholeTextRange = NSRange(0 ..< text.count)
 
-            text = leadingSpaceRegex.stringByReplacingMatches(
+            text = MarkupParser.leadingSpaceRegex.stringByReplacingMatches(
                 in: text,
                 options: [],
                 range: wholeTextRange,
@@ -230,6 +234,10 @@ struct MarkupParser {
             case "<": currentTag = handleTag(result)
             case _: result.append(handleText(for: currentTag))
             }
+        }
+
+        if currentTag?.name == "/pre" {
+            result.append(NSAttributedString(string: "\n"))
         }
 
         result.endEditing()
