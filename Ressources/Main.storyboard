@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14092"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="I8U-M5-T5s">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="Wlp-wm-xUu" customClass="AboutWindowController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="4jo-4P-kOD">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="400" height="180"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+                        <value key="minSize" type="size" width="400" height="180"/>
+                        <value key="maxSize" type="size" width="400" height="180"/>
+                        <connections>
+                            <outlet property="delegate" destination="Wlp-wm-xUu" id="Eyj-Bj-Y9M"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <outlet property="aboutWindow" destination="4jo-4P-kOD" id="jjH-G8-UvE"/>
+                        <segue destination="k5d-Vt-MiJ" kind="relationship" relationship="window.shadowedContentViewController" id="qpi-I7-tVV"/>
+                    </connections>
+                </windowController>
+                <customObject id="NOM-GW-87n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="66"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="l0a-jo-NS6">
+            <objects>
+                <customObject id="WtN-nv-Q2N" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="k5d-Vt-MiJ" customClass="AboutViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="bqW-Wg-Zco">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LYq-l6-qRt">
+                                <rect key="frame" x="10" y="40" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="MSU-Ir-zdp"/>
+                                    <constraint firstAttribute="width" secondItem="LYq-l6-qRt" secondAttribute="height" multiplier="1:1" id="i6j-rW-Cba"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="4G6-Cg-3Bb"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-Av-NUx">
+                                <rect key="frame" x="120" y="13" width="270" height="154"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aY3-rX-qJY">
+                                        <rect key="frame" x="-2" y="121" width="123" height="33"/>
+                                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="App Name" id="Dr8-hY-J9K">
+                                            <font key="font" metaFont="systemThin" size="27"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSh-ou-hjI">
+                                        <rect key="frame" x="-2" y="99" width="49" height="17"/>
+                                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Version" id="BpW-uk-nll">
+                                            <font key="font" metaFont="systemLight" size="13"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A52-on-eEa">
+                                        <rect key="frame" x="0.0" y="19" width="270" height="75"/>
+                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CM8-kn-gpI">
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="75"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="QOb-ev-D0g" customClass="SelfSizingTextView" customModule="Diurna" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="270" height="75"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="nTF-hj-f2p"/>
+                                        </constraints>
+                                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="11" bottom="0.0"/>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="d0c-CH-YSR">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ZYM-kZ-UzP">
+                                            <rect key="frame" x="254" y="11" width="16" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IkR-td-ng3">
+                                        <rect key="frame" x="-2" y="0.0" width="55" height="14"/>
+                                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Copyright" id="ecH-NW-3Jr">
+                                            <font key="font" metaFont="systemLight" size="11"/>
+                                            <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="RQx-Av-NUx" secondAttribute="trailing" constant="10" id="AF2-ON-150"/>
+                            <constraint firstItem="LYq-l6-qRt" firstAttribute="centerY" secondItem="bqW-Wg-Zco" secondAttribute="centerY" id="BFy-HN-GPK"/>
+                            <constraint firstItem="LYq-l6-qRt" firstAttribute="leading" secondItem="bqW-Wg-Zco" secondAttribute="leading" constant="10" id="FxA-Df-syT"/>
+                            <constraint firstItem="LYq-l6-qRt" firstAttribute="trailing" secondItem="RQx-Av-NUx" secondAttribute="leading" constant="-10" id="dZS-zT-hvf"/>
+                            <constraint firstItem="RQx-Av-NUx" firstAttribute="centerY" secondItem="bqW-Wg-Zco" secondAttribute="centerY" id="xYk-tc-h8g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="copyrightTextField" destination="IkR-td-ng3" id="h1O-YN-Ino"/>
+                        <outlet property="creditsTextView" destination="QOb-ev-D0g" id="fRr-xf-qUN"/>
+                        <outlet property="iconImageView" destination="LYq-l6-qRt" id="9jj-Av-j3d"/>
+                        <outlet property="nameTextField" destination="aY3-rX-qJY" id="59i-no-xXj"/>
+                        <outlet property="versionTextField" destination="fSh-ou-hjI" id="cWw-kJ-ANn"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1408" y="66"/>
+        </scene>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="Diurna" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Diurna" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="About Diurna" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="Wlp-wm-xUu" kind="show" id="B66-Sn-6PJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Services" id="NMo-om-nkz">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Hide Diurna" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="Kd2-mp-pUS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                                        <menuItem title="Quit Diurna" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Edit" id="8ZL-fD-S6R">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Edit" id="loA-aa-ISg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="m5e-4v-64I">
+                                    <items>
+                                        <menuItem title="Search stories..." keyEquivalent="f" id="BjG-Yz-6oM">
+                                            <connections>
+                                                <action selector="searchStories:" target="Voe-Tx-rLC" id="8Dz-fO-LXD"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="View" id="H8h-7b-M4v">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="View" id="HyV-fh-RgO">
+                                    <items>
+                                        <menuItem title="Toggle Sidebar" keyEquivalent="s" id="omY-Hg-1Xe" userLabel="Toggle Sidebar">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleSidebar:" target="Voe-Tx-rLC" id="QC7-Qc-XXG"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Toggle Comments Pane" keyEquivalent="v" id="cTv-j2-NY8">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleComments:" target="Voe-Tx-rLC" id="M1D-7s-iLT"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="aUF-d1-5bR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="R4o-n2-Eq4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
+                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Help" id="wpr-3q-Mcd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                    <items>
+                                        <menuItem title="Diurna Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                            <connections>
+                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Diurna" customModuleProvider="target"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="326" y="66"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="DpV-fb-6Nj">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="mHI-bR-tcx" customClass="MainWindowController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Diurna" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="54W-IX-6iV">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="818" height="500"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <value key="minSize" type="size" width="409" height="300"/>
+                        <connections>
+                            <outlet property="delegate" destination="mHI-bR-tcx" id="A6u-Pa-s3Q"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="1Wn-mi-uyW" kind="relationship" relationship="window.shadowedContentViewController" id="UiF-ko-TW9"/>
+                    </connections>
+                </windowController>
+                <customObject id="6vA-N4-psa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="585"/>
+        </scene>
+        <!--Categories View Controller-->
+        <scene sceneID="15r-qQ-Fsk">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="XNX-5c-EN3" customClass="CategoriesViewController" customModule="Diurna" sceneMemberID="viewController">
+                    <visualEffectView key="view" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="wEC-jf-oQo">
+                        <rect key="frame" x="0.0" y="0.0" width="68" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="111" horizontalPageScroll="10" verticalLineScroll="111" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="OFS-3P-Mk1">
+                                <rect key="frame" x="0.0" y="0.0" width="68" height="471"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="v0F-gB-XsW">
+                                    <rect key="frame" x="0.0" y="0.0" width="68" height="471"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="96" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="U9R-Xi-FUO">
+                                            <rect key="frame" x="0.0" y="0.0" width="68" height="471"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="0.0" height="15"/>
+                                            <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="" editable="NO" width="68" minWidth="68" maxWidth="68" id="p02-7Q-dzn">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="D2J-do-vSb">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <customView identifier="CategoryRow" id="vH0-Ff-ico" customClass="CategoryRowView" customModule="Diurna" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="7" width="68" height="96"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </customView>
+                                                        <tableCellView identifier="CategoryCell" id="1Ah-2F-fiS">
+                                                            <rect key="frame" x="0.0" y="118" width="68" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NOT-nX-N1z">
+                                                                    <rect key="frame" x="23" y="4" width="22" height="22"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="NOT-nX-N1z" secondAttribute="height" multiplier="1:1" id="8d0-am-Ws0"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="v5H-SZ-njd"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" alignment="left" imageScaling="proportionallyUpOrDown" image="ShowIconTemplate" id="7nV-X7-Uyk"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="NOT-nX-N1z" firstAttribute="centerY" secondItem="1Ah-2F-fiS" secondAttribute="centerY" id="Dc2-s4-mwT"/>
+                                                                <constraint firstItem="NOT-nX-N1z" firstAttribute="centerX" secondItem="1Ah-2F-fiS" secondAttribute="centerX" id="hYR-Kp-7Jo"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="imageView" destination="NOT-nX-N1z" id="Cbk-Sh-qE4"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XNX-5c-EN3" id="oFM-yK-gwi"/>
+                                                <outlet property="delegate" destination="XNX-5c-EN3" id="bT3-mL-bN8"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                    <nil key="backgroundColor"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EKg-kH-u7n">
+                                    <rect key="frame" x="-100" y="-100" width="150" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xoy-vm-VPg">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="OFS-3P-Mk1" secondAttribute="bottom" id="EQh-CR-Anf"/>
+                            <constraint firstItem="OFS-3P-Mk1" firstAttribute="top" secondItem="wEC-jf-oQo" secondAttribute="top" constant="29" id="NPl-lV-b5U"/>
+                            <constraint firstItem="OFS-3P-Mk1" firstAttribute="leading" secondItem="wEC-jf-oQo" secondAttribute="leading" id="Two-eU-0vm"/>
+                            <constraint firstAttribute="trailing" secondItem="OFS-3P-Mk1" secondAttribute="trailing" id="pKO-4V-tJ1"/>
+                        </constraints>
+                    </visualEffectView>
+                    <connections>
+                        <outlet property="categoriesScrollView" destination="OFS-3P-Mk1" id="oc8-tP-41J"/>
+                        <outlet property="categoriesTableView" destination="U9R-Xi-FUO" id="BNd-ff-piF"/>
+                        <outlet property="categoriesTableViewTopSpacingConstraint" destination="NPl-lV-b5U" id="k9f-vm-CR4"/>
+                        <outlet property="categoriesVisualEffectView" destination="wEC-jf-oQo" id="eyY-OE-veA"/>
+                    </connections>
+                </viewController>
+                <customObject id="Vjy-01-kSQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2151" y="202"/>
+        </scene>
+        <!--Story Master View Controller-->
+        <scene sceneID="xeR-Wv-iY9">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="C4Y-SD-LSc" customClass="StoryMasterViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="K5L-E0-t4O">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="544"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView distribution="fillProportionally" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Nh-Pu-RfG">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="544"/>
+                                <subviews>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="0fV-2a-YW5">
+                                        <rect key="frame" x="0.0" y="275" width="450" height="269"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="269" placeholder="YES" id="XPi-KH-5ot"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="yvb-zs-IZn" kind="embed" id="eic-Sv-CFg"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="H8C-y0-Tkg">
+                                        <rect key="frame" x="0.0" y="0.0" width="450" height="270"/>
+                                        <connections>
+                                            <segue destination="mp3-FQ-741" kind="embed" id="N7P-O5-BDd"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="H8C-y0-Tkg" firstAttribute="leading" secondItem="3Nh-Pu-RfG" secondAttribute="leading" id="893-jN-j1K"/>
+                                    <constraint firstAttribute="trailing" secondItem="H8C-y0-Tkg" secondAttribute="trailing" id="Bl9-np-Q5l"/>
+                                    <constraint firstAttribute="trailing" secondItem="0fV-2a-YW5" secondAttribute="trailing" id="Img-uz-rze"/>
+                                    <constraint firstItem="0fV-2a-YW5" firstAttribute="leading" secondItem="3Nh-Pu-RfG" secondAttribute="leading" id="eO5-ro-8re"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3Nh-Pu-RfG" secondAttribute="bottom" id="8vB-ds-jGJ"/>
+                            <constraint firstAttribute="trailing" secondItem="3Nh-Pu-RfG" secondAttribute="trailing" id="Eio-SY-apB"/>
+                            <constraint firstItem="3Nh-Pu-RfG" firstAttribute="top" secondItem="K5L-E0-t4O" secondAttribute="top" id="MEn-uf-a3O"/>
+                            <constraint firstItem="3Nh-Pu-RfG" firstAttribute="leading" secondItem="K5L-E0-t4O" secondAttribute="leading" id="sjK-m0-IIO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="BXy-wv-ByW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="1272"/>
+        </scene>
+        <!--Stories View Controller-->
+        <scene sceneID="apk-3v-MWn">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="Pqr-aU-vhO" customClass="StoriesViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <customView key="view" id="efU-nQ-mdL">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="0f4-xb-55e">
+                                <rect key="frame" x="0.0" y="471" width="300" height="29"/>
+                                <subviews>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-4d-cqz" customClass="DebouncedSearchField" customModule="Diurna" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="5" width="239" height="19"/>
+                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="W6w-Gm-rbf">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="userDidTypeInSearchField:" target="Pqr-aU-vhO" id="zie-ym-4ug"/>
+                                            <outlet property="delegate" destination="Pqr-aU-vhO" id="sYu-FK-b3t"/>
+                                        </connections>
+                                    </searchField>
+                                    <popUpButton toolTip="Number of stories to display" focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-FV-neJ">
+                                        <rect key="frame" x="251" y="6" width="44" height="17"/>
+                                        <popUpButtonCell key="cell" type="roundRect" title="10" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" focusRingType="exterior" imageScaling="axesIndependently" inset="2" selectedItem="Er9-PX-8nB" id="09G-Gn-wQr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <menu key="menu" id="GhZ-26-I7C">
+                                                <items>
+                                                    <menuItem title="10" state="on" id="Er9-PX-8nB">
+                                                        <attributedString key="attributedTitle"/>
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="20" id="UlF-Ji-CJN"/>
+                                                    <menuItem title="50" id="Bfs-bG-PvG"/>
+                                                    <menuItem title="100" id="kA3-0n-GZC"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="storiesCountButtonValueChanged:" target="Pqr-aU-vhO" id="Pcq-oI-8Kb"/>
+                                        </connections>
+                                    </popUpButton>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ux9-FV-neJ" firstAttribute="centerY" secondItem="0f4-xb-55e" secondAttribute="centerY" id="5bL-Ga-tR8"/>
+                                    <constraint firstAttribute="trailing" secondItem="ux9-FV-neJ" secondAttribute="trailing" constant="5" id="JUb-xr-64o"/>
+                                    <constraint firstItem="3ML-4d-cqz" firstAttribute="leading" secondItem="0f4-xb-55e" secondAttribute="leading" constant="7" id="LIa-09-t1W"/>
+                                    <constraint firstItem="ux9-FV-neJ" firstAttribute="leading" secondItem="3ML-4d-cqz" secondAttribute="trailing" constant="5" id="Lcz-A8-wQn"/>
+                                    <constraint firstAttribute="height" constant="29" id="Xag-ll-4ir"/>
+                                    <constraint firstItem="3ML-4d-cqz" firstAttribute="centerY" secondItem="0f4-xb-55e" secondAttribute="centerY" id="a5f-Hh-pZh"/>
+                                </constraints>
+                            </customView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cvm-mh-jeN">
+                                <rect key="frame" x="0.0" y="468" width="300" height="5"/>
+                            </box>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="75" horizontalPageScroll="10" verticalLineScroll="75" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="JMM-Nw-2a3">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="470"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="rXL-oh-IGZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="470"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="75" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="v5w-j5-ky0" customClass="StoriesTableView" customModule="Diurna" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="470"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="" editable="NO" width="300" minWidth="40" maxWidth="1000" id="8Sr-Dd-kIW">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" selectable="YES" allowsUndo="NO" title="Text Cell" id="HEM-3f-5eZ">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <customView identifier="StoryRow" id="KLK-Yu-IOD" customClass="StoryRowView" customModule="Diurna" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </customView>
+                                                        <tableCellView identifier="StoryCell" id="SkD-DS-jMV" customClass="StoryCellView" customModule="Diurna" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="75" width="300" height="75"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-cA-ACG" userLabel="Title">
+                                                                    <rect key="frame" x="8" y="54" width="284" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="qO5-EK-Zun"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="Story title" id="tiW-hA-aI7">
+                                                                        <font key="font" metaFont="systemMedium" size="12"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-lv-dg2" customClass="ThemeableButton" customModule="Diurna" customModuleProvider="target">
+                                                                    <rect key="frame" x="10" y="27" width="70" height="19"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="GNc-nB-QZW"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="roundRect" title="domain.tld" bezelStyle="roundedRect" image="buttonCell:Mcx-oC-G0f:image" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mcx-oC-G0f" customClass="ThemeableCell" customModule="Diurna" customModuleProvider="target">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="widthPadding">
+                                                                            <real key="value" value="0.0"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="heightPadding">
+                                                                            <real key="value" value="0.0"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="2"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                                            <color key="value" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="visitURL:" target="SkD-DS-jMV" id="ocW-Oz-Wzg"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyE-ZW-3aB">
+                                                                    <rect key="frame" x="8" y="5" width="117" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="15" id="FTE-OH-F1v"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="by author, # days ago" id="LQV-vY-K0N">
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="FCU-8k-dpU" customClass="StoryStatusView" customModule="Diurna" customModuleProvider="target">
+                                                                    <rect key="frame" x="195" y="5" width="95" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="95" id="KHj-SC-OG0"/>
+                                                                    </constraints>
+                                                                </customView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="dyE-ZW-3aB" firstAttribute="top" secondItem="DUM-cA-ACG" secondAttribute="bottom" priority="500" constant="8" id="0e2-84-qwi"/>
+                                                                <constraint firstItem="lgQ-lv-dg2" firstAttribute="top" secondItem="DUM-cA-ACG" secondAttribute="bottom" priority="999" constant="8" id="DyM-dk-ST7"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lgQ-lv-dg2" secondAttribute="trailing" id="QHI-qJ-H3f"/>
+                                                                <constraint firstItem="dyE-ZW-3aB" firstAttribute="top" secondItem="lgQ-lv-dg2" secondAttribute="bottom" priority="999" constant="8" id="RR2-pF-nsR"/>
+                                                                <constraint firstAttribute="bottom" secondItem="dyE-ZW-3aB" secondAttribute="bottom" constant="5" id="UCP-9q-dhM"/>
+                                                                <constraint firstItem="DUM-cA-ACG" firstAttribute="top" secondItem="SkD-DS-jMV" secondAttribute="top" constant="5" id="VIT-Go-69C"/>
+                                                                <constraint firstItem="FCU-8k-dpU" firstAttribute="trailing" secondItem="DUM-cA-ACG" secondAttribute="trailing" id="WwZ-If-OoI"/>
+                                                                <constraint firstItem="FCU-8k-dpU" firstAttribute="height" secondItem="dyE-ZW-3aB" secondAttribute="height" id="bUv-0t-0r6"/>
+                                                                <constraint firstItem="FCU-8k-dpU" firstAttribute="centerY" secondItem="dyE-ZW-3aB" secondAttribute="centerY" id="dcm-dK-Oha"/>
+                                                                <constraint firstItem="FCU-8k-dpU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dyE-ZW-3aB" secondAttribute="trailing" constant="10" id="eR4-Tj-p09"/>
+                                                                <constraint firstAttribute="trailing" secondItem="DUM-cA-ACG" secondAttribute="trailing" constant="10" id="kdG-pj-l9S"/>
+                                                                <constraint firstItem="dyE-ZW-3aB" firstAttribute="leading" secondItem="DUM-cA-ACG" secondAttribute="leading" id="lmq-M9-Abb"/>
+                                                                <constraint firstItem="DUM-cA-ACG" firstAttribute="leading" secondItem="SkD-DS-jMV" secondAttribute="leading" constant="10" id="oVF-ak-4CA"/>
+                                                                <constraint firstAttribute="bottom" secondItem="FCU-8k-dpU" secondAttribute="bottom" constant="5" id="q2w-oP-ztL"/>
+                                                                <constraint firstItem="lgQ-lv-dg2" firstAttribute="leading" secondItem="DUM-cA-ACG" secondAttribute="leading" id="qrc-e1-xvG"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="authorDateTextField" destination="dyE-ZW-3aB" id="Jd5-4h-wrH"/>
+                                                                <outlet property="leftCellSpacingConstraint" destination="oVF-ak-4CA" id="No4-Vo-b1W"/>
+                                                                <outlet property="rightCellSpacingConstraint" destination="kdG-pj-l9S" id="zOw-1r-mGL"/>
+                                                                <outlet property="storyStatusView" destination="FCU-8k-dpU" id="LMm-GY-bqh"/>
+                                                                <outlet property="titleSubtitleSpacingConstraint" destination="0e2-84-qwi" id="ECq-Q3-pf6"/>
+                                                                <outlet property="titleTextField" destination="DUM-cA-ACG" id="tDf-db-f5O"/>
+                                                                <outlet property="titleURLSpacingConstraint" destination="DyM-dk-ST7" id="B3D-xg-ZS3"/>
+                                                                <outlet property="urlButton" destination="lgQ-lv-dg2" id="aHY-OG-GRC"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="Pqr-aU-vhO" id="14R-uv-eYs"/>
+                                                <outlet property="delegate" destination="Pqr-aU-vhO" id="7nm-4z-hbo"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="60E-Je-DMt"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Iym-vQ-f0K"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="5tR-ta-dFQ">
+                                    <rect key="frame" x="-100" y="-100" width="0.0" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="L7Y-cx-XaF">
+                                    <rect key="frame" x="284" y="0.0" width="16" height="447"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LL-xn-OtE">
+                                <rect key="frame" x="73" y="240" width="154" height="19"/>
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Unable to load stories" id="irf-mY-nc8">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="u9t-ND-cNT" customClass="ProgressOverlayView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="75" y="225" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WbU-4R-mrj"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="JMM-Nw-2a3" firstAttribute="leading" secondItem="efU-nQ-mdL" secondAttribute="leading" id="3pn-td-riH"/>
+                            <constraint firstItem="9LL-xn-OtE" firstAttribute="centerX" secondItem="efU-nQ-mdL" secondAttribute="centerX" id="6Nt-JP-ZNc"/>
+                            <constraint firstAttribute="trailing" secondItem="cvm-mh-jeN" secondAttribute="trailing" id="8lv-BM-gPU"/>
+                            <constraint firstAttribute="trailing" secondItem="JMM-Nw-2a3" secondAttribute="trailing" id="FkW-rg-JSk"/>
+                            <constraint firstItem="9LL-xn-OtE" firstAttribute="centerY" secondItem="efU-nQ-mdL" secondAttribute="centerY" id="JSt-ca-Xbt"/>
+                            <constraint firstItem="0f4-xb-55e" firstAttribute="leading" secondItem="efU-nQ-mdL" secondAttribute="leading" id="OO2-Za-rqx"/>
+                            <constraint firstAttribute="top" secondItem="0f4-xb-55e" secondAttribute="top" id="QEh-Xw-v40"/>
+                            <constraint firstItem="u9t-ND-cNT" firstAttribute="centerX" secondItem="efU-nQ-mdL" secondAttribute="centerX" id="RML-0o-lK0"/>
+                            <constraint firstItem="u9t-ND-cNT" firstAttribute="centerY" secondItem="efU-nQ-mdL" secondAttribute="centerY" id="UNP-du-e6u"/>
+                            <constraint firstItem="JMM-Nw-2a3" firstAttribute="top" secondItem="cvm-mh-jeN" secondAttribute="bottom" id="Vyp-UQ-uLC"/>
+                            <constraint firstItem="u9t-ND-cNT" firstAttribute="width" secondItem="efU-nQ-mdL" secondAttribute="width" multiplier="0.5" id="cvM-YO-Yjr"/>
+                            <constraint firstAttribute="trailing" secondItem="0f4-xb-55e" secondAttribute="trailing" id="gui-PN-qE7"/>
+                            <constraint firstAttribute="bottom" secondItem="JMM-Nw-2a3" secondAttribute="bottom" id="ikY-bh-uy6"/>
+                            <constraint firstItem="0f4-xb-55e" firstAttribute="bottom" secondItem="cvm-mh-jeN" secondAttribute="top" id="lQb-dk-rTY"/>
+                            <constraint firstItem="cvm-mh-jeN" firstAttribute="leading" secondItem="efU-nQ-mdL" secondAttribute="leading" id="uK4-8B-jZ0"/>
+                        </constraints>
+                    </customView>
+                    <connections>
+                        <outlet property="placeholderTextField" destination="9LL-xn-OtE" id="cq4-mP-1Nj"/>
+                        <outlet property="progressOverlay" destination="u9t-ND-cNT" id="1pW-c0-WUx"/>
+                        <outlet property="scrollView" destination="JMM-Nw-2a3" id="Eap-Na-BlV"/>
+                        <outlet property="storiesSearchField" destination="3ML-4d-cqz" id="Cyg-4k-twe"/>
+                        <outlet property="storiesToolbarView" destination="0f4-xb-55e" id="hjy-1F-h7q"/>
+                        <outlet property="tableView" destination="v5w-j5-ky0" id="pQx-eZ-FCL"/>
+                    </connections>
+                </viewController>
+                <customObject id="TL9-7f-rZu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2267" y="764"/>
+        </scene>
+        <!--Main Split View Controller-->
+        <scene sceneID="eZM-FY-2yT">
+            <objects>
+                <splitViewController title="Main Split View Controller" showSeguePresentationStyle="single" id="1Wn-mi-uyW" customClass="MainSplitViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="g0c-Qg-9Xw"/>
+                        <splitViewItem holdingPriority="255" behavior="contentList" id="exp-Sb-JXN"/>
+                        <splitViewItem id="MmO-KC-byT"/>
+                    </splitViewItems>
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" vertical="YES" id="FWE-er-AWo" customClass="TransparentDividerSplitView" customModule="Diurna" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="818" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="1Wn-mi-uyW" id="FRo-bw-Ce5"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="sidebarSplitViewItem" destination="g0c-Qg-9Xw" id="a2U-t6-nMq"/>
+                        <outlet property="splitView" destination="FWE-er-AWo" id="tJQ-nJ-9XT"/>
+                        <outlet property="storiesSplitViewItem" destination="exp-Sb-JXN" id="b2w-sH-W2Q"/>
+                        <outlet property="storySplitViewItem" destination="MmO-KC-byT" id="wkg-h3-KJp"/>
+                        <segue destination="XNX-5c-EN3" kind="relationship" relationship="splitItems" id="GR8-HW-6nM"/>
+                        <segue destination="Pqr-aU-vhO" kind="relationship" relationship="splitItems" id="uEF-91-3D9"/>
+                        <segue destination="C4Y-SD-LSc" kind="relationship" relationship="splitItems" id="Rdg-ed-EiK"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="svr-Pt-ieU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433.5" y="585"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="Wgw-cN-f9H">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="mp3-FQ-741" customClass="CommentsViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <customView key="view" id="KMs-qg-awy">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="75" horizontalPageScroll="10" verticalLineScroll="75" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="UAN-Vz-6co" customClass="FadingScrollView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="KCB-tL-oux">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="20" outlineTableColumn="1MB-pD-h4x" id="TlW-kW-eAR" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="0.0" height="5"/>
+                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="" editable="NO" width="450" minWidth="40" maxWidth="750" id="1MB-pD-h4x">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="3r9-Zk-eHo">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="CommentCell" id="K2k-gF-5pE" customClass="CommentCellView" customModule="Diurna" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="450" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEd-dx-TsX">
+                                                                    <rect key="frame" x="15" y="45" width="141" height="20"/>
+                                                                    <subviews>
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-Nh-E3J" customClass="ClickableTextField" customModule="Diurna" customModuleProvider="target">
+                                                                            <rect key="frame" x="-2" y="5" width="16" height="11"/>
+                                                                            <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="⮑" id="kBX-1q-R0k">
+                                                                                <font key="font" metaFont="miniSystem"/>
+                                                                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                            <connections>
+                                                                                <action selector="goToParentComment:" target="K2k-gF-5pE" id="JAT-WT-QyD"/>
+                                                                            </connections>
+                                                                        </textField>
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-YZ-5w8" customClass="ClickableTextField" customModule="Diurna" customModuleProvider="target">
+                                                                            <rect key="frame" x="15" y="3" width="40" height="14"/>
+                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="author" id="dKS-Bc-rf4">
+                                                                                <font key="font" metaFont="systemMedium" size="11"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                            <connections>
+                                                                                <action selector="showUserDetailsPopover:" target="K2k-gF-5pE" id="k1b-Dq-8UX"/>
+                                                                            </connections>
+                                                                        </textField>
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="lHq-S8-1tH" customClass="LightColoredBadgeView" customModule="Diurna" customModuleProvider="target">
+                                                                            <rect key="frame" x="58" y="3" width="25" height="15"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="15" id="RFF-3o-mlI"/>
+                                                                                <constraint firstAttribute="width" constant="25" id="S2X-Zy-BQ5"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="text" value="OP"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                    <real key="value" value="10"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                    <real key="value" value="1"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="3"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="horizontalPadding">
+                                                                                    <real key="value" value="0.0"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                                    <color key="value" red="0.26850865363681764" green="0.6995842034827161" blue="0.26850865363681764" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </customView>
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-JI-hDG">
+                                                                            <rect key="frame" x="86" y="4" width="57" height="13"/>
+                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="# days ago" usesSingleLineMode="YES" id="eja-zm-xoR">
+                                                                                <font key="font" metaFont="system" size="10"/>
+                                                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="OVQ-Fq-dCY"/>
+                                                                    </constraints>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffe-D6-n9g">
+                                                                    <rect key="frame" x="337" y="50" width="75" height="11"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="# replies hidden" usesSingleLineMode="YES" id="MS1-aE-tzb">
+                                                                        <font key="font" metaFont="miniSystem"/>
+                                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11q-hU-2bm" customClass="DisclosureButtonView" customModule="Diurna" customModuleProvider="target">
+                                                                    <rect key="frame" x="420" y="48" width="15" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="15" id="K4S-Ng-1Zu"/>
+                                                                        <constraint firstAttribute="width" secondItem="11q-hU-2bm" secondAttribute="height" multiplier="1:1" id="vHR-iu-rrf"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="CollapseIcon" imagePosition="only" state="on" imageScaling="proportionallyDown" inset="2" id="UlJ-Bu-iky">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="cellTitle"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="collapseImage" value="CollapseIcon"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="expandImage" value="ExpandIcon"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="expandedTooltip" value="Collapse this comment"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="collapsedTooltip" value="Expand this comment"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="toggleReplies:" target="K2k-gF-5pE" id="16Z-Tn-bv4"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="e0T-uR-vXa" customClass="MarkupTextView" customModule="Diurna" customModuleProvider="target">
+                                                                    <rect key="frame" x="15" y="5" width="420" height="35"/>
+                                                                </customView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="11q-hU-2bm" secondAttribute="trailing" constant="15" id="7Mb-9l-bvr"/>
+                                                                <constraint firstItem="e0T-uR-vXa" firstAttribute="trailing" secondItem="11q-hU-2bm" secondAttribute="trailing" id="Bap-GH-5jx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="e0T-uR-vXa" secondAttribute="bottom" constant="5" id="D5F-pp-kYz"/>
+                                                                <constraint firstItem="11q-hU-2bm" firstAttribute="leading" secondItem="Ffe-D6-n9g" secondAttribute="trailing" constant="10" id="JBZ-ot-fs8"/>
+                                                                <constraint firstItem="Ffe-D6-n9g" firstAttribute="centerY" secondItem="11q-hU-2bm" secondAttribute="centerY" id="SC2-qZ-xvF"/>
+                                                                <constraint firstItem="e0T-uR-vXa" firstAttribute="top" secondItem="LEd-dx-TsX" secondAttribute="bottom" constant="5" id="eqp-Lf-g9s"/>
+                                                                <constraint firstItem="11q-hU-2bm" firstAttribute="centerY" secondItem="LEd-dx-TsX" secondAttribute="centerY" id="hcz-kY-fxm"/>
+                                                                <constraint firstItem="LEd-dx-TsX" firstAttribute="leading" secondItem="K2k-gF-5pE" secondAttribute="leading" constant="15" id="irf-Ql-aZe"/>
+                                                                <constraint firstItem="e0T-uR-vXa" firstAttribute="leading" secondItem="LEd-dx-TsX" secondAttribute="leading" id="j3W-Fo-fw3"/>
+                                                                <constraint firstItem="LEd-dx-TsX" firstAttribute="top" secondItem="K2k-gF-5pE" secondAttribute="top" constant="5" id="xam-dO-kPR"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="authorTextField" destination="tfM-YZ-5w8" id="6yZ-S2-gWZ"/>
+                                                                <outlet property="commentTextView" destination="e0T-uR-vXa" id="lm1-kP-JV3"/>
+                                                                <outlet property="opBadgeView" destination="lHq-S8-1tH" id="C8d-hC-V1B"/>
+                                                                <outlet property="repliesButton" destination="11q-hU-2bm" id="BJL-ni-uwe"/>
+                                                                <outlet property="repliesTextField" destination="Ffe-D6-n9g" id="0yA-NH-JqH"/>
+                                                                <outlet property="replyArrowTextField" destination="2l4-Nh-E3J" id="yKB-a0-uBw"/>
+                                                                <outlet property="timeTextField" destination="y4v-JI-hDG" id="WUl-6y-9nJ"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="mp3-FQ-741" id="yev-lN-Olj"/>
+                                                <outlet property="delegate" destination="mp3-FQ-741" id="ZkN-WP-2gl"/>
+                                            </connections>
+                                        </outlineView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="n1v-Ml-1pt">
+                                    <rect key="frame" x="-100" y="-100" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="GAn-dL-OYF">
+                                    <rect key="frame" x="-16" y="0.0" width="16" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomFadePercentage">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRH-qd-Gfs">
+                                <rect key="frame" x="166" y="92" width="119" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="No comments yet." usesSingleLineMode="YES" id="Wcj-cQ-gao">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="BKZ-nm-FFP" customClass="ProgressOverlayView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="112" y="75" width="225" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="avG-8B-ZrO"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="QRH-qd-Gfs" firstAttribute="centerY" secondItem="KMs-qg-awy" secondAttribute="centerY" id="Fvz-UL-dyX"/>
+                            <constraint firstAttribute="bottom" secondItem="UAN-Vz-6co" secondAttribute="bottom" id="IoK-1L-pk8"/>
+                            <constraint firstItem="QRH-qd-Gfs" firstAttribute="centerX" secondItem="KMs-qg-awy" secondAttribute="centerX" id="NjV-iP-9nG"/>
+                            <constraint firstItem="UAN-Vz-6co" firstAttribute="width" secondItem="KMs-qg-awy" secondAttribute="width" id="Pxo-vS-Mpe"/>
+                            <constraint firstItem="UAN-Vz-6co" firstAttribute="top" secondItem="KMs-qg-awy" secondAttribute="top" id="aKo-3A-RaC"/>
+                            <constraint firstItem="UAN-Vz-6co" firstAttribute="centerX" secondItem="KMs-qg-awy" secondAttribute="centerX" id="b9Q-fq-Uk1"/>
+                            <constraint firstItem="BKZ-nm-FFP" firstAttribute="width" secondItem="KMs-qg-awy" secondAttribute="width" multiplier="0.5" id="dAo-Rs-SH5"/>
+                            <constraint firstItem="BKZ-nm-FFP" firstAttribute="centerY" secondItem="KMs-qg-awy" secondAttribute="centerY" id="vDX-Tv-bqS"/>
+                            <constraint firstItem="BKZ-nm-FFP" firstAttribute="centerX" secondItem="KMs-qg-awy" secondAttribute="centerX" id="zRM-zT-iIk"/>
+                        </constraints>
+                    </customView>
+                    <connections>
+                        <outlet property="commentsOutlineView" destination="TlW-kW-eAR" id="FvL-cW-UN0"/>
+                        <outlet property="commentsPlaceholder" destination="QRH-qd-Gfs" id="PlC-lO-BGg"/>
+                        <outlet property="commentsScrollView" destination="UAN-Vz-6co" id="RP5-e6-5W4"/>
+                        <outlet property="progressOverlay" destination="BKZ-nm-FFP" id="1N0-RN-xDJ"/>
+                        <outlet property="view" destination="KMs-qg-awy" id="rkt-gz-jQ7"/>
+                    </connections>
+                </viewController>
+                <customObject id="6hK-0V-FEK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="1272"/>
+        </scene>
+        <!--Story Details View Controller-->
+        <scene sceneID="uwq-OP-dde">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="yvb-zs-IZn" customClass="StoryDetailsViewController" customModule="Diurna" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5RG-L3-Bcg">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="242"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ1-xw-L6H">
+                                <rect key="frame" x="13" y="214" width="73" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="Story Title" usesSingleLineMode="YES" id="XRz-61-6XS">
+                                    <font key="font" metaFont="systemMedium" size="14"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98B-NR-Pxm">
+                                <rect key="frame" x="13" y="188" width="126" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="il2-Lg-Auk"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" placeholderString="by author, # days ago" usesSingleLineMode="YES" id="sLl-JH-1rh">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="cS3-1K-Zw2" customClass="StoryStatusView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="340" y="186" width="95" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="B6d-9d-Cti"/>
+                                    <constraint firstAttribute="height" constant="20" id="Bre-bf-nb7"/>
+                                </constraints>
+                            </customView>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="ksJ-Bx-Fvf" customClass="FadingScrollView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="15" y="26" width="420" height="150"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="a0i-yE-D16">
+                                    <rect key="frame" x="0.0" y="0.0" width="420" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="MlT-S3-Kln" customClass="SelfSizingTextView" customModule="Diurna" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="420" height="150"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment content="Story content">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="1t5-ds-nT9"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="en0-U7-OKO">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="CbX-S9-wzB">
+                                    <rect key="frame" x="404" y="0.0" width="16" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomFadePercentage">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                            <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="by7-df-eux" customClass="DisclosureButtonView" customModule="Diurna" customModuleProvider="target">
+                                <rect key="frame" x="217" y="5" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="Ma3-Rz-LoA"/>
+                                    <constraint firstAttribute="width" secondItem="by7-df-eux" secondAttribute="height" multiplier="1:1" id="zzz-IU-kG1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="CollapseIcon" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="veg-DZ-UgH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="expandedTooltip" value="Hide story description"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="collapsedTooltip" value="Show story description"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isExpanded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="userDidToggleDescription:" target="yvb-zs-IZn" id="jGq-ma-cVR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="98B-NR-Pxm" firstAttribute="leading" secondItem="PQ1-xw-L6H" secondAttribute="leading" id="0cs-qy-Gem"/>
+                            <constraint firstItem="PQ1-xw-L6H" firstAttribute="top" secondItem="5RG-L3-Bcg" secondAttribute="top" constant="10" id="EQT-QA-yJh"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="top" secondItem="cS3-1K-Zw2" secondAttribute="bottom" priority="750" constant="10" id="QwQ-zX-OXa"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="leading" secondItem="PQ1-xw-L6H" secondAttribute="leading" id="TLt-oF-3d3"/>
+                            <constraint firstItem="ksJ-Bx-Fvf" firstAttribute="trailing" secondItem="cS3-1K-Zw2" secondAttribute="trailing" id="ZcZ-Dk-Woj"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PQ1-xw-L6H" secondAttribute="trailing" constant="15" id="Zka-NN-4Fg"/>
+                            <constraint firstAttribute="trailing" secondItem="cS3-1K-Zw2" secondAttribute="trailing" constant="15" id="aio-cW-0Q1"/>
+                            <constraint firstItem="cS3-1K-Zw2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="98B-NR-Pxm" secondAttribute="trailing" constant="30" id="cJg-uN-aKf"/>
+                            <constraint firstItem="by7-df-eux" firstAttribute="top" secondItem="ksJ-Bx-Fvf" secondAttribute="bottom" constant="5" id="erO-ow-3VY"/>
+                            <constraint firstItem="cS3-1K-Zw2" firstAttribute="centerY" secondItem="98B-NR-Pxm" secondAttribute="centerY" id="gqP-tp-8bV"/>
+                            <constraint firstItem="by7-df-eux" firstAttribute="centerX" secondItem="5RG-L3-Bcg" secondAttribute="centerX" id="m3J-KL-VTW"/>
+                            <constraint firstItem="98B-NR-Pxm" firstAttribute="top" secondItem="PQ1-xw-L6H" secondAttribute="bottom" constant="10" id="mBb-fz-cab"/>
+                            <constraint firstAttribute="bottom" secondItem="by7-df-eux" secondAttribute="bottom" constant="5" id="mt5-nm-ydN"/>
+                            <constraint firstItem="PQ1-xw-L6H" firstAttribute="leading" secondItem="5RG-L3-Bcg" secondAttribute="leading" constant="15" id="s5d-Jv-9PR"/>
+                            <constraint firstAttribute="bottom" secondItem="cS3-1K-Zw2" secondAttribute="bottom" priority="250" id="t2t-9D-zcc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomSpacingConstraint" destination="t2t-9D-zcc" id="Dbr-0X-HI9"/>
+                        <outlet property="contentDisclosureButton" destination="by7-df-eux" id="CKZ-zF-2m6"/>
+                        <outlet property="contentScrollView" destination="ksJ-Bx-Fvf" id="pMu-fq-QiW"/>
+                        <outlet property="contentScrollViewHeightConstraint" destination="1t5-ds-nT9" id="hCS-Td-Yzt"/>
+                        <outlet property="contentSpacingConstraint" destination="QwQ-zX-OXa" id="oif-mW-Tdn"/>
+                        <outlet property="contentTextView" destination="MlT-S3-Kln" id="tXo-2t-m3i"/>
+                        <outlet property="detailsTextField" destination="98B-NR-Pxm" id="Tw7-Wq-3zN"/>
+                        <outlet property="statusView" destination="cS3-1K-Zw2" id="7pG-PH-uwt"/>
+                        <outlet property="titleLeadingSpaceConstraint" destination="s5d-Jv-9PR" id="TEB-Lg-kvo"/>
+                        <outlet property="titleTextField" destination="PQ1-xw-L6H" id="s9Y-o0-8db"/>
+                        <outlet property="titleTrailingSpaceConstraint" destination="Zka-NN-4Fg" id="sgf-yC-4yN"/>
+                    </connections>
+                </viewController>
+                <customObject id="GdR-2R-K0g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="1811.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CollapseIcon" width="100" height="100"/>
+        <image name="ExpandIcon" width="100" height="100"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+        <image name="ShowIconTemplate" width="96" height="96"/>
+        <image name="buttonCell:Mcx-oC-G0f:image" width="1" height="1">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwwAAgAOAC1Z7MSwgMX3SFQoWGFpOUy5vYmplY3RzoReABIAK0hUKGh2iGxyA
+BYAGgAkQANIgCiEiXxAUTlNUSUZGUmVwcmVzZW50YXRpb26AB4AITxEIxE1NACoAAAAKAAAAEAEAAAMA
+AAABAAEAAAEBAAMAAAABAAEAAAECAAMAAAACAAgACAEDAAMAAAABAAEAAAEGAAMAAAABAAEAAAEKAAMA
+AAABAAEAAAERAAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAIAAAEWAAMAAAABAAEAAAEXAAQA
+AAABAAAAAgEcAAMAAAABAAEAAAEoAAMAAAABAAIAAAFSAAMAAAABAAEAAAFTAAMAAAACAAEAAYdzAAcA
+AAf0AAAA0AAAAAAAAAf0YXBwbAIgAABtbnRyR1JBWVhZWiAH0AACAA4ADAAAAABhY3NwQVBQTAAAAABu
+b25lAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWFwcGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVkZXNjAAAAwAAAAG9kc2NtAAABMAAABmZjcHJ0AAAHmAAAADh3
+dHB0AAAH0AAAABRrVFJDAAAH5AAAAA5kZXNjAAAAAAAAABVHZW5lcmljIEdyYXkgUHJvZmlsZQAAAAAA
+AAAAAAAAFUdlbmVyaWMgR3JheSBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAAAAAfAAAADHNrU0sAAAAqAAABhGVuVVMAAAAoAAABrmNhRVMA
+AAAsAAAB1nZpVk4AAAAsAAACAnB0QlIAAAAqAAACLnVrVUEAAAAsAAACWGZyRlUAAAAqAAAChGh1SFUA
+AAAuAAACrnpoVFcAAAAQAAAC3G5iTk8AAAAsAAAC7GtvS1IAAAAYAAADGGNzQ1oAAAAkAAADMGhlSUwA
+AAAgAAADVHJvUk8AAAAkAAADdGRlREUAAAA6AAADmGl0SVQAAAAuAAAD0nN2U0UAAAAuAAAEAHpoQ04A
+AAAQAAAELmphSlAAAAAWAAAEPmVsR1IAAAAkAAAEVHB0UE8AAAA4AAAEeG5sTkwAAAAqAAAEsGVzRVMA
+AAAoAAAE2nRoVEgAAAAkAAAFAnRyVFIAAAAiAAAFJmZpRkkAAAAsAAAFSGhySFIAAAA6AAAFdHBsUEwA
+AAA2AAAFrnJ1UlUAAAAmAAAF5GFyRUcAAAAoAAAGCmRhREsAAAA0AAAGMgBWAWEAZQBvAGIAZQBjAG4A
+/QAgAHMAaQB2AP0AIABwAHIAbwBmAGkAbABHAGUAbgBlAHIAaQBjACAARwByAGEAeQAgAFAAcgBvAGYA
+aQBsAGUAUABlAHIAZgBpAGwAIABkAGUAIABnAHIAaQBzACAAZwBlAG4A6AByAGkAYwBDHqUAdQAgAGgA
+7ABuAGgAIABNAOAAdQAgAHgA4QBtACAAQwBoAHUAbgBnAFAAZQByAGYAaQBsACAAQwBpAG4AegBhACAA
+RwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAEcAcgBhAHkA
+UAByAG8AZgBpAGwAIABnAOkAbgDpAHIAaQBxAHUAZQAgAGcAcgBpAHMAwQBsAHQAYQBsAOEAbgBvAHMA
+IABzAHoA/AByAGsAZQAgAHAAcgBvAGYAaQBskBp1KHBwlo6Ccl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsA
+IABnAHIA5QB0AG8AbgBlAHAAcgBvAGYAaQBsx3y8GAAgAEcAcgBhAHkAINUEuFzTDMd8AE8AYgBlAGMA
+bgD9ACABYQBlAGQA/QAgAHAAcgBvAGYAaQBsBeQF6AXVBeQF2QXcACAARwByAGEAeQAgBdsF3AXcBdkA
+UAByAG8AZgBpAGwAIABnAHIAaQAgAGcAZQBuAGUAcgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAA
+RwByAGEAdQBzAHQAdQBmAGUAbgAtAFAAcgBvAGYAaQBsAFAAcgBvAGYAaQBsAG8AIABnAHIAaQBnAGkA
+bwAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIAaQBzAGsAIABnAHIA5QBzAGsAYQBsAGUAcAByAG8A
+ZgBpAGxmbpAacHBepmPPj/Blh072TgCCLDCwMOwwpDDXMO0w1TChMKQw6wOTA7UDvQO5A7oDzAAgA8AD
+wQO/A8YDrwO7ACADswO6A8EDuQBQAGUAcgBmAGkAbAAgAGcAZQBuAOkAcgBpAGMAbwAgAGQAZQAgAGMA
+aQBuAHoAZQBuAHQAbwBzAEEAbABnAGUAbQBlAGUAbgAgAGcAcgBpAGoAcwBwAHIAbwBmAGkAZQBsAFAA
+ZQByAGYAaQBsACAAZwByAGkAcwAgAGcAZQBuAOkAcgBpAGMAbw5CDhsOIw5EDh8OJQ5MDioONQ5ADhcO
+Mg4XDjEOSA4nDkQOGwBHAGUAbgBlAGwAIABHAHIAaQAgAFAAcgBvAGYAaQBsAGkAWQBsAGUAaQBuAGUA
+bgAgAGgAYQByAG0AYQBhAHAAcgBvAGYAaQBpAGwAaQBHAGUAbgBlAHIAaQENAGsAaQAgAHAAcgBvAGYA
+aQBsACAAcwBpAHYAaQBoACAAdABvAG4AbwB2AGEAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAAcAByAG8A
+ZgBpAGwAIABzAHoAYQByAG8BWwBjAGkEHgQxBEkEOAQ5ACAEQQQ1BEAESwQ5ACAEPwRABD4ERAQ4BDsE
+TAZFBkQGQQAgBioGOQYxBkoGQQAgAEcAcgBhAHkAIAYnBkQGOQYnBkUARwBlAG4AZQByAGUAbAAgAGcA
+cgDlAHQAbwBuAGUAYgBlAHMAawByAGkAdgBlAGwAcwBlAAB0ZXh0AAAAAENvcHlyaWdodCAyMDA3IEFw
+cGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQuAFhZWiAAAAAAAADzUQABAAAAARbMY3VydgAAAAAA
+AAABAc0AANIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVwoycpKlpOU0lt
+YWdlUmVwWE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8wXk5TTXV0YWJsZUFycmF5oy8sKtMyMwo0
+NTZXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAzSJSY4OVdOU0NvbG9yojgq0iUmOzxXTlNJbWFn
+ZaI7Kl8QD05TS2V5ZWRBcmNoaXZlctE/QFRyb290gAEACAARABoAIwAtADIANwBGAEwAVwBeAGUAcgB5
+AIEAgwCFAIoAjACOAJUAmgClAKcAqQCrALAAswC1ALcAuQC7AMAA1wDZANsJowmoCbMJvAnPCdMJ3gnn
+CewJ9An3CfwKCwoPChYKHgorCjAKMgo0CjkKQQpECkkKUQpUCmYKaQpuAAAAAAAAAgEAAAAAAAAAQQAA
+AAAAAAAAAAAAAAAACnA
+</mutableData>
+        </image>
+    </resources>
+</document>

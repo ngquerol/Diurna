@@ -120,7 +120,7 @@
 		8DA296A11D2ABEC50072DABB /* HorizontalLineSeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLineSeparatorView.swift; sourceTree = "<group>"; };
 		8DA296A31D2AD5BD0072DABB /* LightColoredBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightColoredBadgeView.swift; sourceTree = "<group>"; };
 		8DAAFEB41FB7B17D0023783A /* NetworkingAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAware.swift; sourceTree = "<group>"; };
-		8DB29B351CF37E32006EBF32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		8DB29B351CF37E32006EBF32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DC309511C6E0D3F00188137 /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
 		8DC9412F1E3CF626008BB0A5 /* StoryRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryRowView.swift; sourceTree = "<group>"; };
 		8DC941361E3D0308008BB0A5 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -196,17 +196,17 @@
 		8D657E811C49A80400F31BB7 = {
 			isa = PBXGroup;
 			children = (
-				8D657E8C1C49A80500F31BB7 /* Diurna */,
+				8DE13EDE1C6361A9006774F4 /* Resources */,
+				8D657E8C1C49A80500F31BB7 /* Sources */,
 				8D04F1F41E3E0B6100ECA372 /* Diurna.app */,
 				8D9310E31EED486C00244407 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		8D657E8C1C49A80500F31BB7 /* Diurna */ = {
+		8D657E8C1C49A80500F31BB7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */,
-				8DE13EDE1C6361A9006774F4 /* Resources */,
 				8D821E5C1C58262800ABA7BD /* API */,
 				8D657EC01C49AC9700F31BB7 /* Model */,
 				8D323F621D664A2000B33DA9 /* Web */,
@@ -217,8 +217,8 @@
 				8DB4EE7F1CED4A0200BA7001 /* Views */,
 				8D657EBF1C49AC8200F31BB7 /* View Controllers */,
 			);
-			path = Diurna;
-			sourceTree = "<group>";
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
 		};
 		8D657EBF1C49AC8200F31BB7 /* View Controllers */ = {
 			isa = PBXGroup;
@@ -331,17 +331,18 @@
 		8DE13EDE1C6361A9006774F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8D5DB2171D637909009A8E71 /* TestData */,
 				8DB29B351CF37E32006EBF32 /* Assets.xcassets */,
 				8D657E941C49A80500F31BB7 /* Info.plist */,
 				8D05A7631CF7B21D0066EADE /* Credits.rtf */,
-				8D5DB2171D637909009A8E71 /* TestData */,
 				8DEEA5611C52CB45001DB85D /* Main.storyboard */,
 				8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */,
 				8D1DAB511FDDD38600FF4FCC /* StoryStatusView.xib */,
 				8D8105221DCE53200031AE2C /* UserDetailsPopoverView.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
+			path = Ressources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -590,7 +591,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = Diurna/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-ObjC";
@@ -615,7 +616,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = Diurna/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-ObjC";
