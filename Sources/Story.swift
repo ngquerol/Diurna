@@ -42,12 +42,13 @@ struct Story: Item {
 
     let kids: [Int]?
 
-    var rank: Int {
-        let hoursSinceSubmission = abs(time.timeIntervalSinceNow / (60 * 60)),
-            adjustedScore = score - 1,
-            gravity = 1.8
+    var rank: Double {
+        let gravity = 1.8,
+            baseScore = Double(score - 1),
+            adjustedScore = baseScore > 0 ? pow(baseScore, 0.8) : baseScore,
+            hoursSinceSubmission = abs(time.timeIntervalSinceNow) / 3600
 
-        return adjustedScore / Int(pow(hoursSinceSubmission + 2.0, gravity))
+        return adjustedScore / pow(hoursSinceSubmission + 2, gravity)
     }
 }
 
