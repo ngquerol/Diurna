@@ -32,10 +32,25 @@ class StoryRowView: NSTableRowView {
     }
 
     override func drawSeparator(in _: NSRect) {
-        let bottomRect = NSRect(x: 0, y: 0, width: bounds.maxX, height: 1.0),
-            topRect = NSRect(x: 0, y: bounds.maxY - 1.0, width: bounds.maxX, height: 1.0)
+        let margin: CGFloat = 10.0,
+            height: CGFloat = 1.0,
+            start: CGFloat = isSelected ? 0 : margin,
+            width: CGFloat = isSelected ? bounds.maxX : bounds.maxX - (margin * 2),
+            bottomRect = NSRect(
+                x: start,
+                y: 0,
+                width: width,
+                height: height
+            ),
+            topRect = NSRect(
+                x: start,
+                y: bounds.maxY - height,
+                width: width,
+                height: height
+            ),
+            color = isSelected ? Themes.current.cellHighlightForegroundColor.blended(withFraction: 0.75, of: .white) : Themes.current.dividerColor
 
-        Themes.current.dividerColor.setFill()
+        color?.setFill()
 
         if isSelected {
             bottomRect.fill()
