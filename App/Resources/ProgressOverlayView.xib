@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ProgressOverlayView" customModule="Diurna" customModuleProvider="target">
+            <connections>
+                <outlet property="messageTextField" destination="1Eb-b3-lxJ" id="8zF-yc-X0K"/>
+                <outlet property="progressIndicator" destination="v6Y-fL-P1I" id="gKm-8e-HzL"/>
+                <outlet property="stackView" destination="9K0-0h-T0s" id="y6H-Lb-FbT"/>
+                <outlet property="view" destination="c22-O7-iKe" id="Jhw-n0-Dib"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="47"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView wantsLayer="YES" blendingMode="withinWindow" material="popover" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="jzu-Li-y04">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="47"/>
+                    <subviews>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9K0-0h-T0s">
+                            <rect key="frame" x="68" y="5" width="64" height="37"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Eb-b3-lxJ">
+                                    <rect key="frame" x="-2" y="21" width="68" height="16"/>
+                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Loading..." id="BN7-KT-5O1">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <progressIndicator maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-fL-P1I">
+                                    <rect key="frame" x="24" y="0.0" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="16" id="Avc-Ry-wbv"/>
+                                        <constraint firstAttribute="width" secondItem="v6Y-fL-P1I" secondAttribute="height" multiplier="1:1" id="z0a-wL-3l2"/>
+                                    </constraints>
+                                </progressIndicator>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="9K0-0h-T0s" firstAttribute="centerX" secondItem="jzu-Li-y04" secondAttribute="centerX" id="sqE-Xh-ncH"/>
+                        <constraint firstItem="9K0-0h-T0s" firstAttribute="centerY" secondItem="jzu-Li-y04" secondAttribute="centerY" id="xCZ-eI-Mlk"/>
+                    </constraints>
+                </visualEffectView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="jzu-Li-y04" secondAttribute="bottom" id="69q-3O-Ef8"/>
+                <constraint firstAttribute="trailing" secondItem="jzu-Li-y04" secondAttribute="trailing" id="Dq8-T9-OOC"/>
+                <constraint firstItem="jzu-Li-y04" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="dWF-nd-2Kt"/>
+                <constraint firstItem="jzu-Li-y04" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="sNL-SI-W9f"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+</document>
