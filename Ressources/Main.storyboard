@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="mHI-bR-tcx">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14092"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14101"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -191,13 +191,32 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="8ZL-fD-S6R">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem title="Edit" id="loA-aa-ISg">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="m5e-4v-64I">
                                     <items>
+                                        <menuItem title="Cut" keyEquivalent="x" id="zHX-dT-4sQ">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="fA8-mY-OCY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="GvF-gY-pJB">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="FRZ-Ri-kQN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="f8n-qo-xtA">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="T4T-UM-ek2"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="KOZ-Zf-uHF"/>
+                                        <menuItem title="Select All" keyEquivalent="a" id="x8j-vT-gjZ">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="WSo-JJ-Eib"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="HLY-ay-gAl"/>
                                         <menuItem title="Search stories..." keyEquivalent="f" id="BjG-Yz-6oM">
                                             <connections>
                                                 <action selector="searchStories:" target="Voe-Tx-rLC" id="8Dz-fO-LXD"/>
