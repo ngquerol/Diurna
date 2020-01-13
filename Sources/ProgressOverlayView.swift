@@ -38,5 +38,5 @@ class ProgressOverlayView: NSView {
 // MARK: - NSNib.Name
 
 private extension NSNib.Name {
-    static let progressOverlayView = NSNib.Name("ProgressOverlayView")
+    static let progressOverlayView = "ProgressOverlayView"
 }

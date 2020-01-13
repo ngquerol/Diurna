@@ -29,8 +29,8 @@ protocol Item: JSONDecodable, Hashable {
 
 extension Hashable where Self: Item {
 
-    var hashValue: Int {
-        return id.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id.hashValue)
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {

@@ -214,14 +214,14 @@ class ThemeableCell: NSButtonCell {
 
     private func changeButtonTitleColor() {
         let font = attributedTitle.attribute(
-            NSAttributedStringKey.font,
+            NSAttributedString.Key.font,
             at: 0,
             effectiveRange: nil
         ) as? NSFont ?? .systemFont(ofSize: NSFont.systemFontSize(for: controlSize))
 
         attributedTitle = NSAttributedString(string: title, attributes: [
-            NSAttributedStringKey.foregroundColor: isHighlighted ? highlightedTextColor : textColor,
-            NSAttributedStringKey.font: font,
+            NSAttributedString.Key.foregroundColor: isHighlighted ? highlightedTextColor : textColor,
+            NSAttributedString.Key.font: font,
         ])
     }
 }

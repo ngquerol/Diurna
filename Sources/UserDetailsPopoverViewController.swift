@@ -92,7 +92,7 @@ class UserDetailsPopoverViewController: NSViewController, NetworkingAware {
 // MARK: - NSNib.Name
 
 extension NSNib.Name {
-    static let userDetailsPopover = NSNib.Name("UserDetailsPopoverView")
+    static let userDetailsPopover = "UserDetailsPopoverView"
 }
 
 // MARK: - NSPopover Delegate

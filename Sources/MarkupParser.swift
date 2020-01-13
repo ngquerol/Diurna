@@ -145,7 +145,7 @@ struct MarkupParser {
         )
     }
 
-    private func getFormattingAttributes(for tag: Tag) -> [NSAttributedStringKey: Any] {
+    private func getFormattingAttributes(for tag: Tag) -> [NSAttributedString.Key: Any] {
         switch tag.name {
         case "a":
             guard
@@ -159,7 +159,7 @@ struct MarkupParser {
                 .link: url as Any,
                 .font: Themes.current.regularFont,
                 .foregroundColor: Themes.current.urlColor,
-                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
             ]
 
         case "i":
@@ -196,7 +196,7 @@ struct MarkupParser {
     }
 
     private mutating func handleText(for tag: Tag?) -> NSAttributedString {
-        var formattingAttributes: [NSAttributedStringKey: Any]
+        var formattingAttributes: [NSAttributedString.Key: Any]
 
         if let tag = tag {
             formattingAttributes = getFormattingAttributes(for: tag)

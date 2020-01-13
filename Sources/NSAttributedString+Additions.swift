@@ -15,7 +15,7 @@ extension NSAttributedString {
 
 extension NSTextView {
 
-    var attributedStringValue: NSAttributedString {
+    @objc var attributedStringValue: NSAttributedString {
         get {
             return self.attributedString()
         }

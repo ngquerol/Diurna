@@ -68,5 +68,5 @@ class StoryStatusView: NSView {
 // MARK: - NSNib.Name
 
 private extension NSNib.Name {
-    static let storyStatusView = NSNib.Name("StoryStatusView")
+    static let storyStatusView = "StoryStatusView"
 }

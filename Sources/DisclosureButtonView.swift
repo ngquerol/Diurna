@@ -53,7 +53,7 @@ import Cocoa
         animation.fromValue = currentAngle as NSNumber
         animation.toValue = destinationAngle as NSNumber
         animation.duration = 0.25
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 
         layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         layer?.position = CGPoint(x: frame.midX, y: frame.midY)

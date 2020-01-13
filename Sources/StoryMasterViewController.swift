@@ -30,8 +30,8 @@ class StoryMasterViewController: NSViewController {
         super.viewDidLoad()
 
         guard
-            let detailsViewController = childViewControllers.first as? StoryDetailsViewController,
-            let commentsViewController = childViewControllers.last as? CommentsViewController
+            let detailsViewController = children.first as? StoryDetailsViewController,
+            let commentsViewController = children.last as? CommentsViewController
         else {
             return
         }

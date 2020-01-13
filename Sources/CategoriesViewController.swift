@@ -132,7 +132,7 @@ extension CategoriesViewController: NSTableViewDelegate {
 
         if let storyType = StoryType(rawValue: StoryType.allValues[row]) {
             let displayableName = storyType.rawValue.capitalized
-            cellView?.imageView?.image = NSImage(named: NSImage.Name("\(displayableName)IconTemplate"))
+            cellView?.imageView?.image = NSImage(named: "\(displayableName)IconTemplate")
             cellView?.imageView?.toolTip = "\(displayableName)"
         }
 

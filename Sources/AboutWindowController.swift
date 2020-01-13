@@ -25,5 +25,5 @@ class AboutWindowController: NSWindowController {
 // MARK: - NSNib.Name
 
 extension NSNib.Name {
-    static let aboutWindow = NSNib.Name("AboutWindow")
+    static let aboutWindow = "AboutWindow"
 }
