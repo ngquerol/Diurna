@@ -26,8 +26,7 @@ class ProgressState:
         self.output.append(item)
 
         print(
-            f'Fetching "{self.category}" stories...'
-            " [{self.done}/{self.total}]",
+            f'Fetching "{self.category}" stories...[{self.done}/{self.total}]',
             end="\r",
         )
 
