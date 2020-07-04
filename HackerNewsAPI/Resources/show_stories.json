@@ -1,0 +1,2970 @@
+[
+  {
+    "by": "tcode2k16",
+    "descendants": 1,
+    "id": 23723058,
+    "kids": [
+      23723252
+    ],
+    "score": 18,
+    "time": 1593775584,
+    "title": "Show HN: The Book of Modding",
+    "type": "story",
+    "url": "https://thebookofmodding.ml/",
+    "_kids": [
+      {
+        "by": "cassianoleal",
+        "id": 23723252,
+        "parent": 23723058,
+        "text": "Could the title please be changed to include the word &quot;Minecraft&quot; like on the actual website it links to?",
+        "time": 1593777907,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "caditinpiscinam",
+    "descendants": 1,
+    "id": 23712035,
+    "kids": [
+      23714309
+    ],
+    "score": 10,
+    "time": 1593689054,
+    "title": "Show HN: Writing a VM for a Small Stack-Base Language in Pointless",
+    "type": "story",
+    "url": "https://ptls.dev/tutorials/factorsVM.html",
+    "_kids": [
+      {
+        "by": "harikb",
+        "id": 23714309,
+        "parent": 23712035,
+        "text": "I read the title as \u201c... is pointless\u201d.",
+        "time": 1593703564,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "k5jhn",
+    "descendants": 1,
+    "id": 23719119,
+    "kids": [
+      23722297
+    ],
+    "score": 6,
+    "time": 1593731368,
+    "title": "Show HN: Pruun \u2013 Python CL utility for creating AWS Lambda deployment packages",
+    "type": "story",
+    "url": "https://github.com/alexkosj/pruun",
+    "_kids": [
+      {
+        "by": "austinjp",
+        "id": 23722297,
+        "parent": 23719119,
+        "text": "Hi there. Nice work. I&#x27;ve been tinkering with wrapping a bash script around the serverless and aws CLI tools. Out of curiosity, does this do anything that serverless doesn&#x27;t?<p>I fully appreciate that &quot;intellectual curiosity&quot; is a fully valid reason for creating something like this :)",
+        "time": 1593766630,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "gengiskush",
+    "descendants": 0,
+    "id": 23722326,
+    "kids": [
+      23722327
+    ],
+    "score": 3,
+    "time": 1593766909,
+    "title": "Show HN: Introspect - Python OODB Web CMS built on UNIX",
+    "type": "story",
+    "url": "https://bitbucket.org/mieszkowski/introspect/src/master/",
+    "_kids": [
+      {
+        "deleted": true,
+        "id": 23722327,
+        "parent": 23722326,
+        "time": 1593766909,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "mrskitch",
+    "descendants": 4,
+    "id": 23717366,
+    "kids": [
+      23717379,
+      23717410,
+      23722860,
+      23720615
+    ],
+    "score": 13,
+    "time": 1593720078,
+    "title": "Show HN: Quik \u2013 Internet Explorer as a Service",
+    "type": "story",
+    "url": "https://www.quik.dev",
+    "_kids": [
+      {
+        "by": "mrskitch",
+        "id": 23717379,
+        "parent": 23717366,
+        "text": "Hey folks, Joel here (creator of Quik + browserless.io). Quik came about as an attempt to stop spending time on IE support... but still support it when you have to. A vast amount of my &quot;frustration&quot; time as a developer was getting VM&#x27;s to run IE to even test the site, let alone do the required repairs. Huge time-sink.<p>Anyways, happy to answer questions or talk more about it. Pretty fun&#x2F;novel way of solving this problem!",
+        "time": 1593720158,
+        "type": "comment"
+      },
+      {
+        "by": "adenta",
+        "id": 23717410,
+        "parent": 23717366,
+        "text": "Huge fan of Quik. I build <a href=\"https:&#x2F;&#x2F;terusama.com\" rel=\"nofollow\">https:&#x2F;&#x2F;terusama.com</a> using modern development practices, and hit the point where _not_ supporting internet explorer was _not_ an option. We build software for the logistics industry, so freight brokers can schedule trucks at warehouses. Some people who need access to my scheduling website, were accessing our site through ancient Citrix VM&#x27;s. &quot;Just install chrome&quot;, wasn&#x27;t even in the realm of possibility. If I make concessions to manually schedule appointments for these people, it&#x27;s an incredibly slippery slope of making other concessions. Our value proposition of being entirely automated and saving people time also starts to lose its value.<p>Quik is insane, because I don&#x27;t have to do anything, and am now compatible with Internet Explorer, in a secure way. Being able to take a modern web stack, and have, &quot;IE compatibility&quot; as a feature, is totally attractive to old-school enterprises, when that&#x27;s your target clientele.",
+        "time": 1593720345,
+        "type": "comment"
+      },
+      {
+        "by": "Pegasis",
+        "id": 23722860,
+        "parent": 23717366,
+        "text": "Is it like GeForce now but for webpages?",
+        "time": 1593773076,
+        "type": "comment"
+      },
+      {
+        "by": "ciustuc",
+        "id": 23720615,
+        "parent": 23717366,
+        "text": "I would\u2019ve called it: Nearly headless quik",
+        "time": 1593744728,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "superwhiskers",
+    "descendants": 3,
+    "id": 23720161,
+    "kids": [
+      23720671,
+      23720428
+    ],
+    "score": 5,
+    "time": 1593739745,
+    "title": "Show HN: Crunch \u2013 a fast buffer manipulation library in go",
+    "type": "story",
+    "url": "https://github.com/superwhiskers/crunch",
+    "_kids": [
+      {
+        "by": "hydroxideOH-",
+        "id": 23720671,
+        "kids": [
+          23721021
+        ],
+        "parent": 23720161,
+        "text": "Twice as fast over the standard library is damn impressive, I wonder where the performance gains were found?",
+        "time": 1593745431,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "superwhiskers",
+            "id": 23721021,
+            "parent": 23720671,
+            "text": "the main things that make it faster come down to:<p>- the api doesn&#x27;t care about compatibility with the standard library at all (interface-wise), allowing a little more flexibility in interface presentation, which can allow for some performance improvements<p>- the implementations are small and not as large as `bytes.Buffer`&#x27;s, which also aid in making it fast (just look at all that `bytes.Buffer` does to write data: <a href=\"https:&#x2F;&#x2F;golang.org&#x2F;src&#x2F;bytes&#x2F;buffer.go#L168\" rel=\"nofollow\">https:&#x2F;&#x2F;golang.org&#x2F;src&#x2F;bytes&#x2F;buffer.go#L168</a>)<p>- i try to bypass safety checks where possible and feasible (such as when indexing, by using `unsafe.Pointer`) which, doesn&#x27;t speed it up much, but it&#x27;s full of unnecessary&#x2F;unidiomatic code optimizations already, i don&#x27;t think more would be too much of an issue :p<p>that&#x27;s probably all of the big things. there&#x27;s also other design decisions like choosing to generate implementations of what would be redundant instead of providing a consolidated implementation like i had done before (as seen with the complex r&#x2F;w methods), and other really small micro-optimizations that i touched it off with that probably don&#x27;t help much but i was honestly trying to find whatever i could just to make it faster",
+            "time": 1593750683,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "amasad",
+        "id": 23720428,
+        "parent": 23720161,
+        "text": "&gt; performs more than twice as fast as the standard library&#x27;s bytes.Buffer<p>Nice!",
+        "time": 1593742466,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "artembugara",
+    "descendants": 11,
+    "id": 23701343,
+    "kids": [
+      23701914,
+      23704174,
+      23706957,
+      23707532,
+      23703024,
+      23703454
+    ],
+    "score": 163,
+    "time": 1593611749,
+    "title": "Show HN: Pygooglenews \u2013 Python library for advanced Google News data mining",
+    "type": "story",
+    "url": "https://github.com/kotartemiy/pygooglenews",
+    "_kids": [
+      {
+        "by": "simonw",
+        "id": 23701914,
+        "kids": [
+          23701958
+        ],
+        "parent": 23701343,
+        "text": "This Python module doubles as the missing Google News feed API documentation: <a href=\"https:&#x2F;&#x2F;github.com&#x2F;kotartemiy&#x2F;pygooglenews&#x2F;blob&#x2F;master&#x2F;pygooglenews&#x2F;__init__.py\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;kotartemiy&#x2F;pygooglenews&#x2F;blob&#x2F;master&#x2F;pygoo...</a>",
+        "time": 1593614804,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "artembugara",
+            "id": 23701958,
+            "kids": [
+              23702182
+            ],
+            "parent": 23701914,
+            "text": "Did not get you. What do you mean?",
+            "time": 1593614994,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "simonw",
+                "id": 23702182,
+                "kids": [
+                  23702212
+                ],
+                "parent": 23701958,
+                "text": "From the README:<p>&gt; Google News used to have an API but it was deprecated many years ago. (Unofficial) information about RSS syntax is decentralized over the web. There is no official documentation. So, I tried my best to collect all this informaion in one place.<p>I was confirming that: the code I linked to is exactly the documentation I need to make use of their feeds - whether or not I use the actual library itself.<p>(I tend to skip libraries like this in favor of making direct calls to the underlying APIs - just a personal habit of mine)",
+                "time": 1593615904,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "artembugara",
+                    "id": 23702212,
+                    "parent": 23702182,
+                    "text": "Yes, got it.<p>I was collecting those piece by piece over many nights searching the web.<p>I think I will write a &quot;Google News syntax cheat sheet&quot; on <a href=\"https:&#x2F;&#x2F;codarium.substack.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;codarium.substack.com&#x2F;</a>",
+                    "time": 1593616015,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "jfrunyon",
+        "id": 23704174,
+        "kids": [
+          23704592
+        ],
+        "parent": 23701343,
+        "text": "I wonder how long it will take Google to &quot;update&quot; the feeds and break this.<p>Also, I feel Google might have some problems with this person selling an API for Google&#x27;s data. (The &quot;Google News API&quot; for which this project is clearly a marketing&#x2F;learning tool)",
+        "time": 1593624998,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "artembugara",
+            "id": 23704592,
+            "parent": 23704174,
+            "text": "First of all, I wish everyone had such a &quot;marketing&quot; tool.<p>I also felt that way (I did not want to sell an API initially) but then few people in similar business told me that it is &quot;OK&quot; to charge for such API.<p>And yeah, if google &quot;&quot;update&quot; the feeds and break this&quot; I will be the happiest guy on the planet, trust me.",
+            "time": 1593627117,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "op03",
+        "id": 23706957,
+        "kids": [
+          23707059
+        ],
+        "parent": 23701343,
+        "text": "Is journalist name available?<p>So given a topic is it possible to rank journos by number of articles produced over time ala techmeme leaderboards?",
+        "time": 1593639055,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "artembugara",
+            "id": 23707059,
+            "kids": [
+              23707088
+            ],
+            "parent": 23706957,
+            "text": "Unfortunately, no.",
+            "time": 1593639609,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "op03",
+                "id": 23707088,
+                "parent": 23707059,
+                "text": "Very cool project though. Nice job!",
+                "time": 1593639736,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "person_of_color",
+        "id": 23707532,
+        "parent": 23701343,
+        "text": "Who uses this for algo trading?",
+        "time": 1593642482,
+        "type": "comment"
+      },
+      {
+        "deleted": true,
+        "id": 23703024,
+        "parent": 23701343,
+        "time": 1593619537,
+        "type": "comment"
+      },
+      {
+        "by": "somerandomboi",
+        "id": 23703454,
+        "parent": 23701343,
+        "text": "I liked this repository.",
+        "time": 1593621606,
+        "type": "comment"
+      }
+    ]
+  },
+  {
+    "by": "morraa",
+    "descendants": 40,
+    "id": 23700275,
+    "kids": [
+      23701419,
+      23701036,
+      23700988,
+      23701438,
+      23705204,
+      23706800,
+      23715623,
+      23700943,
+      23705302,
+      23704988,
+      23708902,
+      23721544,
+      23706006
+    ],
+    "score": 110,
+    "text": "Hey everyone! We\u2019re Alpha, Matt and Aaron, co-founders of PostEra (<a href=\"https:&#x2F;&#x2F;postera.ai&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;postera.ai&#x2F;</a>). The title above is quite a mouthful (we used all 80 characters) so we&#x27;ll begin by breaking down what it means.<p>What is medicinal chemistry? It\u2019s part of discovering new drugs. A drug hunter decides what disease to focus on and then selects \u2018targets\u2019: usually proteins whose activity is key to the disease. Then they look for a molecule that can \u2018hit\u2019 that target and stimulate a response which will hopefully have beneficial effects. Developing such a molecule that is potent and safe is medicinal chemistry.<p>Despite it being a crucial part of drug development, this field has relied on trial-and-error approaches\u2014a very expensive way to muddle toward a drug. Where computational tools have been used, they have emphasized the &#x27;best&#x27; designs without any awareness of what it would take to physically make the drug in a lab and test it. Our approach is to apply computational methods that know how to make these designs.<p>We\u2019ve been working on developing machine learning tools to advance the field for the last 3 years. Alpha formed a lab at Cambridge in 2017 to apply machine learning to drug discovery. Matt joined the group and soon some exciting results began to emerge, particularly in the area of how to make molecules. We published the first model to outperform trained human chemists in predicting the outcomes of chemical reactions. Alpha then got Aaron, his former mathematics classmate and debate partner at Oxford to leave his job for the world of drug discovery.<p>We decided to focus on the one challenge that exists at almost every step: molecules need to be made. No matter how clever it looks on paper, a molecule is worthless unless it can be tested in a lab. The task of actually making molecules, known as chemical synthesis, is often a challenging problem, involving the combinatorial explosion of games like Go with moves that can\u2019t be defined in a simple rulebook.<p>You start with a set of simple molecules which can be combined through chemical reactions (a \u2018move\u2019) to form more and more complex molecules, known as the \u2018route\u2019, until you arrive at your desired drug candidate. But how to combine these molecules? Trial and error is not an option, given the enormous cost of doing chemistry, and just enumerating all options to a client is unhelpful given that your average molecule can have hundreds of theoretically-possible routes. Searching this tree of routes and scoring the viability of such routes is where ML becomes very powerful.<p>We developed a machine-translation approach which takes in reactants and outputs the product of a reaction; an approach very similar to how Google Translate operates. This allows us to score the viability of each move. We combine this with fast tree search algorithms, used in models like AlphaGo to efficiently search the large combinatorial space of possible reactions.<p>To get this technology in front of users, we&#x27;re building a cloud-based platform. Clients input the molecule they want to be made, our system designs a route for how to make it, and then the client can order this molecule through our platform. We don\u2019t own a lab, but we partner with chemical manufacturers around the world who execute the routes we design. Combining automated chemical synthesis with compound ordering creates a better experience for the drug hunter who wants to focus on their science and just wants a vial with their compound without the cumbersome process of figuring out how to make it and where to get it from.<p>All that is what we were working on until the pandemic hit... and now we can answer the second part of the title: COVID Moonshot.<p>We had just finished YC W20 when a tweet from a team of scientists quickly changed our travel (and company) trajectory. A team of scientists at Diamond Light Source in the UK had shown that a selection of chemical fragments were effective at binding to a key part of the COVID virus. We realised there were hundreds of chemists sitting at home, with their projects on hold, who could help take these fragments and turn them into genuine drug candidates\u2014an open-science approach to crowdsourcing a new drug. We created a platform where designs could be submitted and hoped for maybe 50 to 100 submissions. In the first few weeks, we\u2019ve received over 4000 submissions from 200 scientists around the world.<p>This was the start of a COVID Moonshot initiative that we are now helping lead. It is an international consortium of scientists drawn from academia, biotechs, and pharma, all working pro bono or at cost with no IP claims on any resulting drug candidates. The aim is to find an antiviral candidate for COVID-19 by the end of the year\u2014a \u2018moonshot\u2019 of a time frame compared with the standard drug discovery paradigm.<p>That standard paradigm is unfortunately broken when it comes to pandemic-related diseases. Biology and chemistry are hard enough, but things become even intractable when there are little or no commercial incentives to develop new therapies. Sadly, this explains why promising antibiotic companies like Achaogen go bankrupt and why, even after SARS-CoV brought the Far East to a halt in 2003, we still didn\u2019t invest in coronavirus therapies during the last 17 years. For therapies that only become critical once every few decades, we need a new approach to developing drugs.<p>We think that drug hunters can learn something from the CS community and its embrace of open source. Similarly to open-source software development, someone has to manage the roadmap and triage suggestions. For Moonshot, the candidate drug submissions are great but we obviously can\u2019t make and test all of them, so how do you pick the most promising ones? Here is where our technology comes in: it can identify which candidates can be <i>synthesized</i> easily. Since in a pandemic you need to move quickly, prioritizing compounds that can be synthesized easily is a natural triaging mechanism. Where a human chemist would take 3-4 weeks, we were able to design synthetic routes for all submissions within 48 hours. The top route designs were then passed on to our chemical manufacturing partner for synthesis. We\u2019ve now experimentally tested over 500 compounds and found several promising candidates which we are now testing further. All data is publicly available on the site: <a href=\"https:&#x2F;&#x2F;postera.ai&#x2F;covid\" rel=\"nofollow\">https:&#x2F;&#x2F;postera.ai&#x2F;covid</a><p>Inspired by open-source software, we\u2019re seeing advantages of open-science collaboration in areas where market incentives are lacking. We started with the opportunity to connect drug hunters with the latest ML, but have expanded this into a platform that helps connect scientists with each other. This is particularly needed when it comes to drug discovery logistics\u2014the fragment screens are conducted in Oxford and The Weizmann Institute in Israel, computational methods are done by PostEra in California and Memorial Sloan Kettering Cancer Center in New York, and chemical synthesis is carried out across several countries. Many of the features we are rolling out, such as automated alerts on suggested drug designs, open forum discussions, and live data uploads, feel very akin to a \u2018GitHub for drug development\u2019.<p>Identifying biological mechanisms of diseases and forecasting clinical outcomes are huge problems, but we believe that the chemistry stage of drug discovery can become a reliable industry rather than an artisanal craft. Machine learning tech is a key part and we&#x27;re still working on it, but our clients have been constantly reminding us that just the logistical aspects of drug discovery are a great source of pain. Science software is also notoriously hard to use so we&#x27;ve learned that combining good UI with good ML should be our ambition. Our current mantra is: ordering a molecule through PostEra should be as easy as ordering a pizza!<p>We need more researchers, coders and chemists to help us on this journey and we\u2019d love to hear from you if our vision sounds like something you could get on board with! Here are the open positions within the company we are now actively hiring for: <a href=\"https:&#x2F;&#x2F;www.workatastartup.com&#x2F;companies&#x2F;13332\" rel=\"nofollow\">https:&#x2F;&#x2F;www.workatastartup.com&#x2F;companies&#x2F;13332</a><p>Over to you, HN! We&#x27;re eager to hear your feedback, questions, ideas and experiences in this area.",
+    "time": 1593602829,
+    "title": "Launch HN: PostEra (YC W20) Medicinal Chemistry-as-a-Service and Covid Moonshot",
+    "type": "story",
+    "_kids": [
+      {
+        "by": "kayhi",
+        "id": 23701419,
+        "kids": [
+          23701529
+        ],
+        "parent": 23700275,
+        "text": "Great idea! If I have a list of drug candidates and your software can apply a confidence level on the best route to synthesize a product that is better than chemists you&#x27;re company is very valuable.<p>Inital thoughts - defining easy of synthetic pathway seems hard. If I&#x27;m an organic chemist and the recommended molecule involves a cost, technique or equipment that&#x27;s inaccessible then I&#x27;d be stuck. However, if your network of manufactures can make it then labs may consider outsourcing it. I commonly see 10 to 1000x pricing differences in custom synthesis so there&#x27;s also a risk of one vendor quoting too high and development prematurely stopping. For context and those that maybe outside this field, you can get a quote for over a million dollars for scaling up a product such as 100mg to 10g (not even a new route). You may need large amounts of the molecule for assay, animal testing, humans trials and going to market. Technique and equipment may not be an issue if your network is large enough, It will be interesting to see if you charge the drug companies as like a SaaS play and&#x2F;or percent of sale from manufacturers like the YC company Science Exchange. Another idea is offering the software for free and make a percentage on the patent (IP) related the pathway.",
+        "time": 1593612238,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23701529,
+            "kids": [
+              23701851
+            ],
+            "parent": 23701419,
+            "text": "Yes absolutely, the variance of pricing across different custom synthesis providers can be surprising. This we think though is actually an opportunity to serve our end users (drug hunters) better. Generally the cost of synthesis is a function of raw material costs and the labor time (translates to number of synthetic steps and risk of each step). All these parameters are datapoints we have access to or can model through ML. As such we&#x27;ve found that the ability to search large chemical databases is a huge saving when many clients may often just default to use a single CRO provider who may not be the best provider for their synthesis request. We are aiming to build a good network of reliable CRO providers to address the shortcoming and work with them to improve algorithms to optimize for reaction conditions etc.<p>Regarding pricing model this is something we are still working on. And yes you&#x27;ve hit the nail on the head -- We could charge the drug hunter (SaaS or IP) or we could charge the CROs that we send the custom synthesis to. Love to hear your thoughts here.",
+            "time": 1593612856,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "kayhi",
+                "id": 23701851,
+                "kids": [
+                  23702048
+                ],
+                "parent": 23701529,
+                "text": "In my experience, cost is not related to materials and labor. For example, CROs know if they&#x27;re likely the only company that can make a product and will charge accordingly. Often and to me sadly, a bidding processes is needed to determine market value of production. I&#x27;ve seen CROs instantly cut pricing in half if you present another option.<p>I would be cautious with chemical database (unsure which you are using) as there are companies that post chemicals as lead generation and cannot make them.<p>If you solve the selection of the best route, helping with sourcing the product may not be worth your resources. In other words, just that piece alone, if done well, is very valuable and hope the market sees it.",
+                "time": 1593614434,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "morraa",
+                    "id": 23702048,
+                    "parent": 23701851,
+                    "text": "Yes I guess I was referring to more robust, standard chemistry for which we would expect the pricing to be a little more formulaic.<p>And you make a great point. We&#x27;ve been constantly reminded that virtual spaces created by CROs are not always executable. As such we can actually constrain our algorithms to require very high probability of reaction success to remove false positives. We then tell the CRO what building blocks they need and the route design. We&#x27;re still figuring how much of the lifecycle of making molecules is worth going after or, if indeed as you say, the route itself is the key solution.",
+                    "time": 1593615384,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "JunkDNA",
+        "id": 23701036,
+        "kids": [
+          23701743,
+          23701462
+        ],
+        "parent": 23700275,
+        "text": "A few random thoughts I&#x27;m curious about (full disclosure: I worked in anti-infectives R&amp;D as a bioinformatician early in my career for a major pharma)<p>1) One big challenge in synthesis is ensuring compound purity. Even when I was working in pharma, it was often the case that some of the compounds in the screening library could be contaminated with intermediates. This is murder for any kind of anti-infectives research because you end up with false-positives for toxic intermediates. Since your assay is often, &quot;does the compound kill the bug?&quot; the answer for most chemicals is, &quot;yes!&quot;. How do you ensure the purity of what you deliver to your customers? If I&#x27;m a medicinal chemist wanting to try this, I want to know that I&#x27;m not getting a vial of brick dust back.<p>2) Just because you have a mechanism to synthesize, doesn&#x27;t mean the yield is going to be great. Does your algorithm factor in yield when selecting the route?<p>3) When I started reading your post I thought, &quot;Hats off to these folks, this is a super hard problem that no shortage of extremely smart people have spent years trying to solve.&quot; Then I got to the moonshot section! The number of small molecule antiviral drugs with efficacy is vanishingly small. I understand why you would try to tackle this, but it truly is a moonshot.<p>4) I can&#x27;t help but wonder what Derek Lowe (<a href=\"https:&#x2F;&#x2F;blogs.sciencemag.org&#x2F;pipeline&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;blogs.sciencemag.org&#x2F;pipeline&#x2F;</a>) thinks of all this, have you guys tried to reach out to him?",
+        "time": 1593609964,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23701743,
+            "kids": [
+              23703425
+            ],
+            "parent": 23701036,
+            "text": "1. We ensure that the compound is pure using analytical methods like NMR and LC&#x2F;MS. In our Moonshot project, the assay cascade comprises biochemical assays against the main protease (2 different assay methodologies, run in Oxford and Weizmann Institute) and live virus assays, thus we should be able to infer whether the activity is caused by impurities killing the virus. In addition, we also perform high-throughput x-ray crystallography to determine the structures of all the protein-ligand complexes, which serves an an orthogonal assay.<p>2. Yes, our algorithm does factor in the yield when it decides which reaction to use.<p>3. You&#x27;re absolutely right. It is very ambitious but we&#x27;ve realized that even if we don&#x27;t get our compounds into human trials (currently aiming for in-vivo testing in next few weeks) that we will still have generated a lot of useful data that is there in the open for when the next pandemic comes around. This has been a real weakness from prior pandemic where research wasn&#x27;t continued and certainly wasn&#x27;t stored in clean accessible ways. As I&#x27;m sure you know SARS has super high genetic similarity to current COV-2 so having prior data accessible and cleaned would have given researchers a real head start.<p>4. Yes Derek is aware of COVID Moonshot and is also of the opinion that is it both ambitious but sadly necessary. We continue to follow his posts as healthy skepticism particularly in the area of AI for drug discovery is always helpful.",
+            "time": 1593613882,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "JunkDNA",
+                "id": 23703425,
+                "parent": 23701743,
+                "text": "It didn&#x27;t come across in my post in retrospect, but just want to say clearly I love this idea and the ambitious nature of it. I think when someone works in drug discovery, it&#x27;s hard to escape this feeling that there has to be a better, faster, cheaper way. But at the same time, the reality of seeing how little we actually understand about biological systems on display each and every day tends to be quite a downer! The world sorely needs more of this kind of thinking.",
+                "time": 1593621488,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "kayhi",
+            "id": 23701462,
+            "kids": [
+              23706195
+            ],
+            "parent": 23701036,
+            "text": "4) He has touched on this topic to varying degrees: <a href=\"https:&#x2F;&#x2F;blogs.sciencemag.org&#x2F;pipeline&#x2F;archives&#x2F;2018&#x2F;01&#x2F;30&#x2F;automated-chemistry-a-vision\" rel=\"nofollow\">https:&#x2F;&#x2F;blogs.sciencemag.org&#x2F;pipeline&#x2F;archives&#x2F;2018&#x2F;01&#x2F;30&#x2F;au...</a>",
+            "time": 1593612547,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "morraa",
+                "id": 23706195,
+                "parent": 23701462,
+                "text": "Ah yes, industrializing the Chemistry part of drug discovery is certainly a blue sky dream but a field nonetheless we try to stay updated on -- hardware to do automated synthesis continues to make incremental improvements.",
+                "time": 1593635326,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "nlh",
+        "id": 23700988,
+        "kids": [
+          23701003,
+          23703803
+        ],
+        "parent": 23700275,
+        "text": "This is an EXCELLENT write-up.  Thank you for both doing what you\u2019re doing and for explaining it so well.  I\u2019m a software guy and have always found biosciences to be a mysterious black box, and you\u2019ve cracked it open it in a wonderfully enlightening way.<p>Best of luck to your team and the project!",
+        "time": 1593609584,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23701003,
+            "parent": 23700988,
+            "text": "Thanks so much for the positive feedback! Forgive the very long read but yes biosciences can be a little opaque at times.",
+            "time": 1593609698,
+            "type": "comment"
+          },
+          {
+            "by": "coding123",
+            "id": 23703803,
+            "kids": [
+              23704431,
+              23704149
+            ],
+            "parent": 23700988,
+            "text": "Definitely an excellent write up if not one of the best Launch HN write ups I have seen.",
+            "time": 1593623091,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "lukevp",
+                "id": 23704431,
+                "parent": 23703803,
+                "text": "Agreed. I don\u2019t think I can really help with this but I know exactly what they\u2019re doing and wish them luck. The copy was very clear and immediately lends confidence to the team.",
+                "time": 1593626334,
+                "type": "comment"
+              },
+              {
+                "by": "morraa",
+                "id": 23704149,
+                "parent": 23703803,
+                "text": "Very kind comment, thank you!",
+                "time": 1593624862,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "101008",
+        "id": 23701438,
+        "kids": [
+          23701625
+        ],
+        "parent": 23700275,
+        "text": "Wow, this seems very interesting. As someone who did his CS Master thesis with vaccines, medicinal chemistry is something that I always enjoy, so I chcked your open positions. Sadly, I saw that even for Remote positions you are asking for a VISA. Can I ask why? Thank you!",
+        "time": 1593612354,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23701625,
+            "parent": 23701438,
+            "text": "Ah thanks for pointing this out; it is slightly misleading. Visa is only required if applicants want to work with us in our in-person office in the Bay Area, CA. If they are a non-US citizen we sadly can&#x27;t sponsor a visa. Though certainly for remote work we wouldn&#x27;t require it.",
+            "time": 1593613311,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "lend000",
+        "id": 23705204,
+        "kids": [
+          23706222
+        ],
+        "parent": 23700275,
+        "text": "I love the idea: in particular, the arbitrary molecule generation. I&#x27;ve been thinking about is using the mechanical structures already provided by DNA to generate antibodies by reading the DNA tape in the same way that human cells assemble proteins. But it would be great to find a more general solution based on chemical computation that doesn&#x27;t rely on and isn&#x27;t limited by organic chemistry.",
+        "time": 1593630507,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23706222,
+            "parent": 23705204,
+            "text": "Yes, certainly an interesting idea. For now our models are trained on large corpora of organic chemistry reactions so our tech has some way to go before extrapolating outside this space.",
+            "time": 1593635457,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "figo22",
+        "id": 23706800,
+        "kids": [
+          23707066
+        ],
+        "parent": 23700275,
+        "text": "This is incredibly cool. As someone looking to try out some ideas around applied ML, can I ask what your stack looks like?",
+        "time": 1593638186,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "mwcvitkovic",
+            "id": 23707066,
+            "parent": 23706800,
+            "text": "Employee here.<p>React&#x2F;Django&#x2F;Postgres on AWS for APIs and websites.  Terraform to manage the infrastructure.  cortex.dev for serving some ML models, AWS Lambda for serving others.  ML models are all PyTorch at the moment, with RDKit doing the chemistry heavy lifting.  Data obtained through various means, including some tools from nextmovesoftware.com<p>There&#x27;s a bunch more tech involved in supporting the scientists in the COVID moonshot, but that&#x27;s basically everything ML-related.<p>Any particular part of the stack you were curious about?",
+            "time": 1593639644,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "adsodemelk",
+        "id": 23715623,
+        "kids": [
+          23722322
+        ],
+        "parent": 23700275,
+        "text": "Would PostEra be interested in using their platform to cure a neglected disease? <a href=\"https:&#x2F;&#x2F;deeplearningindaba.com&#x2F;grand-challenges&#x2F;leishmaniasis&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;deeplearningindaba.com&#x2F;grand-challenges&#x2F;leishmaniasi...</a>",
+        "time": 1593710594,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23722322,
+            "parent": 23715623,
+            "text": "This looks very similar to our Moonshot open-science initiative and we love the idea of using crowdsourcing when such diseases lack commercial funding. If you know the folks who are organising this we&#x27;d be very happy to discuss with them.",
+            "time": 1593766874,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "voicedYoda",
+        "id": 23700943,
+        "kids": [
+          23701040
+        ],
+        "parent": 23700275,
+        "text": "Kudos on the launch!<p>If I read this correctly, your team isn&#x27;t discovering new drugs, but addressing the logistical need of building new compounds to make drugs, using ML to circumnavigate the most efficacious route to generate said compounds. Once complete, you actually outsource to manufacturers to build the compound molecules using your ML generated map.<p>Is that close?",
+        "time": 1593609287,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23701040,
+            "parent": 23700943,
+            "text": "That&#x27;s a great description. For now we are focused on helping others discover novel drugs (rather than developing our own) and we think using ML to design &#x27;recipes&#x27;, while solving logistical challenges of shipping molecules around the globe, is a really key part of that process. And yes the manufacturers do use our ML generated recipes to make the compounds.<p>Outside of this we also engage clients on more in-depth partnerships where we help design, make and test new drug candidates but again our real value-add&#x2F;USP here is the &#x27;make&#x27; stage.",
+            "time": 1593609971,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "selimthegrim",
+        "id": 23705302,
+        "kids": [
+          23706410
+        ],
+        "parent": 23700275,
+        "text": "Alpha, you had a nice arxiv preprint on spin glasses and ML. The Wales lab strikes again!",
+        "time": 1593631048,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "alphaalee",
+            "id": 23706410,
+            "parent": 23705302,
+            "text": "Thanks! That was a fun project to work on! We\u2019re also doing some work now to map out how the energy landscape changes as a function of network depth, and it appears that the landscapes of DNNs look dissimilar to typical structural glasses.",
+            "time": 1593636292,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "drc007",
+        "id": 23704988,
+        "kids": [
+          23705078
+        ],
+        "parent": 23700275,
+        "text": "Sounds interesting and I&#x27;ll be following you with interest. That said in my experience deciding how to make a compound is not really the challenge, the real challenge is deciding what to make.",
+        "time": 1593629305,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23705078,
+            "parent": 23704988,
+            "text": "Certainly we can appreciate that better designs are important though we chose to focus on synthesis as there is an oversupply of algorithms in literature&#x2F;industry that can suggest designs ideas (we published a few of our own) while the synthesis space was less explored and we think provides the biggest leverage point to speed up cycle times.<p>Ultimately when partnering with drug hunters, outside of our cloud-based platform, we offer the integration of molecular design with chemical synthesis as we believe computational approaches are at their most useful when these two aspects are coupled.",
+            "time": 1593629771,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "panabee",
+        "id": 23708902,
+        "kids": [
+          23709075
+        ],
+        "parent": 23700275,
+        "text": "this is an awesome idea and a very lucid explanation. good luck!<p>apologies if this is wildly inaccurate, but is it fair to characterize your startup as helping people create custom drugs the same way ARM helped people create custom chips? from the outside, it seems like there could be intriguing parallels.",
+        "time": 1593652517,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "mc-robinson",
+            "id": 23709075,
+            "kids": [
+              23711157,
+              23710384
+            ],
+            "parent": 23708902,
+            "text": "Thanks, really interesting parallel -- though I can&#x27;t say I&#x27;m intimately familiar with how ARM&#x27;s model works. I&#x27;ll definitely do some reading.<p>But yes, we are very interested in helping people get made what they want to get made. It often falls into two situations:<p>(1) If the customer knows exactly the custom design they want to get made, we can help them find the best way to purchase or synthesize it. In many cases, customers may have trouble coordinating with CROs themselves, finding the best building blocks and route to the molecule, and dealing with logistics. We try to help ease that pain.<p>(2) The customer has a specific target they want to hit and they need just the right small molecule to &quot;fit&quot; in it. We also help with this, mainly through partnerships. And our thinking is that good design of small molecule inhibitors (such as one targeting the COVID main protease) involves expert knowledge of what can be quickly made and tested to help guide further design.<p>Lastly, we also work on suggesting molecules that may be slightly different from what the customer thinks they want, but may show similar activity -- and will be much easier to make.",
+            "time": 1593654060,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "panabee",
+                "id": 23711157,
+                "kids": [
+                  23714629
+                ],
+                "parent": 23709075,
+                "text": "if the comparison is accurate, the world you&#x27;re enabling is one where custom drugs are as prevalent as custom chips and chem labs act as &quot;foundries&quot; to produce drugs. the role you play is to help customers with the design layer of the drug stack. if the parallels between the drug and semiconductor industries hold true, this framing would make it easier for investors to grasp the (massive) potential.<p>in the end, if your value tilts more toward logistics than IP, you may want to mine chemistry.com (?) for lessons, a startup from the dot-com boom funded by john doerr and kleiner perkins. the grand vision was to disrupt and streamline the logistics of the chemical industry.",
+                "time": 1593678716,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "morraa",
+                    "id": 23714629,
+                    "kids": [
+                      23719263
+                    ],
+                    "parent": 23711157,
+                    "text": "Thanks for this. Always keen to learn from older startups but I was unable to find the company you&#x27;re referring to -- any idea as to the name?",
+                    "time": 1593705145,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "panabee",
+                        "id": 23719263,
+                        "parent": 23714629,
+                        "text": "Sorry, the startup was named Chemdex (later Ventro). One article summarizing its downfall: <a href=\"https:&#x2F;&#x2F;www.latimes.com&#x2F;archives&#x2F;la-xpm-2001-jun-24-fi-14133-story.html\" rel=\"nofollow\">https:&#x2F;&#x2F;www.latimes.com&#x2F;archives&#x2F;la-xpm-2001-jun-24-fi-14133...</a>. There were others like ChemConnect, but Chemdex was the most high-profile.<p>If the article is correct, high costs for building and maintaining the &quot;Amazon for chemicals&quot; were the primary cause of failure.<p>Many great ideas are a matter of when, not if. Knowing when to launch is as critical for entrepreneurs as is knowing when to buy for investors.<p>A modern Chemdex might thrive like the modern Webvan (ie Instacart) because if costs were the cause of death, a cloud infrastructure would address this issue.<p>Obviously, this is a very different model from the ARM model.<p>Hopefully one of these comparisons can offer helpful insights.",
+                        "time": 1593732594,
+                        "type": "comment"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "by": "O_H_E",
+                "id": 23710384,
+                "parent": 23709075,
+                "text": "Yes, in the big picture, your model is quite like ARM&#x27;s.",
+                "time": 1593668875,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "poroppo",
+        "id": 23721544,
+        "parent": 23700275,
+        "text": "Nice!",
+        "time": 1593757635,
+        "type": "comment"
+      },
+      {
+        "by": "1996",
+        "id": 23706006,
+        "kids": [
+          23706159
+        ],
+        "parent": 23700275,
+        "text": "When&#x2F;how will this be exploited by the &quot;designer drugs&quot;&#x2F;&quot;research chemicals&quot; community to start a drop-shipping psychoactives business?",
+        "time": 1593634495,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "morraa",
+            "id": 23706159,
+            "kids": [
+              23706989
+            ],
+            "parent": 23706006,
+            "text": "As a company we certainly work hard to ensure our technology is used for approved drug development. We have internal alerts as a company as to the risk of compounds being entered into our system and certainly suppliers and chemical manufacturers have high regulatory oversight. But yes there is always such an unfortunate risk but something we do spend time thinking about.",
+            "time": 1593635157,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "1996",
+                "id": 23706989,
+                "kids": [
+                  23707326
+                ],
+                "parent": 23706159,
+                "text": "Maybe I should have phrased my question differently - your startup being exploited by a large group of people with disposable cash and unmet demands is one of the best possible outcomes.<p>What is an &quot;approved&quot; drug development? Who gets to decide, when the substances are not restricted or scheduled? This means making them is not illegal. So I fail to see how it is an &quot;unfortunate risk&quot;, except a risk of making money- which would be fortunate :)<p>You are missing opportunities just due to your specific moral stance. Drop-shipping is an excellent way to have new customer acquisition pipelines without having to pay for them.",
+                "time": 1593639257,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "morraa",
+                    "id": 23707326,
+                    "kids": [
+                      23709781
+                    ],
+                    "parent": 23706989,
+                    "text": "This could be my misunderstanding of the definition of &quot;designer drugs&quot; but I interpreted this as substances which mimic controlled substances but don&#x27;t trigger drug classification or testing. Assuming this definition then this is something we wouldn&#x27;t feel comfortable supporting regardless of the cash or demand. My understanding is that these substances are not tested in animal and human trials or approved by governing bodies like the FDA which are critical for the safety and efficacy of use.<p>Though please do correct me if I&#x27;m missing the use case you are referring to.",
+                    "time": 1593641068,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "1996",
+                        "id": 23709781,
+                        "parent": 23707326,
+                        "text": "No correction needed, it is mostly correct - however, a lot of these substances have been tested and do not even mimic controlled substances: MK667 is a good example.<p>I think you may be throwing the baby with the bathwater, as designing and improving designer drugs is an untapped market with far more potential upsides than downsides.",
+                        "time": 1593661554,
+                        "type": "comment"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "by": "TheMask01",
+    "descendants": 63,
+    "id": 23704983,
+    "kids": [
+      23704991,
+      23708841,
+      23709969,
+      23707477,
+      23705682,
+      23710032,
+      23706293,
+      23707331,
+      23712520,
+      23709997,
+      23708605,
+      23707830,
+      23708030,
+      23709845,
+      23708371,
+      23711754,
+      23705461,
+      23706934,
+      23706131,
+      23707908,
+      23705716,
+      23708042,
+      23706231
+    ],
+    "score": 158,
+    "time": 1593629288,
+    "title": "Show HN: Browse recently expired, pronounceable domain names (Part II)",
+    "type": "story",
+    "url": "https://decentdrops.com",
+    "_kids": [
+      {
+        "by": "TheMask01",
+        "id": 23704991,
+        "kids": [
+          23705750
+        ],
+        "parent": 23704983,
+        "text": "Ha. So here it goes I guess, I\u2019ve been working on this pretty consistently for too long now (backend mainly).<p>Inspiration for the project was based off one I made over half a decade ago. And I gratefully got recognized on HN for it! I saw (my) username that posted it, tried a few of my go-to password \u2019s, and boom, I still got it :)<p>Here was the thread for a trip down memory lane <a href=\"https:&#x2F;&#x2F;web.archive.org&#x2F;web&#x2F;20160322215116&#x2F;https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=9025800\" rel=\"nofollow\">https:&#x2F;&#x2F;web.archive.org&#x2F;web&#x2F;20160322215116&#x2F;https:&#x2F;&#x2F;news.ycom...</a><p>And the new one is called DecentDrops.com - Would have totally used DomainInferno again but looks like some squatter had it, hey that\u2019s what I get for neglecting I guess. Still not sure why..  Updated daily. Sorry I\u2019m bad about rambling and don\u2019t want to do a (bigger) wall of text but if you\u2019ve got questions shoot em!",
+        "time": 1593629317,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "dang",
+            "id": 23705750,
+            "parent": 23704991,
+            "text": "That thread still works! <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=9025800\" rel=\"nofollow\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=9025800</a>.<p>I didn&#x27;t see any differences with the archive.org page. It would be interesting if there were some.",
+            "time": 1593633189,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "tialaramex",
+        "id": 23708841,
+        "kids": [
+          23712861,
+          23711674
+        ],
+        "parent": 23704983,
+        "text": "As recently expired names, you should be aware that they may suffer an array of detriments.<p>Notably:<p>&quot;Pinned&quot; security properties like recursive HSTS may apply until they expire. Even if <i>you</i> have only ever operated <a href=\"http:&#x2F;&#x2F;clown-photos.example.com&#x2F;\" rel=\"nofollow\">http:&#x2F;&#x2F;clown-photos.example.com&#x2F;</a> and never <a href=\"https:&#x2F;&#x2F;clown-photos.example.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;clown-photos.example.com&#x2F;</a> the previous owner of example.com could have set policy saying all names are HTTPS-only.<p>Certificates issued in the Web PKI as much as three years ago for names in these domains may still exist and be valid. In principle some of them might even not be in CT logs. As new owner you are entitled to have those certificates revoked, but to do that you first need to know they exist.<p>Adverse user permissions decisions apply indefinitely. If the previous owner spewed notifications, or had unsolicited video content the resulting adverse decisions by users survive the change of ownership. (The other side of this applies too, if you buy a popular cat video sharing site, you&#x27;re going to inherit lots of &quot;allow autoplay&quot; type permissions) but that&#x27;s something you&#x27;d probably explicitly plan for rather than being a surprise.<p>White and black lists maintained by third parties may impact you. Whether that&#x27;s a DNS blacklist that means some PiHoles block your whole site because the previous owner was an advertising network, or a spam blacklist that ensures your newsletter is never seen by its subscribers, that could be a real problem. Some list maintainers are very responsive, others not so much.<p>Speaking of lists, the domain could be on the PSL. Again you can ask to be removed (or indeed added if your planned use would mean the domain should be on the PSL and isn&#x27;t). But if you don&#x27;t realise the domain is PSL listed, you&#x27;ll be astonished that it&#x27;s impossible to get a Let&#x27;s Encrypt certificate for *.example.com, or that cookies and frames and other origin-restricted stuff doesn&#x27;t work as you expect.",
+        "time": 1593651924,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "account42",
+            "id": 23712861,
+            "parent": 23708841,
+            "text": "&gt; Speaking of lists, the domain could be on the PSL.<p>Public Suffix List for those like me who might not have all the latest TLAs memorized.<p><a href=\"https:&#x2F;&#x2F;de.wikipedia.org&#x2F;wiki&#x2F;Public_Suffix_List\" rel=\"nofollow\">https:&#x2F;&#x2F;de.wikipedia.org&#x2F;wiki&#x2F;Public_Suffix_List</a>",
+            "time": 1593696481,
+            "type": "comment"
+          },
+          {
+            "deleted": true,
+            "id": 23711674,
+            "parent": 23708841,
+            "time": 1593684568,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "wtracy",
+        "id": 23709969,
+        "kids": [
+          23710319,
+          23722914,
+          23710899,
+          23711964
+        ],
+        "parent": 23704983,
+        "text": "You know, someone needs to make an Iron Chef styled reality TV show where teams of web developers are each handed a random recently-expired domain name and challenged to make a viable service that fits that domain.",
+        "time": 1593663428,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "pryce",
+            "id": 23710319,
+            "kids": [
+              23710689,
+              23710648,
+              23711591
+            ],
+            "parent": 23709969,
+            "text": "You joke, but I know people who hunt to acquire domain names first, and then come up with business ideas based on them. Putting it bluntly, I feel that this is an astoundingly misguided way to operate business ventures, and, so far, the market seems to agree.",
+            "time": 1593668005,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "lethologica",
+                "id": 23710689,
+                "parent": 23710319,
+                "text": "Sounds like this article. <a href=\"https:&#x2F;&#x2F;www.deepsouthventures.com&#x2F;i-sell-onions-on-the-internet&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.deepsouthventures.com&#x2F;i-sell-onions-on-the-inter...</a><p>Which seems to be successful.",
+                "time": 1593673265,
+                "type": "comment"
+              },
+              {
+                "by": "kube-system",
+                "id": 23710648,
+                "parent": 23710319,
+                "text": "Sounds like it could be an entertaining hobby though",
+                "time": 1593672681,
+                "type": "comment"
+              },
+              {
+                "by": "sbmthakur",
+                "id": 23711591,
+                "parent": 23710319,
+                "text": "&gt; business ideas based on them.<p>Were any of those converted into an actual business?",
+                "time": 1593683586,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "mvind",
+            "id": 23722914,
+            "parent": 23709969,
+            "text": "That would be a fun concept for a hackathon!",
+            "time": 1593773783,
+            "type": "comment"
+          },
+          {
+            "by": "petters",
+            "id": 23710899,
+            "parent": 23709969,
+            "text": "nitpy.com could be a new Python linter.",
+            "time": 1593675952,
+            "type": "comment"
+          },
+          {
+            "by": "raxxorrax",
+            "id": 23711964,
+            "parent": 23709969,
+            "text": "I have an idea for superhempy.com.<p>edit: Oh no! It could mean they have caught superhempy.",
+            "time": 1593688154,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "TheMask01",
+        "id": 23707477,
+        "parent": 23704983,
+        "text": "If anyone&#x27;s wondering why the results started looking a tad more strange (and higher rate of unavailable domains on the list), it&#x27;s because todays list was just processed over the course of the past. ~20min. Have some jobs spread out a little to be nice to the server and inconsistencies.<p>For the next who knows maybe hour or so, from this minute actually, you&#x27;ll probably notice a few more than average domains one the list are already taken. Don&#x27;t worry i&#x27;ve got my best robot people on it",
+        "time": 1593642133,
+        "type": "comment"
+      },
+      {
+        "by": "iampims",
+        "id": 23705682,
+        "kids": [
+          23706954,
+          23706097,
+          23706077
+        ],
+        "parent": 23704983,
+        "text": "This is neat.\nAfter browsing for several pages, I&#x27;m yet to find something that is a decent name.<p>In a similar space, I really like <a href=\"https:&#x2F;&#x2F;park.io\" rel=\"nofollow\">https:&#x2F;&#x2F;park.io</a>",
+        "time": 1593632898,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "doh",
+            "id": 23706954,
+            "parent": 23705682,
+            "text": "Surprising. I just purchased couple that I found there. My rule for a domain is that needs to be easy to pronounce, preferably it&#x27;s not a real word, doesn&#x27;t have many Google results for the name, doesn&#x27;t contain w&#x2F;v, i&#x2F;y and h.<p>So for instance snuno doesn&#x27;t mean anything, 5 letters, easy to pronounce in all language, people don&#x27;t get confused when you pronounce it. The name eventually becomes associated with whatever you put in.<p>After I saw Mt.Gox taking off, I realized, that the name is challenge only initially. People will figure it out once they think there is value.",
+            "time": 1593639027,
+            "type": "comment"
+          },
+          {
+            "by": "airstrike",
+            "id": 23706097,
+            "parent": 23705682,
+            "text": "&gt; I&#x27;m yet to find something that is a decent name<p>If you agree &quot;naming is hard&quot;, then most names are by definition pretty bad... At best, this list is random, and at worst it&#x27;s the set of terrible names people gave up on and allowed to expire",
+            "time": 1593634878,
+            "type": "comment"
+          },
+          {
+            "by": "pdxandi",
+            "id": 23706077,
+            "parent": 23705682,
+            "text": "I&#x27;ve spent an embarrassing amount of time looking at domain names over the years. This is going to cost future me hours. Thanks for sharing!",
+            "time": 1593634814,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "totetsu",
+        "id": 23710032,
+        "parent": 23704983,
+        "text": "I remember seeing a hacker talk about picking these domains up and setting up an MX record to collect emails meant for the past registrar. .. Including 2FA and passwords resets if I recall correctly..",
+        "time": 1593664285,
+        "type": "comment"
+      },
+      {
+        "by": "shange",
+        "id": 23706293,
+        "kids": [
+          23707000,
+          23709565
+        ],
+        "parent": 23704983,
+        "text": "R.I.P. cryingbitches.com, gone before I even knew her",
+        "time": 1593635752,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "TheMask01",
+            "id": 23707000,
+            "kids": [
+              23709023
+            ],
+            "parent": 23706293,
+            "text": "Oh now that&#x27;s decent!! Which one of you picked it up. I&#x27;ll pay top dollar!",
+            "time": 1593639295,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "consumer451",
+                "id": 23709023,
+                "parent": 23707000,
+                "text": "Hello, very cool site. Nicely done. I have a few questions for you about some domains I&#x27;ve had for a long time.  Please contact me via email at my username on gmail if you have a moment.  Thanks!",
+                "time": 1593653610,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "pierrec",
+            "id": 23709565,
+            "parent": 23706293,
+            "text": "Perfect for a personal homepage",
+            "time": 1593659449,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "xkuc",
+        "id": 23707331,
+        "parent": 23704983,
+        "text": "Thanks for the service! I found a decent 4-letter that I can use as a pseudonym for political blogging now ;) Grade A!",
+        "time": 1593641093,
+        "type": "comment"
+      },
+      {
+        "by": "y42",
+        "id": 23712520,
+        "parent": 23704983,
+        "text": "Really impressive, and de-motivating for me! :) I was working on something similar as a side project. The only information that was not easy to get, because it was not delivered with every DNS request, is the &quot;expiration date&quot;. How did you manage to get it? Or even more interestingly: Are you willing to give some insights, how you realised it?",
+        "time": 1593693859,
+        "type": "comment"
+      },
+      {
+        "by": "chrisjarvis",
+        "id": 23709997,
+        "kids": [
+          23710018
+        ],
+        "parent": 23704983,
+        "text": "Hmm what business could be built around havecheesewilltravel.com?",
+        "time": 1593663718,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "heyitsguay",
+            "id": 23710018,
+            "kids": [
+              23717362
+            ],
+            "parent": 23709997,
+            "text": "Grassroots artisan cheese distribution?",
+            "time": 1593664005,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "chrisjarvis",
+                "id": 23717362,
+                "parent": 23710018,
+                "text": "I like it! :)",
+                "time": 1593720047,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "jlgaddis",
+        "id": 23708605,
+        "kids": [
+          23709588,
+          23709778,
+          23709803
+        ],
+        "parent": 23704983,
+        "text": "Anyone have recommendations for a nice and easy, &quot;no BS&quot; site for selling a domain?  Or even some &quot;we&#x27;ll (try to) sell it for you and take a commission&quot; type of place?<p>I&#x27;ve got <i>one</i> domain that I think I could actually sell for a decent price, but I just really don&#x27;t wanna deal with it...",
+        "time": 1593650167,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "jasongill",
+            "id": 23709588,
+            "kids": [
+              23710607
+            ],
+            "parent": 23708605,
+            "text": "Sedo is by far the easiest. Just list your domains and it&#x27;s painless. I&#x27;ve sold well over $100k worth of domains via Sedo over the years with zero hiccups, despite their somewhat clunky website - can&#x27;t say the same about other marketplaces.",
+            "time": 1593659658,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "broth",
+                "id": 23710607,
+                "kids": [
+                  23712073
+                ],
+                "parent": 23709588,
+                "text": "If you don\u2019t mind me asking, what are some of the top domains that you have sold on Sedo?",
+                "time": 1593672089,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "jasongill",
+                    "id": 23712073,
+                    "parent": 23710607,
+                    "text": "Combinations of (something)cloud.com did well, by companies wanting to start their own cloud services for their industry. Not branded &#x2F; trademark terms, just normal words combined with cloud dot com. I&#x27;m sure that trend is winding down but there&#x27;s always a next big thing.",
+                    "time": 1593689590,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "alexmingoia",
+            "id": 23709778,
+            "parent": 23708605,
+            "text": "Dan.com is amazing. Can\u2019t recommend it enough. Quick signup, modern interface, and a nice looking sale page that handles everything, including analytics. You can offer buy it now, auction, or installments or a combination of those.",
+            "time": 1593661530,
+            "type": "comment"
+          },
+          {
+            "by": "chrisjarvis",
+            "id": 23709803,
+            "parent": 23708605,
+            "text": "check out dnjournal.com it tracks big domain name sales (the price AND the broker)",
+            "time": 1593661795,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "deleted": true,
+        "id": 23707830,
+        "parent": 23704983,
+        "time": 1593644330,
+        "type": "comment"
+      },
+      {
+        "by": "gbmor",
+        "id": 23708030,
+        "parent": 23704983,
+        "text": "After browsing the list for a bit, I really wish I had a use for haterade.org",
+        "time": 1593645781,
+        "type": "comment"
+      },
+      {
+        "by": "tkjef",
+        "id": 23709845,
+        "parent": 23704983,
+        "text": "I have sem.fyi available and several other nice 2-3 letter .fyi domains at <a href=\"https:&#x2F;&#x2F;rad.fyi\" rel=\"nofollow\">https:&#x2F;&#x2F;rad.fyi</a>",
+        "time": 1593662233,
+        "type": "comment"
+      },
+      {
+        "by": "ComputerGuru",
+        "id": 23708371,
+        "parent": 23704983,
+        "text": "Nice site! Just from a UX perspective, I\u2019d advise against a modal dialog within a second of landing on the page. Consider a dismissible header for the introduction instead.",
+        "time": 1593648433,
+        "type": "comment"
+      },
+      {
+        "by": "etxm",
+        "id": 23711754,
+        "parent": 23704983,
+        "text": "ButtholeDragon.com",
+        "time": 1593685448,
+        "type": "comment"
+      },
+      {
+        "by": "andrefuchs",
+        "id": 23705461,
+        "kids": [
+          23710975,
+          23706721
+        ],
+        "parent": 23704983,
+        "text": "Useful service, congrats on the launch. Do 4 character domains basically never drop or why is the minimum length 5?",
+        "time": 1593631876,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "pmachinery",
+            "id": 23710975,
+            "parent": 23705461,
+            "text": "If four <i>letter</i> .com names drop, they&#x27;re re-registered instantly.<p>There are thousands of four <i>character</i> .com names available though, and outside .com thousands of four <i>letter</i> domains, for example:<p>kfmw.net\ncwix.net\nwprd.net\nnpyp.net\nvpol.net\nvrlx.net\nolfs.net\nldti.net\nufcc.net\ndgol.net\n[...]\nrbkd.org\nytcu.org\nohtf.org\ncjmn.org\nwgnn.org\nmjrb.org\nmafk.org\ncklw.org\nwegl.org\nctnb.org<p>And available three characters are commonplace too, for example:<p>g0f.net\nj1c.net\ny1g.net\nx2z.net\nj2y.net\no8x.net\n2tq.net\nk8c.net\n2g9.net\nc8p.net\n[...]\n6o4.org\nk13.org\n19f.org\n2rd.org\n2fo.org\n3yu.org\nhh7.org\nag4.org\np-1.org\n7de.org",
+            "time": 1593676813,
+            "type": "comment"
+          },
+          {
+            "by": "Jtsummers",
+            "id": 23706721,
+            "kids": [
+              23707534
+            ],
+            "parent": 23705461,
+            "text": "There&#x27;s at least one 4-character domain in the results (easier to find when you set max to 4), `xuci.org`. So they do drop.",
+            "time": 1593637641,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "a_t48",
+                "id": 23707534,
+                "parent": 23706721,
+                "text": "If you squint your...ears it almost sounds like &quot;sushi.org&quot;. Not bad.",
+                "time": 1593642489,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "anirudhmurali",
+        "id": 23706934,
+        "kids": [
+          23706984
+        ],
+        "parent": 23704983,
+        "text": "Is it possible to add a column with the Page Rank or Domain Authority of the particular domain?",
+        "time": 1593638927,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "TheMask01",
+            "id": 23706984,
+            "kids": [
+              23709944,
+              23710424,
+              23707335
+            ],
+            "parent": 23706934,
+            "text": "You know I briefly looked in to it because I&#x27;m not dumb I understand it&#x27;d make this unstoppable, but there&#x27;s very few options with very high prices. You never know with what the future holds but yeah, not cheap. Definitely doable though.<p>The good thing about &#x27;our&#x27; filtering is that it would take down the number of daily requests to their API, but still...a. lot. I wouldn&#x27;t say it&#x27;s out of the question even remotely, I have the funds but am cautious with my finances&#x2F;investments. But you&#x27;re right and I should definitely give it some serious though..",
+            "time": 1593639235,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "wtracy",
+                "id": 23709944,
+                "parent": 23706984,
+                "text": "That strikes me as a good option for a future &quot;professional&quot; tier of the website.",
+                "time": 1593663188,
+                "type": "comment"
+              },
+              {
+                "by": "SimianLogic2",
+                "id": 23710424,
+                "parent": 23706984,
+                "text": "You could just pull number of google results as a proxy. You have the link to the google search now, being able to sort or filter by that would weed out a lot of junk.<p>Would also be nice to sort&#x2F;filter by Wayback hits.",
+                "time": 1593669405,
+                "type": "comment"
+              },
+              {
+                "by": "edoceo",
+                "id": 23707335,
+                "parent": 23706984,
+                "text": "PR matters less these days but if you&#x27;re going that route then maybe also pull Alexa, Ahrefs and Moz and the like (I&#x27;ve got a complete list somewhere)",
+                "time": 1593641128,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "pdxandi",
+        "id": 23706131,
+        "parent": 23704983,
+        "text": "This is great, but most of these don&#x27;t seem that pronounceable to me.",
+        "time": 1593635040,
+        "type": "comment"
+      },
+      {
+        "by": "mkl",
+        "id": 23707908,
+        "parent": 23704983,
+        "text": "knotso.com seems like a very clever name for a knot-tying instruction site or game.  I&#x27;m not going to make one though.  Anyone keen to?",
+        "time": 1593644898,
+        "type": "comment"
+      },
+      {
+        "by": "zeveb",
+        "id": 23705716,
+        "kids": [
+          23706879,
+          23707598,
+          23705778
+        ],
+        "parent": 23704983,
+        "text": "a) Really awesomely cool!<p>b) Kinda sad to read all those names and think that someone once thought, &#x27;hey, this could be my baby.&#x27;  Sure, I imagine a bunch of them were just hoovered up by domain squatters, but at least a few of them are failed sites, right?  \u2026 right?",
+        "time": 1593633052,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "DEADBEEFC0FFEE",
+            "id": 23706879,
+            "kids": [
+              23708358,
+              23709002
+            ],
+            "parent": 23705716,
+            "text": "Certainly a bit sad.  I cannot read those domains without imagining what the story behind them was.<p>Justinandsam.com is just heartbreaking.",
+            "time": 1593638570,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "ComputerGuru",
+                "id": 23708358,
+                "parent": 23706879,
+                "text": "Why is it heartbreaking? Think positive. Probably just a domain used for a wedding registry and RSVPs leading up to the event and then no longer needed after the big day.",
+                "time": 1593648343,
+                "type": "comment"
+              },
+              {
+                "by": "monoideism",
+                "id": 23709002,
+                "parent": 23706879,
+                "text": "Yeah, I saw a few decades-old small businesses in there, likely casualties of COVID-19.",
+                "time": 1593653422,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "ObsoleteNerd",
+            "id": 23707598,
+            "parent": 23705716,
+            "text": "Yeah a lot of them are very clearly failed projects and businesses and it\u2019s fascinating reading through them.",
+            "time": 1593642890,
+            "type": "comment"
+          },
+          {
+            "by": "shahinrostami",
+            "id": 23705778,
+            "parent": 23705716,
+            "text": "w.r.t. b), it looks like you can figure out which were legitimate sites using the &quot;Insight&quot; column!",
+            "time": 1593633306,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "goatherders",
+        "id": 23708042,
+        "kids": [
+          23708345
+        ],
+        "parent": 23704983,
+        "text": "Awesome.<p>I just registered (majorsportsapparelmaker)golf.com<p>And yes, they make golf shoes and apparel.<p>So that&#x27;s fun.",
+        "time": 1593645872,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "ComputerGuru",
+            "id": 23708345,
+            "kids": [
+              23711742,
+              23708432
+            ],
+            "parent": 23708042,
+            "text": "You can\u2019t use it for anything and the only value is in hoping they randomly decide to contact you and ask to buy it (you can\u2019t approach them because that is extortion of trademarked property) rather than going through the courts.",
+            "time": 1593648193,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "etxm",
+                "id": 23711742,
+                "parent": 23708345,
+                "text": "You can make a \u201cbrand name golf sucks\u201d blog.",
+                "time": 1593685303,
+                "type": "comment"
+              },
+              {
+                "by": "goatherders",
+                "id": 23708432,
+                "parent": 23708345,
+                "text": "Perhaps.",
+                "time": 1593648917,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "eganist",
+        "id": 23706231,
+        "kids": [
+          23706912
+        ],
+        "parent": 23704983,
+        "text": "Thanks for this, found a diamond in the rough.<p>Good on you for restricting people from sending &quot;4&quot; or less for the character count; I&#x27;d probably hide that too and use that for my own needs in your position, though it only raises the barrier from opportunistic searchers to people with a mild amount of curl&#x2F;grep knowledge.",
+        "time": 1593635483,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "TheMask01",
+            "id": 23706912,
+            "kids": [
+              23707120
+            ],
+            "parent": 23706231,
+            "text": "I don&#x27;t own a single one nore have tried but I understand many would. Honestly I did that 100% because they&#x27;re simply always taken by bots on the spot. It&#x27;d be a waste of space on the site&#x2F;cluttering the feeds. Our process is muchhhh slower around the clock as we check all domains and delete any no longer avail, again to keep the lists tidy, it&#x27;d only get everyone&#x27;s hopes up just to have them let down. I can guarantee it",
+            "time": 1593638809,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "henryfjordan",
+                "id": 23707120,
+                "kids": [
+                  23708456
+                ],
+                "parent": 23706912,
+                "text": "If I did want a 4 letter domain, how would I get one? Is the best way to pony up a few grand for one? I plugged a few into a domain-name service and some were available for as little as $3k...<p>5 letters, however, $8.99!",
+                "time": 1593639970,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "duud",
+                    "id": 23708456,
+                    "kids": [
+                      23711488
+                    ],
+                    "parent": 23707120,
+                    "text": "Check out Dropcatch.com, Namejet and GoDaddy Auctions. You can get a decent 4L com for under $1000 if you&#x27;re patient. Beauty is in the eye of the beholder but generally speaking you&#x27;re going to get a much, much better name by spending $100-1000 at auction then by handregging. There are bots and people trawling through pending delete lists catching anything good before it becomes available.",
+                    "time": 1593649075,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "mrkramer",
+                        "id": 23711488,
+                        "parent": 23708456,
+                        "text": "Domain resellers are trouble but I wonder how lucrative actually domain reselling is considering lots of people are doing it.",
+                        "time": 1593682479,
+                        "type": "comment"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "by": "swyx",
+    "descendants": 116,
+    "id": 23700486,
+    "kids": [
+      23702789,
+      23702725,
+      23703723,
+      23703043,
+      23700514,
+      23702979,
+      23700973,
+      23702787,
+      23703072,
+      23703843,
+      23702431,
+      23702843,
+      23703853,
+      23703814,
+      23703010,
+      23704453,
+      23702713,
+      23704582,
+      23701120,
+      23703802,
+      23701727,
+      23701422,
+      23712368,
+      23702279,
+      23702288
+    ],
+    "score": 234,
+    "time": 1593605171,
+    "title": "Show HN: Coding Career Handbook",
+    "type": "story",
+    "url": "https://www.learninpublic.org/?from=Hacker%20News",
+    "_kids": [
+      {
+        "by": "quicklime",
+        "id": 23702789,
+        "kids": [
+          23703352,
+          23703223,
+          23703265,
+          23703026,
+          23702980,
+          23702929,
+          23703997
+        ],
+        "parent": 23700486,
+        "text": "&gt; The Coding will always be the easiest part of a Coding Career<p>I&#x27;m a little triggered by this headline. I understand what it means, and I agree there&#x27;s some truth to it. It can be good advice when given to developers who haven&#x27;t yet figured out that their job is not exclusively to write code.<p>But in my company (which is a big non-tech corporate) I&#x27;ve noticed that a similar phrase often gets used by non-technical people to belittle the work that software developers do. The exact wording varies, but the sentiment is basically that technical problems are easy, and can safely be outsourced to the lowest bidder, as long as there&#x27;s a good Project Manager who can enforce the right methodology and processes. It&#x27;s the problems that require &quot;soft&quot; skills that are <i>difficult</i> - these are the kind that Thought Leaders and Influencers work on - and we need to pay a premium for people who can solve these problems.<p>In reality, technical and non-technical problems are both difficult in their own ways, and both occupy a space that ranges from trivial to impossible.<p>In terms of career advice, I&#x27;d really suggest not perpetuating this myth. One of the tactics that the book lists is &quot;marketing yourself&quot;, and repeating the idea that coding is easy (especially to non-technical people) undermines your career and that of your technical colleagues.",
+        "time": 1593618566,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "kubanczyk",
+            "id": 23703352,
+            "parent": 23702789,
+            "text": "&gt; The Coding will always be the easiest part of a Coding Career<p>The Coding will sometimes be the hardest part of a Coding Career.<p>Since people are throwing around authoritatively-sounding  statements here, anyone interested is cordially invited to use mine.",
+            "time": 1593621188,
+            "type": "comment"
+          },
+          {
+            "by": "WrtCdEvrydy",
+            "id": 23703223,
+            "kids": [
+              23705324,
+              23703812
+            ],
+            "parent": 23702789,
+            "text": "To be honest, the technical problems are the easy thing in most companies since they just need a simple CRUD app and anything you do will be magic to most people regardless.<p>The politics are the difficult part of most work in this industry. Everyone has an agenda (which is not a bad thing) and serving multiple agendas will make your technical problems even worse.",
+            "time": 1593620488,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "sharadov",
+                "id": 23705324,
+                "parent": 23703223,
+                "text": "Depends where you work, if it&#x27;s a dinky ecommerce site with no scalability issues, then coding is not a problem. But if it&#x27;s a real product company with AI&#x2F;ML engineering problems, then coding definitely is.",
+                "time": 1593631142,
+                "type": "comment"
+              },
+              {
+                "by": "foota",
+                "id": 23703812,
+                "parent": 23703223,
+                "text": "Just because something (a simple CRUD app) seems simple to you, doesn&#x27;t mean it&#x27;ll be easy for everyone, in particular if you don&#x27;t know what the quick ways are of doing it.",
+                "time": 1593623145,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "deleted": true,
+            "id": 23703265,
+            "parent": 23702789,
+            "time": 1593620659,
+            "type": "comment"
+          },
+          {
+            "by": "canadev",
+            "id": 23703026,
+            "parent": 23702789,
+            "text": "I agree, and I&#x27;m glad I don&#x27;t work at a place where coding is considered easy work.",
+            "time": 1593619558,
+            "type": "comment"
+          },
+          {
+            "deleted": true,
+            "id": 23702980,
+            "parent": 23702789,
+            "time": 1593619342,
+            "type": "comment"
+          },
+          {
+            "by": "bluntfang",
+            "id": 23702929,
+            "kids": [
+              23703035,
+              23703187
+            ],
+            "parent": 23702789,
+            "text": "Coding isn&#x27;t the hard part of your job, it&#x27;s convincing people that outsourcing isn&#x27;t going to result in good outcomes. The reason why they won&#x27;t result in good outcomes:<p>* maintenance is hard<p>* writing quality code is hard<p>* CI&#x2F;CD is hard<p>* requirements gathering is hard<p>etc.",
+            "time": 1593619112,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "canadev",
+                "id": 23703035,
+                "kids": [
+                  23714793
+                ],
+                "parent": 23702929,
+                "text": "Sometimes coding is hard in and of itself.",
+                "time": 1593619594,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "bluntfang",
+                    "id": 23714793,
+                    "parent": 23703035,
+                    "text": "I digress on my opinion on whether coding is hard or not, but it&#x27;s certainly not as hard as other things.",
+                    "time": 1593706162,
+                    "type": "comment"
+                  }
+                ]
+              },
+              {
+                "by": "gautamdivgi",
+                "id": 23703187,
+                "kids": [
+                  23703253,
+                  23704034
+                ],
+                "parent": 23702929,
+                "text": "How much success have you had? Not trying to be snarky - but the problem in corporates is there are no &quot;lag indicators&quot; of success. The success of a manager is defined as getting to a specific cost structure, there is no measure if that cost structure delivers the results. And in a lot of big corporations what&#x27;s good for your career and what&#x27;s good for the company may not be the same thing.",
+                "time": 1593620328,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "WrtCdEvrydy",
+                    "id": 23703253,
+                    "kids": [
+                      23703603
+                    ],
+                    "parent": 23703187,
+                    "text": "Corporations won&#x27;t stop outsourcing because of reason, but they will stop outsourcing because of feelings.<p>I like to hammer down on issues with contractors by basically minimizing the issue: &quot;who cares if our customers couldn&#x27;t access our product for 3 hours due to an outage? we&#x27;re saving so much money by outsourcing!&quot;.<p>It&#x27;s a simple way to get people on your side because noone would like to agree that 3 hours of outage is a good thing.",
+                    "time": 1593620600,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "kwanbix",
+                        "id": 23703603,
+                        "kids": [
+                          23704965
+                        ],
+                        "parent": 23703253,
+                        "text": "But in my experience I have never seen cases where you really save money. The outsourced dev charges less, yes, but the outsourcing company needs to make money. But let&#x27;s say what was 10 an hour, now it is 5. In my experience is that what used to take 1 hour, now it takes 2 or even 3. In the end, hardly any savings.",
+                        "time": 1593622231,
+                        "type": "comment",
+                        "_kids": [
+                          {
+                            "by": "WrtCdEvrydy",
+                            "id": 23704965,
+                            "parent": 23703603,
+                            "text": "&gt; I have never seen cases where you really save money<p>Of course you can&#x27;t save money. The guy proposing the outsourcing is either getting kickbacks or will get a massive bonus from &#x27;cost reduction&#x27;.<p>I like to kick the wind out of their sails by loving their proposal and reminding them that payroll changes don&#x27;t count towards bonuses and they&#x27;ll have to be up early to manage their new team. Suddenly, it&#x27;s a bad idea.",
+                            "time": 1593629201,
+                            "type": "comment"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "by": "strgcmc",
+                    "id": 23704034,
+                    "parent": 23703187,
+                    "text": "There are different strategies you would use for dealing with different companies, especially for companies with very deeply broken incentives or broken feedback loops (no company is perfect, but many function reasonably well, and some function not at all).  You can&#x27;t fix a broken process for decision-making, by making a few isolated good decisions; you have to attack&#x2F;fix the broken process itself, if you ever really hope to make an impact.<p>- If you are working a company that has broken incentive structures, the first and immediate question you should answer for yourself is, what do you want to achieve there, as a manager?  Are you really going to try and fix these deep cultural issues, and try to improve the company as a whole (or even just your department), and its whole internal mechanism for decision-making (which is broken and based on bad incentives)?<p>- If so, great! Commit to that problem, build support, get alignment, and who knows you might actually succeed, and end up in a C-level role for your efforts of turning the ship around.  It&#x27;s unlikely, but if that&#x27;s your goal, then have at it.<p>- If not, then who cares?  Accept the risks of what you signed up for, get whatever it is done that you need to do, and leave when the time is right.  Understand your place in the hierarchy, understand what your personal goals are and how you can achieve them, and do whatever you need to do, without worrying about the health of the company or how other decisions are made.  If you can&#x27;t change it, or the effort to change it is out of the scope of what you&#x27;re personally trying to achieve in your career goals, then it is literally a waste of time and energy.<p>---<p>On the topic of indicators or lack thereof, this is literally what good managers do.  They find insights that others miss, and are successful in either making winning arguments or in framing debates differently and changing the success criteria.  These powers can be used for &quot;good&quot; or &quot;evil&quot; to be blunt, that&#x27;s up to the individual manager.  You can practice at a small scale, for example for operational improvements by creating new metrics&#x2F;KPIs for your team to better monitor service health in different ways than they used to.  You can apply this to business decisions as well, by providing new analyses of how out-sourcing did not actually pay off, and defining new metrics for how to make those decisions (given that you&#x27;ve uncovered some hidden factors that were missed in the initial evaluation). There&#x27;s no magic spell to it, it&#x27;s just work and experience and critical thinking, which you gain through repeated application of curiosity and tenacity to problems that others tend to overlook or are too stuck in their ways to think differently about.<p>Personally, I loathe projects where I have little autonomy, and so I proactively seek out problems that other people don&#x27;t want to own or have avoided owning or simply didn&#x27;t understand or appreciate their important, but which I believe to be important problems (which depends on the prerequisite that, I actually must have some real insights which are unique that others have missed), and so I go out of my way to carve out ownership of those problems. Because nobody understood them before or wanted it before anyways, I don&#x27;t get much pushback, and I can use these opportunities to make decisions autonomously, and also build up trust and support by demonstrating success with such projects.  Eventually, I can leverage my banked trust store and positive balance of success, to push for changes or influence decisions in other areas that are more contentious and may not have gone &quot;my way&quot;, had I not done the work to build up trust previously",
+                    "time": 1593624294,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "adamsea",
+            "id": 23703997,
+            "parent": 23702789,
+            "text": "I dunno. Coding is the easiest part of programming, in a sense.<p>The challenges in programming aren&#x27;t literally &quot;writing code&quot;, once you achieve a certain degree of facility with the language and libraries you are using.<p>The challenge is, of course, solving the problem - doing the intellectual work.<p>I get that people often say &quot;writing code&quot; and also mean the intellectual work of programming &#x2F; CS &#x2F; software engineering (whichever may be appropriate), but I really don&#x27;t think that&#x27;s accurate.<p>Hope that makes sense and isn&#x27;t pressing too fine a point on it.",
+            "time": 1593624044,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "claudiulodro",
+        "id": 23702725,
+        "kids": [
+          23703985,
+          23703166,
+          23702765,
+          23705350,
+          23703368,
+          23702829,
+          23703032,
+          23707451
+        ],
+        "parent": 23700486,
+        "text": "Please don&#x27;t take this the wrong way; I am genuinely curious. As far as I can tell, you&#x27;ve been a professional developer for approximately 2 years. What qualifies you to instruct people how to manage their dev career, let alone charge $40+ for the advice?",
+        "time": 1593618242,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "odshoifsdhfs",
+            "id": 23703985,
+            "kids": [
+              23704535
+            ],
+            "parent": 23702725,
+            "text": "Because that is what sells now.<p>Write a book for Packt on X you are learning as you go =&gt; Leading expert in X and charge 100USD&#x2F;hour<p>Write a bunch of blog spam on X, a lot of it wrong =&gt; Leading expert in X and charge 100USD&#x2F;hour<p>Create a bunch of projects that have more bugs than Swiss cheese has holes =&gt; Leading expert in X and charge 100USD&#x2F;hour<p>There is a story today here that says GitHub is the Instagram of programming, and more and more I agree. Technical knowledge has been trumped by marketing. You are only someone if you have a blog&#x2F;github profile&#x2F;stackoverflow with more than 1M+ points.<p>And then people wonder why software is so shitty now days, why a todo list in React makes any laptop run out of battery in 50 minutes (not attacking React, just how beginners use it).",
+            "time": 1593623974,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "agustif",
+                "id": 23704535,
+                "kids": [
+                  23705715,
+                  23705026,
+                  23705359
+                ],
+                "parent": 23703985,
+                "text": "So if we accept this as baseline reality then what do we do?",
+                "time": 1593626795,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "odshoifsdhfs",
+                    "id": 23705715,
+                    "kids": [
+                      23706793
+                    ],
+                    "parent": 23704535,
+                    "text": "Honestly I don&#x27;t know.<p>There is so much cargo culting nowadays in software development (agile, GitHub, white board interviews, hacker rank, tdd, add, ci, cd, redux, etc etc) and so many new people (&lt; 5 years) without experience to see what works and doesn&#x27;t work with the team and project that is hard to fight it.<p>I worked in 3 different React projects in the last 2 years with 3 different teams. Only one required something as complex as Redux (and most likely Flux or other simpler state libraries would do). You know what? All of them had redux. It is what they learned in the latest blog post by ReactHipsterMainMain.com so that is what you see.<p>If you are 25&#x2F;28 years old and a start up CTO (?!?) and you spent your 20s in university and doing open source code and putting shit in GitHub, you value that and try to hire for that. Thus, this is well known and bootcamps and the likes teach people to put every little shit in GitHub to show they are &#x27;passionate&#x27; about software development and has done a lot of projects.<p>Even the take home projects. From experience, most companies have the same variation of the project. For iOS this is usually show a screen with data from an API, tap something and show details, also from an API. You can find millions of these small projects all over GitHub. But somehow they still ask for them. A few years ago I was so tired of this that I created a generic project and then a script that would take a JSON file and would generate the Swift Models, as well as API calls-&gt;transform to Model, and I would just need to create 2-3 functions to configure each cell depending on the data. I haven&#x27;t seen any junior developers do something like this in their jobs. There are more and more classes, view controllers, components, stores etc. The abstraction thinking just isn&#x27;t there <i>yet</i>. But they act like they know everything and have all the answers because of GitHub stars or whatever they are called.<p>I am all over the place with this reply, I am sorry. Just after years and years of seeing this, more and more I don&#x27;t think soft development is for me if it is just to become the Instagram of the geeks.",
+                    "time": 1593633047,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "acemarke",
+                        "id": 23706793,
+                        "kids": [
+                          23707796
+                        ],
+                        "parent": 23705715,
+                        "text": "I&#x27;m a Redux maintainer. FWIW, we&#x27;ve _always_ tried to clarify when it actually makes sense to use Redux:<p><a href=\"https:&#x2F;&#x2F;redux.js.org&#x2F;faq&#x2F;general#when-should-i-use-redux\" rel=\"nofollow\">https:&#x2F;&#x2F;redux.js.org&#x2F;faq&#x2F;general#when-should-i-use-redux</a><p><a href=\"https:&#x2F;&#x2F;medium.com&#x2F;@dan_abramov&#x2F;you-might-not-need-redux-be46360cf367\" rel=\"nofollow\">https:&#x2F;&#x2F;medium.com&#x2F;@dan_abramov&#x2F;you-might-not-need-redux-be4...</a>",
+                        "time": 1593638150,
+                        "type": "comment",
+                        "_kids": [
+                          {
+                            "by": "odshoifsdhfs",
+                            "id": 23707796,
+                            "parent": 23706793,
+                            "text": "I know, and I thank you for that. I have read and shared those links (and others).<p>Unfortunately it falls on deaf ears and it is still overused pretty much everywhere.",
+                            "time": 1593644074,
+                            "type": "comment"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "by": "atomashpolskiy",
+                    "id": 23705026,
+                    "parent": 23704535,
+                    "text": "For Github projects, we could have an organization that would conduct project audit and certification on owner&#x27;s expense. As an owner of a few open-source projects, I&#x27;m a little tired of hearing such insinuations as in the post above (although there is certainly a grain of truth in it -- we live in the Age of Bullshit, after all), so I would gladly cash out $1000 for getting a &quot;quality approved&quot; stamp from a widely trusted entity.",
+                    "time": 1593629486,
+                    "type": "comment"
+                  },
+                  {
+                    "by": "pc86",
+                    "id": 23705359,
+                    "parent": 23704535,
+                    "text": "Refuse to accept it, and call out the charlatans that do it?",
+                    "time": 1593631319,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "swyx",
+            "id": 23703166,
+            "kids": [
+              23703304,
+              23703415
+            ],
+            "parent": 23702725,
+            "text": "i think its a fair question and you&#x27;ve been very polite about it :)<p>I basically deal with it by being super open about it (it&#x27;s pretty much the first thing anyone knows about me) and letting people decide if they still want to read me or not. enough do. in a free market, that&#x27;s plenty.<p>so the question then becomes: what confidence do <i>I</i> have in what I think I know? it comes from 3 places:<p>- Empirical foundation:  study and read others. this book has 1419 external links and quotes to advice from people way more credible and established than me. I provide curation and context.<p>- Theoretical foundation: I do my best to ensure what i see in real life is backed up by indisputable logical&#x2F;psychological axioms. This is important for replicability.<p>- Personal Experience: I apply what I learn to myself.<p>Every weakness can be a strength (funny enough, i spend a whole chapter talking about this). In my case, i&#x27;ve basically made a career out of putting out what i learn as i learn it, before i&#x27;m an expert, with the responsible disclaimer that I am not an expert but I do put a ton of work into thinking and research. it&#x27;s the opposite of &quot;fake it til you make it&quot;, its being real that you havent made it yet but <i>you do not let that stop you trying</i>. I am at the exact point where my voice and perspective on things (being a recent beginner) let me explain things to beginners in ways that experts can&#x27;t.<p>Yes it&#x27;s uncomfortable af. But you see tremendous growth when you are both intellectually honest and doggedly persistent at this.<p>As I wrote this book I was also overcome with this personal insight - <i>me 5 years from now would probably not pick this book to write</i>. I would be interested in different things, different challenges. This is pretty much the only time I would ever write a junior-dev-to-senior-dev book: right after having done it.<p>I suspect this is why so few junior-dev-to-senior-dev books exist - people wait too long, and then by the time they feel qualified to write a book, they care more about management or architecture or what have you.<p>short answer: no i don&#x27;t feel very qualified right now. i do intend to update this for a few years. how long until i am qualified? we shall see.",
+            "time": 1593620244,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "claudiulodro",
+                "id": 23703304,
+                "kids": [
+                  23703807
+                ],
+                "parent": 23703166,
+                "text": "Thanks for clarifying. I think I will give it a read, even if just to see what your fresh perspective looks like. The personal branding stuff sounds very interesting and useful also.<p>EDIT: I would like to note that the IMHO most mentally and technically difficult part of a developer career is maintaining the same mission-critical legacy codebase for years at a time. That&#x27;s not something I really expect to get a lot of insight around from this book and your personal experience, but I&#x27;m also not sure what exactly advice around that problem would look like (probably just the tried-and-true military motto of &quot;embrace the suck&quot;). Either way, just my 2 cents about coding careers.",
+                "time": 1593620922,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "swyx",
+                    "id": 23703807,
+                    "parent": 23703304,
+                    "text": "thank you for having an open mind, and also being willing to say what others are already thinking, but doing it nicely :)<p>agreed on the maintaining legacy bit. I spent some time on that in the sr dev chapter, but it was mostly collating what others have said. i think its impt that jr devs be aware this is a big part of the job, and also that &quot;technical debt&quot; often pays incredibly well because it is so challenging and the skillset to handle it well is so rare.",
+                    "time": 1593623100,
+                    "type": "comment"
+                  }
+                ]
+              },
+              {
+                "by": "stephc_int13",
+                "id": 23703415,
+                "parent": 23703166,
+                "text": "All of this seems kinda legit, learning and be open and using both your experiences and your interactions with others to fix or reinforce your assumptions, but this is not what people usually expect to find in a book...<p>I still have the feeling that there is a bit of greed here, trying to find shortcuts, this is not blatantly wrong but I have the intuition that this is a potentially harmful mindset, not unlike the Move Fast and Break Things mindset.",
+                "time": 1593621445,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "MivLives",
+            "id": 23702765,
+            "kids": [
+              23702817
+            ],
+            "parent": 23702725,
+            "text": "I&#x27;m also curious about this, and interested in a review from someone who has been in the field longer to see how much the advice here rings true. 40 dollars isn&#x27;t a huge ask for a book, but it&#x27;s above an impulse buy.<p>[edit] Rearranged some words for clarity",
+            "time": 1593618463,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "Swizec",
+                "id": 23702817,
+                "kids": [
+                  23704035,
+                  23712371
+                ],
+                "parent": 23702765,
+                "text": "Swyx is legit. The speed at which he established himself as an authority in the React&#x2F;Javascript world is hella impressive<p>And he\u2019s fresh enough that his advice isn\u2019t enbittered and grizzled yet.",
+                "time": 1593618690,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "odshoifsdhfs",
+                    "id": 23704035,
+                    "kids": [
+                      23705238
+                    ],
+                    "parent": 23702817,
+                    "text": "I am not downvoting you, but (if GP is accurate) 2 years of professional experience is nothing, and to be an authority is laughable. To say he established himself as a developer marketer, ok, but damn, really? 2 Years? When I started to work 2 years was junior level developer, and now they are authorities??<p>I quickly checked his writings. I am not trying to put him down, they are ok, but completely different than what I would expect an expert&#x2F;authority to write. But seems nowadays 50+ tweets a day and 4 blog posts a day are more important than actually, you know, writing good maintainable code.",
+                    "time": 1593624297,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "Swizec",
+                        "id": 23705238,
+                        "kids": [
+                          23705781
+                        ],
+                        "parent": 23704035,
+                        "text": "You forget the whole React field is like 5 years old.<p>And this book is aimed at beginners, not folks like us with decades in the field.",
+                        "time": 1593630692,
+                        "type": "comment",
+                        "_kids": [
+                          {
+                            "by": "odshoifsdhfs",
+                            "id": 23705781,
+                            "kids": [
+                              23705862
+                            ],
+                            "parent": 23705238,
+                            "text": "Well, actually 7 years old so there is that.<p>But it doesn&#x27;t matter if it is react or iOS or prolog. If you think about it, a CS degree, that covers a lot of topics, is minimum 3&#x2F;4 years. And when you get out of uni you are considered an intern&#x2F;junior. But now, bootcamps&#x2F;web tutorials, people think that ater 2 years they become an authority on something.<p>I deal with these people everyday. They know &#x27;react&#x27; inside out, but anything higher level (how to organize the freaking code) or how to use any kind of CS algo to solve a problem that isn&#x27;t in the O(n^n) space because it is &#x27;simple&#x27; is beyond them. Which is fine, is something that takes time to learn and know how to use. It took me years.<p>But &#x27;I&#x27;m a senior developer&#x27; types with 2 years of experience is ridiculous, and we should call them what they are, liars. (not the GP, again, don&#x27;t know him, talking in general)<p>(I don&#x27;t think a CS degree is needed to be a software developer)",
+                            "time": 1593633314,
+                            "type": "comment",
+                            "_kids": [
+                              {
+                                "by": "Swizec",
+                                "id": 23705862,
+                                "kids": [
+                                  23705950,
+                                  23712405
+                                ],
+                                "parent": 23705781,
+                                "text": "Ok so why would any of that matter? He\u2019s giving you advice on how to get a senior title fast, not on react or CS or engineering at all. Just the fast title acquisition.<p>Who\u2019s better for that advice? Someone who did it in 2 years or someone who took 10?",
+                                "time": 1593633693,
+                                "type": "comment",
+                                "_kids": [
+                                  {
+                                    "by": "odshoifsdhfs",
+                                    "id": 23705950,
+                                    "kids": [
+                                      23709816
+                                    ],
+                                    "parent": 23705862,
+                                    "text": "It matters because he (in my point of view) isn&#x27;t a senior and is lying about it? Because due to the dynamics of easy money and the lack of developers, you got 2 year bootcamp graduates getting &#x27;senior&#x27; titles but being just beyond the junior marker.<p>It matters because right now, we may have a coming recession where all these &#x27;seniors&#x27; will see themselves fucked because companies will have more options and these &#x27;seniors&#x27; will be too stuck up to realize they should be taking a more junior-ish position.<p>It also matters because I deal with these people all day, that because they read the latest blog post on something think they are experts and sidetrack 15 minute meetings to dribble on that we are doing it wrong and waste an hour of my time.",
+                                    "time": 1593634233,
+                                    "type": "comment",
+                                    "_kids": [
+                                      {
+                                        "deleted": true,
+                                        "id": 23709816,
+                                        "parent": 23705950,
+                                        "time": 1593661976,
+                                        "type": "comment"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "by": "anothercrudapp",
+                                    "dead": true,
+                                    "id": 23712405,
+                                    "parent": 23705862,
+                                    "text": "It\u2019s not a matter on how to reach this artificial goal, because you can lie your way in. You wouldn\u2019t trust someone becoming a medical doctor in two years than in ten years or a lawyer. So why would that be any different with SE. Also I\u2019m not saying that SE has the same prestige as medicine or law, but only that experts have a lot of experience and someone with ten years under their belt has put in always more hours than someone with under five",
+                                    "time": 1593692997,
+                                    "type": "comment"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "by": "anothercrudapp",
+                    "dead": true,
+                    "id": 23712371,
+                    "parent": 23702817,
+                    "text": "Hi Swyx",
+                    "time": 1593692767,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "pc86",
+            "id": 23705350,
+            "parent": 23702725,
+            "text": "&gt; <i>What qualifies you to instruct people how to manage their dev career</i><p>Well, absolutely nothing, and it&#x27;s a shame to see people (I have to imagine mostly college interns and fresh grads who already fancy themselves as &quot;mid-level&quot; developers) waste money on this nonsense.<p>Unfortunately this is what happens when you see job advertisements requiring &quot;Senior Developers&quot; and specifying 5 years of <i>total work experience</i>. In no other industry can you be a 27 year old and be anything other than junior-to-mid. I say this as someone who was a senior developer in my late 20&#x27;s, and you don&#x27;t know anything in your late 20&#x27;s.<p>But I suppose if you&#x27;re a senior developer after a couple years, what&#x27;s to say you can&#x27;t advise people on their careers when you haven&#x27;t even made it through a Presidential election?",
+            "time": 1593631297,
+            "type": "comment"
+          },
+          {
+            "by": "maps7",
+            "id": 23703368,
+            "kids": [
+              23707545,
+              23709930
+            ],
+            "parent": 23702725,
+            "text": "Agreed. If the author had 40 years experience I would pay attention but 2 years experience is nothing. Maybe it should be sold as &quot;what to expect in the first 2 years of your career&quot;.",
+            "time": 1593621267,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "freewilly1040",
+                "id": 23707545,
+                "parent": 23703368,
+                "text": "And even then the advice would be worth little compared to more experienced people",
+                "time": 1593642549,
+                "type": "comment"
+              },
+              {
+                "deleted": true,
+                "id": 23709930,
+                "parent": 23703368,
+                "time": 1593663059,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "acemarke",
+            "id": 23702829,
+            "kids": [
+              23702965,
+              23703752,
+              23702895
+            ],
+            "parent": 23702725,
+            "text": "As a bystander but friend of Shawn&#x27;s, I can say that over the last few years he has demonstrated an incredible ability to quickly learn and master concepts, then pass that information on to others.<p>I&#x27;ve seen him go from someone who didn&#x27;t know anything about web dev at all, to a master of what&#x27;s going on with React and its ecosystem.  He&#x27;s added expertise on Svelte and other tools as well.<p>Shawn excels at a lot of &quot;big picture analysis&quot; type thinking (which makes sense given his prior financial background), and I always find his comments and presentations insightful and highly informative.<p>I haven&#x27;t yet had time to read through this new book due to my own tasks, but based on the blog posts I&#x27;ve seen him write leading up to this, and the preview material he&#x27;s tweeted, I have full confidence that this book is going to be an excellent resource for other developers.<p>As for the price, Shawn&#x27;s clearly put a lot of time and effort into writing this.  If you have questions about his ability to do so and the likely quality, I&#x27;d encourage you to read through some of his blog posts to get a sense of how he writes:<p><a href=\"https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;</a>",
+            "time": 1593618749,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "sokoloff",
+                "id": 23702965,
+                "parent": 23702829,
+                "text": "I think GP&#x27;s point is that I would be similarly skeptical of taking parenting advice &quot;from diapers to diplomas&quot; from someone who hadn&#x27;t yet had their first-born blow out a birthday candle, regardless of how well-edited or how much effort they put into publishing that advice.<p>To me, it&#x27;s not about the $40; it&#x27;s about advice on &quot;the full journey from Code Newbie to Senior Developer&quot; from someone who is probably much closer to the former than the latter.",
+                "time": 1593619281,
+                "type": "comment"
+              },
+              {
+                "by": "jayrice257",
+                "dead": true,
+                "id": 23703752,
+                "parent": 23702829,
+                "text": "Hey, your own &quot;tutorials&quot; and &quot;educational blog&quot; look like total garbage. Maybe that&#x27;s why you support each other.<p>This guy is possibly qualified to write a bad &quot;book&quot; about marketing, why is this shit on HN",
+                "time": 1593622856,
+                "type": "comment"
+              },
+              {
+                "deleted": true,
+                "id": 23702895,
+                "parent": 23702829,
+                "time": 1593619000,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "kamaal",
+            "id": 23703032,
+            "kids": [
+              23703432
+            ],
+            "parent": 23702725,
+            "text": "Haven&#x27;t read the book, but by reading the table of contents, it does look like it is essays on commonly known topics to most programmers.<p>Stuff like reading books, training frequently, exposure to Machiavellian strategies, perennial interview practice, side projects etc is already known to most programmers who are aware and actively seeking improvement.<p>One thing that I like to see most programmers pay importance to in the future is physical fitness and rest. Mental health would also be a good topic to add. We are a profession where every one wants to win spectacularly or die trying. Or we just over eat and sit our excercise-less bodies to death.<p>A comprehensive programmer nerd&#x27;s guide to exercise, rest and mental health would be something I&#x27;d be interested in reading.",
+            "time": 1593619589,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "swyx",
+                "id": 23703432,
+                "parent": 23703032,
+                "text": "i agree! (the final chapter is basically what you said here) unfortunately i need to learn that too before i can write it.",
+                "time": 1593621509,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "treetide",
+            "id": 23707451,
+            "kids": [
+              23707465
+            ],
+            "parent": 23702725,
+            "text": "About the $40+ for the advice part - seriously, that is a few hours of developer salary. Compared to the few days it would take reading, it is essentially nothing.<p>Now the question is, investing those few days total saves you more worries. And doesn&#x27;t derail you. That&#x27;s hard to evaluate, and I don&#x27;t attempt to. But for information, $40 is cheap.",
+            "time": 1593641973,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "JoeAltmaier",
+                "id": 23707465,
+                "parent": 23707451,
+                "text": "? A few minutes.",
+                "time": 1593642090,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "elliotbnvl",
+        "id": 23703723,
+        "kids": [
+          23712412
+        ],
+        "parent": 23700486,
+        "text": "Congrats on the launch, Shawn!<p>I&#x27;m frustrated and saddened by the amount of negative comments here from doubters, burnt out folks, and cynical engineers. I want to weigh in with a positive perspective.<p>I&#x27;ve been following Shawn for a while now (from a distance) and I have to say, seeing his name pop up in more and more places has certainly been an intriguing experience. He went from being nobody a few years ago to being somebody worth listening to very quickly.<p>He&#x27;s built up a lot of good will with me just from what he&#x27;s posted that is freely available, so it&#x27;s a little frustrating to see other people bashing &#x2F; looking for problems as soon as he releases something with a price tag. I personally have benefited a lot from his &quot;learn in public&quot; approach (more from his example than from his advice!!) and have had multiple posts hit the front page of HN by &quot;learning in public&quot;, from which I&#x27;ve learned further (it&#x27;s a positive feedback loop).<p>Full discloser, I haven&#x27;t read this book, but the interesting thing is that he&#x27;s only recently started monetizing this exposure. That rings true to me of somebody who knows what they&#x27;re doing and has real value to bring to the table.<p>For people who are saying &quot;But he doesn&#x27;t have enough experience,&quot; bear in mind that this book has ~1400 references to other peoples&#x27; experience. I trust that way more than I do one person&#x27;s singular viewpoint, even if that is backed up by 40 years&#x27; worth of experience.<p>Also, before anybody tries to call me out \u2013 this is a 100% spontaneous response and I had no idea Shawn&#x27;s book was out until I saw this post on the front page of HN.",
+        "time": 1593622713,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "anothercrudapp",
+            "dead": true,
+            "id": 23712412,
+            "parent": 23703723,
+            "text": "Well hello there Swyx ;)",
+            "time": 1593693035,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "stephc_int13",
+        "id": 23703043,
+        "parent": 23700486,
+        "text": "I am frankly a bit tired of this kind of bait-clicky lessons from people with a very thin track record. (This is way too frequent on Youtube these days)<p>I&#x27;d be more interested in the insight someone like Fabrice Bellard gained during his coding career, especially if we&#x27;re talking about productivity or impact.",
+        "time": 1593619650,
+        "type": "comment"
+      },
+      {
+        "by": "swyx",
+        "id": 23700514,
+        "kids": [
+          23701429,
+          23707406,
+          23701473,
+          23700964,
+          23700909,
+          23700920
+        ],
+        "parent": 23700486,
+        "text": "Hi HN! I have been writing since April, but this book has been <i>years</i> in the making. So glad to launch it today!<p>Since I switched careers from finance and started doing freeCodeCamp in 2017, I have been studying the principles, strategies, and tactics that make great developers successful and applying it to my own career. This has helped me get hired at a Senior level at AWS in just 3 years. While between jobs, I decided to take the time to write down everything I&#x27;ve learned about the tech industry - everything I wish I had known, everything I believe to be true, everything I think an individual contributor developer needs to build an exceptional career:<p>- Going from Junior to Senior<p>- Learning in Public<p>- Tech Strategy (the Business of Software)<p>- Why You Should Write (A Lot!)<p>- Engineering Career Ladders<p>- Developer&#x27;s Guide to Twitter<p>- Marketing Yourself (without Being a Celebrity)<p>- and more!<p>Roughly 1&#x2F;4 of the chapters are prior blogposts that have done super well - my greatest hits include <a href=\"https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;learn-in-public&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;learn-in-public&#x2F;</a> and <a href=\"https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;marketing-yourself&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;marketing-yourself&#x2F;</a> - and since publishing them I have loads of feedback and rewritten them for the book. The remaining 3&#x2F;4 are brand new content I have applied for my own career, and market tested the messaging in tweets, talks and podcasts.<p>There&#x27;s a launch discount applied to everything on the site; I hope you enjoy it!<p>---<p>Side note on tech stack - For the book, I am using <a href=\"https:&#x2F;&#x2F;softcover.io\" rel=\"nofollow\">https:&#x2F;&#x2F;softcover.io</a> which is a Rails app that Michael Hartl uses to create the Rails tutorial. It&#x27;s the best tool I found that generates PDF&#x2F;EPUB&#x2F;MOBI out of the box with decent customization by exposing LaTeX (and its also FOSS, with a paid option!). For my site I am using Begin.com for hosting and functions, Svelte for components, and Podia for payments. For Audiobook I am using Audacity and my trusty standard issue Egghead.io Instructor Shure mic! Putting this together was a good couple weeks of trial and error - Let me know if I can answer any tech stack questions alongside book questions!",
+        "time": 1593605471,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "humanlion87",
+            "id": 23701429,
+            "kids": [
+              23701750
+            ],
+            "parent": 23700514,
+            "text": "Was 2017 the time you switched careers from finance and learned to code via freeCodeCamp? Or did you switch before 2017 but started learning new stuff (say a new language) on freeCodeCamp in 2017? If it is the former, that&#x27;s great progress getting to Senior level in less than 3 years! Congrats",
+            "time": 1593612297,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "swyx",
+                "id": 23701750,
+                "parent": 23701429,
+                "text": "short form - i started doing FCC in nights and weekends from Nov 2016 - Mar 2017, then quit and went all in in Jun 2017 and went to an NYC bootcamp to top up my FCC knowledge and also get my first dev job.<p>here&#x27;s the long form story - <a href=\"https:&#x2F;&#x2F;medium.com&#x2F;hackernoon&#x2F;no-zero-days-my-path-from-code-newbie-to-full-stack-developer-in-12-months-214122a8948f\" rel=\"nofollow\">https:&#x2F;&#x2F;medium.com&#x2F;hackernoon&#x2F;no-zero-days-my-path-from-code...</a> - ive been harangued over this before so i should be clear that i have done programming prior to starting FCC - just that it was basic self taught data munging stuff, not web dev. i definitely did not start from zero, but i also definitely felt very out of my depth learning the JS&#x2F;Web stack in 2017 and it <i>took me a year</i> to get to the point where I could credibly apply for a frontend dev job.<p>thanks!",
+                "time": 1593613927,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "ivan_ah",
+            "id": 23707406,
+            "parent": 23700514,
+            "text": "Yey softcover. It&#x27;s the best (only?) way to get real typesetting for print (LaTeX --&gt; PDF), but also modern digital formats (ePub + mobi).<p>I&#x27;m glad to hear more people are using it.",
+            "time": 1593641590,
+            "type": "comment"
+          },
+          {
+            "by": "ddlec",
+            "id": 23701473,
+            "kids": [
+              23701778
+            ],
+            "parent": 23700514,
+            "text": "This looks like a great resource, swyx. I&#x27;m considering buying but would strongly prefer to read a physical book. Do you plan to publish a print version?",
+            "time": 1593612612,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "swyx",
+                "id": 23701778,
+                "kids": [
+                  23702969,
+                  23716852,
+                  23702091
+                ],
+                "parent": 23701473,
+                "text": "thanks! I have no immediate plans but am open to the idea - if only for the fact that itd be freaking cool to give out my own book - any idea what the best way to do a small print run of books would be?<p>theres the added complication that i&#x27;m stuck here in Singapore due to coronavirus, whereas my target audience is all in the US. so i probably shouldnt do shipping myself.",
+                "time": 1593614092,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "dreamer7",
+                    "id": 23702969,
+                    "parent": 23701778,
+                    "text": "Amazon has a print-on-demand service. Should work well for you<p><a href=\"https:&#x2F;&#x2F;kdp.amazon.com&#x2F;en_US&#x2F;l&#x2F;print-on-demand\" rel=\"nofollow\">https:&#x2F;&#x2F;kdp.amazon.com&#x2F;en_US&#x2F;l&#x2F;print-on-demand</a>",
+                    "time": 1593619311,
+                    "type": "comment"
+                  },
+                  {
+                    "by": "chalst",
+                    "id": 23716852,
+                    "parent": 23701778,
+                    "text": "Slightly dated, but Guy Kawasaki wrote a guide to self-publishing:<p><a href=\"http:&#x2F;&#x2F;apethebook.com&#x2F;\" rel=\"nofollow\">http:&#x2F;&#x2F;apethebook.com&#x2F;</a>",
+                    "time": 1593717096,
+                    "type": "comment"
+                  },
+                  {
+                    "by": "ddlec",
+                    "id": 23702091,
+                    "parent": 23701778,
+                    "text": "Not something I&#x27;m familiar with, sorry. I&#x27;ve heard that blogintobook.com is a relatively cheap option.",
+                    "time": 1593615540,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "mxbck",
+            "id": 23700964,
+            "parent": 23700514,
+            "text": "this sounds very interesting and helpful.",
+            "time": 1593609441,
+            "type": "comment"
+          },
+          {
+            "by": "sixhobbits",
+            "id": 23700909,
+            "kids": [
+              23701010
+            ],
+            "parent": 23700514,
+            "text": "Congratulations!<p>Did you also consider leanpub?",
+            "time": 1593608966,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "swyx",
+                "id": 23701010,
+                "kids": [
+                  23702654
+                ],
+                "parent": 23700909,
+                "text": "thank you! yes in fact v0.1.x of the book was published thru leanpub. but i found their build process buggy and <i>nondeterministic</i> - the same exact source material would sometimes succeed in building and sometimes fail, with no stacktrace or helpful error message. The leanpub founders are aware of this, but to save my sanity after a 5 hour session randomly debugging from a distance i had to leave",
+                "time": 1593609738,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "sixhobbits",
+                    "id": 23702654,
+                    "parent": 23701010,
+                    "text": "Thanks for the insights! I&#x27;ve used leanpub a bit and have seen some bugs, but also found the owner really helpful in fixing these so I kept with them for now.",
+                    "time": 1593617923,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "alextrost",
+            "id": 23700920,
+            "kids": [
+              23701782
+            ],
+            "parent": 23700514,
+            "text": "Congrats Swyx! Picked up my copy, can&#x27;t wait to dig into it!",
+            "time": 1593609050,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "swyx",
+                "id": 23701782,
+                "parent": 23700920,
+                "text": "thanks so much for the support Alex!",
+                "time": 1593614108,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "lukeholder",
+        "id": 23702979,
+        "kids": [
+          23703311,
+          23709643,
+          23703102
+        ],
+        "parent": 23700486,
+        "text": "It looks like a lot of friends with prepared comments for this launch in here.",
+        "time": 1593619340,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "maps7",
+            "id": 23703311,
+            "kids": [
+              23706820
+            ],
+            "parent": 23702979,
+            "text": "I also got a strong sense of this. One comment is promoting the author but the person making the comment hasn&#x27;t actually read the book.",
+            "time": 1593620958,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "acemarke",
+                "id": 23706820,
+                "kids": [
+                  23709648,
+                  23707749
+                ],
+                "parent": 23703311,
+                "text": "Yes, because I know the quality of content that Shawn creates.",
+                "time": 1593638261,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "cambalache",
+                    "id": 23709648,
+                    "kids": [
+                      23709724
+                    ],
+                    "parent": 23706820,
+                    "text": "It is still pretty unethical, but you do you.",
+                    "time": 1593660276,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "acemarke",
+                        "id": 23709724,
+                        "parent": 23709648,
+                        "text": "I truly have no idea how recommending something because I know the author and know that all his work is high quality is &quot;unethical&quot;.",
+                        "time": 1593661081,
+                        "type": "comment"
+                      }
+                    ]
+                  },
+                  {
+                    "by": "reroute1",
+                    "dead": true,
+                    "id": 23707749,
+                    "parent": 23706820,
+                    "text": "Quality spam content! Hayuk you are such a troll",
+                    "time": 1593643806,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "cambalache",
+            "id": 23709643,
+            "parent": 23702979,
+            "text": "It feels like a product hunt launch. Going downhill!!! my dear Hacker News.",
+            "time": 1593660225,
+            "type": "comment"
+          },
+          {
+            "by": "acemarke",
+            "id": 23703102,
+            "kids": [
+              23703190,
+              23712425
+            ],
+            "parent": 23702979,
+            "text": "I can confirm that my own comment above was 100% spontaneous.<p>That said, Shawn has been writing this book in public, so anyone who&#x27;s been following him does know that he was about to launch.",
+            "time": 1593619939,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "reroute1",
+                "dead": true,
+                "id": 23703190,
+                "parent": 23703102,
+                "text": "Do yourself a favor and stop propping up his crap",
+                "time": 1593620343,
+                "type": "comment"
+              },
+              {
+                "by": "anothercrudapp",
+                "dead": true,
+                "id": 23712425,
+                "parent": 23703102,
+                "text": "Ok Swyx, but don\u2019t you think your comment is a little on the nose?",
+                "time": 1593693110,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "forrestbrazeal",
+        "id": 23700973,
+        "kids": [
+          23701016,
+          23701163
+        ],
+        "parent": 23700486,
+        "text": "Read a version of this book pre-release and loved it!<p>Distills much of the best advice you can get if you hang out for a few years on HN into an easily shareable package.<p>Would recommend as a graduation gift or career starter for the  new tech person in your life. But also super valuable for folks who have been in the industry as well. The chapter on &quot;Marketing Yourself&quot; contains some reminders that I found really helpful:<p>- Keep online presence 90% positive<p>- Be consistent (same profile pic everywhere, etc)<p>- Be &quot;The Guy&quot; (or non-guy) for a specific, unique, easily-grasped value prop<p>- Don&#x27;t chase celebrity or short-term optimizations (posting times, weekly metrics, etc)",
+        "time": 1593609489,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23701016,
+            "kids": [
+              23703156
+            ],
+            "parent": 23700973,
+            "text": "thanks a TON forrest! your advocacy and lending your platform to help give a leg up to others in our industry has been super inspiring to me and I hope to do the same in future!!<p>edit: for those who don&#x27;t know - forrest does a Cloud Resume Challenge where he helps people get started with a career in the cloud - laying out exact steps and offering his personal network to anyone* who completes them: <a href=\"https:&#x2F;&#x2F;forrestbrazeal.com&#x2F;2020&#x2F;04&#x2F;23&#x2F;the-cloud-resume-challenge&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;forrestbrazeal.com&#x2F;2020&#x2F;04&#x2F;23&#x2F;the-cloud-resume-chall...</a><p>*he has 2 conditions, listed on the blogpost",
+            "time": 1593609813,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "PenguinCoder",
+                "id": 23703156,
+                "parent": 23701016,
+                "text": "There&#x27;s a lot more than two conditions there, and turns me off trying. Even though, I could probably use the networking.<p>I mean, kudos to him certainly; who you know is more important than what you know to getting seen and heard. This is a great leg up for the right people.",
+                "time": 1593620191,
+                "type": "comment"
+              }
+            ]
+          },
+          {
+            "by": "antoncp",
+            "id": 23701163,
+            "kids": [
+              23701286,
+              23702620
+            ],
+            "parent": 23700973,
+            "text": "what is meant by \u201ceasily-grasped\u201d in this case, and why is being this type of person good? I.e. why would it be good to have a skill that anyone can easily grasp?<p>(I\u2019m sure it\u2019s mentioned in the book, but I couldn\u2019t help but ask anyway :])",
+            "time": 1593610750,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "forrestbrazeal",
+                "id": 23701286,
+                "kids": [
+                  23701701
+                ],
+                "parent": 23701163,
+                "text": "Poor choice of words on my part. Should have said something like &quot;easily-grasped value prop&quot;. You want a very short elevator pitch for what you do, that makes it clear what value you provide.<p>I think of Corey Quinn, whose pitch is &quot;I fix your AWS bill.&quot; Short, easily-grasped, specific.",
+                "time": 1593611463,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "swyx",
+                    "id": 23701701,
+                    "kids": [
+                      23702485,
+                      23703227
+                    ],
+                    "parent": 23701286,
+                    "text": " this exactly. but Corey can also pitch himself in anywhere from 30seconds to 30 minutes. Marketing Yourself is  about adjusting your message to your audience&#x2F;situation, and <i>it can and should be practiced</i> because you do not leave things like this up to chance. (the public draft: <a href=\"https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;marketing-yourself&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;marketing-yourself&#x2F;</a>)<p>this is obliquely referenced in the book, but i believe the most effective pitch is if you can losslessly compress your entire value proposition into two words.  <a href=\"https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;two-words&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.swyx.io&#x2F;writing&#x2F;two-words&#x2F;</a><p>Corey invented &quot;Cloud Economist&quot; for this purpose. brilliant. no one can compete in a category you invented.",
+                    "time": 1593613688,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "QuinnyPig",
+                        "id": 23702485,
+                        "parent": 23701701,
+                        "text": "Thanks. It&#x27;s nice when your work is recognized!<p>I&#x27;ve argued that in some ways a more effective positioning statement would have been &quot;I fix the horrifying AWS bill for SaaS companies in the Pacific Northwest&quot; or whatnot; you want your prospective clients to see themselves in what you do.<p>Fortunately, &quot;the AWS bill&quot; is painful enough of a problem without too many other viable alternatives that this was &quot;enough.&quot;",
+                        "time": 1593617145,
+                        "type": "comment"
+                      },
+                      {
+                        "by": "reroute1",
+                        "dead": true,
+                        "id": 23703227,
+                        "parent": 23701701,
+                        "text": "Can you not use buzzwords non stop and have a book with real content? And stop talking like a cult leader to these clowns",
+                        "time": 1593620492,
+                        "type": "comment"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "by": "chrisseaton",
+                "id": 23702620,
+                "parent": 23701163,
+                "text": "They mean<p>easily-grasped (value prop)<p>not<p>(easily-grasped value) prop",
+                "time": 1593617765,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "TurboHaskal",
+        "id": 23702787,
+        "kids": [
+          23703331
+        ],
+        "parent": 23700486,
+        "text": "I&#x27;ve just read the table of contents and I think I want to get off this industry.",
+        "time": 1593618556,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23703331,
+            "parent": 23702787,
+            "text": "i&#x27;m sorry i made you feel that way. this is far from the only valid perspective on the industry and I&#x27;d be interested in reading what you prefer&#x2F;enjoy instead.",
+            "time": 1593621095,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "freewilly1040",
+        "id": 23703072,
+        "kids": [
+          23709039,
+          23709661
+        ],
+        "parent": 23700486,
+        "text": "A lot of the early positive comments in this thread feel astroturfed",
+        "time": 1593619766,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "mbo",
+            "id": 23709039,
+            "parent": 23703072,
+            "text": "I feel the same way. For a place as exceedingly cynical as Hackernews, a lot of the comments here feel artificial.",
+            "time": 1593653769,
+            "type": "comment"
+          },
+          {
+            "by": "cambalache",
+            "id": 23709661,
+            "parent": 23703072,
+            "text": "This whole thread is a microcosm of everything that is wrong with this industry.",
+            "time": 1593660392,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "mellosouls",
+        "id": 23703843,
+        "kids": [
+          23707881
+        ],
+        "parent": 23700486,
+        "text": "The book may be an excellent resource, but this appears to be just an advert - are there free examples you can point us to?<p>It would be better to link directly to that page I think.",
+        "time": 1593623298,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23707881,
+            "kids": [
+              23713947
+            ],
+            "parent": 23703843,
+            "text": "hi! - there wasn&#x27;t - this is a result of my noobyness doing this - but now there is! i&#x27;ve put up 4 chapters for you to evaluate - no email needed. <a href=\"https:&#x2F;&#x2F;www.learninpublic.org&#x2F;#learn-more\" rel=\"nofollow\">https:&#x2F;&#x2F;www.learninpublic.org&#x2F;#learn-more</a>",
+            "time": 1593644710,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "mellosouls",
+                "id": 23713947,
+                "parent": 23707881,
+                "text": "Thank you",
+                "time": 1593702094,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "canadev",
+        "id": 23702431,
+        "kids": [
+          23703377
+        ],
+        "parent": 23700486,
+        "text": "This book looks interesting. I&#x27;d like some advice on whether it will be useful for me.<p>I&#x27;ve been a professional dev for over ten years and I have a CompSci degree from a respected university. I&#x27;m getting paid principal engineering salary for a moderate sized city in the U.S. and I work remotely from Canada in a fairly cheap cost-of-living city at a small company (far from Silicon Valley salary, but pretty damn high for here).<p>Do you think this book will be useful to me? I want to maintain my career as a developer and grow in skill and salary. I have started blogging about a year ago and I do infrequently but I think my posts are decent. I also am taking the time to learn some stuff like ML and am constantly trying to improve my skills with stuff like PostgreSQL and Go.",
+        "time": 1593616922,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23703377,
+            "parent": 23702431,
+            "text": "you have more experience than i do, so your call on deciding whether you have a superset on this content. all i can offer is, if you do choose to check it out and decide it is not for you, I will honor your refund request.<p>Good luck! I am certainly always on the side of developers working on themselves.",
+            "time": 1593621308,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "king_magic",
+        "id": 23702843,
+        "parent": 23700486,
+        "text": "We&#x27;ve got to get away from calling everything &quot;coding&quot; and everyone &quot;coders&quot;.",
+        "time": 1593618814,
+        "type": "comment"
+      },
+      {
+        "by": "antonzabirko",
+        "id": 23703853,
+        "kids": [
+          23707879
+        ],
+        "parent": 23700486,
+        "text": "Any free version I can audit? Not convinced this is worth the money since you have 2 years of experience, but I am willing to invest some time to prove myself wrong.",
+        "time": 1593623328,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23707879,
+            "parent": 23703853,
+            "text": "hi Anton - there wasn&#x27;t - but now there is! i&#x27;ve put up 4 chapters for you to evaluate - no email needed. <a href=\"https:&#x2F;&#x2F;www.learninpublic.org&#x2F;#learn-more\" rel=\"nofollow\">https:&#x2F;&#x2F;www.learninpublic.org&#x2F;#learn-more</a>",
+            "time": 1593644685,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "geochronology",
+        "id": 23703814,
+        "parent": 23700486,
+        "text": "I&#x27;m curious enough about some of the content in this book that I&#x27;d consider reading it if the price was cheaper (maybe $10-15 or so).<p>Unfortunately this book seems too all-over-the-map to be particularly useful to where I&#x27;m at in my own coding career: about 18 months into it.<p>There are two pieces to this book if I read the marketing pages correctly:\n* First, the overplayed trope of &quot;How to get hired as a Pr0gRaMmar!!!1&quot; -- a cottage industry nearly as large as the field of engineering itself\n* Second, the less-played trope of, &quot;Here are some actionable ways to develop your career path under the severe time constraints that an engineering career will present you with&quot;<p>If this text were more exclusively drilled down into the second topic rather than the first, I&#x27;d probably make the purchase.<p>However, I don&#x27;t feel like spending time reading through a lot of things that I either already know, or that don&#x27;t apply to me.",
+        "time": 1593623155,
+        "type": "comment"
+      },
+      {
+        "by": "itqwertz",
+        "id": 23703010,
+        "kids": [
+          23703520
+        ],
+        "parent": 23700486,
+        "text": "I typically don\u2019t trust anyone who uses the word \u201ccoding\u201d.",
+        "time": 1593619463,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23703520,
+            "kids": [
+              23709266,
+              23703608
+            ],
+            "parent": 23703010,
+            "text": "naming is hard... so the background on this is that the book was originally called &quot;Cracking the Coding Career&quot; for the alliteration and for the mirror with &quot;Cracking the Coding Interview&quot;. I nearly even shipped with that name - until Gayle McDowell got in touch and said this would break her trademark. So I had to tweak it. I considered maybe a dozen other names but believe it or not they were worse :(",
+            "time": 1593621888,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "closeparen",
+                "id": 23709266,
+                "parent": 23703520,
+                "text": "Gayle&#x27;s usage, &quot;coding interview,&quot; specifies which part of the interview loop her book focuses on. Of course there are many other attributes and skills assessed in an interview loop: design, architecture, debugging, technical communication, experience, domain knowledge, leadership, etc.<p>The usage of &quot;coding&quot; with respect to the <i>job</i> often comes off as a polemic against those other facets. Sometimes this is what you want! Maybe you&#x27;re breaking free of all that architecture astronomy and faux-agile BS to just build stuff. Maybe you&#x27;re differentiating yourself from your senior colleagues who seem to write only documents. Maybe you want to hire someone to shut up and type, not pester you about tech debt. But these are all fighting words.<p>It gets old when people pick up this usage and repeat it without even meaning it.",
+                "time": 1593656243,
+                "type": "comment"
+              },
+              {
+                "by": "jayrice257",
+                "id": 23703608,
+                "parent": 23703520,
+                "text": "Naming is hard when you have to rely on marketing and gimmicks to sell an idea instead of content... like this &quot;book&quot;",
+                "time": 1593622252,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "treetide",
+        "id": 23704453,
+        "parent": 23700486,
+        "text": "Shameless plug: my work-in-progress book Programming Without Anxiety [0] might be interesting for you. It got a bit of scope creep which I&#x27;ll have to cut back on, but I&#x27;m pretty enthusiastic about the content so far.<p>[0]: <a href=\"https:&#x2F;&#x2F;treetide.com&#x2F;book&#x2F;programming-without-anxiety.html\" rel=\"nofollow\">https:&#x2F;&#x2F;treetide.com&#x2F;book&#x2F;programming-without-anxiety.html</a>",
+        "time": 1593626391,
+        "type": "comment"
+      },
+      {
+        "by": "miguendes",
+        "id": 23702713,
+        "kids": [
+          23702941
+        ],
+        "parent": 23700486,
+        "text": "Looks very interesting, even tough I&#x27;m not new in the industry. So I&#x27;m interested in buying and if like it I&#x27;d like to upgrade the package. Is it possible just by paying the difference? I couldn&#x27;t find this in the FAQ",
+        "time": 1593618205,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23702941,
+            "parent": 23702713,
+            "text": "hello! Podia does allow &quot;upsells&quot; and I tried to do everything right to configure it such that you just pay the difference if you do. however i havent run thru this userflow myself. if you do wanna upgrade later and have trouble just ping me, i&#x27;ll sort you out manually",
+            "time": 1593619170,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "forgotmypw17",
+        "id": 23704582,
+        "parent": 23700486,
+        "text": "This page pegs my CPU. Flagged for that reason.",
+        "time": 1593627069,
+        "type": "comment"
+      },
+      {
+        "by": "Ninjinka",
+        "id": 23701120,
+        "kids": [
+          23701330,
+          23703894
+        ],
+        "parent": 23700486,
+        "text": "$39? Pass.",
+        "time": 1593610448,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "janwillemb",
+            "id": 23701330,
+            "kids": [
+              23702139
+            ],
+            "parent": 23701120,
+            "text": "Please elaborate. Why do you think he needs to ask more for the book? Is it because he poured so much of his time in it?",
+            "time": 1593611693,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "tydok",
+                "id": 23702139,
+                "kids": [
+                  23704502,
+                  23703000
+                ],
+                "parent": 23701330,
+                "text": "Ask more? The book is expensive. If he lowers the price, say to $10, the sales will probably increase 10x.",
+                "time": 1593615752,
+                "type": "comment",
+                "_kids": [
+                  {
+                    "by": "peferron",
+                    "id": 23704502,
+                    "kids": [
+                      23707779,
+                      23707788
+                    ],
+                    "parent": 23702139,
+                    "text": "I highly doubt sales would increase by 10x, or even 2x.<p>This book isn&#x27;t trying to sell itself by saying &quot;hey, buy me and you&#x27;ll be entertained for three hours, which is a better value than a movie ticket&quot;.<p>This book is trying to convince potential customers that it will help them graduate from junior engineer at local_company to senior engineer at FAANG. It&#x27;s no coincidence that the author mentioned right here in his opening post that he landed a senior role at AWS. (I realize that&#x27;s not a dream for many, and the whole FAANG thing is aggravating, but enough people think this way.)<p>If you (as a potential customer) aren&#x27;t convinced, then you have no reason to buy this book even for $10.<p>On the other hand, if you are convinced, then the upside is so large that this book is worth buying even for $500.<p>Not many people will be on the edge pondering &quot;I really think this book could help me triple my salary and status but that&#x27;s worth $10 to me, not $40&quot;.",
+                    "time": 1593626694,
+                    "type": "comment",
+                    "_kids": [
+                      {
+                        "by": "reroute1",
+                        "dead": true,
+                        "id": 23707779,
+                        "parent": 23704502,
+                        "text": "Congrats your job title doesn&#x27;t mean shit to anyone worth their salt bro",
+                        "time": 1593643960,
+                        "type": "comment"
+                      },
+                      {
+                        "by": "jayrice257",
+                        "dead": true,
+                        "id": 23707788,
+                        "kids": [
+                          23708051
+                        ],
+                        "parent": 23704502,
+                        "text": "Lol that job title doesn&#x27;t mean shit to anyone except clowns like this chasing money. The guy has 2 years experience and you&#x27;re pointing to his job title as if he&#x27;s some genius... That&#x27;s why this book is actually devoid of any novel content",
+                        "time": 1593644026,
+                        "type": "comment",
+                        "_kids": [
+                          {
+                            "by": "peferron",
+                            "id": 23708051,
+                            "kids": [
+                              23708055
+                            ],
+                            "parent": 23707788,
+                            "text": "&gt; your pointing to his job title as if he&#x27;s some genius<p>No, that&#x27;s just you projecting.",
+                            "time": 1593645929,
+                            "type": "comment",
+                            "_kids": [
+                              {
+                                "by": "jayrice257",
+                                "id": 23708055,
+                                "kids": [
+                                  23708293
+                                ],
+                                "parent": 23708051,
+                                "text": "Then why does him being a &quot;senior level faang employee&quot; matter so much? This doesn&#x27;t qualify him for anything.",
+                                "time": 1593645972,
+                                "type": "comment",
+                                "_kids": [
+                                  {
+                                    "by": "peferron",
+                                    "id": 23708293,
+                                    "parent": 23708055,
+                                    "text": "I did not point to him being a senior engineer at FAANG, I pointed to him <i>mentioning</i> that he&#x27;s a senior engineer at FAANG, as evidence that the book is marketed towards people who also want to become senior engineers at FAANG.<p>As  mentioned in my original comment, I fully realize that plenty of people couldn&#x27;t care less about becoming senior engineers at FAANG, and am not making any claims about the intelligence or qualifications of the author or the quality of the book.",
+                                    "time": 1593647686,
+                                    "type": "comment"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "by": "rsecora",
+                    "id": 23703000,
+                    "parent": 23702139,
+                    "text": "It depends on the price elasticity of the product and that&#x27;s a known unknown.<p>So every product starts as high as possible to discover the price. Because there will be time to lower it.<p>(Increasing the price afterwards never works, because early adopters are more elastic)",
+                    "time": 1593619429,
+                    "type": "comment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "by": "gstovall",
+            "id": 23703894,
+            "parent": 23701120,
+            "text": "It&#x27;s not hard to recoup your investment if this helps you in your work.",
+            "time": 1593623497,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "dajohnson89",
+        "id": 23703802,
+        "kids": [
+          23707888
+        ],
+        "parent": 23700486,
+        "text": "anybody else notice the gradually shifting background color? is my monitor sketching out?",
+        "time": 1593623091,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23707888,
+            "parent": 23703802,
+            "text": "hey! that was a (bad) design decision by me. I thought itd be cool. i was wrong. i&#x27;ve swapped out the design now and apologize, lesson learned!",
+            "time": 1593644761,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "torgian",
+        "id": 23701727,
+        "kids": [
+          23702126
+        ],
+        "parent": 23700486,
+        "text": "This is really cool. I will purchase this next month when I have a bit more free money.",
+        "time": 1593613809,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23702126,
+            "parent": 23701727,
+            "text": "i&#x27;ll prob end the launch discount by then! whats your situation, i can work it out with you, email me swyx@hey dot com",
+            "time": 1593615726,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "f311a",
+        "id": 23701422,
+        "kids": [
+          23701792
+        ],
+        "parent": 23700486,
+        "text": "No PayPal option?",
+        "time": 1593612249,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "swyx",
+            "id": 23701792,
+            "kids": [
+              23702012
+            ],
+            "parent": 23701422,
+            "text": "no but you can email me swyx@hey.com and I&#x27;ll send you Paypal instructions and add you manually! sorry Podia doesnt provide paypal option :(",
+            "time": 1593614149,
+            "type": "comment",
+            "_kids": [
+              {
+                "by": "asicsp",
+                "id": 23702012,
+                "parent": 23701792,
+                "text": "You could consider gumroad&#x2F;leanpub as an additional option if you are not restricted by your current selling options.",
+                "time": 1593615202,
+                "type": "comment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "by": "anothercrudapp",
+        "dead": true,
+        "id": 23712368,
+        "parent": 23700486,
+        "text": "During a gold rush, sell shovels",
+        "time": 1593692719,
+        "type": "comment"
+      },
+      {
+        "by": "foobar_",
+        "id": 23702279,
+        "kids": [
+          23703161
+        ],
+        "parent": 23700486,
+        "text": "I highly recommend the channel Tech Lead, a youtuber who covers some of the mundane aspects of programming career.",
+        "time": 1593616306,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "catacombs",
+            "id": 23703161,
+            "parent": 23702279,
+            "text": "Tech Lead is walking meme who rarely offers good advice, most of which should be taken with a grain of salt. His life is currently a mess: He&#x27;s divorced and has been recently been accused of doxxing YouTubers and other people who criticize his work.",
+            "time": 1593620222,
+            "type": "comment"
+          }
+        ]
+      },
+      {
+        "by": "abd12",
+        "id": 23702288,
+        "kids": [
+          23712916
+        ],
+        "parent": 23700486,
+        "text": "I highly recommend this book and Swyx&#x27;s other work. He&#x27;s thorough while also distilling down to the most important bits.<p>Great book for people that are just starting their coding career but also for those with a good bit of experience. If you&#x27;re feeling &#x27;stuck&#x27;, this is a great guide to understand how to advance your career.<p>&#x27;Learn in public&#x27; is probably the #1 piece of advice I&#x27;d give to anyone in tech. It helps your writing, it builds your network, and it grinds down your ego (because people will certainly let you know when you&#x27;re wrong). Swyx has been a huge proponent of this, and this whole book is a great kick in the pants to get started.<p>I&#x27;d be shocked if this book doesn&#x27;t make you &gt;&gt;&gt;10x the amount you spend on it (even counting a healthy hourly rate for reading it).",
+        "time": 1593616341,
+        "type": "comment",
+        "_kids": [
+          {
+            "by": "crudappmeme",
+            "dead": true,
+            "id": 23712916,
+            "parent": 23702288,
+            "text": "Hahaha this shit can\u2019t be real. How much did Swxy pay for this comment",
+            "time": 1593696927,
+            "type": "comment"
+          }
+        ]
+      }
+    ]
+  }
+]
