@@ -7,7 +7,8 @@ import json
 
 api_baseurl = "https://hacker-news.firebaseio.com/v0"
 categories = ["ask", "best", "job", "new", "show", "top"]
-worker_count = 30
+worker_count = 10
+stories_count = 10
 
 
 # NOTE: asyncio.gather orders the result values the same way as the input
@@ -26,7 +27,7 @@ class ProgressState:
         self.output.append(item)
 
         print(
-            f'Fetching "{self.category}" stories...[{self.done}/{self.total}]',
+            f'Fetching "{self.category}" stories... [{self.done}/{self.total}]',
             end="\r",
         )
 
@@ -58,8 +59,9 @@ async def worker(session, queue, shared_state):
             if not parent or "kids" not in parent:
                 continue
 
-            kids = [fetch_item(session, id) for id in parent["kids"]]
-            parent["_kids"] = await asyncio.gather(*kids)
+            kids_tasks = [fetch_item(session, id) for id in parent["kids"]]
+            kids = await asyncio.gather(*kids_tasks)
+            parent["_kids"] = [kid for kid in kids if kid]
 
             stack.extend(parent["_kids"])
 
@@ -70,7 +72,8 @@ async def worker(session, queue, shared_state):
 
 async def fetch_stories(category):
     async with aiohttp.ClientSession() as session:
-        ids = await fetch_stories_ids(session, category)
+        all_ids = await fetch_stories_ids(session, category)
+        ids = all_ids[:stories_count]
 
         work_queue = asyncio.Queue()
 
@@ -81,9 +84,7 @@ async def fetch_stories(category):
         shared_state = ProgressState(category, len(ids))
 
         for _ in range(worker_count):
-            task = asyncio.create_task(
-                worker(session, work_queue, shared_state)
-            )
+            task = asyncio.create_task(worker(session, work_queue, shared_state))
             tasks.append(task)
 
         await work_queue.join()
