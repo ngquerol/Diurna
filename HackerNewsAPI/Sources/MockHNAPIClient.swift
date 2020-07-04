@@ -55,13 +55,9 @@ extension MockHNAPIClient: HNAPIClient {
     }
 
     public func fetchComments(of story: Story, completion: @escaping HNAPIResultsCallback<Comment>) {
-        let stories: [Story] = loadTestData(from: "top_stories")
-
-        if let comments = stories.first(where: { $0 == story })?.kids {
-            completion(comments.map { .success($0) })
-        } else {
-            completion([])
-        }
+        guard let kids = story.kids else { return completion([]) }
+        
+        completion(kids.map { .success($0) })
     }
 
     public func fetchUser(with _: String, completion: @escaping HNAPIResultCallback<User>) {
