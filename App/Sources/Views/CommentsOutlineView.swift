@@ -52,34 +52,6 @@ class CommentsOutlineView: NSOutlineView {
         return menu
     }
 
-    func flashCell(atColumn colIndex: Int, row rowIndex: Int, with color: NSColor) {
-        guard let cellView = view(atColumn: colIndex, row: rowIndex, makeIfNecessary: false) as? CommentCellView else {
-            return
-        }
-
-        cellView.layer?.cornerRadius = 5
-        cellView.layer?.borderColor = .clear
-
-        let animationDuration = 0.5
-
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = animationDuration
-            scrollRowToVisible(rowIndex)
-        }, completionHandler: {
-            NSAnimationContext.runAnimationGroup({ context in
-                context.duration = animationDuration
-                context.allowsImplicitAnimation = true
-                cellView.layer?.backgroundColor = color.cgColor
-            }, completionHandler: {
-                NSAnimationContext.runAnimationGroup { context in
-                    context.duration = animationDuration
-                    context.allowsImplicitAnimation = true
-                    cellView.layer?.backgroundColor = nil
-                }
-            })
-        })
-    }
-
     @objc func openCommentInBrowser(_ sender: NSMenuItem) {
         guard let comment = sender.representedObject as? Comment else { return }
 

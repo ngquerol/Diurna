@@ -126,18 +126,10 @@ class CommentsViewController: NSViewController {
             return
         }
 
-        if #available(macOS 10.14, *) {
-            outlineView.flashCell(
-                atColumn: 0,
-                row: parentCommentRowIndex,
-                with: .controlAccentColor
-            )
-        } else {
-            outlineView.flashCell(
-                atColumn: 0,
-                row: parentCommentRowIndex,
-                with: .systemBlue
-            )
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.25
+            context.allowsImplicitAnimation = true
+            outlineView.scrollRowToVisible(parentCommentRowIndex)
         }
     }
 
