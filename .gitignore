@@ -1,3 +1,6 @@
+## Secrets
+App/Resources/GoogleService-Info.plist
+
 ## Build generated
 build/
 DerivedData/
