@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07ACB61B6F4B77DE269698F1 /* Pods_Diurna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77ECBD077AF7C9266873C055 /* Pods_Diurna.framework */; };
 		8D000B4C23EC4345002CBF68 /* ClearRoundRectButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D000B4B23EC4345002CBF68 /* ClearRoundRectButtonCell.swift */; };
 		8D0043551C4EE38F00C1F7D6 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657EBA1C49A90B00F31BB7 /* StoriesViewController.swift */; };
 		8D0043561C4EE38F00C1F7D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */; };
@@ -15,21 +16,21 @@
 		8D086DF01D2D5BB10015EF71 /* DisclosureButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */; };
 		8D16E97E1D217A9700FD1153 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16E97D1D217A9700FD1153 /* MainWindowController.swift */; };
 		8D16E9801D21817400FD1153 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16E97F1D21817400FD1153 /* MainSplitViewController.swift */; };
+		8D1CEA0324B1FDF300E11586 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1CEA0224B1FDF300E11586 /* GoogleService-Info.plist */; };
+		8D1CEA0524B204AB00E11586 /* HNAPIConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1CEA0424B204AB00E11586 /* HNAPIConsumer.swift */; };
 		8D1DAB521FDDD38600FF4FCC /* StoryStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1DAB511FDDD38600FF4FCC /* StoryStatusView.xib */; };
 		8D1DAB541FDDD47600FF4FCC /* StoryStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */; };
-		8D23B0D824AB5B3A00CDD7B1 /* HNAPIConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23B0D724AB5B3A00CDD7B1 /* HNAPIConsumer.swift */; };
 		8D2630341C754EC900CFFE62 /* String+MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */; };
 		8D2630361C755F4600CFFE62 /* URL+ShortURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */; };
 		8D2851282030B54600B202C3 /* DebouncedSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2851272030B54600B202C3 /* DebouncedSearchField.swift */; };
 		8D2B783B23FC654800AF9373 /* OSLog+Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B783A23FC654800AF9373 /* OSLog+Categories.swift */; };
 		8D2FC6A51FDD681800E22E24 /* ProgressOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */; };
 		8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */; };
+		8D38970E24B26F5200B2C67C /* HackerNewsAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D60CFCF231173FA005795AA /* HackerNewsAPI.framework */; };
 		8D4569352002E52000CDAC92 /* SelfSizingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4569342002E52000CDAC92 /* SelfSizingTextView.swift */; };
 		8D4DC0071D4A534F0066EB11 /* MarkupLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */; };
 		8D4DC0091D4A53830066EB11 /* MarkupTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */; };
 		8D5ED1DB1C570165004440FD /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentCellView.swift */; };
-		8D60CFD0231173FA005795AA /* HackerNewsAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D60CFCF231173FA005795AA /* HackerNewsAPI.framework */; };
-		8D60CFD1231173FA005795AA /* HackerNewsAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D60CFCF231173FA005795AA /* HackerNewsAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D708E3A1C7F6E300089BD7D /* CommentsOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */; };
 		8D72DFC71C50313100ADEBB8 /* StoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */; };
 		8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D766FC01F23C53400534769 /* StoriesTableView.swift */; };
@@ -62,7 +63,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8D60CFD1231173FA005795AA /* HackerNewsAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,15 +70,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4617F8A0457A4A952AEBA152 /* Pods-Diurna.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diurna.debug.xcconfig"; path = "Target Support Files/Pods-Diurna/Pods-Diurna.debug.xcconfig"; sourceTree = "<group>"; };
+		77ECBD077AF7C9266873C055 /* Pods_Diurna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diurna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7827BB871786720F6E3E66FE /* Pods-Diurna.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diurna.release.xcconfig"; path = "Target Support Files/Pods-Diurna/Pods-Diurna.release.xcconfig"; sourceTree = "<group>"; };
 		8D000B4B23EC4345002CBF68 /* ClearRoundRectButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRoundRectButtonCell.swift; sourceTree = "<group>"; };
 		8D05A7631CF7B21D0066EADE /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		8D0626E723FFC0D1008040BA /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonView.swift; sourceTree = "<group>"; };
 		8D16E97D1D217A9700FD1153 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		8D16E97F1D21817400FD1153 /* MainSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
+		8D1CEA0224B1FDF300E11586 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D1CEA0424B204AB00E11586 /* HNAPIConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNAPIConsumer.swift; sourceTree = "<group>"; };
 		8D1DAB511FDDD38600FF4FCC /* StoryStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryStatusView.xib; sourceTree = "<group>"; };
 		8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryStatusView.swift; sourceTree = "<group>"; };
-		8D23B0D724AB5B3A00CDD7B1 /* HNAPIConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNAPIConsumer.swift; sourceTree = "<group>"; };
 		8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MarkupParser.swift"; sourceTree = "<group>"; };
 		8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ShortURL.swift"; sourceTree = "<group>"; };
 		8D2851272030B54600B202C3 /* DebouncedSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedSearchField.swift; sourceTree = "<group>"; };
@@ -124,13 +128,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D60CFD0231173FA005795AA /* HackerNewsAPI.framework in Frameworks */,
+				8D38970E24B26F5200B2C67C /* HackerNewsAPI.framework in Frameworks */,
+				07ACB61B6F4B77DE269698F1 /* Pods_Diurna.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DB06700DC537C2E6B30A1E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4617F8A0457A4A952AEBA152 /* Pods-Diurna.debug.xcconfig */,
+				7827BB871786720F6E3E66FE /* Pods-Diurna.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		8D323F5F1D661D5700B33DA9 /* Parsing */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				8D60CFCF231173FA005795AA /* HackerNewsAPI.framework */,
+				77ECBD077AF7C9266873C055 /* Pods_Diurna.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,6 +173,7 @@
 				8DB29B351CF37E32006EBF32 /* Assets.xcassets */,
 				8D657E941C49A80500F31BB7 /* Info.plist */,
 				8DFA46CD2407107C00E30BD3 /* Diurna.app */,
+				2DB06700DC537C2E6B30A1E7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,8 +236,8 @@
 		8DC941351E3D02F0008BB0A5 /* Misc. */ = {
 			isa = PBXGroup;
 			children = (
-				8D23B0D724AB5B3A00CDD7B1 /* HNAPIConsumer.swift */,
 				8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */,
+				8D1CEA0424B204AB00E11586 /* HNAPIConsumer.swift */,
 			);
 			name = Misc.;
 			path = Sources/Misc.;
@@ -253,6 +270,7 @@
 		8DE13EDE1C6361A9006774F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8D1CEA0224B1FDF300E11586 /* GoogleService-Info.plist */,
 				8D05A7631CF7B21D0066EADE /* Credits.rtf */,
 				8DEEA5611C52CB45001DB85D /* Main.storyboard */,
 				8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */,
@@ -269,10 +287,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D657EAD1C49A80500F31BB7 /* Build configuration list for PBXNativeTarget "Diurna" */;
 			buildPhases = (
+				0B0BC914DC10F1482CD5DC25 /* [CP] Check Pods Manifest.lock */,
 				8D657E861C49A80500F31BB7 /* Sources */,
 				8D657E871C49A80500F31BB7 /* Frameworks */,
 				8D657E881C49A80500F31BB7 /* Resources */,
 				8D60CFD2231173FA005795AA /* Embed Frameworks */,
+				0766BB998DBABA8B091096AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,10 +351,53 @@
 				8D1DAB521FDDD38600FF4FCC /* StoryStatusView.xib in Resources */,
 				8D05A7641CF7B21D0066EADE /* Credits.rtf in Resources */,
 				8DB29B361CF37E32006EBF32 /* Assets.xcassets in Resources */,
+				8D1CEA0324B1FDF300E11586 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0766BB998DBABA8B091096AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0B0BC914DC10F1482CD5DC25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Diurna-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D657E861C49A80500F31BB7 /* Sources */ = {
@@ -362,8 +425,8 @@
 				8D2630341C754EC900CFFE62 /* String+MarkupParser.swift in Sources */,
 				8DEA2AF723F1DBC400A1879F /* NSView+Additions.swift in Sources */,
 				8D72DFC71C50313100ADEBB8 /* StoryCellView.swift in Sources */,
-				8D23B0D824AB5B3A00CDD7B1 /* HNAPIConsumer.swift in Sources */,
 				8D16E97E1D217A9700FD1153 /* MainWindowController.swift in Sources */,
+				8D1CEA0524B204AB00E11586 /* HNAPIConsumer.swift in Sources */,
 				8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */,
 				8DC941301E3CF626008BB0A5 /* StoryRowView.swift in Sources */,
 				8D91D0B51FCC9B6900A61601 /* StoryDetailsViewController.swift in Sources */,
@@ -493,6 +556,7 @@
 		};
 		8D657EAE1C49A80500F31BB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4617F8A0457A4A952AEBA152 /* Pods-Diurna.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -500,7 +564,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8JTCTCWN2;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,7 +571,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.Diurna;
 				PRODUCT_NAME = Diurna;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -518,6 +580,7 @@
 		};
 		8D657EAF1C49A80500F31BB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7827BB871786720F6E3E66FE /* Pods-Diurna.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -525,7 +588,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8JTCTCWN2;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +595,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.Diurna;
 				PRODUCT_NAME = Diurna;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;

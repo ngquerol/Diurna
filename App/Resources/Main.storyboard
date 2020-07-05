@@ -214,7 +214,7 @@
                                         <menuItem isSeparatorItem="YES" id="HLY-ay-gAl"/>
                                         <menuItem title="Search stories..." keyEquivalent="f" id="BjG-Yz-6oM">
                                             <connections>
-                                                <action selector="searchStories:" target="Voe-Tx-rLC" id="8Dz-fO-LXD"/>
+                                                <action selector="searchStories:" target="Rcz-ke-RHP" id="0sk-aq-62K"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -227,13 +227,13 @@
                                         <menuItem title="Toggle Sidebar" keyEquivalent="s" id="omY-Hg-1Xe" userLabel="Toggle Sidebar">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleSidebar:" target="Voe-Tx-rLC" id="QC7-Qc-XXG"/>
+                                                <action selector="toggleSidebar:" target="Rcz-ke-RHP" id="CKR-vx-eek"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Toggle Comments Pane" keyEquivalent="v" id="cTv-j2-NY8">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleStoryDetails:" target="Voe-Tx-rLC" id="M1D-7s-iLT"/>
+                                                <action selector="toggleStoryDetails:" target="Rcz-ke-RHP" id="z0s-TO-AqM"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -279,11 +279,11 @@
                         </items>
                     </menu>
                     <connections>
-                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                        <outlet property="delegate" destination="Rcz-ke-RHP" id="N98-Vw-81z"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Diurna" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Rcz-ke-RHP" customClass="AppDelegate" customModule="Diurna" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="326" y="66"/>
         </scene>
@@ -294,7 +294,7 @@
                     <window key="window" title="Diurna" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="54W-IX-6iV">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="163" y="199" width="800" height="500"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="400" height="300"/>
                         <connections>
                             <outlet property="delegate" destination="mHI-bR-tcx" id="A6u-Pa-s3Q"/>

@@ -18,11 +18,6 @@
 		8D23B0FC24AB60B300CDD7B1 /* show_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D23B0F424AB60B300CDD7B1 /* show_stories.json */; };
 		8D23B0FE24AC0ED200CDD7B1 /* KeyedDecodingContainer+decodeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23B0FD24AC0ED200CDD7B1 /* KeyedDecodingContainer+decodeURL.swift */; };
 		8D23B10224AD1E0600CDD7B1 /* WebRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23B10124AD1E0600CDD7B1 /* WebRouting.swift */; };
-		8D60CFC723117096005795AA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCB3230B1776001BEAB4 /* libc++.tbd */; };
-		8D60CFC82311709E005795AA /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCB1230B1776001BEAB4 /* libicucore.tbd */; };
-		8D60CFC9231170A3005795AA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCB2230B1776001BEAB4 /* SystemConfiguration.framework */; };
-		8D60CFCA231170A8005795AA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCB0230B1776001BEAB4 /* CFNetwork.framework */; };
-		8D60CFCB231170AC005795AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCAF230B1776001BEAB4 /* Security.framework */; };
 		8D6B488D231175C7006AA005 /* FirebaseHNAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCAA230B174B001BEAB4 /* FirebaseHNAPIClient.swift */; };
 		8D6B488E231175C8006AA005 /* RESTHNAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCA8230B174B001BEAB4 /* RESTHNAPIClient.swift */; };
 		8D6B488F231175C8006AA005 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCB8230B1CD7001BEAB4 /* APIClient.swift */; };
@@ -31,7 +26,7 @@
 		8D6B489E231176DD006AA005 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B4899231176DD006AA005 /* User.swift */; };
 		8D6B489F231176DD006AA005 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B489A231176DD006AA005 /* Story.swift */; };
 		8D6B48A123117AA6006AA005 /* Decodable+JSONInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B48A023117AA6006AA005 /* Decodable+JSONInit.swift */; };
-		8D6B48A223117D03006AA005 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD2CCAE230B1776001BEAB4 /* Firebase.framework */; };
+		EA218D6C9E6312AEFB4B5CB1 /* Pods_HackerNewsAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D053E8025878C63BFF904B98 /* Pods_HackerNewsAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B9C975E858828EC623EA47D /* Pods-HackerNewsAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsAPI.release.xcconfig"; path = "Target Support Files/Pods-HackerNewsAPI/Pods-HackerNewsAPI.release.xcconfig"; sourceTree = "<group>"; };
 		8D23B0D524AB5AC800CDD7B1 /* MockHNAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHNAPIClient.swift; sourceTree = "<group>"; };
 		8D23B0ED24AB60B100CDD7B1 /* job_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = job_stories.json; sourceTree = "<group>"; };
 		8D23B0EE24AB60B100CDD7B1 /* new_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = new_stories.json; sourceTree = "<group>"; };
@@ -67,14 +63,10 @@
 		8DD2CC92230B171B001BEAB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DD2CCA8230B174B001BEAB4 /* RESTHNAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTHNAPIClient.swift; sourceTree = "<group>"; };
 		8DD2CCAA230B174B001BEAB4 /* FirebaseHNAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHNAPIClient.swift; sourceTree = "<group>"; };
-		8DD2CCAE230B1776001BEAB4 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Frameworks/Firebase.framework; sourceTree = "<group>"; };
-		8DD2CCAF230B1776001BEAB4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		8DD2CCB0230B1776001BEAB4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		8DD2CCB1230B1776001BEAB4 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		8DD2CCB2230B1776001BEAB4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		8DD2CCB3230B1776001BEAB4 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		8DD2CCB8230B1CD7001BEAB4 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		8DE61CA123ED8E0200FAC9FC /* HackerNewsAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HackerNewsAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2AD8A12740C718F0A001C61 /* Pods-HackerNewsAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsAPI.debug.xcconfig"; path = "Target Support Files/Pods-HackerNewsAPI/Pods-HackerNewsAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		D053E8025878C63BFF904B98 /* Pods_HackerNewsAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackerNewsAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D60CFCB231170AC005795AA /* Security.framework in Frameworks */,
-				8D6B48A223117D03006AA005 /* Firebase.framework in Frameworks */,
-				8D60CFCA231170A8005795AA /* CFNetwork.framework in Frameworks */,
-				8D60CFC9231170A3005795AA /* SystemConfiguration.framework in Frameworks */,
-				8D60CFC82311709E005795AA /* libicucore.tbd in Frameworks */,
-				8D60CFC723117096005795AA /* libc++.tbd in Frameworks */,
+				EA218D6C9E6312AEFB4B5CB1 /* Pods_HackerNewsAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,11 +119,12 @@
 		8DD2CC84230B171B001BEAB4 = {
 			isa = PBXGroup;
 			children = (
-				8DD2CCB4230B1776001BEAB4 /* Frameworks */,
 				8D23B0EC24AB60A200CDD7B1 /* Resources */,
 				8DD2CC90230B171B001BEAB4 /* HackerNewsAPI */,
 				8DD2CC92230B171B001BEAB4 /* Info.plist */,
 				8DE61CA123ED8E0200FAC9FC /* HackerNewsAPI.framework */,
+				DC6CC5BEF4E94D548071DCB8 /* Pods */,
+				FBEE3061D8AADE17EF2E2C51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,15 +143,20 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		8DD2CCB4230B1776001BEAB4 /* Frameworks */ = {
+		DC6CC5BEF4E94D548071DCB8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8DD2CCAE230B1776001BEAB4 /* Firebase.framework */,
-				8DD2CCAF230B1776001BEAB4 /* Security.framework */,
-				8DD2CCB0230B1776001BEAB4 /* CFNetwork.framework */,
-				8DD2CCB1230B1776001BEAB4 /* libicucore.tbd */,
-				8DD2CCB2230B1776001BEAB4 /* SystemConfiguration.framework */,
-				8DD2CCB3230B1776001BEAB4 /* libc++.tbd */,
+				C2AD8A12740C718F0A001C61 /* Pods-HackerNewsAPI.debug.xcconfig */,
+				5B9C975E858828EC623EA47D /* Pods-HackerNewsAPI.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		FBEE3061D8AADE17EF2E2C51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D053E8025878C63BFF904B98 /* Pods_HackerNewsAPI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,6 +178,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DD2CCA2230B171C001BEAB4 /* Build configuration list for PBXNativeTarget "HackerNewsAPI" */;
 			buildPhases = (
+				1862FE80083E47E0A6EAE520 /* [CP] Check Pods Manifest.lock */,
 				8DD2CC89230B171B001BEAB4 /* Headers */,
 				8DD2CC8A230B171B001BEAB4 /* Sources */,
 				8DD2CC8B230B171B001BEAB4 /* Frameworks */,
@@ -252,6 +246,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1862FE80083E47E0A6EAE520 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HackerNewsAPI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DD2CC8A230B171B001BEAB4 /* Sources */ = {
@@ -400,6 +419,7 @@
 		};
 		8DD2CCA3230B171C001BEAB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2AD8A12740C718F0A001C61 /* Pods-HackerNewsAPI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -422,6 +442,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HackerNewsAPI;
@@ -435,6 +456,7 @@
 		};
 		8DD2CCA4230B171C001BEAB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B9C975E858828EC623EA47D /* Pods-HackerNewsAPI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -457,6 +479,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.ngquerol.HackerNewsAPI;

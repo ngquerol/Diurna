@@ -8,6 +8,8 @@
 
 import AppKit
 
+import Firebase
+
 @NSApplicationMain
 class AppDelegate: NSObject {
     // MARK: Properties
@@ -57,5 +59,9 @@ class AppDelegate: NSObject {
 extension AppDelegate: NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         return true
+    }
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        FirebaseApp.configure()
     }
 }

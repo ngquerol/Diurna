@@ -15,7 +15,6 @@ xcuserdata/
 xcshareddata/
 
 ## Other
-TestData/*.json
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
@@ -35,3 +34,6 @@ Packages/
 ## Carthage
 Carthage/Checkouts
 Carthage/Build
+
+## Cocoapods
+Pods

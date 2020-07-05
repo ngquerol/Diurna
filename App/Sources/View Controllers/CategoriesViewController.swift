@@ -28,7 +28,10 @@ class CategoriesViewController: NSViewController {
 
         if !didAppear {
             didAppear.toggle()
-            notifyCategoryChange()
+            
+            DispatchQueue.main.async {
+                self.notifyCategoryChange()
+            }
         }
     }
 

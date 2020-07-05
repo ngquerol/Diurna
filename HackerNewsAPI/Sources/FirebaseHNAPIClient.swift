@@ -16,25 +16,25 @@ public struct FirebaseHNAPIClient {
     public var requestTimeout: TimeInterval = 10.0
 
     private let responsesQueue = DispatchQueue(label: "fr.ngquerol.HackerNewsAPI.ResponsesQueue")
+    
+    private let rootReference: DatabaseReference
 
     // MARK: Initializer
 
-    public init() {}
+    public init(app: FirebaseApp) {
+        rootReference = Database.database(app: app).reference()
+    }
 
     // MARK: Methods
 
     private func fetchItem<T: Item>(
         withId id: Int, completion: @escaping (Result<T, HNAPIError>) -> Void
     ) {
-        let itemRefUrl = HNAPI.item(withId: id).path.absoluteString
+        let itemRefUrl = HNAPI.item(withId: id).firebasePath,
+            itemRef = rootReference.child(itemRefUrl)
 
-        guard let itemRef = Firebase(url: itemRefUrl) else {
-            return completion(
-                .failure(.clientError("Failed to initialize Firebase reference @ \(itemRefUrl)")))
-        }
-
-        itemRef.observeSingleEvent(of: .value) { (storySnapshot: FDataSnapshot?) in
-            guard let itemData = storySnapshot?.value as? [String: Any] else {
+        itemRef.observeSingleEvent(of: .value) { snapshot in
+            guard let itemData = snapshot.value as? [String: Any] else {
                 return completion(.failure(.emptyResponse))
             }
 
@@ -72,20 +72,15 @@ public struct FirebaseHNAPIClient {
         of type: StoryType, count: Int = 500,
         completion: @escaping (Result<[Int], HNAPIError>) -> Void
     ) {
-        let storiesIdsRefUrl = HNAPI.stories(ofType: type).path.absoluteString
-
-        guard let storiesIdsRef = Firebase(url: storiesIdsRefUrl) else {
-            return completion(
-                .failure(
-                    .clientError("Failed to initialize Firebase reference @ \(storiesIdsRefUrl)")))
-        }
+        let storiesIdsRefUrl = HNAPI.stories(ofType: type).firebasePath,
+            storiesIdsRef = rootReference.child(storiesIdsRefUrl)
 
         DispatchQueue.global(qos: .userInitiated).async {
             storiesIdsRef
                 .queryLimited(toFirst: UInt(count))
                 .observeSingleEvent(of: .value)
-            { (idsSnapshot: FDataSnapshot?) in
-                if let idsSnapshot = idsSnapshot, let storiesIds = idsSnapshot.value as? [UInt] {
+            { snapshot in
+                if let storiesIds = snapshot.value as? [UInt] {
                     completion(.success(storiesIds.map { Int($0) }))
                 } else {
                     completion(.failure(.unknown))
@@ -193,17 +188,13 @@ extension FirebaseHNAPIClient: HNAPIClient {
         with name: String,
         completion: @escaping (Result<User, HNAPIError>) -> Void
     ) {
-        let userRefUrl = HNAPI.user(withName: name).path.absoluteString
-
-        guard let userRef = Firebase(url: userRefUrl) else {
-            return completion(
-                .failure(.clientError("Failed to initialize Firebase reference @ \(userRefUrl)")))
-        }
+        let userRefUrl = HNAPI.user(withName: name).firebasePath,
+            userRef = rootReference.child(userRefUrl)
 
         DispatchQueue.global(qos: .userInitiated).async {
-            userRef.observeSingleEvent(of: .value) { userSnapshot in
+            userRef.observeSingleEvent(of: .value) { snapshot in
                 guard
-                    let userSnapshotData = userSnapshot?.value as? [String: Any]
+                    let userSnapshotData = snapshot.value as? [String: Any]
                 else {
                     return DispatchQueue.main.async {
                         completion(.failure(.unknown))

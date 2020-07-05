@@ -7,4 +7,7 @@
    <FileRef
       location = "group:HackerNewsAPI/HackerNewsAPI.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

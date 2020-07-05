@@ -7,11 +7,15 @@
 //
 
 import HackerNewsAPI
+import Firebase
+
+let app = FirebaseApp.app(),
+    client = FirebaseHNAPIClient(app: app!)
 
 protocol HNAPIConsumer {
     var apiClient: HNAPIClient { get }
 }
 
 extension HNAPIConsumer {
-    var apiClient: HNAPIClient { MockHNAPIClient() }
+    var apiClient: HNAPIClient { client }
 }

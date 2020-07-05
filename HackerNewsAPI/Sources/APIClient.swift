@@ -95,4 +95,11 @@ extension HNAPI: APIEndpoint {
             }
         }
     }
+
+    var firebasePath: String {
+        let completePath = path.path,
+            pathStartIndex = completePath.index(after: completePath.startIndex)
+        
+        return String(completePath.suffix(from: pathStartIndex))
+    }
 }
