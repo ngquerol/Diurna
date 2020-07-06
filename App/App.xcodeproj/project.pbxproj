@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,6 +54,14 @@
 		8DEC92221C708E2800833317 /* UserDetailsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */; };
 		8DECDCF31D1B049A005AC978 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECDCF21D1B049A005AC978 /* CommentsViewController.swift */; };
 		8DEEA5621C52CB45001DB85D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DEEA5611C52CB45001DB85D /* Main.storyboard */; };
+		8DFFA2FE24B3666C007648BE /* new_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F624B3666B007648BE /* new_stories.json */; };
+		8DFFA2FF24B3666C007648BE /* job_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F724B3666B007648BE /* job_stories.json */; };
+		8DFFA30024B3666C007648BE /* best_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F824B3666B007648BE /* best_stories.json */; };
+		8DFFA30124B3666C007648BE /* ask_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F924B3666B007648BE /* ask_stories.json */; };
+		8DFFA30224B3666C007648BE /* show_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2FA24B3666C007648BE /* show_stories.json */; };
+		8DFFA30324B3666C007648BE /* top_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2FB24B3666C007648BE /* top_stories.json */; };
+		8DFFA30424B3666C007648BE /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2FC24B3666C007648BE /* user.json */; };
+		8DFFA30524B3666C007648BE /* stories_dump.py in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2FD24B3666C007648BE /* stories_dump.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,6 +129,14 @@
 		8DECDCF21D1B049A005AC978 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		8DEEA5611C52CB45001DB85D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DFA46CD2407107C00E30BD3 /* Diurna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diurna.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DFFA2F624B3666B007648BE /* new_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = new_stories.json; sourceTree = "<group>"; };
+		8DFFA2F724B3666B007648BE /* job_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = job_stories.json; sourceTree = "<group>"; };
+		8DFFA2F824B3666B007648BE /* best_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = best_stories.json; sourceTree = "<group>"; };
+		8DFFA2F924B3666B007648BE /* ask_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ask_stories.json; sourceTree = "<group>"; };
+		8DFFA2FA24B3666C007648BE /* show_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = show_stories.json; sourceTree = "<group>"; };
+		8DFFA2FB24B3666C007648BE /* top_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = top_stories.json; sourceTree = "<group>"; };
+		8DFFA2FC24B3666C007648BE /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		8DFFA2FD24B3666C007648BE /* stories_dump.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = stories_dump.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +286,7 @@
 		8DE13EDE1C6361A9006774F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8DFFA2F524B3665F007648BE /* Test Data */,
 				8D7E2F1E24B2980A00206824 /* GoogleService-Info.plist */,
 				8D05A7631CF7B21D0066EADE /* Credits.rtf */,
 				8DEEA5611C52CB45001DB85D /* Main.storyboard */,
@@ -278,6 +295,21 @@
 				8D8105221DCE53200031AE2C /* UserDetailsPopoverView.xib */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8DFFA2F524B3665F007648BE /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+				8DFFA2FD24B3666C007648BE /* stories_dump.py */,
+				8DFFA2F924B3666B007648BE /* ask_stories.json */,
+				8DFFA2F824B3666B007648BE /* best_stories.json */,
+				8DFFA2F724B3666B007648BE /* job_stories.json */,
+				8DFFA2F624B3666B007648BE /* new_stories.json */,
+				8DFFA2FA24B3666C007648BE /* show_stories.json */,
+				8DFFA2FB24B3666C007648BE /* top_stories.json */,
+				8DFFA2FC24B3666C007648BE /* user.json */,
+			);
+			path = "Test Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,12 +376,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DFFA30424B3666C007648BE /* user.json in Resources */,
+				8DFFA30524B3666C007648BE /* stories_dump.py in Resources */,
+				8DFFA30124B3666C007648BE /* ask_stories.json in Resources */,
 				8D2FC6A51FDD681800E22E24 /* ProgressOverlayView.xib in Resources */,
+				8DFFA30224B3666C007648BE /* show_stories.json in Resources */,
 				8D8105231DCE53200031AE2C /* UserDetailsPopoverView.xib in Resources */,
+				8DFFA2FE24B3666C007648BE /* new_stories.json in Resources */,
+				8DFFA30324B3666C007648BE /* top_stories.json in Resources */,
+				8DFFA30024B3666C007648BE /* best_stories.json in Resources */,
 				8DEEA5621C52CB45001DB85D /* Main.storyboard in Resources */,
 				8D1DAB521FDDD38600FF4FCC /* StoryStatusView.xib in Resources */,
 				8D05A7641CF7B21D0066EADE /* Credits.rtf in Resources */,
 				8DB29B361CF37E32006EBF32 /* Assets.xcassets in Resources */,
+				8DFFA2FF24B3666C007648BE /* job_stories.json in Resources */,
 				8D7E2F1F24B2980A00206824 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +610,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8JTCTCWN2;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Test,
+					Data,
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

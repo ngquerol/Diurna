@@ -18,8 +18,7 @@ public struct MockHNAPIClient {
 
     private func loadTestData<T: Decodable>(from filename: String) -> T {
         guard
-            let bundle = Bundle(identifier: "fr.ngquerol.HackerNewsAPI"),
-            let file = bundle.url(forResource: filename, withExtension: "json")
+            let file = Bundle.main.url(forResource: filename, withExtension: "json")
         else {
             fatalError("Couldn't find \(filename) in main bundle.")
         }
