@@ -43,6 +43,8 @@ class CommentCellView: NSTableCellView {
 
     @IBOutlet var textView: MarkupTextView!
     
+    @IBOutlet var trailingSpacingConstraint: NSLayoutConstraint!
+    
     // MARK: Properties
 
     override var objectValue: Any? {

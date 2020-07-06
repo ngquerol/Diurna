@@ -89,7 +89,7 @@
                                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZYM-kZ-UzP">
+                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZYM-kZ-UzP">
                                             <rect key="frame" x="253" y="11" width="16" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -584,10 +584,10 @@
                                                                             </connections>
                                                                         </button>
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPT-1x-tpi">
-                                                                            <rect key="frame" x="10" y="5" width="280" height="16"/>
+                                                                            <rect key="frame" x="10" y="5" width="275" height="16"/>
                                                                             <subviews>
                                                                                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyE-ZW-3aB">
-                                                                                    <rect key="frame" x="-2" y="1" width="166" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="1" width="161" height="14"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" placeholderString="by author, # days ago" id="LQV-vY-K0N">
                                                                                         <font key="font" metaFont="controlContent" size="11"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -595,7 +595,7 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="FCU-8k-dpU" customClass="StoryStatusView" customModule="Diurna" customModuleProvider="target">
-                                                                                    <rect key="frame" x="167" y="0.0" width="113" height="16"/>
+                                                                                    <rect key="frame" x="162" y="0.0" width="113" height="16"/>
                                                                                 </customView>
                                                                             </subviews>
                                                                             <constraints>
@@ -611,7 +611,7 @@
                                                                             </customSpacing>
                                                                         </stackView>
                                                                     </subviews>
-                                                                    <edgeInsets key="edgeInsets" left="10" right="10" top="5" bottom="5"/>
+                                                                    <edgeInsets key="edgeInsets" left="10" right="15" top="5" bottom="5"/>
                                                                     <visibilityPriorities>
                                                                         <integer value="1000"/>
                                                                         <integer value="1000"/>
@@ -732,7 +732,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="359" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="96" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="16" indentationMarkerFollowsCell="NO" outlineTableColumn="7RP-ih-v8e" translatesAutoresizingMaskIntoConstraints="NO" id="KR2-aC-zSb" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="96" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="16" indentationMarkerFollowsCell="NO" outlineTableColumn="7RP-ih-v8e" translatesAutoresizingMaskIntoConstraints="NO" id="KR2-aC-zSb" customClass="CommentsOutlineView" customModule="Diurna" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="450"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="0.0" height="20"/>
@@ -835,7 +835,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iUz-q6-F07">
-                                                                    <rect key="frame" x="243" y="40" width="106" height="15"/>
+                                                                    <rect key="frame" x="238" y="40" width="106" height="15"/>
                                                                     <subviews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qd-w4-mHs">
                                                                             <rect key="frame" x="-2" y="1" width="89" height="14"/>
@@ -875,13 +875,13 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="gRE-mj-0SU" customClass="MarkupTextView" customModule="Diurna" customModuleProvider="target">
-                                                                    <rect key="frame" x="10" y="0.0" width="339" height="30"/>
+                                                                    <rect key="frame" x="10" y="0.0" width="334" height="30"/>
                                                                 </customView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="gRE-mj-0SU" secondAttribute="bottom" id="AbH-ff-ClM"/>
                                                                 <constraint firstItem="gRE-mj-0SU" firstAttribute="trailing" secondItem="iUz-q6-F07" secondAttribute="trailing" id="Dm3-kw-Uxg"/>
-                                                                <constraint firstAttribute="trailing" secondItem="iUz-q6-F07" secondAttribute="trailing" constant="10" id="L1h-BQ-6Ta"/>
+                                                                <constraint firstAttribute="trailing" secondItem="iUz-q6-F07" secondAttribute="trailing" constant="15" id="L1h-BQ-6Ta"/>
                                                                 <constraint firstItem="iUz-q6-F07" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CjD-Bp-kPy" secondAttribute="trailing" constant="10" id="bMM-Bq-UH6"/>
                                                                 <constraint firstItem="gRE-mj-0SU" firstAttribute="leading" secondItem="CjD-Bp-kPy" secondAttribute="leading" id="fWb-gD-lx1"/>
                                                                 <constraint firstItem="iUz-q6-F07" firstAttribute="height" secondItem="CjD-Bp-kPy" secondAttribute="height" id="ffA-eb-O7I"/>
@@ -898,6 +898,7 @@
                                                                 <outlet property="replyArrowTextField" destination="P9S-3g-uQ7" id="sXP-zN-84F"/>
                                                                 <outlet property="textView" destination="gRE-mj-0SU" id="13V-zJ-Eua"/>
                                                                 <outlet property="timeTextField" destination="tMF-FY-W4n" id="uM7-bY-OdY"/>
+                                                                <outlet property="trailingSpacingConstraint" destination="L1h-BQ-6Ta" id="vy4-Xm-En8"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>

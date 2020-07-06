@@ -50,8 +50,8 @@ class CommentRowView: NSTableRowView {
             indentWidth = CGFloat(rowLevel) * outlineView.indentationPerLevel,
             indentGuideWidth = (rowLevel == 0 ? 0 : self.indentGuideWidth),
             separatorHeight: CGFloat = 1,
-            margin: CGFloat = 10
-
+            margin = cellView.trailingSpacingConstraint.constant
+        
         cgContext.saveGState()
 
         cgContext.setFillColor(outlineView.gridColor.cgColor)
@@ -59,7 +59,7 @@ class CommentRowView: NSTableRowView {
             CGRect(
                 x: indentWidth - indentGuideWidth,
                 y: 0,
-                width: cellView.frame.width - (margin + indentGuideWidth),
+                width: frame.width + indentGuideWidth - (margin + indentWidth),
                 height: separatorHeight
             )
         )

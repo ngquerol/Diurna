@@ -22,11 +22,16 @@ class StoryRowView: NSTableRowView {
     // MARK: Methods
 
     override func drawSeparator(in _: NSRect) {
-        guard let cgContext = NSGraphicsContext.current?.cgContext else { return }
+        guard
+            let cgContext = NSGraphicsContext.current?.cgContext,
+            let cellView = view(atColumn: 0) as? StoryCellView
+        else {
+            return
+        }
         
         cgContext.saveGState()
 
-        let margin: CGFloat = 10.0,
+        let margin: CGFloat = cellView.containerStackView.edgeInsets.right,
             height: CGFloat = 1.0,
             start: CGFloat = isSelected ? 0 : margin,
             width: CGFloat = isSelected ? bounds.maxX : bounds.maxX - (margin * 2),

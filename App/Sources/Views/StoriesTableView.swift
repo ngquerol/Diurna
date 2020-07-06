@@ -11,6 +11,10 @@ import HackerNewsAPI
 
 class StoriesTableView: NSTableView {
     // MARK: Methods
+    
+    override func drawGrid(inClipRect clipRect: NSRect) {
+        
+    }
 
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil)
