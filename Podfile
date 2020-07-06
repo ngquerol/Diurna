@@ -2,6 +2,7 @@ workspace 'Diurna'
 platform :macos, '10.12'
 
 use_frameworks!
+inhibit_all_warnings!
 
 def shared_pods
     pod 'Firebase/Database', '~> 6.3'
