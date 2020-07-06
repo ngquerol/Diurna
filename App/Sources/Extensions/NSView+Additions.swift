@@ -17,7 +17,7 @@ protocol PlaceholderShowing: NSViewController {
 }
 
 extension PlaceholderShowing {
-    
+
     /// Present a placeholder with the specified message.
     ///
     /// - Note: If a progress overlay is already presented, it will be dismissed.
@@ -29,23 +29,23 @@ extension PlaceholderShowing {
             (placeholderView?.subviews.first as? NSTextField)?.stringValue = title
             return
         }
-        
+
         let container = NSView(frame: view.frame)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.setValue(NSColor.controlBackgroundColor, forKey: "backgroundColor")
-        
+
         let label = NSTextField(wrappingLabelWithString: title)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.alignment = .center
         label.isEnabled = false
         label.textColor = .placeholderTextColor
-        
+
         container.addSubview(label)
-        
+
         placeholderView = container
-        
+
         view.addSubview(container)
-        
+
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: view.topAnchor),
             container.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -55,7 +55,7 @@ extension PlaceholderShowing {
             label.centerYAnchor.constraint(equalTo: container.centerYAnchor),
         ])
     }
-    
+
     /// Hide the currently presented placeholder.
     func hidePlaceholder() {
         placeholderView?.removeFromSuperview()
@@ -83,29 +83,29 @@ extension ProgressShowing {
     func showProgressOverlay(with message: String, animating: Bool = true) {
         // Reuse the existing overlay, if any.
         if let _ = progressOverlayView { hideProgressOverlay(animating: false) }
-        
+
         let overlay = ProgressOverlayView(frame: view.frame)
         overlay.translatesAutoresizingMaskIntoConstraints = false
         overlay.alphaValue = 0
         overlay.messageTextField.stringValue = message
-        
+
         progressOverlayView = overlay
-        
+
         view.addSubview(overlay)
-        
+
         NSLayoutConstraint.activate([
             overlay.topAnchor.constraint(equalTo: view.topAnchor),
             overlay.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             overlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             overlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-        
+
         NSAnimationContext.runAnimationGroup { ctx in
             ctx.duration = animating ? progressOverlayAnimationDuration : 0
             progressOverlayView?.animator().alphaValue = 1
         }
     }
-    
+
     /// Hide the currently presented progress overlay, with an optional animation (fade-out).
     ///
     /// - Parameter animating: Whether to animate the overlay presentation.

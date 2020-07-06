@@ -57,8 +57,9 @@ class StoryCellView: NSTableCellView {
     override func layout() {
         super.layout()
 
-        titleTextField.preferredMaxLayoutWidth = containerStackView.frame.width -
-            (containerStackView.edgeInsets.left + containerStackView.edgeInsets.right)
+        titleTextField.preferredMaxLayoutWidth =
+            containerStackView.frame.width
+            - (containerStackView.edgeInsets.left + containerStackView.edgeInsets.right)
 
         needsLayout = true
     }

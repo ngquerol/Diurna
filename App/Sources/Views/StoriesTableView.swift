@@ -11,10 +11,8 @@ import HackerNewsAPI
 
 class StoriesTableView: NSTableView {
     // MARK: Methods
-    
-    override func drawGrid(inClipRect clipRect: NSRect) {
-        
-    }
+
+    override func drawGrid(inClipRect clipRect: NSRect) {}
 
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil)
@@ -23,7 +21,8 @@ class StoriesTableView: NSTableView {
         guard rowAtPoint != -1 else { return nil }
 
         let menu = NSMenu(title: "Story Context Menu")
-        let item = menu
+        let item =
+            menu
             .addItem(withTitle: "Open in browser", action: .openStoryInBrowser, keyEquivalent: "")
 
         guard

@@ -19,8 +19,7 @@ class MainWindowController: NSWindowController {
             window?.standardWindowButton(.closeButton),
             window?.standardWindowButton(.zoomButton),
             window?.standardWindowButton(.miniaturizeButton),
-        ].forEach
-        {
+        ].forEach {
             $0?.frame.origin.x += 7.5
             $0?.frame.origin.y -= 5
         }
@@ -34,8 +33,9 @@ extension MainWindowController: NSWindowDelegate {
         guard
             let mainSplitView = contentViewController as? MainSplitViewController,
             let sidebarSplitViewItem = mainSplitView.sidebarSplitViewItem,
-            let categoriesViewController = sidebarSplitViewItem
-            .viewController as? CategoriesViewController
+            let categoriesViewController =
+                sidebarSplitViewItem
+                .viewController as? CategoriesViewController
         else {
             return
         }
@@ -48,8 +48,9 @@ extension MainWindowController: NSWindowDelegate {
         guard
             let mainSplitView = contentViewController as? MainSplitViewController,
             let sidebarSplitViewItem = mainSplitView.sidebarSplitViewItem,
-            let categoriesViewController = sidebarSplitViewItem
-            .viewController as? CategoriesViewController
+            let categoriesViewController =
+                sidebarSplitViewItem
+                .viewController as? CategoriesViewController
         else {
             return
         }

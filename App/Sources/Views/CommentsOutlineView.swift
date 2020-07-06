@@ -32,10 +32,8 @@ class CommentsOutlineView: NSOutlineView {
             height: frame.height
         )
     }
-    
-    override func drawGrid(inClipRect clipRect: NSRect) {
-        
-    }
+
+    override func drawGrid(inClipRect clipRect: NSRect) {}
 
     override func menu(for event: NSEvent) -> NSMenu? {
         let point = convert(event.locationInWindow, from: nil)
@@ -49,7 +47,8 @@ class CommentsOutlineView: NSOutlineView {
         }
 
         let menu = NSMenu(title: "Comment Context Menu")
-        let menuItem = menu
+        let menuItem =
+            menu
             .addItem(withTitle: "Open in browser", action: .openCommentInBrowser, keyEquivalent: "")
         menuItem.representedObject = comment
 
@@ -72,6 +71,7 @@ class CommentsOutlineView: NSOutlineView {
 // MARK: - Selectors
 
 extension Selector {
-    fileprivate static let openCommentInBrowser = #selector(CommentsOutlineView
-        .openCommentInBrowser(_:))
+    fileprivate static let openCommentInBrowser = #selector(
+        CommentsOutlineView
+            .openCommentInBrowser(_:))
 }

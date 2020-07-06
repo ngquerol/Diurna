@@ -26,7 +26,7 @@ class CommentRowView: NSTableRowView {
     private let indentGuideWidth: CGFloat = 3
 
     // MARK: Methods
-    
+
     private static func indentGuideColor(for level: Int) -> CGColor {
         guard level > 0 else { return .clear }
         let colorIndex = (level - 1) % indentGuideColors.count
@@ -51,7 +51,7 @@ class CommentRowView: NSTableRowView {
             indentGuideWidth = (rowLevel == 0 ? 0 : self.indentGuideWidth),
             separatorHeight: CGFloat = 1,
             margin = cellView.trailingSpacingConstraint.constant
-        
+
         cgContext.saveGState()
 
         cgContext.setFillColor(outlineView.gridColor.cgColor)

@@ -33,13 +33,15 @@ public struct RESTHNAPIClient {
 
         urlSession = URLSession(configuration: sessionConfig)
     }
-    
+
     // MARK: Methods
 
-    private func validateResponse<T: Decodable>(_ data: Data?, _ response: URLResponse?,
-                                                _ error: Error?) -> Result<T, HNAPIError> {
+    private func validateResponse<T: Decodable>(
+        _ data: Data?, _ response: URLResponse?,
+        _ error: Error?
+    ) -> Result<T, HNAPIError> {
         switch (data, response as? HTTPURLResponse, error) {
-        case let (_, .some(response), _) where !(200 ..< 300 ~= response.statusCode):
+        case let (_, .some(response), _) where !(200..<300 ~= response.statusCode):
             return .failure(.invalidHTTPResponse(response))
 
         case let (_, _, .some(error) as NSError?) where error.code == NSURLErrorTimedOut:
@@ -74,15 +76,19 @@ public struct RESTHNAPIClient {
         dataTask.resume()
     }
 
-    private func fetchItem<T: Item>(withId id: Int,
-                                    completion: @escaping (Result<T, HNAPIError>) -> Void) {
+    private func fetchItem<T: Item>(
+        withId id: Int,
+        completion: @escaping (Result<T, HNAPIError>) -> Void
+    ) {
         fetchResource(.item(withId: id)) { itemResult in
             completion(itemResult)
         }
     }
 
-    private func fetchItems<T: Item>(withIds ids: [Int],
-                                     completion: @escaping ([Result<T, HNAPIError>]) -> Void) {
+    private func fetchItems<T: Item>(
+        withIds ids: [Int],
+        completion: @escaping ([Result<T, HNAPIError>]) -> Void
+    ) {
         let fetchGroup = DispatchGroup()
         var itemsResults = [Result<T, HNAPIError>?](repeating: nil, count: ids.count)
 
@@ -122,7 +128,7 @@ public struct RESTHNAPIClient {
         DispatchQueue.global(qos: .userInitiated).async {
             self.fetchItem(withId: id) { (commentResult: Result<Comment, HNAPIError>) in
                 guard
-                    var comment = try? commentResult.get(), // TODO: map result
+                    var comment = try? commentResult.get(),  // TODO: map result
                     let kidsIds = comment.kidsIds,
                     !kidsIds.isEmpty
                 else {
@@ -154,8 +160,10 @@ public struct RESTHNAPIClient {
 // MARK: - HackerNewsAPIClient
 
 extension RESTHNAPIClient: HNAPIClient {
-    public func fetchStories(of type: StoryType, count: Int,
-                             completion: @escaping ([Result<Story, HNAPIError>]) -> Void) {
+    public func fetchStories(
+        of type: StoryType, count: Int,
+        completion: @escaping ([Result<Story, HNAPIError>]) -> Void
+    ) {
         fetchStoriesIds(of: type, count: count) { idsResult in
             guard let ids = try? idsResult.get() else {
                 return DispatchQueue.main.async {

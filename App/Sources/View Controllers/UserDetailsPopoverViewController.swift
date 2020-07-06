@@ -7,7 +7,6 @@
 //
 
 import AppKit
-
 import HackerNewsAPI
 
 class UserDetailsPopoverViewController: NSViewController {
@@ -75,7 +74,8 @@ class UserDetailsPopoverViewController: NSViewController {
                     ) {
                         NSAnimationContext.runAnimationGroup(
                             { _ in
-                                self.aboutScrollView.isHidden = self.aboutTextView
+                                self.aboutScrollView.isHidden =
+                                    self.aboutTextView
                                     .attributedStringValue.length == 0
                                 self.descriptionSeparator.isHidden = self.aboutScrollView.isHidden
                             }

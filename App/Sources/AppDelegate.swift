@@ -7,7 +7,6 @@
 //
 
 import AppKit
-
 import Firebase
 
 @NSApplicationMain
@@ -45,7 +44,7 @@ class AppDelegate: NSObject {
             let window = NSApp.windows.first,
             let mainSplitViewController = window.contentViewController as? MainSplitViewController,
             let storiesViewController = mainSplitViewController.storiesSplitViewItem?.viewController
-            as? StoriesViewController
+                as? StoriesViewController
         else {
             return
         }

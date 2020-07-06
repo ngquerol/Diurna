@@ -48,15 +48,18 @@ extension MockHNAPIClient: HNAPIClient {
         set {}
     }
 
-    public func fetchStories(of type: StoryType, count: Int, completion: @escaping HNAPIResultsCallback<Story>) {
+    public func fetchStories(
+        of type: StoryType, count: Int, completion: @escaping HNAPIResultsCallback<Story>
+    ) {
         let stories: [Story] = loadTestData(from: "\(type.rawValue.lowercased())_stories")
 
         completion(stories.prefix(count).map { .success($0) })
     }
 
-    public func fetchComments(of story: Story, completion: @escaping HNAPIResultsCallback<Comment>) {
+    public func fetchComments(of story: Story, completion: @escaping HNAPIResultsCallback<Comment>)
+    {
         guard let kids = story.kids else { return completion([]) }
-        
+
         completion(kids.map { .success($0) })
     }
 

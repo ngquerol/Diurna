@@ -36,18 +36,21 @@ class MainSplitViewController: NSSplitViewController {
         super.viewWillAppear()
 
         guard
-            let storiesViewController = storiesSplitViewItem
-            .viewController as? StoriesViewController
+            let storiesViewController =
+                storiesSplitViewItem
+                .viewController as? StoriesViewController
         else {
             return
         }
 
         // make room for close/minimize/fullscreen widgets if the sidebar is collapsed
-        sidebarCollapseObservation = sidebarSplitViewItem
+        sidebarCollapseObservation =
+            sidebarSplitViewItem
             .observe(\.isCollapsed) { splitViewItem, _ in
                 // TODO: find a way to not hardcode offset, if possible
-                storiesViewController.toolbarLeadingSpaceConstraint.constant += splitViewItem
-                    .isCollapsed ? 75.0 : -75.0
+                storiesViewController.toolbarLeadingSpaceConstraint.constant +=
+                    splitViewItem
+                        .isCollapsed ? 75.0 : -75.0
             }
     }
 

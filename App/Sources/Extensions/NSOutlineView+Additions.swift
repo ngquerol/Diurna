@@ -14,7 +14,7 @@ extension NSOutlineView {
 
         if childCount == 0 { return [] }
 
-        return (0 ..< childCount).map { child($0, ofItem: item) }
+        return (0..<childCount).map { child($0, ofItem: item) }
     }
 
     func numberOfDescendants(ofItem item: Any?) -> Int {

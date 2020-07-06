@@ -10,27 +10,27 @@ import AppKit
 
 class ProgressOverlayView: NSView {
     // MARK: Outlets
-    
+
     @IBOutlet var view: NSView!
-    
+
     @IBOutlet var stackView: NSStackView!
-    
+
     @IBOutlet var messageTextField: NSTextField!
-    
+
     @IBOutlet var progressIndicator: NSProgressIndicator!
-    
+
     // MARK: Initializers
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-    
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         commonInit()
     }
-    
+
     private func commonInit(frame frameRect: NSRect? = nil) {
         Bundle.main.loadNibNamed(
             .progressOverlayView,
@@ -40,17 +40,13 @@ class ProgressOverlayView: NSView {
         addSubview(view)
         view.frame = frameRect ?? bounds
     }
-    
+
     // MARK: View lifecycle
-    
+
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         progressIndicator.startAnimation(self)
     }
-}
-
-extension NSView  {
-    
 }
 
 // MARK: - NSNib.Name

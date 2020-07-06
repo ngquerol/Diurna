@@ -40,7 +40,8 @@ class AboutViewController: NSViewController {
         let bundleName = info["CFBundleName"] as? String ?? "Diurna"
         let bundleVersion = info["CFBundleShortVersionString"] as? String ?? "?"
         let bundleBuild = info["CFBundleVersion"] as? String ?? "?"
-        let copyright = info["NSHumanReadableCopyright"] as? String
+        let copyright =
+            info["NSHumanReadableCopyright"] as? String
             ?? "© 2016-present Nicolas Gaulard-Querol, all rights reserved"
 
         nameTextField.stringValue = bundleName
@@ -58,7 +59,7 @@ class AboutViewController: NSViewController {
             url: creditsFileURL,
             options: [
                 NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString
-                    .DocumentType.rtf,
+                    .DocumentType.rtf
             ],
             documentAttributes: nil
         ) {

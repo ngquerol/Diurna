@@ -7,7 +7,6 @@
 //
 
 import AppKit
-
 import HackerNewsAPI
 
 class StoryDetailsViewController: NSViewController {
@@ -51,12 +50,13 @@ class StoryDetailsViewController: NSViewController {
 
     private var textHeight: CGFloat {
         let textHeight = isContentExpanded ? contentTextView.fittingSize.height : 0,
-            totalTextHeight = textHeight
-            // account for the eventual top/bottom insets
-            + contentScrollView.contentInsets.top
-            + contentScrollView.contentInsets.bottom
-            // account for the eventual top/bottom borders
-            + (contentScrollView.borderType == .noBorder ? 0 : 4)
+            totalTextHeight =
+                textHeight
+                // account for the eventual top/bottom insets
+                + contentScrollView.contentInsets.top
+                + contentScrollView.contentInsets.bottom
+                // account for the eventual top/bottom borders
+                + (contentScrollView.borderType == .noBorder ? 0 : 4)
 
         return min(totalTextHeight, maximumTextHeight)
     }
@@ -103,15 +103,17 @@ class StoryDetailsViewController: NSViewController {
                 contentScrollViewHeightConstraint.animator().constant = textHeight
             }
         } else {
-            NSAnimationContext.runAnimationGroup({ context in
-                context.duration = 0.25
-                contentScrollViewHeightConstraint.animator().constant = textHeight
-            }, completionHandler: {
-                NSAnimationContext.runAnimationGroup { context in
+            NSAnimationContext.runAnimationGroup(
+                { context in
                     context.duration = 0.25
-                    self.contentScrollView.animator().isHidden = true
-                }
-            })
+                    contentScrollViewHeightConstraint.animator().constant = textHeight
+                },
+                completionHandler: {
+                    NSAnimationContext.runAnimationGroup { context in
+                        context.duration = 0.25
+                        self.contentScrollView.animator().isHidden = true
+                    }
+                })
         }
     }
 }

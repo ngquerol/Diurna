@@ -7,9 +7,8 @@
 //
 
 import AppKit
-import OSLog
-
 import HackerNewsAPI
+import OSLog
 
 class CommentsViewController: NSViewController {
     // MARK: Outlets
@@ -18,10 +17,11 @@ class CommentsViewController: NSViewController {
 
     @IBOutlet var outlineView: CommentsOutlineView! {
         didSet {
-            prototypeCellView = outlineView.makeView(
-                withIdentifier: .commentCell,
-                owner: self
-            ) as? CommentCellView
+            prototypeCellView =
+                outlineView.makeView(
+                    withIdentifier: .commentCell,
+                    owner: self
+                ) as? CommentCellView
         }
     }
 
@@ -186,11 +186,13 @@ extension CommentsViewController: PlaceholderShowing {}
 // MARK: - Selectors
 
 extension Selector {
-    fileprivate static let toggleCommentReplies = #selector(CommentsViewController
-        .toggleCommentReplies(_:))
+    fileprivate static let toggleCommentReplies = #selector(
+        CommentsViewController
+            .toggleCommentReplies(_:))
 
-    fileprivate static let scrollToParentComment = #selector(CommentsViewController
-        .goToParentComment(_:))
+    fileprivate static let scrollToParentComment = #selector(
+        CommentsViewController
+            .goToParentComment(_:))
 }
 
 // MARK: - NSOutlineView Data Source
@@ -219,8 +221,10 @@ extension CommentsViewController: NSOutlineViewDataSource {
         return !kids.isEmpty
     }
 
-    func outlineView(_: NSOutlineView, objectValueFor _: NSTableColumn?,
-                     byItem item: Any?) -> Any? {
+    func outlineView(
+        _: NSOutlineView, objectValueFor _: NSTableColumn?,
+        byItem item: Any?
+    ) -> Any? {
         return item as? Comment
     }
 
@@ -248,9 +252,8 @@ extension CommentsViewController: NSOutlineViewDelegate {
         }
 
         let cellLevel = CGFloat(outlineView.level(forItem: comment))
-        let availableWidth = outlineView.bounds.width - (
-            outlineView.indentationPerLevel * cellLevel
-        )
+        let availableWidth =
+            outlineView.bounds.width - (outlineView.indentationPerLevel * cellLevel)
 
         dummyCellView.bounds.size = NSSize(width: availableWidth, height: 0)
         dummyCellView.objectValue = comment
@@ -259,21 +262,24 @@ extension CommentsViewController: NSOutlineViewDelegate {
         return dummyCellView.fittingSize.height
     }
 
-    func outlineView(_ outlineView: NSOutlineView, viewFor _: NSTableColumn?, item: Any) -> NSView? {
+    func outlineView(_ outlineView: NSOutlineView, viewFor _: NSTableColumn?, item: Any) -> NSView?
+    {
         let comment = item as? Comment
-        let cellView = outlineView.makeView(withIdentifier: .commentCell, owner: self)
+        let cellView =
+            outlineView.makeView(withIdentifier: .commentCell, owner: self)
             as? CommentCellView
 
         cellView?.objectValue = comment
         cellView?.isExpandable = outlineView.isExpandable(comment)
-        cellView?.isExpanded = (cellView?.isExpandable ?? false) && outlineView.isItemExpanded(
-            comment)
+        cellView?.isExpanded =
+            (cellView?.isExpandable ?? false)
+            && outlineView.isItemExpanded(
+                comment)
         cellView?.opBadgeView.isHidden = comment?.by != story?.by
 
         let repliesCount = self.outlineView.numberOfDescendants(ofItem: comment)
-        cellView?.repliesTextField.stringValue = "\(repliesCount) " + (
-            repliesCount > 1 ? "replies" : "reply"
-        ) + " hidden"
+        cellView?.repliesTextField.stringValue =
+            "\(repliesCount) " + (repliesCount > 1 ? "replies" : "reply") + " hidden"
         cellView?.replyArrowTextField.isHidden = outlineView.parent(forItem: comment) == nil
 
         return cellView
@@ -288,7 +294,7 @@ extension CommentsViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewColumnDidResize(_: Notification) {
-        let wholeRowsIndexes: IndexSet = IndexSet(integersIn: 0 ..< outlineView.numberOfRows)
+        let wholeRowsIndexes: IndexSet = IndexSet(integersIn: 0..<outlineView.numberOfRows)
 
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0

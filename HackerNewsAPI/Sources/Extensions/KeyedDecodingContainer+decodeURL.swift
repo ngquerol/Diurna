@@ -13,7 +13,8 @@ extension KeyedDecodingContainer {
         let urlString = try decode(String.self, forKey: key)
 
         guard
-            let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let encodedUrlString = urlString.addingPercentEncoding(
+                withAllowedCharacters: .urlQueryAllowed)
         else {
             throw DecodingError.dataCorruptedError(
                 forKey: key,
@@ -39,7 +40,8 @@ extension KeyedDecodingContainer {
         }
 
         guard
-            let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let encodedUrlString = urlString.addingPercentEncoding(
+                withAllowedCharacters: .urlQueryAllowed)
         else {
             throw DecodingError.dataCorruptedError(
                 forKey: key,

@@ -17,10 +17,11 @@ class StoriesViewController: NSViewController {
 
     @IBOutlet var tableView: NSTableView! {
         didSet {
-            prototypeCellView = tableView.makeView(
-                withIdentifier: .storyCell,
-                owner: self
-            ) as? StoryCellView
+            prototypeCellView =
+                tableView.makeView(
+                    withIdentifier: .storyCell,
+                    owner: self
+                ) as? StoryCellView
         }
     }
 
@@ -179,8 +180,9 @@ extension Notification.Name {
 // MARK: - Selectors
 
 extension Selector {
-    fileprivate static let updateStoriesCategory = #selector(StoriesViewController
-        .updateStoriesCategory(_:))
+    fileprivate static let updateStoriesCategory = #selector(
+        StoriesViewController
+            .updateStoriesCategory(_:))
 }
 
 // MARK: - NSTableView Data Source
@@ -196,7 +198,7 @@ extension StoriesViewController: NSTableViewDataSource {
 extension StoriesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         guard let dummyCellView = prototypeCellView else {
-            return tableView.rowHeight // default row height
+            return tableView.rowHeight  // default row height
         }
 
         dummyCellView.objectValue = dataSource[row]
@@ -241,7 +243,7 @@ extension StoriesViewController: NSTableViewDelegate {
             name: .storySelectionNotification,
             object: self,
             userInfo: [
-                "story": dataSource[tableView.selectedRow],
+                "story": dataSource[tableView.selectedRow]
             ]
         )
     }

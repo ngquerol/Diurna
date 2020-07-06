@@ -38,7 +38,8 @@ extension Date {
 
         if Calendar.current.isDateInToday(now),
             components.hour == 0,
-            components.minute == 0 {
+            components.minute == 0
+        {
             return "just now"
         }
 

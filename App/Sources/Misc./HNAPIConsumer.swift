@@ -6,8 +6,8 @@
 //  Copyright © 2020 Nicolas Gaulard-Querol. All rights reserved.
 //
 
-import HackerNewsAPI
 import Firebase
+import HackerNewsAPI
 
 let app = FirebaseApp.app(),
     client = FirebaseHNAPIClient(app: app!)

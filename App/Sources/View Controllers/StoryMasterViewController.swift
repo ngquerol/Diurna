@@ -7,12 +7,11 @@
 //
 
 import AppKit
-
 import HackerNewsAPI
 
 class StoryMasterViewController: NSSplitViewController {
     // MARK: Properties
-    
+
     var placeholderView: NSView?
 
     private var detailsViewController: StoryDetailsViewController?
@@ -33,7 +32,7 @@ class StoryMasterViewController: NSSplitViewController {
 
         self.detailsViewController = detailsViewController
         self.commentsViewController = commentsViewController
-        
+
         showPlaceholder(withTitle: "No story selected.")
     }
 
@@ -56,9 +55,11 @@ class StoryMasterViewController: NSSplitViewController {
 
     // MARK: Methods
 
-    override func splitView(_: NSSplitView, effectiveRect _: NSRect, forDrawnRect _: NSRect,
-                            ofDividerAt _: Int) -> NSRect {
-        return .zero // hide the drag mouse cursor
+    override func splitView(
+        _: NSSplitView, effectiveRect _: NSRect, forDrawnRect _: NSRect,
+        ofDividerAt _: Int
+    ) -> NSRect {
+        return .zero  // hide the drag mouse cursor
     }
 
     @objc func showStory(_ notification: Notification) {

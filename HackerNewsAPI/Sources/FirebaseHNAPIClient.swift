@@ -7,7 +7,6 @@
 //
 
 import Firebase
-
 import Foundation
 
 public struct FirebaseHNAPIClient {
@@ -16,7 +15,7 @@ public struct FirebaseHNAPIClient {
     public var requestTimeout: TimeInterval = 10.0
 
     private let responsesQueue = DispatchQueue(label: "fr.ngquerol.HackerNewsAPI.ResponsesQueue")
-    
+
     private let rootReference: DatabaseReference
 
     // MARK: Initializer
@@ -78,14 +77,13 @@ public struct FirebaseHNAPIClient {
         DispatchQueue.global(qos: .userInitiated).async {
             storiesIdsRef
                 .queryLimited(toFirst: UInt(count))
-                .observeSingleEvent(of: .value)
-            { snapshot in
-                if let storiesIds = snapshot.value as? [UInt] {
-                    completion(.success(storiesIds.map { Int($0) }))
-                } else {
-                    completion(.failure(.unknown))
+                .observeSingleEvent(of: .value) { snapshot in
+                    if let storiesIds = snapshot.value as? [UInt] {
+                        completion(.success(storiesIds.map { Int($0) }))
+                    } else {
+                        completion(.failure(.unknown))
+                    }
                 }
-            }
         }
     }
 

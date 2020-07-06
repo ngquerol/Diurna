@@ -7,7 +7,6 @@
 //
 
 import AppKit
-
 import HackerNewsAPI
 
 class CommentCellView: NSTableCellView {
@@ -42,9 +41,9 @@ class CommentCellView: NSTableCellView {
     }
 
     @IBOutlet var textView: MarkupTextView!
-    
+
     @IBOutlet var trailingSpacingConstraint: NSLayoutConstraint!
-    
+
     // MARK: Properties
 
     override var objectValue: Any? {
@@ -125,7 +124,7 @@ class CommentCellView: NSTableCellView {
             name: .toggleCommentRepliesNotification,
             object: self,
             userInfo: [
-                "toggleChildren": toggleChildren,
+                "toggleChildren": toggleChildren
             ]
         )
     }
@@ -139,7 +138,7 @@ class CommentCellView: NSTableCellView {
             name: .goToParentCommentNotification,
             object: self,
             userInfo: [
-                "childComment": comment,
+                "childComment": comment
             ]
         )
     }
@@ -148,7 +147,7 @@ class CommentCellView: NSTableCellView {
         guard
             let user = (objectValue as? Comment)?.by,
             let userDetailsPopoverViewController = userDetailsPopover.contentViewController
-            as? UserDetailsPopoverViewController
+                as? UserDetailsPopoverViewController
         else {
             return
         }
@@ -166,7 +165,8 @@ class CommentCellView: NSTableCellView {
 // MARK: - Notifications
 
 extension Notification.Name {
-    static let toggleCommentRepliesNotification = Notification
+    static let toggleCommentRepliesNotification =
+        Notification
         .Name("ToggleCommentRepliesNotification")
     static let goToParentCommentNotification = Notification.Name("GoToParentCommentNotification")
 }

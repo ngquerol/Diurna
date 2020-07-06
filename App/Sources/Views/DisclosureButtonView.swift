@@ -12,7 +12,7 @@ import AppKit
     // MARK: Properties
 
     @IBInspectable var collapsedImage: NSImage?
-    
+
     @IBInspectable var collapsedTooltip: String?
 
     @IBInspectable var expandedImage: NSImage?
@@ -35,9 +35,9 @@ import AppKit
 
     override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
         isExpanded.toggle()
-        
+
         animateDisclosure()
-    
+
         return super.sendAction(action, to: target)
     }
 
@@ -50,7 +50,7 @@ import AppKit
         layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         layer?.position = CGPoint(x: frame.midX, y: frame.midY)
         layer?.setAffineTransform(layer?.affineTransform().rotated(by: .pi) ?? .identity)
-        
+
         layer?.add(transformRotate, forKey: "transform")
     }
 }

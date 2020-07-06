@@ -28,7 +28,7 @@ class StoryRowView: NSTableRowView {
         else {
             return
         }
-        
+
         cgContext.saveGState()
 
         let margin: CGFloat = cellView.containerStackView.edgeInsets.right,

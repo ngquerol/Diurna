@@ -52,7 +52,8 @@ public enum HNAPIError: Error {
         case let .clientError(reason): return "The client failed to execute the request: \(reason)"
         case let .genericNetworkError(error): return error.localizedDescription
         case let .invalidHTTPResponse(response):
-            return "The server HTTP response status code indicated an error: HTTP \(response.statusCode)"
+            return
+                "The server HTTP response status code indicated an error: HTTP \(response.statusCode)"
         case let .invalidJSON(error):
             return "The server's JSON response could not be parsed: \(error.localizedDescription)"
         case .requestTimedOut: return "The network request timed out"
@@ -99,7 +100,7 @@ extension HNAPI: APIEndpoint {
     var firebasePath: String {
         let completePath = path.path,
             pathStartIndex = completePath.index(after: completePath.startIndex)
-        
+
         return String(completePath.suffix(from: pathStartIndex))
     }
 }

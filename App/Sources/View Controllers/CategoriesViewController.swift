@@ -7,7 +7,6 @@
 //
 
 import AppKit
-
 import HackerNewsAPI
 
 class CategoriesViewController: NSViewController {
@@ -28,7 +27,7 @@ class CategoriesViewController: NSViewController {
 
         if !didAppear {
             didAppear.toggle()
-            
+
             DispatchQueue.main.async {
                 self.notifyCategoryChange()
             }
@@ -38,7 +37,7 @@ class CategoriesViewController: NSViewController {
     // MARK: Functions
 
     func notifyCategoryChange() {
-        guard 0 ..< StoryType.allCases.count ~= tableView.selectedRow else { return }
+        guard 0..<StoryType.allCases.count ~= tableView.selectedRow else { return }
 
         NotificationCenter.default.post(
             name: .newCategorySelectedNotification,
@@ -82,12 +81,14 @@ extension CategoriesViewController: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, rowViewForRow _: Int) -> NSTableRowView? {
-        return tableView
+        return
+            tableView
             .makeView(withIdentifier: .categoryRow, owner: self) as? NoEmphasisTableRowView
     }
 
     func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
-        let cellView = tableView
+        let cellView =
+            tableView
             .makeView(withIdentifier: .categoryCell, owner: self) as? NSTableCellView
         let selectedCategory = StoryType.allCases[row]
 

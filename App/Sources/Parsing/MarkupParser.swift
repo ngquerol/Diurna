@@ -110,11 +110,12 @@ struct MarkupParser {
     private mutating func parseAttributeValue() -> String {
         let openQuote = parser.consumeCharacter()
         let unescapedValue = parser.consumeWhile { $0 != openQuote }
-        let value = CFXMLCreateStringByUnescapingEntities(
-            nil,
-            unescapedValue as CFString,
-            nil
-        ) as String
+        let value =
+            CFXMLCreateStringByUnescapingEntities(
+                nil,
+                unescapedValue as CFString,
+                nil
+            ) as String
 
         parser.consumeCharacter()
 
@@ -174,7 +175,7 @@ struct MarkupParser {
                     .font: NSFontManager.shared.convert(
                         NSFont.systemFont(ofSize: 12),
                         toHaveTrait: .italicFontMask
-                    ),
+                    )
                 ], uniquingKeysWith: { $1 }
             )
 
@@ -207,7 +208,7 @@ struct MarkupParser {
         var text = parseText()
 
         if tag?.name == "code" {
-            let wholeTextRange = NSRange(0 ..< text.count)
+            let wholeTextRange = NSRange(0..<text.count)
 
             text = leadingSpaceRegex.stringByReplacingMatches(
                 in: text,
@@ -235,7 +236,7 @@ struct MarkupParser {
             case _: result.append(handleText(for: currentTag))
             }
         }
-        
+
         result.endEditing()
 
         return result
