@@ -292,7 +292,6 @@
 				8D657E871C49A80500F31BB7 /* Frameworks */,
 				8D657E881C49A80500F31BB7 /* Resources */,
 				8D60CFD2231173FA005795AA /* Embed Frameworks */,
-				0766BB998DBABA8B091096AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,23 +357,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0766BB998DBABA8B091096AA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diurna/Pods-Diurna-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0B0BC914DC10F1482CD5DC25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

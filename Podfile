@@ -1,7 +1,7 @@
 workspace 'Diurna'
 platform :macos, '10.12'
 
-use_frameworks!
+use_frameworks! :linkage => :static
 inhibit_all_warnings!
 
 def shared_pods
