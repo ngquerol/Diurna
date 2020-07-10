@@ -21,7 +21,6 @@
 		8D1DAB541FDDD47600FF4FCC /* StoryStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */; };
 		8D2630341C754EC900CFFE62 /* String+MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */; };
 		8D2630361C755F4600CFFE62 /* URL+ShortURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */; };
-		8D2851282030B54600B202C3 /* DebouncedSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2851272030B54600B202C3 /* DebouncedSearchField.swift */; };
 		8D2B783B23FC654800AF9373 /* OSLog+Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B783A23FC654800AF9373 /* OSLog+Categories.swift */; };
 		8D2FC6A51FDD681800E22E24 /* ProgressOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */; };
 		8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */; };
@@ -92,7 +91,6 @@
 		8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryStatusView.swift; sourceTree = "<group>"; };
 		8D2630331C754EC900CFFE62 /* String+MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MarkupParser.swift"; sourceTree = "<group>"; };
 		8D2630351C755F4600CFFE62 /* URL+ShortURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ShortURL.swift"; sourceTree = "<group>"; };
-		8D2851272030B54600B202C3 /* DebouncedSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedSearchField.swift; sourceTree = "<group>"; };
 		8D2B783A23FC654800AF9373 /* OSLog+Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Categories.swift"; sourceTree = "<group>"; };
 		8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressOverlayView.xib; sourceTree = "<group>"; };
 		8D2FC6A61FDD68F800E22E24 /* ProgressOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlayView.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 				8D5ED1DA1C570165004440FD /* CommentCellView.swift */,
 				8D0626E723FFC0D1008040BA /* CommentRowView.swift */,
 				8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */,
-				8D2851272030B54600B202C3 /* DebouncedSearchField.swift */,
 				8D086DEF1D2D5BB10015EF71 /* DisclosureButtonView.swift */,
 				8DA296A31D2AD5BD0072DABB /* LightColoredBadgeView.swift */,
 				8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */,
@@ -435,7 +432,6 @@
 				8D2B783B23FC654800AF9373 /* OSLog+Categories.swift in Sources */,
 				8D000B4C23EC4345002CBF68 /* ClearRoundRectButtonCell.swift in Sources */,
 				8D86F4491CF7343900017E47 /* AboutViewController.swift in Sources */,
-				8D2851282030B54600B202C3 /* DebouncedSearchField.swift in Sources */,
 				8D0626E823FFC0D1008040BA /* CommentRowView.swift in Sources */,
 				8D2630361C755F4600CFFE62 /* URL+ShortURL.swift in Sources */,
 				8D7EC20F1FE5997400126BFF /* Int+KFormatted.swift in Sources */,

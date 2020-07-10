@@ -89,7 +89,7 @@
                                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZYM-kZ-UzP">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZYM-kZ-UzP">
                                             <rect key="frame" x="253" y="11" width="16" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -486,15 +486,16 @@
                                             <action selector="userDidChangeStoriesCount:" target="Pqr-aU-vhO" id="uo1-BV-HPs"/>
                                         </connections>
                                     </popUpButton>
-                                    <searchField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-mM-FxE" customClass="DebouncedSearchField" customModule="Diurna" customModuleProvider="target">
+                                    <searchField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-mM-FxE">
                                         <rect key="frame" x="96" y="6" width="199" height="19"/>
-                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="eta-jQ-8FK">
+                                        <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="eta-jQ-8FK">
                                             <font key="font" metaFont="controlContent" size="11"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                         <connections>
                                             <action selector="userDidTypeInSearchField:" target="Pqr-aU-vhO" id="LEr-Sm-0by"/>
+                                            <outlet property="delegate" destination="Pqr-aU-vhO" id="AMU-O5-cvf"/>
                                         </connections>
                                     </searchField>
                                 </subviews>

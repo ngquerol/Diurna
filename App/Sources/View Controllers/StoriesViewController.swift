@@ -39,7 +39,7 @@ class StoriesViewController: NSViewController {
         }
     }
 
-    @IBOutlet var searchField: DebouncedSearchField!
+    @IBOutlet var searchField: NSSearchField!
 
     // MARK: Properties
 
@@ -95,17 +95,14 @@ class StoriesViewController: NSViewController {
 
     // MARK: Actions
 
-    @IBAction func userDidTypeInSearchField(_: NSSearchField) {
+    @IBAction func userDidTypeInSearchField(_ target: NSSearchField) {
         let trimmedSearchString = searchField.stringValue.trimmingCharacters(
             in: .whitespaces)
 
-        guard trimmedSearchString.count > 0 else {
-            dataSource = stories
-            return
-        }
-
-        dataSource = stories.filter {
-            $0.title.localizedCaseInsensitiveContains(trimmedSearchString)
+        if trimmedSearchString.count > 0 {
+            filterStories()
+        } else {
+            resetStories()
         }
     }
 
@@ -136,7 +133,7 @@ class StoriesViewController: NSViewController {
         updateStories(ofCategory: category, count: count)
     }
 
-    func updateStories(ofCategory category: StoryType, count: Int) {
+    private func updateStories(ofCategory category: StoryType, count: Int) {
         showProgressOverlay(with: "Loading stories...")
 
         apiClient.fetchStories(of: category, count: count) { [weak self] storiesResults in
@@ -160,6 +157,19 @@ class StoriesViewController: NSViewController {
 
             self?.hideProgressOverlay()
         }
+    }
+
+    private func filterStories() {
+        let trimmedSearchString = searchField.stringValue.trimmingCharacters(
+            in: .whitespaces)
+
+        dataSource = stories.filter {
+            $0.title.localizedCaseInsensitiveContains(trimmedSearchString)
+        }
+    }
+
+    private func resetStories() {
+        dataSource = stories
     }
 }
 
@@ -253,6 +263,6 @@ extension StoriesViewController: NSTableViewDelegate {
 
 extension StoriesViewController: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_: NSSearchField) {
-        dataSource = stories
+        resetStories()
     }
 }
