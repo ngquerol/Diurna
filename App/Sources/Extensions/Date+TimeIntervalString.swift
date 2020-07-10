@@ -29,14 +29,14 @@ extension Date {
     /// If said amount is less or equal than a minute, returns `just now`.
     /// - note: Returns `some time { ago | from now }` as a fallback if formatting fails.
     var timeIntervalString: String {
-        let now = Date()
-        let components = Calendar.current.dateComponents(
-            [.minute, .hour, .day, .year],
-            from: self,
-            to: now
-        )
+        let now = Date(),
+            components = Calendar.current.dateComponents(
+                [.minute, .hour, .day, .year],
+                from: self,
+                to: now
+            )
 
-        if Calendar.current.isDateInToday(now),
+        if Calendar.current.isDateInToday(self),
             components.hour == 0,
             components.minute == 0
         {
