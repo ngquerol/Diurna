@@ -47,6 +47,8 @@ extension MockHNAPIClient: HNAPIClient {
         set {}
     }
 
+    public var loggedInUser: String? { nil }
+
     public func fetchStories(
         of type: StoryType, count: Int, completion: @escaping HNAPIResultsCallback<Story>
     ) {

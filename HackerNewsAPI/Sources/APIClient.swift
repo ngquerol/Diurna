@@ -39,26 +39,29 @@ public protocol HNAPIClient {
 
 /// Errors thrown while interacting with the Hacker News API.
 public enum HNAPIError: Error {
-    case clientError(String)
     case genericNetworkError(Error)
-    case invalidHTTPResponse(HTTPURLResponse)
+    case invalidHTTPStatus(Int)
     case invalidJSON(Error)
     case requestTimedOut
     case emptyResponse
     case unknown
+}
 
-    var localizedDescription: String {
+extension HNAPIError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
-        case let .clientError(reason): return "The client failed to execute the request: \(reason)"
-        case let .genericNetworkError(error): return error.localizedDescription
-        case let .invalidHTTPResponse(response):
-            return
-                "The server HTTP response status code indicated an error: HTTP \(response.statusCode)"
+        case let .genericNetworkError(error):
+            return error.localizedDescription
+        case let .invalidHTTPStatus(status):
+            return "The server's HTTP response status code was not expected: HTTP \(status)"
         case let .invalidJSON(error):
             return "The server's JSON response could not be parsed: \(error.localizedDescription)"
-        case .requestTimedOut: return "The network request timed out"
-        case .emptyResponse: return "The server's response body was empty"
-        case .unknown: return "Unknown error"
+        case .requestTimedOut:
+            return "The server took too long to respond"
+        case .emptyResponse:
+            return "The server's response body was empty"
+        case .unknown:
+            return nil
         }
     }
 }

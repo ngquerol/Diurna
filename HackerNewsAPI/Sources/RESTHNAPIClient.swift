@@ -41,11 +41,11 @@ public struct RESTHNAPIClient {
         _ error: Error?
     ) -> Result<T, HNAPIError> {
         switch (data, response as? HTTPURLResponse, error) {
+        case let (_, _, .some(error)):
+            return .failure(.genericNetworkError(error))
+            
         case let (_, .some(response), _) where !(200..<300 ~= response.statusCode):
-            return .failure(.invalidHTTPResponse(response))
-
-        case let (_, _, .some(error) as NSError?) where error.code == NSURLErrorTimedOut:
-            return .failure(.requestTimedOut)
+            return .failure(.invalidHTTPStatus(response.statusCode))
 
         case let (data, _, _) where data == nil || data?.isEmpty == true:
             return .failure(.emptyResponse)
@@ -56,9 +56,6 @@ public struct RESTHNAPIClient {
             } catch {
                 return .failure(.invalidJSON(error))
             }
-
-        case let (_, _, .some(error)):
-            return .failure(.genericNetworkError(error))
 
         default:
             return .failure(.unknown)
@@ -160,6 +157,8 @@ public struct RESTHNAPIClient {
 // MARK: - HackerNewsAPIClient
 
 extension RESTHNAPIClient: HNAPIClient {
+    public var loggedInUser: String? { nil }
+
     public func fetchStories(
         of type: StoryType, count: Int,
         completion: @escaping ([Result<Story, HNAPIError>]) -> Void
