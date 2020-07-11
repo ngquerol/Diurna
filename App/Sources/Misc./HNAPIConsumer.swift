@@ -9,8 +9,15 @@
 import Firebase
 import HackerNewsAPI
 
-let app = FirebaseApp.app(),
-    client = FirebaseHNAPIClient(app: app!)
+let client: HNAPIClient = {
+    FirebaseApp.configure()
+
+    guard let app = FirebaseApp.app() else {
+        fatalError("Failed to initialize Firebase application")
+    }
+
+    return FirebaseHNAPIClient(app: app)
+}()
 
 protocol HNAPIConsumer {
     var apiClient: HNAPIClient { get }

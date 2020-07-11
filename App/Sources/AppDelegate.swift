@@ -59,8 +59,4 @@ extension AppDelegate: NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         return true
     }
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        FirebaseApp.configure()
-    }
 }
