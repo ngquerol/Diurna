@@ -1,5 +1,5 @@
 workspace 'Diurna'
-platform :macos, '10.12'
+platform :macos, '10.14'
 
 use_frameworks! :linkage => :static
 inhibit_all_warnings!
