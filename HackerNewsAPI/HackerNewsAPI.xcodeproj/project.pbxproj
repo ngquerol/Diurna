@@ -11,8 +11,7 @@
 		8D23B0FE24AC0ED200CDD7B1 /* KeyedDecodingContainer+decodeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23B0FD24AC0ED200CDD7B1 /* KeyedDecodingContainer+decodeURL.swift */; };
 		8D23B10224AD1E0600CDD7B1 /* WebRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23B10124AD1E0600CDD7B1 /* WebRouting.swift */; };
 		8D6B488D231175C7006AA005 /* FirebaseHNAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCAA230B174B001BEAB4 /* FirebaseHNAPIClient.swift */; };
-		8D6B488E231175C8006AA005 /* RESTHNAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCA8230B174B001BEAB4 /* RESTHNAPIClient.swift */; };
-		8D6B488F231175C8006AA005 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCB8230B1CD7001BEAB4 /* APIClient.swift */; };
+		8D6B488F231175C8006AA005 /* HNAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CCB8230B1CD7001BEAB4 /* HNAPIClient.swift */; };
 		8D6B489B231176DD006AA005 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B4895231176DD006AA005 /* Comment.swift */; };
 		8D6B489C231176DD006AA005 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B4896231176DD006AA005 /* Item.swift */; };
 		8D6B489E231176DD006AA005 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B4899231176DD006AA005 /* User.swift */; };
@@ -46,9 +45,8 @@
 		8D6B489A231176DD006AA005 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		8D6B48A023117AA6006AA005 /* Decodable+JSONInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+JSONInit.swift"; sourceTree = "<group>"; };
 		8DD2CC92230B171B001BEAB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DD2CCA8230B174B001BEAB4 /* RESTHNAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTHNAPIClient.swift; sourceTree = "<group>"; };
 		8DD2CCAA230B174B001BEAB4 /* FirebaseHNAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHNAPIClient.swift; sourceTree = "<group>"; };
-		8DD2CCB8230B1CD7001BEAB4 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		8DD2CCB8230B1CD7001BEAB4 /* HNAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNAPIClient.swift; sourceTree = "<group>"; };
 		8DE61CA123ED8E0200FAC9FC /* HackerNewsAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HackerNewsAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFE97D524C042D600B6CD9A /* HTTPHNWebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHNWebClient.swift; sourceTree = "<group>"; };
 		C2AD8A12740C718F0A001C61 /* Pods-HackerNewsAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsAPI.debug.xcconfig"; path = "Target Support Files/Pods-HackerNewsAPI/Pods-HackerNewsAPI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,9 +109,8 @@
 			children = (
 				8D2E6BF12312B17D00F1FAD2 /* Extensions */,
 				8D6B4894231176DD006AA005 /* Model */,
-				8DD2CCB8230B1CD7001BEAB4 /* APIClient.swift */,
+				8DD2CCB8230B1CD7001BEAB4 /* HNAPIClient.swift */,
 				8DD2CCAA230B174B001BEAB4 /* FirebaseHNAPIClient.swift */,
-				8DD2CCA8230B174B001BEAB4 /* RESTHNAPIClient.swift */,
 				8D23B0D524AB5AC800CDD7B1 /* MockHNAPIClient.swift */,
 				8D23B10124AD1E0600CDD7B1 /* WebRouting.swift */,
 				8DFE97D524C042D600B6CD9A /* HTTPHNWebClient.swift */,
@@ -251,9 +248,8 @@
 				8D6B489B231176DD006AA005 /* Comment.swift in Sources */,
 				8D23B10224AD1E0600CDD7B1 /* WebRouting.swift in Sources */,
 				8D6B488D231175C7006AA005 /* FirebaseHNAPIClient.swift in Sources */,
-				8D6B488E231175C8006AA005 /* RESTHNAPIClient.swift in Sources */,
 				8D6B489E231176DD006AA005 /* User.swift in Sources */,
-				8D6B488F231175C8006AA005 /* APIClient.swift in Sources */,
+				8D6B488F231175C8006AA005 /* HNAPIClient.swift in Sources */,
 				8D6B48A123117AA6006AA005 /* Decodable+JSONInit.swift in Sources */,
 				8DFE97D624C042D700B6CD9A /* HTTPHNWebClient.swift in Sources */,
 				8D6B489C231176DD006AA005 /* Item.swift in Sources */,
