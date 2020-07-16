@@ -44,7 +44,7 @@ class StoriesTableView: NSTableView {
     @objc func openStoryInBrowser(_ sender: NSMenuItem) {
         guard let story = sender.representedObject as? Story else { return }
 
-        let storyURL = HackerNewsWebpage.item(story.id).path
+        let storyURL = HNWebpage.item(story.id).path
 
         do {
             try NSWorkspace.shared.open(storyURL, options: .withoutActivation, configuration: [:])

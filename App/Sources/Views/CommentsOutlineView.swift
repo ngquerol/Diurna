@@ -58,7 +58,7 @@ class CommentsOutlineView: NSOutlineView {
     @objc func openCommentInBrowser(_ sender: NSMenuItem) {
         guard let comment = sender.representedObject as? Comment else { return }
 
-        let commentURL = HackerNewsWebpage.item(comment.id).path
+        let commentURL = HNWebpage.item(comment.id).path
 
         do {
             try NSWorkspace.shared.open(commentURL, options: .withoutActivation, configuration: [:])

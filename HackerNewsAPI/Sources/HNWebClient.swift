@@ -43,14 +43,14 @@ extension HNWebError: LocalizedError {
     }
 }
 
-// MARK: - HackerNewsWebPage
+// MARK: - HNWebpage
 
 protocol WebItem {
     var baseURL: URL { get }
     var path: URL { get }
 }
 
-public enum HackerNewsWebpage {
+public enum HNWebpage {
     case item(Int)
     case user(String)
     case login
@@ -64,7 +64,7 @@ public enum HackerNewsWebpage {
     }
 }
 
-extension HackerNewsWebpage: WebItem {
+extension HNWebpage: WebItem {
     public var baseURL: URL { return URL(string: "https://news.ycombinator.com")! }
 
     public var path: URL {
@@ -85,23 +85,25 @@ extension HackerNewsWebpage: WebItem {
 
 // MARK: - HNWebClient
 
+/// [Hacker News](https://news.ycombinator.com) web client.
+/// - Note: Clients always assume being called on the main thread, and also execute their completion callbacks on the main thread.
 public protocol HNWebClient {
-    
+
     func login(
         withAccount account: String,
         andPassword password: String,
         completion: @escaping HNWebResultCallback<Void>
     )
-    
+
     func logout(
         completion: @escaping HNWebResultCallback<Void>
     )
-    
+
     func upvote(
         item: Int,
         completion: @escaping HNWebResultCallback<Void>
     )
-    
+
     func downvote(
         item: Int,
         completion: @escaping HNWebResultCallback<Void>
