@@ -9,7 +9,9 @@
 import Firebase
 import HackerNewsAPI
 
-let client: HNAPIClient = {
+// MARK: - API
+
+private let api: HNAPIClient = {
     FirebaseApp.configure()
 
     guard let app = FirebaseApp.app() else {
@@ -24,5 +26,17 @@ protocol HNAPIConsumer {
 }
 
 extension HNAPIConsumer {
-    var apiClient: HNAPIClient { client }
+    var apiClient: HNAPIClient { api }
+}
+
+// MARK: - Web
+
+private let web: HNWebClient = HTTPHNWebClient()
+
+protocol HNWebConsumer {
+    var webClient: HNWebClient { get }
+}
+
+extension HNWebConsumer {
+    var webClient: HNWebClient { web }
 }

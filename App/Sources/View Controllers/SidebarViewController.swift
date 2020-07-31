@@ -1,5 +1,5 @@
 //
-//  CategoriesViewController.swift
+//  SidebarViewController.swift
 //  Diurna
 //
 //  Created by Nicolas Gaulard-Querol on 19/03/2016.
@@ -8,30 +8,36 @@
 
 import AppKit
 import HackerNewsAPI
+import OSLog
 
-class CategoriesViewController: NSViewController {
+class SidebarViewController: NSViewController {
     // MARK: Outlets
 
     @IBOutlet var topSpacingConstraint: NSLayoutConstraint!
 
     @IBOutlet var tableView: NSTableView!
 
+    @IBOutlet var loginStatusView: UserLoginStatusView! {
+        didSet {
+            loginStatusView.user = webClient.authenticatedUser
+            loginStatusView.delegate = self
+        }
+    }
+
     // MARK: Properties
 
-    private var didAppear = false
+    private lazy var notifyFirstCategoryChange: Void = {
+        DispatchQueue.main.async(execute: notifyCategoryChange)
+    }()
+
+    private var userLoginViewController: UserLoginViewController?
 
     // MARK: View Lifecycle
 
     override func viewDidAppear() {
         super.viewDidAppear()
 
-        if !didAppear {
-            didAppear.toggle()
-
-            DispatchQueue.main.async {
-                self.notifyCategoryChange()
-            }
-        }
+        _ = notifyFirstCategoryChange
     }
 
     // MARK: Functions
@@ -63,7 +69,7 @@ extension NSUserInterfaceItemIdentifier {
 
 // MARK: - NSTableView Data Source
 
-extension CategoriesViewController: NSTableViewDataSource {
+extension SidebarViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
         return StoryType.allCases.count
     }
@@ -75,7 +81,7 @@ extension CategoriesViewController: NSTableViewDataSource {
 
 // MARK: - NSTableView Delegate
 
-extension CategoriesViewController: NSTableViewDelegate {
+extension SidebarViewController: NSTableViewDelegate {
     func tableView(_: NSTableView, heightOfRow _: Int) -> CGFloat {
         return 30.0
     }
@@ -98,5 +104,52 @@ extension CategoriesViewController: NSTableViewDelegate {
             .image = NSImage(named: "\(selectedCategory.rawValue.capitalized)IconTemplate")
 
         return cellView
+    }
+}
+
+// MARK: - HNWebConsumer
+
+extension SidebarViewController: HNWebConsumer {}
+
+// MARK: - UserLoginActionDelegate
+
+extension SidebarViewController: UserLoginStatusViewDelegate {
+    func userDidRequestLogin() {
+        let userLoginViewController = UserLoginViewController(
+            nibName: .userLoginViewController,
+            bundle: nil
+        )
+
+        userLoginViewController.delegate = self
+
+        self.userLoginViewController = userLoginViewController
+        self.presentAsSheet(userLoginViewController)
+    }
+
+    func userDidRequestLogout() {
+        webClient.logout { [weak self] logoutResult in
+            switch logoutResult {
+            case .success:
+                self?.loginStatusView.user = nil
+            case .failure:
+                NSAlert.showModal(withTitle: "Failed to log out")
+            }
+        }
+    }
+}
+
+// MARK: - UserLoginViewControllerDelegate
+
+extension SidebarViewController: UserLoginViewControllerDelegate {
+    func userDidLogin(with user: String) {
+        userLoginViewController.map(dismiss)
+        userLoginViewController = nil
+
+        loginStatusView.user = user
+    }
+
+    func userDidCancelLogin() {
+        userLoginViewController.map(dismiss)
+        userLoginViewController = nil
     }
 }

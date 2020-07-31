@@ -35,7 +35,7 @@ extension MainWindowController: NSWindowDelegate {
             let sidebarSplitViewItem = mainSplitView.sidebarSplitViewItem,
             let categoriesViewController =
                 sidebarSplitViewItem
-                .viewController as? CategoriesViewController
+                .viewController as? SidebarViewController
         else {
             return
         }
@@ -50,7 +50,7 @@ extension MainWindowController: NSWindowDelegate {
             let sidebarSplitViewItem = mainSplitView.sidebarSplitViewItem,
             let categoriesViewController =
                 sidebarSplitViewItem
-                .viewController as? CategoriesViewController
+                .viewController as? SidebarViewController
         else {
             return
         }

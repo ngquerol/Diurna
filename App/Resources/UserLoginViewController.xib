@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17140" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17140"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="UserLoginViewController" customModule="Diurna" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="Rn7-fy-JF2" id="gOk-xK-Myd"/>
+                <outlet property="loginButton" destination="UYf-0e-9O1" id="gHV-ac-gNs"/>
+                <outlet property="userNameTextField" destination="a5Z-kI-ma5" id="zvU-ar-coc"/>
+                <outlet property="userPasswordTextField" destination="Efl-nz-odh" id="b7Z-qu-9df"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="102"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView distribution="fillProportionally" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E5Q-Y1-1bQ">
+                    <rect key="frame" x="10" y="71" width="372" height="21"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zsf-MK-hMx">
+                            <rect key="frame" x="-2" y="2" width="70" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Username:" id="PSH-e4-7u4">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-kI-ma5">
+                            <rect key="frame" x="74" y="0.0" width="298" height="21"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wim-gI-Okd">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView distribution="fillProportionally" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9F-i8-1Nc">
+                    <rect key="frame" x="10" y="40" width="372" height="21"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cLz-Gp-rfd">
+                            <rect key="frame" x="-2" y="3" width="70" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Password:" id="Vik-ym-IUo">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Efl-nz-odh">
+                            <rect key="frame" x="74" y="0.0" width="298" height="21"/>
+                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="tGm-lS-yN2">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <allowedInputSourceLocales>
+                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                </allowedInputSourceLocales>
+                            </secureTextFieldCell>
+                        </secureTextField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView distribution="fillEqually" orientation="horizontal" alignment="firstBaseline" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-6y-01h">
+                    <rect key="frame" x="224" y="10" width="158" height="20"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rn7-fy-JF2">
+                            <rect key="frame" x="-7" y="-7" width="88" height="32"/>
+                            <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9VQ-Bz-fbj">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UYf-0e-9O1">
+                            <rect key="frame" x="77" y="-7" width="88" height="32"/>
+                            <buttonCell key="cell" type="push" title="Log in" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Da9-0W-8tT">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Ldv-6y-01h" firstAttribute="top" secondItem="M9F-i8-1Nc" secondAttribute="bottom" constant="10" id="FOV-yK-2Uu"/>
+                <constraint firstItem="E5Q-Y1-1bQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="GBM-RN-zBk"/>
+                <constraint firstAttribute="bottom" secondItem="Ldv-6y-01h" secondAttribute="bottom" constant="10" id="M8g-g4-bGN"/>
+                <constraint firstItem="M9F-i8-1Nc" firstAttribute="top" secondItem="E5Q-Y1-1bQ" secondAttribute="bottom" constant="10" id="Vtv-yb-Ts6"/>
+                <constraint firstItem="M9F-i8-1Nc" firstAttribute="leading" secondItem="E5Q-Y1-1bQ" secondAttribute="leading" id="XGc-wk-ncy"/>
+                <constraint firstItem="E5Q-Y1-1bQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="fbH-dI-kev"/>
+                <constraint firstItem="M9F-i8-1Nc" firstAttribute="trailing" secondItem="E5Q-Y1-1bQ" secondAttribute="trailing" id="gsz-8Z-8vc"/>
+                <constraint firstAttribute="trailing" secondItem="E5Q-Y1-1bQ" secondAttribute="trailing" constant="10" id="hpn-Av-T5j"/>
+                <constraint firstItem="cLz-Gp-rfd" firstAttribute="width" secondItem="zsf-MK-hMx" secondAttribute="width" id="uig-1f-mUZ"/>
+                <constraint firstItem="Ldv-6y-01h" firstAttribute="trailing" secondItem="M9F-i8-1Nc" secondAttribute="trailing" id="uiu-qQ-J3F"/>
+            </constraints>
+            <point key="canvasLocation" x="27" y="203"/>
+        </customView>
+    </objects>
+</document>

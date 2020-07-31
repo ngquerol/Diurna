@@ -29,11 +29,13 @@
 		8D4DC0071D4A534F0066EB11 /* MarkupLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */; };
 		8D4DC0091D4A53830066EB11 /* MarkupTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */; };
 		8D5ED1DB1C570165004440FD /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED1DA1C570165004440FD /* CommentCellView.swift */; };
+		8D5FE32724D19542009CD460 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FE32524D19542009CD460 /* UserLoginViewController.swift */; };
+		8D5FE32824D19542009CD460 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5FE32624D19542009CD460 /* UserLoginViewController.xib */; };
 		8D708E3A1C7F6E300089BD7D /* CommentsOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D708E391C7F6E300089BD7D /* CommentsOutlineView.swift */; };
 		8D72DFC71C50313100ADEBB8 /* StoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */; };
 		8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D766FC01F23C53400534769 /* StoriesTableView.swift */; };
 		8D7856AE1DCE45E50051F3E2 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7856AD1DCE45E50051F3E2 /* AboutWindowController.swift */; };
-		8D7A6AFD1C9DBDF0002B119C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */; };
+		8D7A6AFD1C9DBDF0002B119C /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A6AFC1C9DBDF0002B119C /* SidebarViewController.swift */; };
 		8D7E2F1F24B2980A00206824 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E2F1E24B2980A00206824 /* GoogleService-Info.plist */; };
 		8D7EC20D1FE1E8F000126BFF /* NSAttributedString+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7EC20C1FE1E8F000126BFF /* NSAttributedString+Additions.swift */; };
 		8D7EC20F1FE5997400126BFF /* Int+KFormatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7EC20E1FE5997400126BFF /* Int+KFormatted.swift */; };
@@ -50,9 +52,12 @@
 		8DDB770C24ADC64800DC8FC1 /* NSOutlineView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB770B24ADC64800DC8FC1 /* NSOutlineView+Additions.swift */; };
 		8DDF25BB1EED577900402E54 /* ClickableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDF25BA1EED577900402E54 /* ClickableTextField.swift */; };
 		8DEA2AF723F1DBC400A1879F /* NSView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA2AF623F1DBC400A1879F /* NSView+Additions.swift */; };
+		8DEC811E24D3917000FA9B5F /* NSAlert+ShowModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC811D24D3917000FA9B5F /* NSAlert+ShowModal.swift */; };
 		8DEC92221C708E2800833317 /* UserDetailsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */; };
 		8DECDCF31D1B049A005AC978 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECDCF21D1B049A005AC978 /* CommentsViewController.swift */; };
 		8DEEA5621C52CB45001DB85D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DEEA5611C52CB45001DB85D /* Main.storyboard */; };
+		8DFE97D824C0BDE800B6CD9A /* UserLoginStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DFE97D724C0BDE800B6CD9A /* UserLoginStatusView.xib */; };
+		8DFE97DC24C0C08800B6CD9A /* UserLoginStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFE97DB24C0C08800B6CD9A /* UserLoginStatusView.swift */; };
 		8DFFA2FE24B3666C007648BE /* new_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F624B3666B007648BE /* new_stories.json */; };
 		8DFFA2FF24B3666C007648BE /* job_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F724B3666B007648BE /* job_stories.json */; };
 		8DFFA30024B3666C007648BE /* best_stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFA2F824B3666B007648BE /* best_stories.json */; };
@@ -98,6 +103,8 @@
 		8D4DC0061D4A534F0066EB11 /* MarkupLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupLayoutManager.swift; sourceTree = "<group>"; };
 		8D4DC0081D4A53830066EB11 /* MarkupTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTextView.swift; sourceTree = "<group>"; };
 		8D5ED1DA1C570165004440FD /* CommentCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
+		8D5FE32524D19542009CD460 /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		8D5FE32624D19542009CD460 /* UserLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserLoginViewController.xib; sourceTree = "<group>"; };
 		8D60CFCF231173FA005795AA /* HackerNewsAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HackerNewsAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D657E8D1C49A80500F31BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/AppDelegate.swift; sourceTree = "<group>"; };
 		8D657E941C49A80500F31BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,7 +113,7 @@
 		8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCellView.swift; sourceTree = "<group>"; };
 		8D766FC01F23C53400534769 /* StoriesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableView.swift; sourceTree = "<group>"; };
 		8D7856AD1DCE45E50051F3E2 /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
-		8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		8D7A6AFC1C9DBDF0002B119C /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		8D7E2F1E24B2980A00206824 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D7EC20C1FE1E8F000126BFF /* NSAttributedString+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Additions.swift"; sourceTree = "<group>"; };
 		8D7EC20E1FE5997400126BFF /* Int+KFormatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+KFormatted.swift"; sourceTree = "<group>"; };
@@ -123,10 +130,13 @@
 		8DDB770B24ADC64800DC8FC1 /* NSOutlineView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Additions.swift"; sourceTree = "<group>"; };
 		8DDF25BA1EED577900402E54 /* ClickableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableTextField.swift; sourceTree = "<group>"; };
 		8DEA2AF623F1DBC400A1879F /* NSView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Additions.swift"; sourceTree = "<group>"; };
+		8DEC811D24D3917000FA9B5F /* NSAlert+ShowModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+ShowModal.swift"; sourceTree = "<group>"; };
 		8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsPopoverViewController.swift; sourceTree = "<group>"; };
 		8DECDCF21D1B049A005AC978 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		8DEEA5611C52CB45001DB85D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DFA46CD2407107C00E30BD3 /* Diurna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diurna.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DFE97D724C0BDE800B6CD9A /* UserLoginStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserLoginStatusView.xib; sourceTree = "<group>"; };
+		8DFE97DB24C0C08800B6CD9A /* UserLoginStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginStatusView.swift; sourceTree = "<group>"; };
 		8DFFA2F624B3666B007648BE /* new_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = new_stories.json; sourceTree = "<group>"; };
 		8DFFA2F724B3666B007648BE /* job_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = job_stories.json; sourceTree = "<group>"; };
 		8DFFA2F824B3666B007648BE /* best_stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = best_stories.json; sourceTree = "<group>"; };
@@ -195,13 +205,14 @@
 			isa = PBXGroup;
 			children = (
 				8D86F4481CF7343900017E47 /* AboutViewController.swift */,
-				8D7A6AFC1C9DBDF0002B119C /* CategoriesViewController.swift */,
+				8D7A6AFC1C9DBDF0002B119C /* SidebarViewController.swift */,
 				8DECDCF21D1B049A005AC978 /* CommentsViewController.swift */,
 				8D16E97F1D21817400FD1153 /* MainSplitViewController.swift */,
 				8D657EBA1C49A90B00F31BB7 /* StoriesViewController.swift */,
 				8D91D0B41FCC9B6900A61601 /* StoryDetailsViewController.swift */,
 				8D92332C1FCCAA3C001FE232 /* StoryMasterViewController.swift */,
 				8DEC92211C708E2800833317 /* UserDetailsPopoverViewController.swift */,
+				8D5FE32524D19542009CD460 /* UserLoginViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "Sources/View Controllers";
@@ -212,6 +223,7 @@
 			children = (
 				8DD9B1B21C8D6A570042F89C /* Date+TimeIntervalString.swift */,
 				8D7EC20E1FE5997400126BFF /* Int+KFormatted.swift */,
+				8DEC811D24D3917000FA9B5F /* NSAlert+ShowModal.swift */,
 				8D7EC20C1FE1E8F000126BFF /* NSAttributedString+Additions.swift */,
 				8DDB770B24ADC64800DC8FC1 /* NSOutlineView+Additions.swift */,
 				8DEA2AF623F1DBC400A1879F /* NSView+Additions.swift */,
@@ -241,6 +253,7 @@
 				8D72DFC61C50313100ADEBB8 /* StoryCellView.swift */,
 				8DC9412F1E3CF626008BB0A5 /* StoryRowView.swift */,
 				8D1DAB531FDDD47600FF4FCC /* StoryStatusView.swift */,
+				8DFE97DB24C0C08800B6CD9A /* UserLoginStatusView.swift */,
 			);
 			name = Views;
 			path = Sources/Views;
@@ -290,6 +303,8 @@
 				8D2FC6A41FDD681800E22E24 /* ProgressOverlayView.xib */,
 				8D1DAB511FDDD38600FF4FCC /* StoryStatusView.xib */,
 				8D8105221DCE53200031AE2C /* UserDetailsPopoverView.xib */,
+				8DFE97D724C0BDE800B6CD9A /* UserLoginStatusView.xib */,
+				8D5FE32624D19542009CD460 /* UserLoginViewController.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -375,6 +390,7 @@
 			files = (
 				8DFFA30424B3666C007648BE /* user.json in Resources */,
 				8DFFA30524B3666C007648BE /* stories_dump.py in Resources */,
+				8D5FE32824D19542009CD460 /* UserLoginViewController.xib in Resources */,
 				8DFFA30124B3666C007648BE /* ask_stories.json in Resources */,
 				8D2FC6A51FDD681800E22E24 /* ProgressOverlayView.xib in Resources */,
 				8DFFA30224B3666C007648BE /* show_stories.json in Resources */,
@@ -388,6 +404,7 @@
 				8DB29B361CF37E32006EBF32 /* Assets.xcassets in Resources */,
 				8DFFA2FF24B3666C007648BE /* job_stories.json in Resources */,
 				8D7E2F1F24B2980A00206824 /* GoogleService-Info.plist in Resources */,
+				8DFE97D824C0BDE800B6CD9A /* UserLoginStatusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +443,7 @@
 				8D7856AE1DCE45E50051F3E2 /* AboutWindowController.swift in Sources */,
 				8DDF25BB1EED577900402E54 /* ClickableTextField.swift in Sources */,
 				8D92332D1FCCAA3C001FE232 /* StoryMasterViewController.swift in Sources */,
-				8D7A6AFD1C9DBDF0002B119C /* CategoriesViewController.swift in Sources */,
+				8D7A6AFD1C9DBDF0002B119C /* SidebarViewController.swift in Sources */,
 				8D80D8E623325698005652DE /* NoEmphasisTableRowView.swift in Sources */,
 				8D766FC11F23C53400534769 /* StoriesTableView.swift in Sources */,
 				8D2B783B23FC654800AF9373 /* OSLog+Categories.swift in Sources */,
@@ -448,16 +465,19 @@
 				8D2FC6A71FDD68F800E22E24 /* ProgressOverlayView.swift in Sources */,
 				8DC941301E3CF626008BB0A5 /* StoryRowView.swift in Sources */,
 				8D91D0B51FCC9B6900A61601 /* StoryDetailsViewController.swift in Sources */,
+				8DEC811E24D3917000FA9B5F /* NSAlert+ShowModal.swift in Sources */,
 				8DA296A41D2AD5BD0072DABB /* LightColoredBadgeView.swift in Sources */,
 				8DECDCF31D1B049A005AC978 /* CommentsViewController.swift in Sources */,
 				8DDB770C24ADC64800DC8FC1 /* NSOutlineView+Additions.swift in Sources */,
 				8D16E9801D21817400FD1153 /* MainSplitViewController.swift in Sources */,
 				8DC309521C6E0D3F00188137 /* MarkupParser.swift in Sources */,
+				8D5FE32724D19542009CD460 /* UserLoginViewController.swift in Sources */,
 				8D0043551C4EE38F00C1F7D6 /* StoriesViewController.swift in Sources */,
 				8D4DC0091D4A53830066EB11 /* MarkupTextView.swift in Sources */,
 				8D1DAB541FDDD47600FF4FCC /* StoryStatusView.swift in Sources */,
 				8DD9B1B31C8D6A570042F89C /* Date+TimeIntervalString.swift in Sources */,
 				8D5ED1DB1C570165004440FD /* CommentCellView.swift in Sources */,
+				8DFE97DC24C0C08800B6CD9A /* UserLoginStatusView.swift in Sources */,
 				8D0043561C4EE38F00C1F7D6 /* AppDelegate.swift in Sources */,
 				8D086DF01D2D5BB10015EF71 /* DisclosureButtonView.swift in Sources */,
 			);

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17140" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17140"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="UserLoginStatusView" customModule="Diurna" customModuleProvider="target">
+            <connections>
+                <outlet property="userButton" destination="MhC-l2-Ngj" id="oGA-0f-dPN"/>
+                <outlet property="userMenu" destination="mou-mg-pxi" id="FEl-vn-jO1"/>
+                <outlet property="userStatusIndicator" destination="CtN-7Y-LMf" id="7Wp-ec-mD8"/>
+                <outlet property="view" destination="c22-O7-iKe" id="Lx2-Om-O5s"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="161" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MhC-l2-Ngj">
+                    <rect key="frame" x="5" y="5" width="61" height="19"/>
+                    <popUpButtonCell key="cell" type="roundRect" title="Log in" bezelStyle="roundedRect" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="1WT-Sl-ekF" id="bgW-tg-ZnK">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                        <menu key="menu" id="mou-mg-pxi">
+                            <items>
+                                <menuItem title="Log in" state="on" hidden="YES" id="1WT-Sl-ekF"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CtN-7Y-LMf">
+                    <rect key="frame" x="140" y="7" width="16" height="16"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusNone" id="Vs3-7N-nwl"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="CtN-7Y-LMf" firstAttribute="centerY" secondItem="MhC-l2-Ngj" secondAttribute="centerY" id="6oO-5R-XAO"/>
+                <constraint firstItem="CtN-7Y-LMf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MhC-l2-Ngj" secondAttribute="trailing" constant="5" id="9X5-CU-sM1"/>
+                <constraint firstItem="MhC-l2-Ngj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="tJW-2B-G63"/>
+                <constraint firstItem="MhC-l2-Ngj" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="xVM-j6-xNn"/>
+                <constraint firstAttribute="trailing" secondItem="CtN-7Y-LMf" secondAttribute="trailing" constant="5" id="yTI-dh-1zl"/>
+            </constraints>
+            <point key="canvasLocation" x="-190" y="261.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSStatusNone" width="16" height="16"/>
+    </resources>
+</document>

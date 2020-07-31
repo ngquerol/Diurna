@@ -13,4 +13,9 @@ extension OSLog {
         subsystem: Bundle.main.bundleIdentifier!,
         category: "apiRequests"
     )
+
+    static let webRequests = OSLog(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: "webRequests"
+    )
 }
