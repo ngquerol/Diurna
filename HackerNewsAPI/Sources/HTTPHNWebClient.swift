@@ -13,7 +13,9 @@ public class HTTPHNWebClient {
 
     private var userCookie: HTTPCookie? {
         guard
-            let cookie = HTTPCookieStorage.shared.cookies(for: HNWebpage.login.path)?.last
+            let cookie = HTTPCookieStorage.shared
+                .cookies(for: HNWebpage.login.path)?
+                .last(where: isHNUserCookie)
         else {
             return nil
         }
@@ -26,7 +28,7 @@ public class HTTPHNWebClient {
     private func performLoginRequest(
         account: String,
         password: String,
-        completion: @escaping HNWebResultCallback<Void>
+        completion: @escaping HNWebResultCallback<String>
     ) {
         var request = URLRequest(url: HNWebpage.login.path)
         request.httpMethod = "POST"
@@ -40,7 +42,7 @@ public class HTTPHNWebClient {
 
         let dataTask = urlSession.dataTask(with: request) { data, response, error in
             let taskResult = self.validateResponse(data, response, error),
-                authResult = taskResult.flatMap { _ in self.verifyLoginCookie() }
+                authResult = taskResult.flatMap { _ in self.verifyHNUserCookie() }
 
             completion(authResult)
         }
@@ -74,17 +76,20 @@ public class HTTPHNWebClient {
         }
     }
 
-    private func verifyLoginCookie() -> HNWebResult<Void> {
+    private func isHNUserCookie(_ cookie: HTTPCookie) -> Bool {
+        cookie.name == "user"
+            && cookie.domain == HNWebpage.login.path.host
+            && cookie.path == "/"
+    }
+
+    private func verifyHNUserCookie() -> HNWebResult<String> {
         guard let cookie = userCookie else {
-            return .failure(HNWebError.missingAuthentication)
+            return .failure(.missingAuthentication)
         }
 
-        guard
-            cookie.domain == HNWebpage.login.path.host,
-            cookie.path == "/",
-            cookie.name == "user",
-            cookie.value.split(separator: "&").count == 2
-        else {
+        let userAndSignature = cookie.value.split(separator: "&")
+
+        guard userAndSignature.count == 2 else {
             return .failure(.invalidAuthentication)
         }
 
@@ -92,20 +97,28 @@ public class HTTPHNWebClient {
             return .failure(.expiredAuthentication(expiry))
         }
 
-        return .success(())
+        return .success(String(userAndSignature[0]))
     }
 }
 
 // MARK: - HNWebClient
 
 extension HTTPHNWebClient: HNWebClient {
+
+    public var authenticatedUser: String? {
+        switch verifyHNUserCookie() {
+        case .success(let user): return user
+        case .failure(_): return nil
+        }
+    }
+
     public func login(
         withAccount account: String,
         andPassword password: String,
-        completion: @escaping HNWebResultCallback<Void>
+        completion: @escaping HNWebResultCallback<String>
     ) {
-        if case .success = verifyLoginCookie() {
-            completion(.success(()))
+        if let user = authenticatedUser {
+            completion(.success(user))
             return
         }
 
@@ -117,7 +130,12 @@ extension HTTPHNWebClient: HNWebClient {
     }
 
     public func logout(completion: @escaping HNWebResultCallback<Void>) {
-        fatalError("Not implemented")
+        guard let cookie = userCookie else { return }
+
+        // TODO: Invalidate the user cookie server-side
+        HTTPCookieStorage.shared.deleteCookie(cookie)
+
+        DispatchQueue.main.async { completion(.success(())) }
     }
 
     public func upvote(item: Int, completion: @escaping HNWebResultCallback<Void>) {

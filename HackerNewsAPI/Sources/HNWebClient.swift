@@ -30,11 +30,11 @@ extension HNWebError: LocalizedError {
         case let .invalidHTTPStatus(status):
             return "The server's HTTP response status code was not expected: HTTP \(status)"
         case let .expiredAuthentication(expiry):
-            return "The request's authentication has expired since \(expiry.debugDescription)"
+            return "The user's authentication has expired (expiry: \(expiry.debugDescription))"
         case .invalidAuthentication:
-            return "The request is not authenticated"
+            return "The user cookie has an unexpected value"
         case .missingAuthentication:
-            return "The request's authentication is missing"
+            return "The user cookie is missing"
         case .requestTimedOut:
             return "The request timed out"
         case .unknown:
@@ -88,11 +88,12 @@ extension HNWebpage: WebItem {
 /// [Hacker News](https://news.ycombinator.com) web client.
 /// - Note: Clients always assume being called on the main thread, and also execute their completion callbacks on the main thread.
 public protocol HNWebClient {
+    var authenticatedUser: String? { get }
 
     func login(
         withAccount account: String,
         andPassword password: String,
-        completion: @escaping HNWebResultCallback<Void>
+        completion: @escaping HNWebResultCallback<String>
     )
 
     func logout(
