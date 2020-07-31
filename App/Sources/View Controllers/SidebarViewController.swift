@@ -99,7 +99,7 @@ extension SidebarViewController: NSTableViewDelegate {
         let selectedCategory = StoryType.allCases[row]
 
         cellView?.objectValue = selectedCategory
-        cellView?.textField?.stringValue = selectedCategory.rawValue.capitalized
+        cellView?.textField?.stringValue = "\(selectedCategory.rawValue.capitalized) Stories"
         cellView?.imageView?
             .image = NSImage(named: "\(selectedCategory.rawValue.capitalized)IconTemplate")
 

@@ -13,8 +13,8 @@ class MainSplitViewController: NSSplitViewController {
 
     @IBOutlet var sidebarSplitViewItem: NSSplitViewItem! {
         didSet {
-            sidebarSplitViewItem.minimumThickness = 85.0
-            sidebarSplitViewItem.maximumThickness = 85.0
+            sidebarSplitViewItem.minimumThickness = 135
+            sidebarSplitViewItem.maximumThickness = 135
         }
     }
 

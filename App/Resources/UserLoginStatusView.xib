@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MhC-l2-Ngj">
-                    <rect key="frame" x="5" y="5" width="61" height="19"/>
+                    <rect key="frame" x="10" y="5" width="61" height="19"/>
                     <popUpButtonCell key="cell" type="roundRect" title="Log in" bezelStyle="roundedRect" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="1WT-Sl-ekF" id="bgW-tg-ZnK">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="cellTitle"/>
@@ -33,16 +33,16 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CtN-7Y-LMf">
-                    <rect key="frame" x="140" y="7" width="16" height="16"/>
+                    <rect key="frame" x="135" y="7" width="16" height="16"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusNone" id="Vs3-7N-nwl"/>
                 </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="CtN-7Y-LMf" firstAttribute="centerY" secondItem="MhC-l2-Ngj" secondAttribute="centerY" id="6oO-5R-XAO"/>
-                <constraint firstItem="CtN-7Y-LMf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MhC-l2-Ngj" secondAttribute="trailing" constant="5" id="9X5-CU-sM1"/>
-                <constraint firstItem="MhC-l2-Ngj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="tJW-2B-G63"/>
+                <constraint firstItem="CtN-7Y-LMf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MhC-l2-Ngj" secondAttribute="trailing" constant="10" id="9X5-CU-sM1"/>
+                <constraint firstItem="MhC-l2-Ngj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="tJW-2B-G63"/>
                 <constraint firstItem="MhC-l2-Ngj" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="xVM-j6-xNn"/>
-                <constraint firstAttribute="trailing" secondItem="CtN-7Y-LMf" secondAttribute="trailing" constant="5" id="yTI-dh-1zl"/>
+                <constraint firstAttribute="trailing" secondItem="CtN-7Y-LMf" secondAttribute="trailing" constant="10" id="yTI-dh-1zl"/>
             </constraints>
             <point key="canvasLocation" x="-190" y="261.5"/>
         </customView>
